@@ -30,10 +30,11 @@ async function get<T>(path: string, attempt = 0): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-async function getPoolsPaginated(network: string, endpoint: string, pages: number): Promise<GeckoPool[]> {
+async function getPoolsPaginated(network: string, path: string, pages: number): Promise<GeckoPool[]> {
   const pools: GeckoPool[] = [];
+  const separator = path.includes("?") ? "&" : "?";
   for (let page = 1; page <= pages; page++) {
-    const result = await get<{ data: GeckoPool[] }>(`/networks/${network}/${endpoint}?page=${page}`);
+    const result = await get<{ data: GeckoPool[] }>(`/networks/${network}/${path}${separator}page=${page}`);
     if (result.data.length === 0) break;
     pools.push(...result.data);
   }
@@ -46,6 +47,12 @@ export async function getTrendingPools(network: string, pages = 1): Promise<Geck
 
 export async function getNewPools(network: string, pages = 2): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "new_pools", pages);
+}
+
+/** All active pools ranked by 24h volume — the broad net that catches tokens sitting in a
+ *  market-cap band regardless of whether they're currently "trending" or brand new. */
+export async function getPoolsByVolume(network: string, pages = 6): Promise<GeckoPool[]> {
+  return getPoolsPaginated(network, "pools?sort=h24_volume_usd_desc", pages);
 }
 
 function parseOhlcv(result: { data: { attributes: { ohlcv_list: number[][] } } }): OhlcvCandle[] {

@@ -68,3 +68,20 @@ export async function sendTelegramMessage(text: string): Promise<void> {
     await sendSingleMessage(chunk);
   }
 }
+
+export interface TelegramUpdate {
+  update_id: number;
+  message?: { chat: { id: number }; text?: string };
+}
+
+/** Long-poll-free fetch of pending updates since `offset`. Does not mark them read on Telegram's side by itself. */
+export async function getTelegramUpdates(offset?: number): Promise<TelegramUpdate[]> {
+  const params = offset !== undefined ? `?offset=${offset}&timeout=0` : "?timeout=0";
+  const res = await fetch(`${API_URL}/getUpdates${params}`);
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Telegram getUpdates failed: ${res.status} ${body}`);
+  }
+  const data = (await res.json()) as { result: TelegramUpdate[] };
+  return data.result;
+}

@@ -6,8 +6,10 @@
   "scripts": {
     "start": "node dist/main.js",
     "start:flash": "node dist/flash.js",
+    "start:listen": "node dist/listen.js",
     "dev": "tsx src/main.ts",
     "dev:flash": "tsx src/flash.ts",
+    "dev:listen": "tsx src/listen.ts",
     "build": "tsc"
   },
   "keywords": [],

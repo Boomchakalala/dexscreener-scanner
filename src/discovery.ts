@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import { getHourlyCandles, getMinuteCandles, getNewPools, getTrendingPools } from "./gecko.js";
+import { getHourlyCandles, getMinuteCandles, getNewPools, getPoolsByVolume, getTrendingPools } from "./gecko.js";
 import { getRugCheckReport } from "./rugcheck.js";
 import type { Candidate, GeckoPool } from "./types.js";
 
@@ -57,9 +57,13 @@ export async function discoverCandidates(): Promise<Candidate[]> {
   const seen = new Map<string, Candidate>();
 
   for (const network of config.chains) {
-    const [trending, fresh] = await Promise.all([getTrendingPools(network), getNewPools(network)]);
+    const [trending, fresh, byVolume] = await Promise.all([
+      getTrendingPools(network),
+      getNewPools(network),
+      getPoolsByVolume(network),
+    ]);
 
-    for (const pool of [...trending, ...fresh]) {
+    for (const pool of [...trending, ...fresh, ...byVolume]) {
       const candidate = toCandidate(network, pool);
       if (!candidate || !passesFloors(candidate)) continue;
       const existing = seen.get(candidate.poolAddress);

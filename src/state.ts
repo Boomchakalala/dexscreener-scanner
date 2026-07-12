@@ -22,6 +22,7 @@ export interface AlertHistoryEntry {
 
 interface State {
   history: AlertHistoryEntry[];
+  lastTelegramUpdateId?: number;
 }
 
 async function loadState(): Promise<State> {
@@ -58,5 +59,16 @@ export async function recordAlerts(kind: AlertKind, entries: Omit<AlertHistoryEn
   const now = Date.now();
   const retained = state.history.filter((entry) => isRetained(entry, now));
   state.history = [...retained, ...entries.map((entry) => ({ ...entry, kind, alertedAt: now }))];
+  await saveState(state);
+}
+
+export async function getLastTelegramUpdateId(): Promise<number | undefined> {
+  const state = await loadState();
+  return state.lastTelegramUpdateId;
+}
+
+export async function setLastTelegramUpdateId(updateId: number): Promise<void> {
+  const state = await loadState();
+  state.lastTelegramUpdateId = updateId;
   await saveState(state);
 }
