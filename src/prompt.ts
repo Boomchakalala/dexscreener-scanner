@@ -123,13 +123,15 @@ Whether volume is dominated by connected wallets.
 Reject tokens with:
 
 Dangerous developer control.
-Extreme holder concentration.
+Extreme holder concentration — from real wallets (see the important note below).
 Developer dumping.
 Strong bundled-launch evidence.
 Unsafe liquidity.
 Fake or manipulated volume.
 
 A strong chart does not override serious rug risk.
+
+Important note on reading top-holder data: on pump.fun-style launches, the single largest "holder" by raw percentage is very often the liquidity pool itself or an unmigrated bonding-curve escrow account — a program, not a person — and a 70-90% "top holder" reading like that is completely normal and not itself a rug signal. Do not reject a token purely because one holder shows a huge raw percentage. Instead, trust RugCheck's own risk engine: its named risks array, its insider flags per holder, and its overall risk score are already tuned to account for this and will call out real concentration risk (e.g. an actual named holder/insider risk, or insider:true on a large holder) when it exists. Only treat holder concentration as a rejection reason when RugCheck's own signals actually support it, or when several holders are individually large AND flagged as insiders/connected — not from the raw topHolders percentage list in isolation.
 
 6. Narrative and socials
 
