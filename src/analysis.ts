@@ -19,6 +19,7 @@ function buildUserMessage(candidates: Candidate[], recentHistory: AlertHistoryEn
     volume24hUsd: Math.round(c.volume24hUsd),
     priceChangeH6: c.priceChangeH6,
     priceChangeH24: c.priceChangeH24,
+    txnsH1: c.txnsH1,
     txnsH6: c.txnsH6,
     candles: c.candles,
     rugCheck: c.rugCheck

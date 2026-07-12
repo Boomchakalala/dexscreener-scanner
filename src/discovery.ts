@@ -24,6 +24,7 @@ function toCandidate(network: string, pool: GeckoPool): Candidate | null {
   if (!marketCapUsd || !liquidityUsd) return null;
 
   const symbol = pool.attributes.name.split("/")[0]?.trim() || pool.attributes.name;
+  const txnsH1 = attrs.transactions.h1 ?? { buys: 0, sells: 0, buyers: 0, sellers: 0 };
   const txnsH6 = attrs.transactions.h6 ?? { buys: 0, sells: 0, buyers: 0, sellers: 0 };
 
   return {
@@ -38,6 +39,7 @@ function toCandidate(network: string, pool: GeckoPool): Candidate | null {
     volume24hUsd: Number(attrs.volume_usd.h24 ?? 0),
     priceChangeH6: attrs.price_change_percentage.h6 ? Number(attrs.price_change_percentage.h6) : null,
     priceChangeH24: attrs.price_change_percentage.h24 ? Number(attrs.price_change_percentage.h24) : null,
+    txnsH1,
     txnsH6,
     candles: [],
     rugCheck: null,
@@ -50,7 +52,11 @@ function passesFloors(candidate: Candidate): boolean {
     candidate.marketCapUsd >= floors.minMarketCapUsd &&
     candidate.marketCapUsd <= floors.maxMarketCapUsd &&
     candidate.liquidityUsd >= floors.minLiquidityUsd &&
-    (candidate.ageHours === null || candidate.ageHours <= floors.maxAgeHours)
+    (candidate.ageHours === null || candidate.ageHours <= floors.maxAgeHours) &&
+    // Broad discovery (esp. "sorted by 24h volume") surfaces tokens whose entire
+    // volume happened hours ago and have since gone dead. Require some actual
+    // trading in the last hour so we're not analyzing (and reporting on) corpses.
+    candidate.txnsH1.buys + candidate.txnsH1.sells >= 3
   );
 }
 

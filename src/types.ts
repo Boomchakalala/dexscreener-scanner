@@ -53,6 +53,7 @@ export interface Candidate {
   volume24hUsd: number;
   priceChangeH6: number | null;
   priceChangeH24: number | null;
+  txnsH1: { buys: number; sells: number; buyers: number; sellers: number };
   txnsH6: { buys: number; sells: number; buyers: number; sellers: number };
   candles: OhlcvCandle[];
   rugCheck: RugCheckReport | null;
