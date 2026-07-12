@@ -49,7 +49,8 @@ function passesFloors(candidate: Candidate): boolean {
   return (
     candidate.marketCapUsd >= floors.minMarketCapUsd &&
     candidate.marketCapUsd <= floors.maxMarketCapUsd &&
-    candidate.liquidityUsd >= floors.minLiquidityUsd
+    candidate.liquidityUsd >= floors.minLiquidityUsd &&
+    (candidate.ageHours === null || candidate.ageHours <= floors.maxAgeHours)
   );
 }
 

@@ -61,7 +61,7 @@ function parseOhlcv(result: { data: { attributes: { ohlcv_list: number[][] } } }
     .sort((a, b) => a.timestamp - b.timestamp);
 }
 
-export async function getHourlyCandles(network: string, poolAddress: string, limit = 72): Promise<OhlcvCandle[]> {
+export async function getHourlyCandles(network: string, poolAddress: string, limit = 48): Promise<OhlcvCandle[]> {
   const result = await get<{ data: { attributes: { ohlcv_list: number[][] } } }>(
     `/networks/${network}/pools/${poolAddress}/ohlcv/hour?limit=${limit}`
   );

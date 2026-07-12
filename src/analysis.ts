@@ -92,7 +92,7 @@ async function runAnalysis(
 }
 
 export function analyzeCandidates(candidates: Candidate[], recentHistory: AlertHistoryEntry[]): Promise<AnalysisResult> {
-  return runAnalysis(SYSTEM_PROMPT, candidates, recentHistory, "Tokens alerted in the last 48 hours", "high");
+  return runAnalysis(SYSTEM_PROMPT, candidates, recentHistory, "Tokens alerted in the last 48 hours", "medium");
 }
 
 export function analyzeFlash(candidates: Candidate[], recentHistory: AlertHistoryEntry[]): Promise<AnalysisResult> {
