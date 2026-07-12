@@ -2,7 +2,10 @@ name: Telegram listener
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    # Every 5 min, offset by 3 so it never lands on :00/:05/:10 etc — those exact
+    # marks are GitHub Actions' platform-wide high-load times, which queued this
+    # up ~55-60min apart in practice despite the nominal */30 schedule.
+    - cron: "3,8,13,18,23,28,33,38,43,48,53,58 * * * *"
   workflow_dispatch: {}
 
 permissions:

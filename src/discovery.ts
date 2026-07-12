@@ -2,6 +2,7 @@ import { config } from "./config.js";
 import { getHourlyCandles, getMinuteCandles, getNewPools, getPoolsByVolume, getTrendingPools } from "./gecko.js";
 import { getTradeability } from "./jupiter.js";
 import { getRugCheckReport } from "./rugcheck.js";
+import { rankByChartProxy } from "./scoring.js";
 import type { Candidate, GeckoPool } from "./types.js";
 
 function extractTokenAddress(relationshipId: string): string {
@@ -45,6 +46,8 @@ function toCandidate(network: string, pool: GeckoPool): Candidate | null {
     candles: [],
     rugCheck: null,
     tradeability: null,
+    chartRank: null,
+    qualityRank: null,
   };
 }
 
@@ -64,9 +67,16 @@ function passesFloors(candidate: Candidate): boolean {
 
 export interface DiscoveryResult {
   rawCount: number;
-  survivors: Candidate[];
+  floorSurvivorCount: number;
+  shortlist: Candidate[];
 }
 
+/** STAGE 1 (raw scan) + STAGE 1b (hard floors) + STAGE 2 (chart-proxy shortlist).
+ *  Scans the widest reasonable universe first — trending, brand-new, and by-volume
+ *  pools, several hundred raw pairs, not just the first ~100 — then applies only the
+ *  hard sanity floors (market cap, liquidity, age, liveliness), then cuts to a
+ *  shortlist using the chart-structure proxy (see scoring.ts). RugCheck plays no part
+ *  in this function at all — that's a later, final gate, not a discovery filter. */
 export async function discoverCandidates(): Promise<DiscoveryResult> {
   const seen = new Map<string, Candidate>();
   let rawCount = 0;
@@ -91,31 +101,38 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
     }
   }
 
-  // Sort by recent (1h) volume, not liquidity — a liquidity-sort systematically
-  // excludes exactly the thin-but-hot tokens this scanner exists to catch (a fresh
-  // pump.fun-style token can do $500K+ in 1h volume on $30-40K of liquidity).
-  const survivors = [...seen.values()]
-    .sort((a, b) => b.volumeH1Usd - a.volumeH1Usd)
-    .slice(0, config.floors.maxSurvivors);
+  const floorSurvivors = [...seen.values()];
+  const shortlist = rankByChartProxy(floorSurvivors, config.floors.maxShortlist);
 
-  return { rawCount, survivors };
+  return { rawCount, floorSurvivorCount: floorSurvivors.length, shortlist };
 }
 
-export async function enrichCandidates(candidates: Candidate[]): Promise<Candidate[]> {
+/** STAGE 3 enrichment — real hourly candles only, for the chart-shortlisted batch.
+ *  Deliberately no RugCheck here: quality ranking (scoring.rankByQuality) runs on this
+ *  before RugCheck is ever fetched, so safety data can't influence which candidates
+ *  reach the deep-review batch. */
+export async function enrichWithCandles(candidates: Candidate[]): Promise<Candidate[]> {
   return Promise.all(
     candidates.map(async (candidate) => {
-      const [candles, rugCheck] = await Promise.all([
-        getHourlyCandles(candidate.chainId, candidate.poolAddress).catch(() => []),
-        getRugCheckReport(candidate.tokenAddress),
-      ]);
-      return { ...candidate, candles, rugCheck };
+      const candles = await getHourlyCandles(candidate.chainId, candidate.poolAddress).catch(() => []);
+      return { ...candidate, candles };
     })
   );
 }
 
-/** Hard code-level exclusion for RugCheck danger-level risks (LP unlocked, etc.) —
- *  not a prompt instruction Claude could get talked out of, a token with a real
- *  danger flag is physically removed before the LLM ever sees it. */
+/** STAGE 4 — RugCheck as the FINAL filter, fetched only for the small deep-analyze
+ *  batch that already has an attractive chart and healthy trading behaviour behind it. */
+export async function enrichWithRugCheck(candidates: Candidate[]): Promise<Candidate[]> {
+  return Promise.all(
+    candidates.map(async (candidate) => ({ ...candidate, rugCheck: await getRugCheckReport(candidate.tokenAddress) }))
+  );
+}
+
+/** Hard code-level exclusion for RugCheck danger-level risks (LP unlocked, honeypot-style
+ *  authority flags, etc.) — not a prompt instruction Claude could get talked out of, a
+ *  token with a real material risk is physically removed before the LLM ever sees it.
+ *  Applied only after chart + quality ranking, per the "RugCheck is the final filter,
+ *  reject only for material risks" rule — never used to eliminate candidates earlier. */
 export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {
   return candidates.filter((c) => !c.rugCheck?.risks.some((r) => r.level === "danger"));
 }

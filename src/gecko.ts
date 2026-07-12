@@ -5,7 +5,11 @@ const BASE_URL = "https://api.geckoterminal.com/api/v2";
 // GitHub Actions IP — GeckoTerminal's real sustained free-tier limit is tighter than
 // that can safely exploit. Back to a serialized queue (the pattern that ran reliably
 // all session), just with a shorter interval than the original 2.5s.
-const REQUEST_SPACING_MS = 1800;
+// A 24-page-per-run discovery test measured 91/110 requests hitting 429 even at this
+// spacing — the limit reads as a short burst bucket, not a steady per-request rate, so
+// total requests per run matters as much as spacing. Nudged up from 1800 for margin;
+// the real fix was cutting total page count back down (see getTrendingPools etc below).
+const REQUEST_SPACING_MS = 2000;
 const REQUEST_TIMEOUT_MS = 10_000;
 
 function sleep(ms: number): Promise<void> {
@@ -90,18 +94,26 @@ async function getPoolsPaginated(network: string, path: string, pages: number): 
   return results.flat();
 }
 
-export async function getTrendingPools(network: string, pages = 2): Promise<GeckoPool[]> {
+// Discovery should scan wider than just "trending", but a live test at 24 total pages
+// (4+10+10) lost most of its requests to 429s — the free tier's real burst budget is
+// well short of that. 15 total pages (up from the original 11) is the compromise: a
+// meaningfully wider net that still reliably completes. Candle enrichment downstream
+// adds one more request per shortlisted candidate on the same limiter, so total
+// requests-per-run (~15 + shortlist size) is what actually has to stay under budget,
+// not any single stage's page count.
+
+export async function getTrendingPools(network: string, pages = 3): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "trending_pools", pages);
 }
 
-export async function getNewPools(network: string, pages = 4): Promise<GeckoPool[]> {
+export async function getNewPools(network: string, pages = 6): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "new_pools", pages);
 }
 
 /** All active pools ranked by 24h volume — the broad net that catches tokens sitting in a
  *  market-cap band regardless of whether they're currently "trending" or brand new.
  *  GeckoTerminal's free tier caps this endpoint's pagination around page 10. */
-export async function getPoolsByVolume(network: string, pages = 5): Promise<GeckoPool[]> {
+export async function getPoolsByVolume(network: string, pages = 6): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "pools?sort=h24_volume_usd_desc", pages);
 }
 

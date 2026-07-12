@@ -10,7 +10,8 @@ const client = new Anthropic({ apiKey: config.anthropicApiKey });
 
 export interface DiscoveryFunnel {
   rawCount: number;
-  survivorCount: number;
+  floorSurvivorCount: number;
+  shortlistCount: number;
   deepAnalyzeCount: number;
 }
 
@@ -37,6 +38,8 @@ function buildUserMessage(
     priceChangeH24: c.priceChangeH24,
     txnsH1: c.txnsH1,
     txnsH6: c.txnsH6,
+    chartStructureRank: c.chartRank ? `#${c.chartRank.rank} of ${c.chartRank.of}` : null,
+    marketQualityRank: c.qualityRank ? `#${c.qualityRank.rank} of ${c.qualityRank.of}` : null,
     candles: c.candles,
     tradeability: c.tradeability
       ? { priceImpactPctFor0_5Sol: Number(c.tradeability.priceImpactPct.toFixed(2)), routeHops: c.tradeability.hops }
@@ -65,7 +68,7 @@ function buildUserMessage(
 
   if (context) {
     parts.push(
-      `Discovery funnel: rawCount=${context.funnel.rawCount}, survivorCount=${context.funnel.survivorCount}, deepAnalyzeCount=${context.funnel.deepAnalyzeCount}`,
+      `Discovery funnel: rawCount=${context.funnel.rawCount}, floorSurvivorCount=${context.funnel.floorSurvivorCount}, shortlistCount=${context.funnel.shortlistCount}, deepAnalyzeCount=${context.funnel.deepAnalyzeCount}`,
       `Market overview: ${JSON.stringify(context.marketOverview)}`,
       ""
     );

@@ -5,14 +5,57 @@ export interface ScoredCandidate {
   score: number;
 }
 
-// Deterministic, cheap pre-score (0-100) computed purely from data already fetched
-// (no extra API calls). This is NOT the final grade shown to the user — Claude does
-// the real qualitative judgment on the top N this narrows things down to. Its only
-// job is to stop the LLM call from having to wade through every survivor.
+// Deterministic, cheap pre-scores computed purely from data already fetched (no extra
+// API calls beyond what each stage needed anyway). None of this is the final grade —
+// Claude does the real qualitative judgment on the small batch this narrows things down
+// to. The job here is purely to get from "several hundred raw pairs" to "a shortlist"
+// to "a deep-review batch" without burning the candle/RugCheck API budget on candidates
+// that were never going to make the cut.
+//
+// Chart structure is deliberately scored BEFORE market quality, and RugCheck/safety is
+// scored nowhere in here at all — it's applied as a separate final gate in discovery.ts,
+// after quality ranking, so a dangerous-but-nonexistent-yet risk flag can never keep a
+// good chart from being considered in the first place.
+
+/** STAGE 2 — cheap chart-structure proxy from summary stats GeckoTerminal already gave
+ *  us during discovery (no candle fetch yet). Approximates higher-low / consolidation /
+ *  healthy-pullback / volume-expansion-on-advance shape well enough to cut a raw
+ *  several-hundred-pair pool down to a shortlist worth spending real candle fetches on. */
+export function scoreChartProxy(c: Candidate): number {
+  const m5 = c.priceChangeM5 ?? 0;
+  const h1 = c.priceChangeH1 ?? 0;
+  const h6 = c.priceChangeH6 ?? 0;
+
+  let pts = 0;
+
+  // A real up-move on the h6 window, but 150%+ is already extended for this stage,
+  // not "more bullish" — and a negative h6 gets a little credit only if it's shallow.
+  if (h6 > 0 && h6 <= 150) pts += Math.min(30, h6 * 0.6);
+  else if (h6 > 150 && h6 <= 400) pts += 30 - ((h6 - 150) / 250) * 20;
+  else if (h6 < 0) pts += Math.max(0, 10 + h6 / 5);
+
+  // Penalize an apparent vertical one-candle chase: most of the hour's move packed
+  // into the last 5 minutes reads as a spike, not structure.
+  if (Math.abs(m5) > 15 && Math.abs(h1) > 0 && Math.abs(m5) > Math.abs(h1) * 0.6) pts -= 10;
+
+  // Volume shape: compare the last hour's volume to the h6 window's hourly average.
+  const h6HourlyAvg = c.volumeH6Usd / 6;
+  const volRatio = h6HourlyAvg > 0 ? c.volumeH1Usd / h6HourlyAvg : 1;
+
+  if (h1 < 0 && h1 > -15 && volRatio < 0.8) {
+    pts += 20; // gentle pullback on drying volume — the healthy-retrace pattern
+  } else if (h1 >= 0 && volRatio > 1.2) {
+    pts += 20; // fresh volume returning while price holds or advances
+  } else if (h1 < -10 && volRatio > 1.5) {
+    pts -= 15; // heavy volume on a red move — reads as distribution, not a base
+  }
+
+  return Math.max(0, Math.min(60, pts));
+}
 
 function scoreLiquidity(c: Candidate): number {
-  const pts = ((c.liquidityUsd - 25_000) / (150_000 - 25_000)) * 20;
-  return Math.max(0, Math.min(20, pts));
+  const pts = ((c.liquidityUsd - 15_000) / (150_000 - 15_000)) * 25;
+  return Math.max(0, Math.min(25, pts));
 }
 
 function scoreFlow(c: Candidate): number {
@@ -23,64 +66,82 @@ function scoreFlow(c: Candidate): number {
 
   let pts: number;
   if (buyRatio <= 0.5) {
-    pts = buyRatio * 24; // 0 at all-sells, 12 at balanced
+    pts = buyRatio * 30;
   } else if (buyRatio <= 0.8) {
-    pts = 12 + ((buyRatio - 0.5) / 0.3) * 8; // healthy buy-dominant zone: 12 -> 20
+    pts = 15 + ((buyRatio - 0.5) / 0.3) * 10;
   } else {
-    // Beyond 80% buys, taper back down. An extreme ratio (very few sells relative to
-    // buys, e.g. a honeypot / can't-sell token) is suspicious, not "even more bullish".
-    pts = 20 - ((buyRatio - 0.8) / 0.2) * 10; // 20 at 80%, 10 at 100%
+    // Beyond 80% buys, taper back down — an extreme ratio (very few sells relative to
+    // buys) is suspicious, not "even more bullish"; it can be a can't-sell signature.
+    pts = 25 - ((buyRatio - 0.8) / 0.2) * 12;
   }
 
-  // Buyer-diversity bonus only in a plausible organic range — not for the extreme
-  // imbalance that's more likely a sell-restriction signature than real demand.
-  if (buyers > sellers * 1.2 && buyers < sellers * 5) pts += 1;
+  if (buyers > sellers * 1.2 && buyers < sellers * 5) pts += 2;
 
-  return Math.max(0, Math.min(20, pts));
+  return Math.max(0, Math.min(25, pts));
 }
 
-function scoreMomentum(c: Candidate): number {
-  const change = c.priceChangeH6 ?? 0;
-  if (change < 0) return Math.max(0, 8 + change / 10);
-  if (change < 10) return 8 + change * 0.4;
-  if (change <= 150) return 20;
-  if (change <= 300) return 20 - ((change - 150) / 150) * 12;
-  return 5;
+/** Rough holder-growth proxy: no time-series holder count is available from these APIs,
+ *  so approximate it from unique-buyer rate — this hour's buyer count vs. the h6 window's
+ *  hourly average buyer count. Rising means fresh wallets are actually entering, not just
+ *  the same few wallets trading back and forth. */
+function scoreHolderGrowth(c: Candidate): number {
+  const h6HourlyBuyers = c.txnsH6.buyers / 6;
+  if (h6HourlyBuyers <= 0) return c.txnsH1.buyers > 0 ? 10 : 0;
+  const ratio = c.txnsH1.buyers / h6HourlyBuyers;
+  if (ratio >= 2) return 20;
+  if (ratio >= 1) return 10 + (ratio - 1) * 10;
+  return Math.max(0, ratio * 10);
 }
 
-function scoreSafety(c: Candidate): number {
-  if (!c.rugCheck) return 10;
-  const scoreNorm = c.rugCheck.score_normalised ?? 50;
-  let pts = 20 * (1 - Math.min(Math.max(scoreNorm, 0), 100) / 100);
-  const dangerRisks = c.rugCheck.risks.filter((r) => r.level === "danger").length;
-  pts -= dangerRisks * 5;
-  if (c.rugCheck.token.mintAuthority) pts -= 5;
-  if (c.rugCheck.token.freezeAuthority) pts -= 5;
-  return Math.max(0, Math.min(20, pts));
+/** Light real-candle check: does the most recent low sit above the low from a few
+ *  candles back (an actual higher low, not just the proxy's guess), and did volume
+ *  contract into that low before the current candle? Small bonus only — full chart
+ *  judgment is Claude's job on the final batch, not this pre-score's. */
+function scoreCandleStructure(c: Candidate): number {
+  const candles = c.candles;
+  if (candles.length < 4) return 0;
+
+  const recent = candles.slice(-4);
+  const lastLow = recent[recent.length - 1]!.low;
+  const priorSwingLow = Math.min(...recent.slice(0, -1).map((k) => k.low));
+  let pts = 0;
+  if (lastLow >= priorSwingLow) pts += 10;
+
+  const lastVolume = recent[recent.length - 1]!.volume;
+  const priorAvgVolume = recent.slice(0, -1).reduce((sum, k) => sum + k.volume, 0) / (recent.length - 1);
+  if (priorAvgVolume > 0 && lastVolume < priorAvgVolume) pts += 5; // contraction into the low
+
+  return pts;
 }
 
-function scoreAgeFit(c: Candidate): number {
-  if (c.ageHours === null) return 10;
-  if (c.ageHours <= 12) return 20;
-  if (c.ageHours <= 72) return 20 - ((c.ageHours - 12) / 60) * 15;
-  return 0;
+/** STAGE 3 — market-quality re-rank, run only on the chart-shortlisted batch once real
+ *  hourly candles have been fetched for it. Liquidity, buy/sell pressure, holder growth,
+ *  and volume/candle structure — deliberately no RugCheck/safety input here; that's a
+ *  separate final gate applied after this ranking picks the deep-review batch. */
+export function scoreQuality(c: Candidate): number {
+  return scoreLiquidity(c) + scoreFlow(c) + scoreHolderGrowth(c) + scoreCandleStructure(c);
 }
 
-/** Any RugCheck danger-level risk gates the whole score down hard — Claude still gets
- *  the full data and makes the real call, but a dangerous token shouldn't out-rank a
- *  clean one in the pre-cut just because its volume/momentum numbers look exciting. */
-function hasDangerRisk(c: Candidate): boolean {
-  return c.rugCheck?.risks.some((r) => r.level === "danger") ?? false;
-}
-
-export function scoreCandidate(c: Candidate): number {
-  const raw = scoreLiquidity(c) + scoreFlow(c) + scoreMomentum(c) + scoreSafety(c) + scoreAgeFit(c);
-  return hasDangerRisk(c) ? Math.min(raw, 25) : raw;
-}
-
-export function rankAndCut(candidates: Candidate[], topN: number): ScoredCandidate[] {
-  return candidates
-    .map((candidate) => ({ candidate, score: Math.round(scoreCandidate(candidate)) }))
+function rank<T>(items: T[], scoreFn: (item: T) => number): { item: T; score: number; rank: number }[] {
+  return items
+    .map((item) => ({ item, score: Math.round(scoreFn(item)) }))
     .sort((a, b) => b.score - a.score)
-    .slice(0, topN);
+    .map((entry, i) => ({ ...entry, rank: i + 1 }));
+}
+
+/** Ranks every candidate by the chart-structure proxy and cuts to topN, stamping each
+ *  survivor with its standing among the full pool it was ranked against (so later stages —
+ *  and ultimately Claude's report — can cite a real "#3 of 214" instead of inventing one). */
+export function rankByChartProxy(candidates: Candidate[], topN: number): Candidate[] {
+  const ranked = rank(candidates, scoreChartProxy);
+  const of = candidates.length;
+  return ranked.slice(0, topN).map(({ item, rank: r }) => ({ ...item, chartRank: { rank: r, of } }));
+}
+
+/** Ranks the chart-shortlisted, candle-enriched batch by market quality and cuts to topN,
+ *  stamping standing the same way as rankByChartProxy. */
+export function rankByQuality(candidates: Candidate[], topN: number): Candidate[] {
+  const ranked = rank(candidates, scoreQuality);
+  const of = candidates.length;
+  return ranked.slice(0, topN).map(({ item, rank: r }) => ({ ...item, qualityRank: { rank: r, of } }));
 }

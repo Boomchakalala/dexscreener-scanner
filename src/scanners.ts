@@ -1,9 +1,16 @@
 import { analyzeCandidates, analyzeFlash, type DiscoveryFunnel } from "./analysis.js";
 import { config } from "./config.js";
-import { addTradeability, discoverCandidates, enrichCandidates, enrichCandidatesForFlash, excludeDangerRisks } from "./discovery.js";
+import {
+  addTradeability,
+  discoverCandidates,
+  enrichCandidatesForFlash,
+  enrichWithCandles,
+  enrichWithRugCheck,
+  excludeDangerRisks,
+} from "./discovery.js";
 import { getGeckoStats, resetGeckoStats } from "./gecko.js";
 import { getMarketOverview } from "./marketOverview.js";
-import { rankAndCut } from "./scoring.js";
+import { rankByQuality } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
 
@@ -33,38 +40,43 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   resetGeckoStats();
 
   let t = now();
-  const { rawCount, survivors } = await discoverCandidates();
+  const { rawCount, floorSurvivorCount, shortlist } = await discoverCandidates();
   logStage("Discovery + universe filtering", t);
-  console.log(`Discovered ${rawCount} raw pairs, ${survivors.length} survived hard filters.`);
+  console.log(
+    `Discovered ${rawCount} raw pairs, ${floorSurvivorCount} passed hard floors, ${shortlist.length} chart-shortlisted.`
+  );
 
-  if (survivors.length === 0) {
+  if (shortlist.length === 0) {
     await sendTelegramMessage(`${label} — scanned ${rawCount} pairs, none survived the hard filters this run.`);
     logStage("TOTAL", runStart);
     return;
   }
 
   t = now();
-  const enriched = await enrichCandidates(survivors);
-  logStage("Enrichment (candles + rug check)", t);
-  console.log(`Enriched ${enriched.length} candidates with candles + rug check data.`);
-  logGeckoStats();
+  const withCandles = await enrichWithCandles(shortlist);
+  logStage("Enrichment (candles)", t);
 
-  const safe = excludeDangerRisks(enriched);
-  if (safe.length < enriched.length) {
-    console.log(`Excluded ${enriched.length - safe.length} candidates with a RugCheck danger-level risk.`);
-  }
-
-  const ranked = rankAndCut(safe, config.floors.maxDeepAnalyze);
-  let topCandidates = ranked.map((r) => r.candidate);
-  console.log(`Quantitative pre-score narrowed to top ${topCandidates.length} for deep analysis.`);
+  const quality = rankByQuality(withCandles, config.floors.maxDeepAnalyze);
+  console.log(`Chart + quality ranking narrowed to top ${quality.length} for RugCheck + deep analysis.`);
 
   t = now();
-  topCandidates = await addTradeability(topCandidates);
+  const withRugCheck = await enrichWithRugCheck(quality);
+  logStage("Enrichment (rug check, final gate only)", t);
+  logGeckoStats();
+
+  const safe = excludeDangerRisks(withRugCheck);
+  if (safe.length < withRugCheck.length) {
+    console.log(`Excluded ${withRugCheck.length - safe.length} candidates with a RugCheck danger-level (material) risk.`);
+  }
+
+  t = now();
+  let topCandidates = await addTradeability(safe);
   logStage("Tradeability check (Jupiter, final shortlist only)", t);
 
   const funnel: DiscoveryFunnel = {
     rawCount,
-    survivorCount: survivors.length,
+    floorSurvivorCount,
+    shortlistCount: shortlist.length,
     deepAnalyzeCount: topCandidates.length,
   };
   const marketOverview = await getMarketOverview();
@@ -92,19 +104,19 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
   resetGeckoStats();
 
   let t = now();
-  const { survivors } = await discoverCandidates();
+  const { shortlist: chartShortlist } = await discoverCandidates();
   logStage("Discovery + universe filtering", t);
 
-  if (survivors.length === 0) {
+  if (chartShortlist.length === 0) {
     if (triggeredManually) await sendTelegramMessage("⚡ **Flash check** (manual) — no candidates in range right now.");
     console.log("No candidates in range this pass.");
     logStage("TOTAL", runStart);
     return;
   }
 
-  // Flash is speed-first: skip the full rug-check-informed pre-score and just take the
-  // most liquid subset (discoverCandidates already sorts survivors by liquidity).
-  const shortlist = survivors.slice(0, 15);
+  // Flash is speed-first: skip the quality re-rank and just take the top of the
+  // chart-proxy-ranked shortlist discoverCandidates already produced.
+  const shortlist = chartShortlist.slice(0, 15);
 
   t = now();
   const candidates = await enrichCandidatesForFlash(shortlist);

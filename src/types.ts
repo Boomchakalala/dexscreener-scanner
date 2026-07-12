@@ -64,4 +64,9 @@ export interface Candidate {
   /** Real Jupiter route quote for a ~0.5 SOL buy — null means no route found (a red flag on
    *  its own) or the lookup failed. Only populated for the final shortlist sent to Claude. */
   tradeability: { priceImpactPct: number; hops: number } | null;
+  /** Where this candidate ranked at each discovery stage, out of how many were still in play
+   *  at that stage — so Claude can cite a real standing ("#3 of 214 on chart structure")
+   *  instead of inventing one. Null until that stage has run. */
+  chartRank: { rank: number; of: number } | null;
+  qualityRank: { rank: number; of: number } | null;
 }
