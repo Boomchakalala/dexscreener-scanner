@@ -1,0 +1,26 @@
+{
+  "name": "dexscreener-scanner",
+  "version": "1.0.0",
+  "description": "Scans Solana memecoins for early-stage setups and sends Telegram alerts on a schedule, plus a fast flash-alert check.",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "node dist/main.js",
+    "start:flash": "node dist/flash.js",
+    "dev": "tsx src/main.ts",
+    "dev:flash": "tsx src/flash.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.111.0",
+    "dotenv": "^17.4.2"
+  }
+}

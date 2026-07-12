@@ -1,0 +1,100 @@
+import Anthropic from "@anthropic-ai/sdk";
+import { config } from "./config.js";
+import { FLASH_SYSTEM_PROMPT } from "./flashPrompt.js";
+import { SYSTEM_PROMPT } from "./prompt.js";
+import type { AlertHistoryEntry } from "./state.js";
+import type { Candidate } from "./types.js";
+
+const client = new Anthropic({ apiKey: config.anthropicApiKey });
+
+function buildUserMessage(candidates: Candidate[], recentHistory: AlertHistoryEntry[], historyLabel: string): string {
+  const payload = candidates.map((c) => ({
+    symbol: c.symbol,
+    tokenAddress: c.tokenAddress,
+    poolAddress: c.poolAddress,
+    dexUrl: c.dexUrl,
+    ageHours: c.ageHours !== null ? Number(c.ageHours.toFixed(1)) : null,
+    marketCapUsd: Math.round(c.marketCapUsd),
+    liquidityUsd: Math.round(c.liquidityUsd),
+    volume24hUsd: Math.round(c.volume24hUsd),
+    priceChangeH6: c.priceChangeH6,
+    priceChangeH24: c.priceChangeH24,
+    txnsH6: c.txnsH6,
+    candles: c.candles,
+    rugCheck: c.rugCheck
+      ? {
+          creatorBalance: c.rugCheck.creatorBalance,
+          riskScoreNormalised: c.rugCheck.score_normalised,
+          lpLockedPct: c.rugCheck.lpLockedPct ?? null,
+          risks: c.rugCheck.risks.map((r) => ({ name: r.name, level: r.level })),
+          mintAuthority: c.rugCheck.token.mintAuthority,
+          freezeAuthority: c.rugCheck.token.freezeAuthority,
+          topHolders: c.rugCheck.topHolders.slice(0, 10).map((h) => ({ pct: h.pct, insider: h.insider })),
+        }
+      : null,
+  }));
+
+  const historyPayload = recentHistory.map((h) => ({
+    symbol: h.symbol,
+    tokenAddress: h.tokenAddress,
+    verdict: h.verdict,
+    hoursAgo: Number(((Date.now() - h.alertedAt) / (1000 * 60 * 60)).toFixed(1)),
+  }));
+
+  return [
+    `Candidates (${candidates.length}):`,
+    JSON.stringify(payload, null, 2),
+    "",
+    `${historyLabel} (${historyPayload.length}):`,
+    JSON.stringify(historyPayload, null, 2),
+  ].join("\n");
+}
+
+export interface AnalysisResult {
+  report: string;
+  verdicts: { symbol: string; tokenAddress: string; poolAddress: string; verdict: string }[];
+}
+
+async function runAnalysis(
+  systemPrompt: string,
+  candidates: Candidate[],
+  recentHistory: AlertHistoryEntry[],
+  historyLabel: string,
+  effort: "medium" | "high"
+): Promise<AnalysisResult> {
+  const stream = client.messages.stream({
+    model: "claude-opus-4-8",
+    max_tokens: 8000,
+    thinking: { type: "adaptive" },
+    output_config: { effort },
+    system: systemPrompt,
+    messages: [{ role: "user", content: buildUserMessage(candidates, recentHistory, historyLabel) }],
+  });
+
+  const finalMessage = await stream.finalMessage();
+  const textBlock = finalMessage.content.find((b): b is Anthropic.TextBlock => b.type === "text");
+  const fullText = textBlock?.text ?? "";
+
+  const marker = "---DATA---";
+  const markerIndex = fullText.indexOf(marker);
+  if (markerIndex === -1) {
+    return { report: fullText.trim(), verdicts: [] };
+  }
+
+  const report = fullText.slice(0, markerIndex).trim();
+  const dataBlock = fullText.slice(markerIndex + marker.length).trim();
+  try {
+    const verdicts = JSON.parse(dataBlock);
+    return { report, verdicts: Array.isArray(verdicts) ? verdicts : [] };
+  } catch {
+    return { report, verdicts: [] };
+  }
+}
+
+export function analyzeCandidates(candidates: Candidate[], recentHistory: AlertHistoryEntry[]): Promise<AnalysisResult> {
+  return runAnalysis(SYSTEM_PROMPT, candidates, recentHistory, "Tokens alerted in the last 48 hours", "high");
+}
+
+export function analyzeFlash(candidates: Candidate[], recentHistory: AlertHistoryEntry[]): Promise<AnalysisResult> {
+  return runAnalysis(FLASH_SYSTEM_PROMPT, candidates, recentHistory, "Tokens flash-alerted in the last 6 hours", "medium");
+}
