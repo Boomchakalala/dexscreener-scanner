@@ -95,6 +95,38 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783878712975
+    },
+    {
+      "symbol": "HOOD",
+      "tokenAddress": "9HZesAGpQx6N7Dxau7Juc9m6eo1t86n9HqVhKWwDntnw",
+      "poolAddress": "E4vCuunTr5YujMaRooWvKjTYtiqjYkLxerK9ZmkmDZeX",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783879593586
+    },
+    {
+      "symbol": "HOME",
+      "tokenAddress": "G1RDZ5VhUen8eGP6dk7RE3rLGhe6ZayqyyGHn4Cd1pu3",
+      "poolAddress": "9jXsYyXK9HeFwu1brXt1dRK6wwAqgeP2XBWGDG18CnEs",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783879593586
+    },
+    {
+      "symbol": "RIBBIT",
+      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
+      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783879593586
+    },
+    {
+      "symbol": "Hoppy",
+      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
+      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783879593586
     }
   ],
   "lastTelegramUpdateId": 710125049
