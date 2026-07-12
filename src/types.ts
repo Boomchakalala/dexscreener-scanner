@@ -61,4 +61,7 @@ export interface Candidate {
   txnsH6: { buys: number; sells: number; buyers: number; sellers: number };
   candles: OhlcvCandle[];
   rugCheck: RugCheckReport | null;
+  /** Real Jupiter route quote for a ~0.5 SOL buy — null means no route found (a red flag on
+   *  its own) or the lookup failed. Only populated for the final shortlist sent to Claude. */
+  tradeability: { priceImpactPct: number; hops: number } | null;
 }

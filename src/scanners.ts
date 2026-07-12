@@ -1,6 +1,6 @@
 import { analyzeCandidates, analyzeFlash, type DiscoveryFunnel } from "./analysis.js";
 import { config } from "./config.js";
-import { discoverCandidates, enrichCandidates, enrichCandidatesForFlash, excludeDangerRisks } from "./discovery.js";
+import { addTradeability, discoverCandidates, enrichCandidates, enrichCandidatesForFlash, excludeDangerRisks } from "./discovery.js";
 import { getGeckoStats, resetGeckoStats } from "./gecko.js";
 import { getMarketOverview } from "./marketOverview.js";
 import { rankAndCut } from "./scoring.js";
@@ -19,7 +19,7 @@ function logGeckoStats(): void {
   const s = getGeckoStats();
   const avgMs = s.requestCount > 0 ? Math.round(s.totalTimeMs / s.requestCount) : 0;
   console.log(
-    `  [gecko] requests=${s.requestCount} (sequential, ${1200}ms min spacing) ` +
+    `  [gecko] requests=${s.requestCount} (sequential, ${s.spacingMs}ms min spacing) ` +
       `totalTime=${(s.totalTimeMs / 1000).toFixed(1)}s avg=${avgMs}ms ` +
       `retries=${s.retryCount} rateLimited=${s.rateLimitCount} timeouts=${s.timeoutCount} ` +
       `slowest=${s.slowest ? `${s.slowest.path} (${s.slowest.ms}ms)` : "n/a"}`
@@ -55,8 +55,12 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   }
 
   const ranked = rankAndCut(safe, config.floors.maxDeepAnalyze);
-  const topCandidates = ranked.map((r) => r.candidate);
+  let topCandidates = ranked.map((r) => r.candidate);
   console.log(`Quantitative pre-score narrowed to top ${topCandidates.length} for deep analysis.`);
+
+  t = now();
+  topCandidates = await addTradeability(topCandidates);
+  logStage("Tradeability check (Jupiter, final shortlist only)", t);
 
   const funnel: DiscoveryFunnel = {
     rawCount,

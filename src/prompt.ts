@@ -44,6 +44,8 @@ Look for: more unique buyers entering; buyers repeatedly buying pullbacks; sells
 
 Preferred: liquidity above $75K ideally, above $100K is strong, healthy relative to market cap. Avoid: liquidity so thin one normal-sized sell could crater the chart; liquidity suddenly pulled; market cap rising while liquidity stays very low; fragmented liquidity across suspicious pools.
 
+Tradeability check: you're given a real Jupiter route quote (price impact and route hop count) for a representative ~0.5 SOL buy on each candidate — this is actual on-chain tradeability, not just pool TVL. A null tradeability value means no Jupiter route was found at all, which is a real red flag (can't get filled cleanly) worth calling out, not something to ignore. High price impact (roughly 5%+ on a modest 0.5 SOL size) means the market is thinner than the raw liquidity number suggests — factor this into liquidity concerns and the AVOID "critically low liquidity" bar.
+
 5. Wallet and rug risk
 
 Check developer holdings, top-holder concentration, whether top wallets share a funding source, bundled/sniper launches, mint and freeze authority, LP lock status, prior rugs from the same developer, and whether volume looks dominated by connected wallets.

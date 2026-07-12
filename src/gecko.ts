@@ -5,7 +5,7 @@ const BASE_URL = "https://api.geckoterminal.com/api/v2";
 // GitHub Actions IP — GeckoTerminal's real sustained free-tier limit is tighter than
 // that can safely exploit. Back to a serialized queue (the pattern that ran reliably
 // all session), just with a shorter interval than the original 2.5s.
-const REQUEST_SPACING_MS = 1200;
+const REQUEST_SPACING_MS = 1800;
 const REQUEST_TIMEOUT_MS = 10_000;
 
 function sleep(ms: number): Promise<void> {
@@ -35,8 +35,8 @@ export function resetGeckoStats(): void {
   stats = { requestCount: 0, totalTimeMs: 0, retryCount: 0, rateLimitCount: 0, timeoutCount: 0, slowest: null };
 }
 
-export function getGeckoStats(): Readonly<GeckoStats> {
-  return stats;
+export function getGeckoStats(): Readonly<GeckoStats & { spacingMs: number }> {
+  return { ...stats, spacingMs: REQUEST_SPACING_MS };
 }
 
 async function get<T>(path: string, attempt = 0): Promise<T> {
@@ -94,14 +94,14 @@ export async function getTrendingPools(network: string, pages = 2): Promise<Geck
   return getPoolsPaginated(network, "trending_pools", pages);
 }
 
-export async function getNewPools(network: string, pages = 6): Promise<GeckoPool[]> {
+export async function getNewPools(network: string, pages = 4): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "new_pools", pages);
 }
 
 /** All active pools ranked by 24h volume — the broad net that catches tokens sitting in a
  *  market-cap band regardless of whether they're currently "trending" or brand new.
  *  GeckoTerminal's free tier caps this endpoint's pagination around page 10. */
-export async function getPoolsByVolume(network: string, pages = 7): Promise<GeckoPool[]> {
+export async function getPoolsByVolume(network: string, pages = 5): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "pools?sort=h24_volume_usd_desc", pages);
 }
 

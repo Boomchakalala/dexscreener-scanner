@@ -38,6 +38,9 @@ function buildUserMessage(
     txnsH1: c.txnsH1,
     txnsH6: c.txnsH6,
     candles: c.candles,
+    tradeability: c.tradeability
+      ? { priceImpactPctFor0_5Sol: Number(c.tradeability.priceImpactPct.toFixed(2)), routeHops: c.tradeability.hops }
+      : null,
     rugCheck: c.rugCheck
       ? {
           creatorBalance: c.rugCheck.creatorBalance,

@@ -1,5 +1,6 @@
 import { config } from "./config.js";
 import { getHourlyCandles, getMinuteCandles, getNewPools, getPoolsByVolume, getTrendingPools } from "./gecko.js";
+import { getTradeability } from "./jupiter.js";
 import { getRugCheckReport } from "./rugcheck.js";
 import type { Candidate, GeckoPool } from "./types.js";
 
@@ -43,6 +44,7 @@ function toCandidate(network: string, pool: GeckoPool): Candidate | null {
     txnsH6,
     candles: [],
     rugCheck: null,
+    tradeability: null,
   };
 }
 
@@ -116,6 +118,17 @@ export async function enrichCandidates(candidates: Candidate[]): Promise<Candida
  *  danger flag is physically removed before the LLM ever sees it. */
 export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {
   return candidates.filter((c) => !c.rugCheck?.risks.some((r) => r.level === "danger"));
+}
+
+/** Real Jupiter route quote (price impact, hop count) for a ~0.5 SOL buy — only worth the
+ *  extra calls on the final shortlist that's actually going to Claude, not every survivor. */
+export async function addTradeability(candidates: Candidate[]): Promise<Candidate[]> {
+  return Promise.all(
+    candidates.map(async (candidate) => ({
+      ...candidate,
+      tradeability: await getTradeability(candidate.tokenAddress),
+    }))
+  );
 }
 
 /** Lighter enrichment for the flash check: short-window candles only, no rug check (speed over full vetting). */
