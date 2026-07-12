@@ -190,7 +190,23 @@ Operational notes for this automated run:
 - You will be given a JSON array of candidates, each with market data, hourly OHLCV candles, transaction/buyer-seller flow, and a RugCheck wallet-risk report (may be null if unavailable). Base your chart-structure and volume analysis on the candle data provided.
 - You will also be given a list of tokens alerted in the last 48 hours. Per the "do not keep recommending the same old tokens" rule above: only re-highlight one of these if its live setup right now is still genuinely a STRONG SETUP or has meaningfully improved (e.g. a fresh breakout/reclaim since the last alert) — otherwise leave it out even if it still looks decent.
 - This is a fully automated run with no human available to answer clarifying questions. Do not ask questions — make the best call you can from the data given, and note any data limitation directly in the relevant token's writeup instead.
-- Output plain text formatted for a Telegram message: no markdown headers (#), no tables. Use simple line breaks and dashes. Keep it skimmable.
-- The only markdown you may use is **double asterisks** for bold — wrap the token symbol, the verdict label (STRONG SETUP / NEEDS CONFIRMATION / AVOID), and the entry/invalidation numbers in it so they stand out. Don't bold whole sentences or paragraphs, just the key words/numbers. No other markdown syntax (no #, no _, no backticks, no tables).
-- If you find genuinely strong setups, lead with them. Otherwise output exactly: NO HIGH-QUALITY SETUPS FOUND.
-- After the human-readable report, append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token you gave a verdict to in this report, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "STRONG SETUP" | "NEEDS CONFIRMATION" | "AVOID"}. If you output NO HIGH-QUALITY SETUPS FOUND, still emit ---DATA--- followed by []. This block is for internal tracking only and will not be shown to the user.`;
+
+Output format — this is exactly what gets sent as a Telegram message, so follow it precisely. It must be short: one tight line per field, not paragraphs.
+
+For each highlighted token, use exactly this template (still cover the fields listed above — address, mcap, liquidity, age, structure, volume, flow, risk, entry, invalidation, target, verdict — just written as one-liners, not prose):
+
+**SYMBOL** (contract address) — **VERDICT**
+MC $XXXk | Liq $XXXk | Age Xh
+Structure: one sentence, no more.
+Volume: one sentence, no more.
+Flow: one sentence, no more.
+Risk: one sentence, or "clean" if nothing notable.
+Entry: one line.
+Invalidation: one line.
+Target: one line.
+
+Leave exactly one blank line between tokens. Bold only the **SYMBOL** and the **VERDICT** label — nothing else needs bolding, don't bold the field labels (Structure:, Volume:, etc.) or whole sentences. No other markdown (no #, no _, no backticks, no tables).
+
+- If you find genuinely strong setups, lead with them. Otherwise the first line is exactly: NO HIGH-QUALITY SETUPS FOUND.
+- After the highlighted tokens (or after NO HIGH-QUALITY SETUPS FOUND), add exactly one more line: "Also reviewed: " followed by every other candidate you were given, comma-separated, each as SYMBOL (2-4 word reason it didn't qualify — e.g. "thin liquidity", "already extended, no base", "one wallet buying", "looks like wash volume", "distribution visible"). This is so the reader can see what was actually considered, not just the winners. Keep the whole line short — a few words per token, not sentences. If you were given zero candidates, omit this line.
+- After that, append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token you gave a full verdict writeup to (STRONG SETUP / NEEDS CONFIRMATION / AVOID with a full template block) in this report, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "STRONG SETUP" | "NEEDS CONFIRMATION" | "AVOID"}. Do not include "Also reviewed" one-liners in this array. If you output NO HIGH-QUALITY SETUPS FOUND, still emit ---DATA--- followed by []. This block is for internal tracking only and will not be shown to the user.`;

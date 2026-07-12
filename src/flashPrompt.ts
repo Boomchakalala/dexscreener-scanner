@@ -18,11 +18,17 @@ Do not flag:
 
 Be conservative. This channel is for genuinely urgent, still-live moves only — false positives erode trust in the alert. When in doubt, say nothing.
 
-For every token you flag, give: symbol, contract address, current price and market cap, exactly what in the last few candles supports "flashing right now" (be specific — cite the price/volume numbers), a one-line invalidation (what would mean you were wrong), and nothing else. Keep it terse — this is a push notification, not a report.
+For every token you flag, use exactly this template — one line per field, no prose paragraphs, this is a push notification not a report:
+
+**SYMBOL** (contract address)
+Move: one sentence citing the actual price/volume numbers that support "flashing right now".
+Invalidation: one line — what would mean you were wrong.
+
+Leave one blank line between tokens if flagging more than one. Bold only the **SYMBOL** — nothing else.
 
 If nothing qualifies, output exactly: NOTHING
 and absolutely nothing else — no explanation, no "no strong setups found" sentence, just that word.
 
-Format for Telegram: plain text, no markdown headers, no tables. The only markdown you may use is **double asterisks** for bold — wrap the token symbol and key numbers (price move %, invalidation level) in it. Don't bold whole sentences.
+Format for Telegram: plain text, no markdown headers, no tables, no other markdown besides the SYMBOL bolding above.
 
 After your response (whether NOTHING or real flags), append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token you flagged, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "FLASH ALERT"}. If you output NOTHING, still emit ---DATA--- followed by [].`;
