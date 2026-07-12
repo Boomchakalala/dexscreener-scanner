@@ -1,13 +1,25 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { config } from "./config.js";
 import { FLASH_SYSTEM_PROMPT } from "./flashPrompt.js";
+import type { MarketOverview } from "./marketOverview.js";
 import { SYSTEM_PROMPT } from "./prompt.js";
 import type { AlertHistoryEntry } from "./state.js";
 import type { Candidate } from "./types.js";
 
 const client = new Anthropic({ apiKey: config.anthropicApiKey });
 
-function buildUserMessage(candidates: Candidate[], recentHistory: AlertHistoryEntry[], historyLabel: string): string {
+export interface DiscoveryFunnel {
+  rawCount: number;
+  survivorCount: number;
+  deepAnalyzeCount: number;
+}
+
+function buildUserMessage(
+  candidates: Candidate[],
+  recentHistory: AlertHistoryEntry[],
+  historyLabel: string,
+  context?: { funnel: DiscoveryFunnel; marketOverview: MarketOverview }
+): string {
   const payload = candidates.map((c) => ({
     symbol: c.symbol,
     tokenAddress: c.tokenAddress,
@@ -42,13 +54,25 @@ function buildUserMessage(candidates: Candidate[], recentHistory: AlertHistoryEn
     hoursAgo: Number(((Date.now() - h.alertedAt) / (1000 * 60 * 60)).toFixed(1)),
   }));
 
-  return [
+  const parts: string[] = [];
+
+  if (context) {
+    parts.push(
+      `Discovery funnel: rawCount=${context.funnel.rawCount}, survivorCount=${context.funnel.survivorCount}, deepAnalyzeCount=${context.funnel.deepAnalyzeCount}`,
+      `Market overview: ${JSON.stringify(context.marketOverview)}`,
+      ""
+    );
+  }
+
+  parts.push(
     `Candidates (${candidates.length}):`,
     JSON.stringify(payload, null, 2),
     "",
     `${historyLabel} (${historyPayload.length}):`,
-    JSON.stringify(historyPayload, null, 2),
-  ].join("\n");
+    JSON.stringify(historyPayload, null, 2)
+  );
+
+  return parts.join("\n");
 }
 
 export interface AnalysisResult {
@@ -61,7 +85,8 @@ async function runAnalysis(
   candidates: Candidate[],
   recentHistory: AlertHistoryEntry[],
   historyLabel: string,
-  effort: "medium" | "high"
+  effort: "medium" | "high",
+  context?: { funnel: DiscoveryFunnel; marketOverview: MarketOverview }
 ): Promise<AnalysisResult> {
   const stream = client.messages.stream({
     model: "claude-opus-4-8",
@@ -69,7 +94,7 @@ async function runAnalysis(
     thinking: { type: "adaptive" },
     output_config: { effort },
     system: systemPrompt,
-    messages: [{ role: "user", content: buildUserMessage(candidates, recentHistory, historyLabel) }],
+    messages: [{ role: "user", content: buildUserMessage(candidates, recentHistory, historyLabel, context) }],
   });
 
   const finalMessage = await stream.finalMessage();
@@ -92,8 +117,16 @@ async function runAnalysis(
   }
 }
 
-export function analyzeCandidates(candidates: Candidate[], recentHistory: AlertHistoryEntry[]): Promise<AnalysisResult> {
-  return runAnalysis(SYSTEM_PROMPT, candidates, recentHistory, "Tokens alerted in the last 48 hours", "medium");
+export function analyzeCandidates(
+  candidates: Candidate[],
+  recentHistory: AlertHistoryEntry[],
+  funnel: DiscoveryFunnel,
+  marketOverview: MarketOverview
+): Promise<AnalysisResult> {
+  return runAnalysis(SYSTEM_PROMPT, candidates, recentHistory, "Tokens alerted in the last 48 hours", "medium", {
+    funnel,
+    marketOverview,
+  });
 }
 
 export function analyzeFlash(candidates: Candidate[], recentHistory: AlertHistoryEntry[]): Promise<AnalysisResult> {

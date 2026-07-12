@@ -41,17 +41,17 @@ async function getPoolsPaginated(network: string, path: string, pages: number): 
   return pools;
 }
 
-export async function getTrendingPools(network: string, pages = 1): Promise<GeckoPool[]> {
+export async function getTrendingPools(network: string, pages = 2): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "trending_pools", pages);
 }
 
-export async function getNewPools(network: string, pages = 2): Promise<GeckoPool[]> {
+export async function getNewPools(network: string, pages = 3): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "new_pools", pages);
 }
 
 /** All active pools ranked by 24h volume — the broad net that catches tokens sitting in a
  *  market-cap band regardless of whether they're currently "trending" or brand new. */
-export async function getPoolsByVolume(network: string, pages = 6): Promise<GeckoPool[]> {
+export async function getPoolsByVolume(network: string, pages = 8): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "pools?sort=h24_volume_usd_desc", pages);
 }
 

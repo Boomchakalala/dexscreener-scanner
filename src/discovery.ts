@@ -60,8 +60,14 @@ function passesFloors(candidate: Candidate): boolean {
   );
 }
 
-export async function discoverCandidates(): Promise<Candidate[]> {
+export interface DiscoveryResult {
+  rawCount: number;
+  survivors: Candidate[];
+}
+
+export async function discoverCandidates(): Promise<DiscoveryResult> {
   const seen = new Map<string, Candidate>();
+  let rawCount = 0;
 
   for (const network of config.chains) {
     const [trending, fresh, byVolume] = await Promise.all([
@@ -70,7 +76,10 @@ export async function discoverCandidates(): Promise<Candidate[]> {
       getPoolsByVolume(network),
     ]);
 
-    for (const pool of [...trending, ...fresh, ...byVolume]) {
+    const allPools = [...trending, ...fresh, ...byVolume];
+    rawCount += allPools.length;
+
+    for (const pool of allPools) {
       const candidate = toCandidate(network, pool);
       if (!candidate || !passesFloors(candidate)) continue;
       const existing = seen.get(candidate.poolAddress);
@@ -80,9 +89,11 @@ export async function discoverCandidates(): Promise<Candidate[]> {
     }
   }
 
-  return [...seen.values()]
+  const survivors = [...seen.values()]
     .sort((a, b) => b.liquidityUsd - a.liquidityUsd)
-    .slice(0, config.floors.maxCandidates);
+    .slice(0, config.floors.maxSurvivors);
+
+  return { rawCount, survivors };
 }
 
 export async function enrichCandidates(candidates: Candidate[]): Promise<Candidate[]> {

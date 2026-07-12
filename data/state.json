@@ -97,28 +97,12 @@
       "alertedAt": 1783878712975
     },
     {
-      "symbol": "HOOD",
-      "tokenAddress": "9HZesAGpQx6N7Dxau7Juc9m6eo1t86n9HqVhKWwDntnw",
-      "poolAddress": "E4vCuunTr5YujMaRooWvKjTYtiqjYkLxerK9ZmkmDZeX",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783879593586
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "G1RDZ5VhUen8eGP6dk7RE3rLGhe6ZayqyyGHn4Cd1pu3",
-      "poolAddress": "9jXsYyXK9HeFwu1brXt1dRK6wwAqgeP2XBWGDG18CnEs",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783879593586
-    },
-    {
       "symbol": "RIBBIT",
       "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
       "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
       "verdict": "AVOID",
       "kind": "deep",
-      "alertedAt": 1783879593586
+      "alertedAt": 1783881496418
     },
     {
       "symbol": "Hoppy",
@@ -126,7 +110,31 @@
       "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
       "verdict": "AVOID",
       "kind": "deep",
-      "alertedAt": 1783879593586
+      "alertedAt": 1783881496418
+    },
+    {
+      "symbol": "HOOD",
+      "tokenAddress": "9HZesAGpQx6N7Dxau7Juc9m6eo1t86n9HqVhKWwDntnw",
+      "poolAddress": "E4vCuunTr5YujMaRooWvKjTYtiqjYkLxerK9ZmkmDZeX",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783881496418
+    },
+    {
+      "symbol": "W26",
+      "tokenAddress": "AAyKGXebUWkJsoC6f4JVF6zeQK4oFK57TmpK9rchyXWD",
+      "poolAddress": "8PQeEz2gyQNpixQ29hKpuMcHGT4UpTCVP17DzRe1jt53",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783881496418
+    },
+    {
+      "symbol": "HOME",
+      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
+      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783881496418
     }
   ],
   "lastTelegramUpdateId": 710125049

@@ -1,6 +1,8 @@
-import { analyzeCandidates, analyzeFlash } from "./analysis.js";
+import { analyzeCandidates, analyzeFlash, type DiscoveryFunnel } from "./analysis.js";
 import { config } from "./config.js";
 import { discoverCandidates, enrichCandidates, enrichCandidatesForFlash } from "./discovery.js";
+import { getMarketOverview } from "./marketOverview.js";
+import { rankAndCut } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
 
@@ -8,19 +10,30 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   console.log(`[${new Date().toISOString()}] Deep scan: ${config.chains.join(", ")}`);
   const label = triggeredManually ? "**Deep scan** (manual)" : "**Deep scan**";
 
-  const discovered = await discoverCandidates();
-  console.log(`${discovered.length} candidates passed market cap / liquidity floors.`);
+  const { rawCount, survivors } = await discoverCandidates();
+  console.log(`Discovered ${rawCount} raw pairs, ${survivors.length} survived hard filters.`);
 
-  if (discovered.length === 0) {
-    await sendTelegramMessage(`${label} — no candidates found in the $150K-$1.5M market cap band this run.`);
+  if (survivors.length === 0) {
+    await sendTelegramMessage(`${label} — scanned ${rawCount} pairs, none survived the hard filters this run.`);
     return;
   }
 
-  const candidates = await enrichCandidates(discovered);
-  console.log(`Enriched ${candidates.length} candidates with candles + rug check data.`);
+  const enriched = await enrichCandidates(survivors);
+  console.log(`Enriched ${enriched.length} candidates with candles + rug check data.`);
+
+  const ranked = rankAndCut(enriched, config.floors.maxDeepAnalyze);
+  const topCandidates = ranked.map((r) => r.candidate);
+  console.log(`Quantitative pre-score narrowed to top ${topCandidates.length} for deep analysis.`);
+
+  const funnel: DiscoveryFunnel = {
+    rawCount,
+    survivorCount: survivors.length,
+    deepAnalyzeCount: topCandidates.length,
+  };
+  const marketOverview = await getMarketOverview();
 
   const recentHistory = await getRecentAlertHistory("deep");
-  const { report, verdicts } = await analyzeCandidates(candidates, recentHistory);
+  const { report, verdicts } = await analyzeCandidates(topCandidates, recentHistory, funnel, marketOverview);
 
   await sendTelegramMessage(`${label}\n\n${report || "NO HIGH-QUALITY SETUPS FOUND."}`);
   console.log("Sent analysis to Telegram.");
@@ -33,14 +46,17 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 export async function runFlashScan(triggeredManually = false): Promise<void> {
   console.log(`[${new Date().toISOString()}] Flash check: ${config.chains.join(", ")}`);
 
-  const discovered = await discoverCandidates();
-  if (discovered.length === 0) {
+  const { survivors } = await discoverCandidates();
+  if (survivors.length === 0) {
     if (triggeredManually) await sendTelegramMessage("⚡ **Flash check** (manual) — no candidates in range right now.");
     console.log("No candidates in range this pass.");
     return;
   }
 
-  const candidates = await enrichCandidatesForFlash(discovered);
+  // Flash is speed-first: skip the full rug-check-informed pre-score and just take the
+  // most liquid subset (discoverCandidates already sorts survivors by liquidity).
+  const shortlist = survivors.slice(0, 15);
+  const candidates = await enrichCandidatesForFlash(shortlist);
   const recentHistory = await getRecentAlertHistory("flash");
   const { report, verdicts } = await analyzeFlash(candidates, recentHistory);
 
