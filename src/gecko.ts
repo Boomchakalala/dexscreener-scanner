@@ -1,45 +1,28 @@
 import type { GeckoPool, OhlcvCandle } from "./types.js";
 
 const BASE_URL = "https://api.geckoterminal.com/api/v2";
-const MAX_CONCURRENT = 4;
+// A bounded-concurrency pool (no fixed delay) hit 429s reliably, even on a fresh
+// GitHub Actions IP — GeckoTerminal's real sustained free-tier limit is tighter than
+// that can safely exploit. Back to a serialized queue (the pattern that ran reliably
+// all session), just with a shorter interval than the original 2.5s.
+const REQUEST_SPACING_MS = 1200;
 const REQUEST_TIMEOUT_MS = 10_000;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Bounded concurrency instead of a fixed per-request delay — lets independent
-// requests run in parallel while still capping how many hit GeckoTerminal at once.
-let activeCount = 0;
-const waiters: (() => void)[] = [];
+let requestQueue: Promise<void> = Promise.resolve();
 
-function acquire(): Promise<void> {
-  if (activeCount < MAX_CONCURRENT) {
-    activeCount++;
-    return Promise.resolve();
-  }
-  return new Promise((resolve) => {
-    waiters.push(() => {
-      activeCount++;
-      resolve();
-    });
-  });
-}
-
-function release(): void {
-  activeCount--;
-  const next = waiters.shift();
-  if (next) next();
+function throttle(): Promise<void> {
+  const slot = requestQueue.then(() => sleep(REQUEST_SPACING_MS));
+  requestQueue = slot;
+  return slot;
 }
 
 async function get<T>(path: string, attempt = 0): Promise<T> {
-  await acquire();
-  let res: Response;
-  try {
-    res = await fetch(`${BASE_URL}${path}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
-  } finally {
-    release();
-  }
+  await throttle();
+  const res = await fetch(`${BASE_URL}${path}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
   if (res.status === 429 && attempt < 6) {
     await sleep(2000 * 2 ** attempt);
     return get<T>(path, attempt + 1);
