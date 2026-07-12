@@ -8,7 +8,7 @@ This does **not** trade anything — it's a read-only scanner/alerter. You decid
 what to do with the alerts.
 
 Runs on a schedule in GitHub Actions (not on your PC), so it fires every 4h —
-plus a faster flash-alert pass every 20 min — regardless of whether your
+plus a faster flash-alert pass every hour — regardless of whether your
 machine is on. Repo: `github.com/Boomchakalala/dexscreener-scanner` (private).
 
 ## How it works
@@ -16,10 +16,10 @@ machine is on. Repo: `github.com/Boomchakalala/dexscreener-scanner` (private).
 There are two scheduled jobs (`.github/workflows/`):
 
 - **Deep scan** (`deep-scan.yml`, every 4h) — the full analysis below.
-- **Flash scan** (`flash-scan.yml`, every 20 min) — a fast, narrow check for a
+- **Flash scan** (`flash-scan.yml`, every hour) — a fast, narrow check for a
   sharp buy-side spike happening *right now* (5-minute candles, no rug check,
   cheaper Claude call). Completely silent when nothing qualifies — it does not
-  message you every 20 minutes, only when something's actually flashing.
+  message you every hour, only when something's actually flashing.
 
 Both share the same pipeline shape:
 
@@ -101,5 +101,5 @@ src/
   flash.ts         flash-scan entry point
 .github/workflows/
   deep-scan.yml    runs main.ts every 4h
-  flash-scan.yml   runs flash.ts every 20 min
+  flash-scan.yml   runs flash.ts every hour
 ```
