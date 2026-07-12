@@ -116,6 +116,13 @@ export async function enrichCandidates(candidates: Candidate[]): Promise<Candida
   return enriched;
 }
 
+/** Hard code-level exclusion for RugCheck danger-level risks (LP unlocked, etc.) —
+ *  not a prompt instruction Claude could get talked out of, a token with a real
+ *  danger flag is physically removed before the LLM ever sees it. */
+export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {
+  return candidates.filter((c) => !c.rugCheck?.risks.some((r) => r.level === "danger"));
+}
+
 /** Lighter enrichment for the flash check: short-window candles only, no rug check (speed over full vetting). */
 export async function enrichCandidatesForFlash(candidates: Candidate[]): Promise<Candidate[]> {
   const enriched: Candidate[] = [];

@@ -1,6 +1,6 @@
 import { analyzeCandidates, analyzeFlash, type DiscoveryFunnel } from "./analysis.js";
 import { config } from "./config.js";
-import { discoverCandidates, enrichCandidates, enrichCandidatesForFlash } from "./discovery.js";
+import { discoverCandidates, enrichCandidates, enrichCandidatesForFlash, excludeDangerRisks } from "./discovery.js";
 import { getMarketOverview } from "./marketOverview.js";
 import { rankAndCut } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts } from "./state.js";
@@ -21,7 +21,12 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   const enriched = await enrichCandidates(survivors);
   console.log(`Enriched ${enriched.length} candidates with candles + rug check data.`);
 
-  const ranked = rankAndCut(enriched, config.floors.maxDeepAnalyze);
+  const safe = excludeDangerRisks(enriched);
+  if (safe.length < enriched.length) {
+    console.log(`Excluded ${enriched.length - safe.length} candidates with a RugCheck danger-level risk.`);
+  }
+
+  const ranked = rankAndCut(safe, config.floors.maxDeepAnalyze);
   const topCandidates = ranked.map((r) => r.candidate);
   console.log(`Quantitative pre-score narrowed to top ${topCandidates.length} for deep analysis.`);
 
