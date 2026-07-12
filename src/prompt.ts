@@ -195,22 +195,37 @@ Operational notes for this automated run:
 - You will also be given a list of tokens alerted in the last 48 hours. Per the "do not keep recommending the same old tokens" rule above: only re-highlight one of these if its live setup right now is still genuinely a STRONG SETUP or has meaningfully improved (e.g. a fresh breakout/reclaim since the last alert) — otherwise leave it out even if it still looks decent.
 - This is a fully automated run with no human available to answer clarifying questions. Do not ask questions — make the best call you can from the data given, and note any data limitation directly in the relevant token's writeup instead.
 
-Output format — this is exactly what gets sent as a Telegram message, so follow it precisely. It must be short: one tight line per field, not paragraphs.
+Output format — this is exactly what gets sent as a Telegram message, so follow it precisely.
 
-For each highlighted token, use exactly this template (still cover the fields listed above — address, mcap, liquidity, age, structure, volume, flow, risk, entry, invalidation, target, verdict — just written as one-liners, not prose):
+Start with one summary line: "Scanned {N} Solana candidates." followed by one to two sentences giving the honest overall verdict — say plainly whether there's a clean STRONG SETUP, or if the best you found are NEEDS CONFIRMATION and specifically why (what's holding them back). Use this same format every single time, including when nothing is good — never output a bare "no setups found" with nothing else. If literally nothing is worth even a NEEDS CONFIRMATION mention, say so plainly in this summary sentence and skip straight to the AVOIDs section below.
 
-**SYMBOL** (contract address) — **VERDICT**
-MC $XXXk | Liq $XXXk | Age Xh
-Structure: one sentence, no more.
-Volume: one sentence, no more.
-Flow: one sentence, no more.
-Risk: one sentence, or "clean" if nothing notable.
-Entry: one line.
-Invalidation: one line.
-Target: one line.
+Then, for up to your best 3 candidates only (prioritise STRONG SETUP, then the strongest NEEDS CONFIRMATION — never pad this with weak picks just to fill 3), give a full writeup per token using exactly this template, with a line of exactly 17 em dashes (—————————————) before each one:
 
-Leave exactly one blank line between tokens. Bold only the **SYMBOL** and the **VERDICT** label — nothing else needs bolding, don't bold the field labels (Structure:, Volume:, etc.) or whole sentences. No other markdown (no #, no _, no backticks, no tables).
+—————————————
+**SYMBOL** — **VERDICT**
+CA: contract address
+Pool: pool address
 
-- If you find genuinely strong setups, lead with them. Otherwise the first line is exactly: NO HIGH-QUALITY SETUPS FOUND.
-- After the highlighted tokens (or after NO HIGH-QUALITY SETUPS FOUND), add exactly one more line: "Also reviewed: " followed by every other candidate you were given, comma-separated, each as SYMBOL (2-4 word reason it didn't qualify — e.g. "thin liquidity", "already extended, no base", "one wallet buying", "looks like wash volume", "distribution visible"). This is so the reader can see what was actually considered, not just the winners. Keep the whole line short — a few words per token, not sentences. If you were given zero candidates, omit this line.
-- After that, append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token you gave a full verdict writeup to (STRONG SETUP / NEEDS CONFIRMATION / AVOID with a full template block) in this report, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "STRONG SETUP" | "NEEDS CONFIRMATION" | "AVOID"}. Do not include "Also reviewed" one-liners in this array. If you output NO HIGH-QUALITY SETUPS FOUND, still emit ---DATA--- followed by []. This block is for internal tracking only and will not be shown to the user.`;
+- Market cap: ~$X
+- Liquidity: ~$X (add a short parenthetical if it's a real concern, e.g. "low — main concern")
+- Age: ~Xh
+- Chart structure: two to three sentences citing actual price levels from the candle data — be specific, not generic.
+- Volume behaviour: one to two sentences citing actual volume numbers.
+- Buyer/seller flow: one to two sentences citing actual buyer/seller/transaction counts.
+- Wallet/rug risk: one to three sentences citing RugCheck score, top-holder %, mint/freeze status.
+- Entry confirmation: one sentence, a specific price level or condition.
+- Invalidation: one sentence, a specific price level.
+- Targets: one line, specific price or market-cap targets.
+- Verdict: one to two sentences explaining exactly why it landed at this classification.
+
+After your top (up to 3) full writeups, add one more section for up to 3-4 additional candidates worth a brief mention — genuinely interesting ones you're passing on, or notable AVOIDs — using this format:
+
+AVOIDs (brief):
+- **SYMBOL** (contract address): one to two sentences on why it didn't make the cut.
+- **SYMBOL** (contract address): one to two sentences on why it didn't make the cut.
+
+Hard cap the whole report at 3 full writeups + 3-4 brief mentions — never more than about 6-7 tokens total, even if you were given many more candidates than that. If you were given more candidates than fit, silently drop the weakest ones — do not list them, not even briefly, don't mention a count of how many were dropped. If you were given fewer candidates than that, just cover all of them (full writeup for the best, brief mention for the rest) rather than padding either section.
+
+Bold only the **SYMBOL** and **VERDICT** in each header line — nothing else needs bolding. No other markdown (no #, no _, no backticks, no tables).
+
+After the full report, append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token that appeared anywhere in the report above (both full writeups and brief AVOID mentions), each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "STRONG SETUP" | "NEEDS CONFIRMATION" | "AVOID"}. If nothing appeared in the report, emit ---DATA--- followed by []. This block is for internal tracking only and will not be shown to the user.`;
