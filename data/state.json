@@ -1,0 +1,52 @@
+{
+  "history": [
+    {
+      "kind": "deep",
+      "symbol": "RIBBIT",
+      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
+      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
+      "verdict": "NEEDS CONFIRMATION",
+      "alertedAt": 1783874283791
+    },
+    {
+      "kind": "deep",
+      "symbol": "Hoppy",
+      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
+      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
+      "verdict": "NEEDS CONFIRMATION",
+      "alertedAt": 1783874283791
+    },
+    {
+      "kind": "deep",
+      "symbol": "febu",
+      "tokenAddress": "4ko5tSr5o3H4v1sFtjTSd9MPUW7yx5AFCpkNPoL6pump",
+      "poolAddress": "68nVMrVPyxGJGbGH2P92E93SYhJcbe6QociZrqoqdjcB",
+      "verdict": "AVOID",
+      "alertedAt": 1783874283791
+    },
+    {
+      "kind": "deep",
+      "symbol": "HOME",
+      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
+      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
+      "verdict": "AVOID",
+      "alertedAt": 1783874283791
+    },
+    {
+      "kind": "deep",
+      "symbol": "SCAM",
+      "tokenAddress": "6AVAUKa9uxQpruHZUinFECpXEh1usRVtzQWK8N2wpump",
+      "poolAddress": "B5K3qfft5ALRJBskL7qJPDzbbW76TXLkfKSd1mP4MtgN",
+      "verdict": "AVOID",
+      "alertedAt": 1783874283791
+    },
+    {
+      "kind": "deep",
+      "symbol": "HOOD",
+      "tokenAddress": "h5NciPdMZ5QCB5BYETJMYBMpVx9ZuitR6HcVjyBhood",
+      "poolAddress": "9CTxEyRStwTKLfVTS6c7rfQc7PTxY42YPdQcrHTv53Ao",
+      "verdict": "AVOID",
+      "alertedAt": 1783874283791
+    }
+  ]
+}
