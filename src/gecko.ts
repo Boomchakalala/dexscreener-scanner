@@ -34,7 +34,16 @@ async function getPoolsPaginated(network: string, path: string, pages: number): 
   const pools: GeckoPool[] = [];
   const separator = path.includes("?") ? "&" : "?";
   for (let page = 1; page <= pages; page++) {
-    const result = await get<{ data: GeckoPool[] }>(`/networks/${network}/${path}${separator}page=${page}`);
+    let result: { data: GeckoPool[] };
+    try {
+      result = await get<{ data: GeckoPool[] }>(`/networks/${network}/${path}${separator}page=${page}`);
+    } catch (err) {
+      // GeckoTerminal's free tier hard-caps some endpoints' pagination depth (401 past
+      // the limit, not a rate limit) - treat that as "no more pages" rather than fail
+      // the whole run over a page count that was always going to be optimistic.
+      if (err instanceof Error && err.message.includes("401")) break;
+      throw err;
+    }
     if (result.data.length === 0) break;
     pools.push(...result.data);
   }
@@ -45,13 +54,14 @@ export async function getTrendingPools(network: string, pages = 2): Promise<Geck
   return getPoolsPaginated(network, "trending_pools", pages);
 }
 
-export async function getNewPools(network: string, pages = 3): Promise<GeckoPool[]> {
+export async function getNewPools(network: string, pages = 10): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "new_pools", pages);
 }
 
 /** All active pools ranked by 24h volume — the broad net that catches tokens sitting in a
- *  market-cap band regardless of whether they're currently "trending" or brand new. */
-export async function getPoolsByVolume(network: string, pages = 8): Promise<GeckoPool[]> {
+ *  market-cap band regardless of whether they're currently "trending" or brand new.
+ *  GeckoTerminal's free tier caps this endpoint's pagination around page 10. */
+export async function getPoolsByVolume(network: string, pages = 10): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "pools?sort=h24_volume_usd_desc", pages);
 }
 
