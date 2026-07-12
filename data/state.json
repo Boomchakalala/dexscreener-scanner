@@ -47,6 +47,54 @@
       "poolAddress": "9CTxEyRStwTKLfVTS6c7rfQc7PTxY42YPdQcrHTv53Ao",
       "verdict": "AVOID",
       "alertedAt": 1783874283791
+    },
+    {
+      "symbol": "GDOR",
+      "tokenAddress": "2DaygetzXbPWF2vvWzBSVXqmCoGhdRrmP3Be8n8P4egn",
+      "poolAddress": "zYwBMrjp8JWosMFX3jAcsVKkEFj563GLRiAoDkW6zKx",
+      "verdict": "NEEDS CONFIRMATION",
+      "kind": "deep",
+      "alertedAt": 1783878712975
+    },
+    {
+      "symbol": "ANSEM",
+      "tokenAddress": "C5o7VT2DfJ3NKXRTxBXyTpGFQAFW7fKXwvnHQKJcvRHk",
+      "poolAddress": "DunNjEyRTWSE7VELge3ZYrm4WuBfQa7CFKoD8X3YU55i",
+      "verdict": "NEEDS CONFIRMATION",
+      "kind": "deep",
+      "alertedAt": 1783878712975
+    },
+    {
+      "symbol": "W26",
+      "tokenAddress": "CWESwP4aR4iQFh5NihUYkqMsAZVJmwrQwZ6RjMgJ5aw8",
+      "poolAddress": "65Py15xAdaM4TxTxCT7HFWNSCoWdZizH6RPmTJL2Qtzg",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783878712975
+    },
+    {
+      "symbol": "NC",
+      "tokenAddress": "3FjJVwNvqXHCaZzEQd236qYkoCXEWmZMEBwSazkPdmwq",
+      "poolAddress": "3eNmDUmk6BLqPz4Xc5bfxdGm1o8rzuNxMsrBe4g2dksW",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783878712975
+    },
+    {
+      "symbol": "MONA",
+      "tokenAddress": "7dfrmKLUwPrWgxgM6htbFSzTruLCEMFSNvsa7Ry12Ze5",
+      "poolAddress": "3GCiNiJPwfExq5grtsoWr52khvG9gch6B1Xs6ce31BjJ",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783878712975
+    },
+    {
+      "symbol": "HOMEBOY",
+      "tokenAddress": "F8kzBcnYPiFsSysfXmesgmGvWBVdiFSfKFp5TEZqWUok",
+      "poolAddress": "EZSPppC9dTe3AhT3AtSVqNMpEZt2ZFoN9FMuf8gfudsa",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783878712975
     }
   ],
   "lastTelegramUpdateId": 710125049
