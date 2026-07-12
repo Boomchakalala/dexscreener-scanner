@@ -23,7 +23,7 @@ export const config = {
     // judgment call handled in the prompt, not here.
     minMarketCapUsd: numberEnv("MIN_MARKET_CAP_USD", 100_000),
     maxMarketCapUsd: numberEnv("MAX_MARKET_CAP_USD", 1_500_000),
-    minLiquidityUsd: numberEnv("MIN_LIQUIDITY_USD", 40_000),
+    minLiquidityUsd: numberEnv("MIN_LIQUIDITY_USD", 50_000),
     maxAgeHours: numberEnv("MAX_AGE_HOURS", 72),
     maxCandidates: numberEnv("MAX_CANDIDATES_TO_ANALYZE", 10),
   },
