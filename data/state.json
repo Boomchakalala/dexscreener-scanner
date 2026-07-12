@@ -391,6 +391,54 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783887928639
+    },
+    {
+      "symbol": "RIBBIT",
+      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
+      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
+      "verdict": "SPECULATIVE PUNT",
+      "kind": "deep",
+      "alertedAt": 1783888739975
+    },
+    {
+      "symbol": "agentx402",
+      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "poolAddress": "3GS25gGKbgrFdvqVLYuqbU54cZyjEFJ56ifUWNiqU8m5",
+      "verdict": "SPECULATIVE PUNT",
+      "kind": "deep",
+      "alertedAt": 1783888739975
+    },
+    {
+      "symbol": "LCM",
+      "tokenAddress": "6t4L25gvgdLUMsSUkb4JS5sBpcYyt3eYHoxdusCZpump",
+      "poolAddress": "8vqQuRppHEwFJ3Lrv7a2gGjSzdsvzVWnXfMGPamL3iEB",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783888739975
+    },
+    {
+      "symbol": "HOME",
+      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
+      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783888739975
+    },
+    {
+      "symbol": "Hoppy",
+      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
+      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783888739975
+    },
+    {
+      "symbol": "PumpfunLife",
+      "tokenAddress": "DpqGBmkc6SrY2vA1Yb5KuH571WW1oQJjJdD3d2kupump",
+      "poolAddress": "QRViw782g3LnUd2pL9ug9dbpneY6MdxfvKuQ4uaeAGx",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783888739975
     }
   ],
   "lastTelegramUpdateId": 710125049
