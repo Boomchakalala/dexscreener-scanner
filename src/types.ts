@@ -51,6 +51,10 @@ export interface Candidate {
   marketCapUsd: number;
   liquidityUsd: number;
   volume24hUsd: number;
+  volumeH1Usd: number;
+  volumeH6Usd: number;
+  priceChangeM5: number | null;
+  priceChangeH1: number | null;
   priceChangeH6: number | null;
   priceChangeH24: number | null;
   txnsH1: { buys: number; sells: number; buyers: number; sellers: number };

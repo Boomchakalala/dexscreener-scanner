@@ -7,12 +7,25 @@ function escapeHtml(text: string): string {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-/** Converts the model's lightweight **bold** markers into Telegram HTML, escaping everything else. */
-function markdownBoldToHtml(text: string): string {
-  return text
-    .split(/\*\*(.+?)\*\*/gs)
-    .map((part, i) => (i % 2 === 1 ? `<b>${escapeHtml(part)}</b>` : escapeHtml(part)))
-    .join("");
+const TOKEN_PATTERN = /\*\*(.+?)\*\*|\[READ\]\((\S+?)\)/gs;
+
+/** Converts the model's lightweight **bold** and [READ](url) markers into Telegram HTML, escaping everything else. */
+function markdownToHtml(text: string): string {
+  let result = "";
+  let lastIndex = 0;
+  for (const match of text.matchAll(TOKEN_PATTERN)) {
+    const [full, boldText, linkUrl] = match;
+    const index = match.index ?? 0;
+    result += escapeHtml(text.slice(lastIndex, index));
+    if (boldText !== undefined) {
+      result += `<b>${escapeHtml(boldText)}</b>`;
+    } else if (linkUrl !== undefined) {
+      result += `<a href="${escapeHtml(linkUrl)}">Read</a>`;
+    }
+    lastIndex = index + full.length;
+  }
+  result += escapeHtml(text.slice(lastIndex));
+  return result;
 }
 
 /** Re-opens/closes <b> across a chunk boundary so every chunk is independently valid HTML. */
@@ -62,7 +75,7 @@ async function sendSingleMessage(text: string): Promise<void> {
 }
 
 export async function sendTelegramMessage(text: string): Promise<void> {
-  const html = markdownBoldToHtml(text);
+  const html = markdownToHtml(text);
   const chunks = balanceBoldAcrossChunks(chunkMessage(html));
   for (const chunk of chunks) {
     await sendSingleMessage(chunk);
