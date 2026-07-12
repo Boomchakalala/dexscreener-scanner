@@ -93,8 +93,11 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
     }
   }
 
+  // Sort by recent (1h) volume, not liquidity — a liquidity-sort systematically
+  // excludes exactly the thin-but-hot tokens this scanner exists to catch (a fresh
+  // pump.fun-style token can do $500K+ in 1h volume on $30-40K of liquidity).
   const survivors = [...seen.values()]
-    .sort((a, b) => b.liquidityUsd - a.liquidityUsd)
+    .sort((a, b) => b.volumeH1Usd - a.volumeH1Usd)
     .slice(0, config.floors.maxSurvivors);
 
   return { rawCount, survivors };

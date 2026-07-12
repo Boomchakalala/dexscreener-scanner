@@ -20,8 +20,22 @@ function scoreFlow(c: Candidate): number {
   const total = buys + sells;
   if (total === 0) return 0;
   const buyRatio = buys / total;
-  let pts = buyRatio * 20;
-  if (buyers > sellers * 1.5) pts += 2;
+
+  let pts: number;
+  if (buyRatio <= 0.5) {
+    pts = buyRatio * 24; // 0 at all-sells, 12 at balanced
+  } else if (buyRatio <= 0.8) {
+    pts = 12 + ((buyRatio - 0.5) / 0.3) * 8; // healthy buy-dominant zone: 12 -> 20
+  } else {
+    // Beyond 80% buys, taper back down. An extreme ratio (very few sells relative to
+    // buys, e.g. a honeypot / can't-sell token) is suspicious, not "even more bullish".
+    pts = 20 - ((buyRatio - 0.8) / 0.2) * 10; // 20 at 80%, 10 at 100%
+  }
+
+  // Buyer-diversity bonus only in a plausible organic range — not for the extreme
+  // imbalance that's more likely a sell-restriction signature than real demand.
+  if (buyers > sellers * 1.2 && buyers < sellers * 5) pts += 1;
+
   return Math.max(0, Math.min(20, pts));
 }
 
@@ -52,8 +66,16 @@ function scoreAgeFit(c: Candidate): number {
   return 0;
 }
 
+/** Any RugCheck danger-level risk gates the whole score down hard — Claude still gets
+ *  the full data and makes the real call, but a dangerous token shouldn't out-rank a
+ *  clean one in the pre-cut just because its volume/momentum numbers look exciting. */
+function hasDangerRisk(c: Candidate): boolean {
+  return c.rugCheck?.risks.some((r) => r.level === "danger") ?? false;
+}
+
 export function scoreCandidate(c: Candidate): number {
-  return scoreLiquidity(c) + scoreFlow(c) + scoreMomentum(c) + scoreSafety(c) + scoreAgeFit(c);
+  const raw = scoreLiquidity(c) + scoreFlow(c) + scoreMomentum(c) + scoreSafety(c) + scoreAgeFit(c);
+  return hasDangerRisk(c) ? Math.min(raw, 25) : raw;
 }
 
 export function rankAndCut(candidates: Candidate[], topN: number): ScoredCandidate[] {
