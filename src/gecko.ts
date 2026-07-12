@@ -20,12 +20,49 @@ function throttle(): Promise<void> {
   return slot;
 }
 
+interface GeckoStats {
+  requestCount: number;
+  totalTimeMs: number;
+  retryCount: number;
+  rateLimitCount: number;
+  timeoutCount: number;
+  slowest: { path: string; ms: number } | null;
+}
+
+let stats: GeckoStats = { requestCount: 0, totalTimeMs: 0, retryCount: 0, rateLimitCount: 0, timeoutCount: 0, slowest: null };
+
+export function resetGeckoStats(): void {
+  stats = { requestCount: 0, totalTimeMs: 0, retryCount: 0, rateLimitCount: 0, timeoutCount: 0, slowest: null };
+}
+
+export function getGeckoStats(): Readonly<GeckoStats> {
+  return stats;
+}
+
 async function get<T>(path: string, attempt = 0): Promise<T> {
   await throttle();
-  const res = await fetch(`${BASE_URL}${path}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
-  if (res.status === 429 && attempt < 6) {
-    await sleep(2000 * 2 ** attempt);
-    return get<T>(path, attempt + 1);
+  const start = Date.now();
+  stats.requestCount++;
+  let res: Response;
+  try {
+    res = await fetch(`${BASE_URL}${path}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+  } catch (err) {
+    if (err instanceof Error && err.name === "TimeoutError") stats.timeoutCount++;
+    throw err;
+  } finally {
+    const elapsed = Date.now() - start;
+    stats.totalTimeMs += elapsed;
+    if (!stats.slowest || elapsed > stats.slowest.ms) stats.slowest = { path, ms: elapsed };
+  }
+  if (res.status === 429) {
+    stats.rateLimitCount++;
+    // Discovery pages degrade gracefully on failure now, so don't burn a minute-plus
+    // retrying a single doomed page - a couple of quick attempts, then move on.
+    if (attempt < 3) {
+      stats.retryCount++;
+      await sleep(1500 * 2 ** attempt);
+      return get<T>(path, attempt + 1);
+    }
   }
   if (!res.ok) {
     throw new Error(`GeckoTerminal request failed: ${path} -> ${res.status} ${res.statusText}`);
@@ -42,11 +79,11 @@ async function getPoolsPaginated(network: string, path: string, pages: number): 
         const result = await get<{ data: GeckoPool[] }>(`/networks/${network}/${path}${separator}page=${page}`);
         return result.data;
       } catch (err) {
-        // GeckoTerminal's free tier hard-caps some endpoints' pagination depth (401 past
-        // the limit, not a rate limit) - treat that page as empty rather than fail the run.
-        if (err instanceof Error && err.message.includes("401")) return [];
-        if (err instanceof Error && err.name === "TimeoutError") return [];
-        throw err;
+        // Discovery is best-effort — a single page failing (rate limit exhausted its
+        // retries, pagination-depth cap, timeout, whatever) should never crash the whole
+        // scan. Log it and move on with however many other pages did come through.
+        console.warn(`  [gecko] page fetch failed, skipping: ${path}&page=${page} -> ${(err as Error).message}`);
+        return [];
       }
     })
   );
@@ -57,14 +94,14 @@ export async function getTrendingPools(network: string, pages = 2): Promise<Geck
   return getPoolsPaginated(network, "trending_pools", pages);
 }
 
-export async function getNewPools(network: string, pages = 10): Promise<GeckoPool[]> {
+export async function getNewPools(network: string, pages = 6): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "new_pools", pages);
 }
 
 /** All active pools ranked by 24h volume — the broad net that catches tokens sitting in a
  *  market-cap band regardless of whether they're currently "trending" or brand new.
  *  GeckoTerminal's free tier caps this endpoint's pagination around page 10. */
-export async function getPoolsByVolume(network: string, pages = 10): Promise<GeckoPool[]> {
+export async function getPoolsByVolume(network: string, pages = 7): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "pools?sort=h24_volume_usd_desc", pages);
 }
 

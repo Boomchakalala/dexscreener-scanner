@@ -1,6 +1,7 @@
 import { analyzeCandidates, analyzeFlash, type DiscoveryFunnel } from "./analysis.js";
 import { config } from "./config.js";
 import { discoverCandidates, enrichCandidates, enrichCandidatesForFlash, excludeDangerRisks } from "./discovery.js";
+import { getGeckoStats, resetGeckoStats } from "./gecko.js";
 import { getMarketOverview } from "./marketOverview.js";
 import { rankAndCut } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts } from "./state.js";
@@ -14,10 +15,22 @@ function logStage(stage: string, startedAt: number): void {
   console.log(`  [timing] ${stage}: ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
 }
 
+function logGeckoStats(): void {
+  const s = getGeckoStats();
+  const avgMs = s.requestCount > 0 ? Math.round(s.totalTimeMs / s.requestCount) : 0;
+  console.log(
+    `  [gecko] requests=${s.requestCount} (sequential, ${1200}ms min spacing) ` +
+      `totalTime=${(s.totalTimeMs / 1000).toFixed(1)}s avg=${avgMs}ms ` +
+      `retries=${s.retryCount} rateLimited=${s.rateLimitCount} timeouts=${s.timeoutCount} ` +
+      `slowest=${s.slowest ? `${s.slowest.path} (${s.slowest.ms}ms)` : "n/a"}`
+  );
+}
+
 export async function runDeepScan(triggeredManually = false): Promise<void> {
   const runStart = now();
   console.log(`[${new Date().toISOString()}] Deep scan: ${config.chains.join(", ")}`);
   const label = triggeredManually ? "**Deep scan** (manual)" : "**Deep scan**";
+  resetGeckoStats();
 
   let t = now();
   const { rawCount, survivors } = await discoverCandidates();
@@ -34,6 +47,7 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   const enriched = await enrichCandidates(survivors);
   logStage("Enrichment (candles + rug check)", t);
   console.log(`Enriched ${enriched.length} candidates with candles + rug check data.`);
+  logGeckoStats();
 
   const safe = excludeDangerRisks(enriched);
   if (safe.length < enriched.length) {
@@ -71,6 +85,7 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 export async function runFlashScan(triggeredManually = false): Promise<void> {
   const runStart = now();
   console.log(`[${new Date().toISOString()}] Flash check: ${config.chains.join(", ")}`);
+  resetGeckoStats();
 
   let t = now();
   const { survivors } = await discoverCandidates();
@@ -90,6 +105,7 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
   t = now();
   const candidates = await enrichCandidatesForFlash(shortlist);
   logStage("Enrichment (candles only)", t);
+  logGeckoStats();
 
   const recentHistory = await getRecentAlertHistory("flash");
 
