@@ -11,7 +11,7 @@ export interface ScoredCandidate {
 // job is to stop the LLM call from having to wade through every survivor.
 
 function scoreLiquidity(c: Candidate): number {
-  const pts = ((c.liquidityUsd - 50_000) / (150_000 - 50_000)) * 20;
+  const pts = ((c.liquidityUsd - 25_000) / (150_000 - 25_000)) * 20;
   return Math.max(0, Math.min(20, pts));
 }
 

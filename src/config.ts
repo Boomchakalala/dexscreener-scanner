@@ -23,7 +23,7 @@ export const config = {
     // judgment call handled in the prompt, not here.
     minMarketCapUsd: numberEnv("MIN_MARKET_CAP_USD", 75_000),
     maxMarketCapUsd: numberEnv("MAX_MARKET_CAP_USD", 5_000_000),
-    minLiquidityUsd: numberEnv("MIN_LIQUIDITY_USD", 50_000),
+    minLiquidityUsd: numberEnv("MIN_LIQUIDITY_USD", 25_000),
     maxAgeHours: numberEnv("MAX_AGE_HOURS", 72),
     // Two-stage cap matching the discover -> filter -> top30 -> score -> top10 -> LLM pipeline.
     maxSurvivors: numberEnv("MAX_SURVIVORS", 30),
