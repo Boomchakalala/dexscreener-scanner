@@ -6,19 +6,33 @@ import { rankAndCut } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
 
+function now(): number {
+  return Date.now();
+}
+
+function logStage(stage: string, startedAt: number): void {
+  console.log(`  [timing] ${stage}: ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
+}
+
 export async function runDeepScan(triggeredManually = false): Promise<void> {
+  const runStart = now();
   console.log(`[${new Date().toISOString()}] Deep scan: ${config.chains.join(", ")}`);
   const label = triggeredManually ? "**Deep scan** (manual)" : "**Deep scan**";
 
+  let t = now();
   const { rawCount, survivors } = await discoverCandidates();
+  logStage("Discovery + universe filtering", t);
   console.log(`Discovered ${rawCount} raw pairs, ${survivors.length} survived hard filters.`);
 
   if (survivors.length === 0) {
     await sendTelegramMessage(`${label} — scanned ${rawCount} pairs, none survived the hard filters this run.`);
+    logStage("TOTAL", runStart);
     return;
   }
 
+  t = now();
   const enriched = await enrichCandidates(survivors);
+  logStage("Enrichment (candles + rug check)", t);
   console.log(`Enriched ${enriched.length} candidates with candles + rug check data.`);
 
   const safe = excludeDangerRisks(enriched);
@@ -37,46 +51,70 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   };
   const marketOverview = await getMarketOverview();
 
+  t = now();
   const recentHistory = await getRecentAlertHistory("deep");
   const { report, verdicts } = await analyzeCandidates(topCandidates, recentHistory, funnel, marketOverview);
+  logStage("Deep analysis (Claude)", t);
 
+  t = now();
   await sendTelegramMessage(`${label}\n\n${report || "NO HIGH-QUALITY SETUPS FOUND."}`);
+  logStage("Report generation (Telegram send)", t);
   console.log("Sent analysis to Telegram.");
 
   if (verdicts.length > 0) {
     await recordAlerts("deep", verdicts);
   }
+
+  logStage("TOTAL", runStart);
 }
 
 export async function runFlashScan(triggeredManually = false): Promise<void> {
+  const runStart = now();
   console.log(`[${new Date().toISOString()}] Flash check: ${config.chains.join(", ")}`);
 
+  let t = now();
   const { survivors } = await discoverCandidates();
+  logStage("Discovery + universe filtering", t);
+
   if (survivors.length === 0) {
     if (triggeredManually) await sendTelegramMessage("⚡ **Flash check** (manual) — no candidates in range right now.");
     console.log("No candidates in range this pass.");
+    logStage("TOTAL", runStart);
     return;
   }
 
   // Flash is speed-first: skip the full rug-check-informed pre-score and just take the
   // most liquid subset (discoverCandidates already sorts survivors by liquidity).
   const shortlist = survivors.slice(0, 15);
+
+  t = now();
   const candidates = await enrichCandidatesForFlash(shortlist);
+  logStage("Enrichment (candles only)", t);
+
   const recentHistory = await getRecentAlertHistory("flash");
+
+  t = now();
   const { report, verdicts } = await analyzeFlash(candidates, recentHistory);
+  logStage("Deep analysis (Claude)", t);
 
   const nothingFound = !report || report.trim().toUpperCase() === "NOTHING";
   if (nothingFound) {
     if (triggeredManually) await sendTelegramMessage("⚡ **Flash check** (manual) — nothing flashing right now.");
     console.log("Nothing flashing this pass.");
+    logStage("TOTAL", runStart);
     return;
   }
 
   const label = triggeredManually ? "⚡ **FLASH ALERT** (manual)" : "⚡ **FLASH ALERT**";
+
+  t = now();
   await sendTelegramMessage(`${label}\n\n${report}`);
+  logStage("Report generation (Telegram send)", t);
   console.log("Sent flash alert to Telegram.");
 
   if (verdicts.length > 0) {
     await recordAlerts("flash", verdicts);
   }
+
+  logStage("TOTAL", runStart);
 }

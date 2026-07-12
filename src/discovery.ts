@@ -3,10 +3,6 @@ import { getHourlyCandles, getMinuteCandles, getNewPools, getPoolsByVolume, getT
 import { getRugCheckReport } from "./rugcheck.js";
 import type { Candidate, GeckoPool } from "./types.js";
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 function extractTokenAddress(relationshipId: string): string {
   const idx = relationshipId.indexOf("_");
   return idx === -1 ? relationshipId : relationshipId.slice(idx + 1);
@@ -104,16 +100,15 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
 }
 
 export async function enrichCandidates(candidates: Candidate[]): Promise<Candidate[]> {
-  const enriched: Candidate[] = [];
-  for (const candidate of candidates) {
-    const [candles, rugCheck] = await Promise.all([
-      getHourlyCandles(candidate.chainId, candidate.poolAddress).catch(() => []),
-      getRugCheckReport(candidate.tokenAddress),
-    ]);
-    enriched.push({ ...candidate, candles, rugCheck });
-    await sleep(300);
-  }
-  return enriched;
+  return Promise.all(
+    candidates.map(async (candidate) => {
+      const [candles, rugCheck] = await Promise.all([
+        getHourlyCandles(candidate.chainId, candidate.poolAddress).catch(() => []),
+        getRugCheckReport(candidate.tokenAddress),
+      ]);
+      return { ...candidate, candles, rugCheck };
+    })
+  );
 }
 
 /** Hard code-level exclusion for RugCheck danger-level risks (LP unlocked, etc.) —
@@ -125,10 +120,10 @@ export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {
 
 /** Lighter enrichment for the flash check: short-window candles only, no rug check (speed over full vetting). */
 export async function enrichCandidatesForFlash(candidates: Candidate[]): Promise<Candidate[]> {
-  const enriched: Candidate[] = [];
-  for (const candidate of candidates) {
-    const candles = await getMinuteCandles(candidate.chainId, candidate.poolAddress).catch(() => []);
-    enriched.push({ ...candidate, candles, rugCheck: null });
-  }
-  return enriched;
+  return Promise.all(
+    candidates.map(async (candidate) => {
+      const candles = await getMinuteCandles(candidate.chainId, candidate.poolAddress).catch(() => []);
+      return { ...candidate, candles, rugCheck: null };
+    })
+  );
 }

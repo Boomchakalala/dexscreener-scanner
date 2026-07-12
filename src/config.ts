@@ -25,8 +25,8 @@ export const config = {
     maxMarketCapUsd: numberEnv("MAX_MARKET_CAP_USD", 5_000_000),
     minLiquidityUsd: numberEnv("MIN_LIQUIDITY_USD", 25_000),
     maxAgeHours: numberEnv("MAX_AGE_HOURS", 72),
-    // Two-stage cap matching the discover -> filter -> top30 -> score -> top10 -> LLM pipeline.
+    // Two-stage cap matching the discover -> filter -> top30 -> score -> top8 -> LLM pipeline.
     maxSurvivors: numberEnv("MAX_SURVIVORS", 30),
-    maxDeepAnalyze: numberEnv("MAX_DEEP_ANALYZE", 10),
+    maxDeepAnalyze: numberEnv("MAX_DEEP_ANALYZE", 8),
   },
 };

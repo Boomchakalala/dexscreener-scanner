@@ -1,27 +1,47 @@
 import type { GeckoPool, OhlcvCandle } from "./types.js";
 
 const BASE_URL = "https://api.geckoterminal.com/api/v2";
-const REQUEST_SPACING_MS = 2500;
+const MAX_CONCURRENT = 4;
+const REQUEST_TIMEOUT_MS = 10_000;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Serializes every request through a single chained queue so concurrent callers
-// (e.g. Promise.all) can't race past the naive "check last timestamp" throttle.
-let requestQueue: Promise<void> = Promise.resolve();
+// Bounded concurrency instead of a fixed per-request delay — lets independent
+// requests run in parallel while still capping how many hit GeckoTerminal at once.
+let activeCount = 0;
+const waiters: (() => void)[] = [];
 
-function throttle(): Promise<void> {
-  const slot = requestQueue.then(() => sleep(REQUEST_SPACING_MS));
-  requestQueue = slot;
-  return slot;
+function acquire(): Promise<void> {
+  if (activeCount < MAX_CONCURRENT) {
+    activeCount++;
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    waiters.push(() => {
+      activeCount++;
+      resolve();
+    });
+  });
+}
+
+function release(): void {
+  activeCount--;
+  const next = waiters.shift();
+  if (next) next();
 }
 
 async function get<T>(path: string, attempt = 0): Promise<T> {
-  await throttle();
-  const res = await fetch(`${BASE_URL}${path}`);
-  if (res.status === 429 && attempt < 5) {
-    await sleep(8000 * (attempt + 1));
+  await acquire();
+  let res: Response;
+  try {
+    res = await fetch(`${BASE_URL}${path}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+  } finally {
+    release();
+  }
+  if (res.status === 429 && attempt < 6) {
+    await sleep(2000 * 2 ** attempt);
     return get<T>(path, attempt + 1);
   }
   if (!res.ok) {
@@ -31,23 +51,23 @@ async function get<T>(path: string, attempt = 0): Promise<T> {
 }
 
 async function getPoolsPaginated(network: string, path: string, pages: number): Promise<GeckoPool[]> {
-  const pools: GeckoPool[] = [];
   const separator = path.includes("?") ? "&" : "?";
-  for (let page = 1; page <= pages; page++) {
-    let result: { data: GeckoPool[] };
-    try {
-      result = await get<{ data: GeckoPool[] }>(`/networks/${network}/${path}${separator}page=${page}`);
-    } catch (err) {
-      // GeckoTerminal's free tier hard-caps some endpoints' pagination depth (401 past
-      // the limit, not a rate limit) - treat that as "no more pages" rather than fail
-      // the whole run over a page count that was always going to be optimistic.
-      if (err instanceof Error && err.message.includes("401")) break;
-      throw err;
-    }
-    if (result.data.length === 0) break;
-    pools.push(...result.data);
-  }
-  return pools;
+  const pageNumbers = Array.from({ length: pages }, (_, i) => i + 1);
+  const results = await Promise.all(
+    pageNumbers.map(async (page) => {
+      try {
+        const result = await get<{ data: GeckoPool[] }>(`/networks/${network}/${path}${separator}page=${page}`);
+        return result.data;
+      } catch (err) {
+        // GeckoTerminal's free tier hard-caps some endpoints' pagination depth (401 past
+        // the limit, not a rate limit) - treat that page as empty rather than fail the run.
+        if (err instanceof Error && err.message.includes("401")) return [];
+        if (err instanceof Error && err.name === "TimeoutError") return [];
+        throw err;
+      }
+    })
+  );
+  return results.flat();
 }
 
 export async function getTrendingPools(network: string, pages = 2): Promise<GeckoPool[]> {
