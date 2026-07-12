@@ -11,7 +11,7 @@ async function main() {
   console.log(`${discovered.length} candidates passed market cap / liquidity floors.`);
 
   if (discovered.length === 0) {
-    await sendTelegramMessage("No candidates found in the $150K-$1.5M market cap band this run.");
+    await sendTelegramMessage("**Deep scan** — no candidates found in the $150K-$1.5M market cap band this run.");
     return;
   }
 
@@ -21,7 +21,7 @@ async function main() {
   const recentHistory = await getRecentAlertHistory("deep");
   const { report, verdicts } = await analyzeCandidates(candidates, recentHistory);
 
-  await sendTelegramMessage(report || "NO HIGH-QUALITY SETUPS FOUND.");
+  await sendTelegramMessage(`**Deep scan**\n\n${report || "NO HIGH-QUALITY SETUPS FOUND."}`);
   console.log("Sent analysis to Telegram.");
 
   if (verdicts.length > 0) {

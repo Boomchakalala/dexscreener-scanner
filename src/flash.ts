@@ -22,7 +22,7 @@ async function main() {
     return;
   }
 
-  await sendTelegramMessage(`⚡ FLASH ALERT\n\n${report}`);
+  await sendTelegramMessage(`⚡ **FLASH ALERT**\n\n${report}`);
   console.log("Sent flash alert to Telegram.");
 
   if (verdicts.length > 0) {

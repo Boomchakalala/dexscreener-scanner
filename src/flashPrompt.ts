@@ -23,6 +23,6 @@ For every token you flag, give: symbol, contract address, current price and mark
 If nothing qualifies, output exactly: NOTHING
 and absolutely nothing else — no explanation, no "no strong setups found" sentence, just that word.
 
-Format for Telegram: plain text, no markdown headers, no tables.
+Format for Telegram: plain text, no markdown headers, no tables. The only markdown you may use is **double asterisks** for bold — wrap the token symbol and key numbers (price move %, invalidation level) in it. Don't bold whole sentences.
 
 After your response (whether NOTHING or real flags), append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token you flagged, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "FLASH ALERT"}. If you output NOTHING, still emit ---DATA--- followed by [].`;

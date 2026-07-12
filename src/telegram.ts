@@ -3,6 +3,31 @@ import { config } from "./config.js";
 const API_URL = `https://api.telegram.org/bot${config.telegramBotToken}`;
 const MAX_MESSAGE_LENGTH = 4000;
 
+function escapeHtml(text: string): string {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/** Converts the model's lightweight **bold** markers into Telegram HTML, escaping everything else. */
+function markdownBoldToHtml(text: string): string {
+  return text
+    .split(/\*\*(.+?)\*\*/gs)
+    .map((part, i) => (i % 2 === 1 ? `<b>${escapeHtml(part)}</b>` : escapeHtml(part)))
+    .join("");
+}
+
+/** Re-opens/closes <b> across a chunk boundary so every chunk is independently valid HTML. */
+function balanceBoldAcrossChunks(chunks: string[]): string[] {
+  let openBold = false;
+  return chunks.map((chunk) => {
+    let piece = openBold ? `<b>${chunk}` : chunk;
+    const opens = (piece.match(/<b>/g) || []).length;
+    const closes = (piece.match(/<\/b>/g) || []).length;
+    openBold = opens > closes;
+    if (openBold) piece += "</b>";
+    return piece;
+  });
+}
+
 function chunkMessage(text: string): string[] {
   if (text.length <= MAX_MESSAGE_LENGTH) return [text];
 
@@ -25,6 +50,7 @@ async function sendSingleMessage(text: string): Promise<void> {
     body: JSON.stringify({
       chat_id: config.telegramChatId,
       text,
+      parse_mode: "HTML",
       disable_web_page_preview: true,
     }),
   });
@@ -36,7 +62,9 @@ async function sendSingleMessage(text: string): Promise<void> {
 }
 
 export async function sendTelegramMessage(text: string): Promise<void> {
-  for (const chunk of chunkMessage(text)) {
+  const html = markdownBoldToHtml(text);
+  const chunks = balanceBoldAcrossChunks(chunkMessage(html));
+  for (const chunk of chunks) {
     await sendSingleMessage(chunk);
   }
 }
