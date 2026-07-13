@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2,
+  "balanceSol": 1.95,
   "positions": [
     {
       "id": "TEST-4ko5tSr5o3H4v1sFtjTSd9MPUW7yx5AFCpkNPoL6pump-1783967615103",
@@ -9,7 +9,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/68nVMrVPyxGJGbGH2P92E93SYhJcbe6QociZrqoqdjcB",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.05,
       "remainingSizeSol": 0.05,
       "entryCondition": {
@@ -18,22 +18,48 @@
         "description": "TEST POSITION — end-to-end pipeline verification only, not a real signal",
         "validityWindowMinutes": 60
       },
-      "entrySnapshot": { "priceUsd": 0.00413283, "marketCapUsd": 4072527.96, "liquidityUsd": 100000 },
-      "structuralInvalidation": { "price": 0.001, "description": "TEST — far below current price, should never trigger" },
+      "entrySnapshot": {
+        "priceUsd": 0.00413283,
+        "marketCapUsd": 4072527.96,
+        "liquidityUsd": 100000
+      },
+      "structuralInvalidation": {
+        "price": 0.001,
+        "description": "TEST — far below current price, should never trigger"
+      },
       "targets": [
-        { "label": "TP1", "price": 0.003, "note": "TEST — already below current price, should trigger on the second check" },
-        { "label": "TP2", "price": 0.01, "note": "TEST — far above current price, should never trigger" }
+        {
+          "label": "TP1",
+          "price": 0.003,
+          "note": "TEST — already below current price, should trigger on the second check"
+        },
+        {
+          "label": "TP2",
+          "price": 0.01,
+          "note": "TEST — far above current price, should never trigger"
+        }
       ],
       "thesis": "TEST POSITION — end-to-end pipeline verification only, not a real signal",
       "createdAt": 1783967615103,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.003983094400535492,
+      "entryMarketCapUsd": 3944588.90787591,
+      "openedAt": 1783967751284,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
     }
   ],
-  "tradeLog": []
+  "tradeLog": [
+    {
+      "positionId": "TEST-4ko5tSr5o3H4v1sFtjTSd9MPUW7yx5AFCpkNPoL6pump-1783967615103",
+      "symbol": "febu",
+      "action": "ENTRY",
+      "price": 0.003983094400535492,
+      "sizeSol": 0.05,
+      "pnlSol": 0,
+      "reason": "filled with 0.74% price impact",
+      "timestamp": 1783967753690
+    }
+  ]
 }
