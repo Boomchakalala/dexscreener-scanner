@@ -11,12 +11,12 @@ const LEDGER_FILE = path.join(LEDGER_DIR, "ledger.json");
 const STARTING_BALANCE_SOL = 2;
 const MAX_SIZE_SOL = 0.5;
 const MAX_DEPLOYED_PCT = 0.4;
-// Phase 1+ sizing tiers — Flash alerts don't emit trade plans yet (flashPrompt.ts is
-// untouched), so FLASH_SIZE_PCT (0.22) is reserved but unused until that's wired up.
+// Phase 1+ sizing tiers.
 const SIZE_PCT_BY_TIER: Record<TradePlan["tier"], number> = {
   "SPECULATIVE PUNT": 0.08,
   WATCH: 0.12,
   RECOMMENDATION: 0.18,
+  FLASH: 0.22,
 };
 
 export type PositionStatus = "PENDING_ENTRY" | "OPEN" | "TP1_TAKEN" | "CLOSED" | "MISSED";

@@ -97,7 +97,7 @@ export interface TradePlan {
   symbol: string;
   tokenAddress: string;
   poolAddress: string;
-  tier: "RECOMMENDATION" | "SPECULATIVE PUNT" | "WATCH";
+  tier: "RECOMMENDATION" | "SPECULATIVE PUNT" | "WATCH" | "FLASH";
   entrySnapshot: { priceUsd: number; marketCapUsd: number; liquidityUsd: number };
   entryCondition: {
     type: "IMMEDIATE" | "PULLBACK" | "BREAKOUT" | "RECLAIM";

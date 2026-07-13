@@ -22,7 +22,9 @@ For every token you flag, use exactly this template — one line per field, no p
 
 **SYMBOL** (contract address)
 Move: one sentence citing the actual price/volume numbers that support "flashing right now".
-Invalidation: one line — what would mean you were wrong.
+Trade plan: one sentence — enter now at market, or wait for a specific pullback/reclaim level if the move already looks extended. Be concrete about the level, not vague.
+Invalidation: specific price level and what breaking it means.
+Targets: specific level(s), e.g. "$X first, then $X only if [condition]."
 
 Leave one blank line between tokens if flagging more than one. Bold only the **SYMBOL** — nothing else.
 
@@ -31,4 +33,9 @@ and absolutely nothing else — no explanation, no "no strong setups found" sent
 
 Format for Telegram: plain text, no markdown headers, no tables, no other markdown besides the SYMBOL bolding above.
 
-After your response (whether NOTHING or real flags), append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token you flagged, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "FLASH ALERT"}. If you output NOTHING, still emit ---DATA--- followed by [].`;
+After your response (whether NOTHING or real flags), append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token you flagged, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "FLASH ALERT"}. If you output NOTHING, still emit ---DATA--- followed by [].
+
+After the ---DATA--- block, append one more line containing exactly ---TRADEPLAN--- and nothing else, then a second JSON array (no markdown fence) — one entry per flagged token, giving a structured, machine-readable version of that same token's trade plan:
+{"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "tier": "FLASH", "entrySnapshot": {"priceUsd": number, "marketCapUsd": number, "liquidityUsd": number}, "entryCondition": {"type": "IMMEDIATE"|"PULLBACK"|"BREAKOUT"|"RECLAIM", "triggerPrice": number|null, "description": "...", "validityWindowMinutes": number}, "structuralInvalidation": {"price": number, "description": "..."}, "targets": [{"label": "TP1"|"TP2", "price": number, "note": "..."}], "thesis": "one sentence restating why this is flashing"}
+
+entryCondition.type is "IMMEDIATE" (with triggerPrice null) for the normal case of a live, still-actionable spike — that's the whole point of a flash flag. Only use PULLBACK/BREAKOUT/RECLAIM if your own Trade plan line above said to wait for a specific level rather than enter now. validityWindowMinutes should be short (10-20 minutes) given how fast these moves move — do not reuse the deep scan's longer windows. structuralInvalidation.price and targets must match the prose Invalidation/Targets lines exactly. If you output NOTHING, emit ---TRADEPLAN--- followed by [].`;

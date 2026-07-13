@@ -141,7 +141,7 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
   const recentHistory = await getRecentAlertHistory("flash");
 
   t = now();
-  const { report, verdicts } = await analyzeFlash(candidates, recentHistory);
+  const { report, verdicts, tradePlans } = await analyzeFlash(candidates, recentHistory);
   logStage("Deep analysis (Claude)", t);
 
   const nothingFound = !report || report.trim().toUpperCase() === "NOTHING";
@@ -162,6 +162,9 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
   if (verdicts.length > 0) {
     await recordAlerts("flash", verdicts);
   }
+
+  await openPositionsFromTradePlans(tradePlans, candidates);
+  console.log(`Opened ${tradePlans.length} new PENDING_ENTRY position(s) from flash (subject to sizing/dedup rules) in data/ledger.json.`);
 
   logStage("TOTAL", runStart);
 }

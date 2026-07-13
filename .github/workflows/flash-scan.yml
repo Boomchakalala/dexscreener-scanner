@@ -42,27 +42,37 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TRIGGERED_MANUALLY: ${{ inputs.manual }}
 
-      - name: Commit updated alert history
+      - name: Commit updated alert history and ledger
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/state.json
-          if git diff --cached --quiet; then
-            echo "No state changes to commit."
-            exit 0
-          fi
-          git commit -m "chore: update alert state (flash scan) [skip ci]"
-          if ! git pull --rebase; then
-            echo "::warning::Rebase conflict on state.json (concurrent run) - skipping this run's state update."
-            git rebase --abort
-            exit 0
-          fi
-          if ! git push; then
-            echo "Push rejected (concurrent run pushed first) - retrying once after a fresh rebase."
-            if ! git pull --rebase; then
-              echo "::warning::Rebase conflict on retry - skipping this run's state update."
-              git rebase --abort
-              exit 0
+
+          # Independent per-file commits, not bundled - see deep-scan.yml for why (a
+          # conflict on one file must never discard another file's changes).
+          commit_and_push() {
+            local file="$1"
+            local message="$2"
+            git add "$file"
+            if git diff --cached --quiet; then
+              echo "No changes to commit for $file."
+              return 0
             fi
-            git push
-          fi
+            git commit -m "$message"
+            if ! git pull --rebase; then
+              echo "::warning::Rebase conflict on $file (concurrent run) - skipping this file's update."
+              git rebase --abort
+              return 0
+            fi
+            if ! git push; then
+              echo "Push rejected for $file - retrying once after a fresh rebase."
+              if ! git pull --rebase; then
+                echo "::warning::Rebase conflict on retry for $file - skipping this file's update."
+                git rebase --abort
+                return 0
+              fi
+              git push
+            fi
+          }
+
+          commit_and_push data/state.json "chore: update alert state (flash scan) [skip ci]"
+          commit_and_push data/ledger.json "chore: update ledger (flash scan) [skip ci]"
