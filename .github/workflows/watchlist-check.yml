@@ -1,0 +1,53 @@
+name: Watchlist check
+
+on:
+  # workflow_dispatch only — fired every few minutes by a Cloudflare Cron Trigger on
+  # telegram-scan-webhook, same pattern as deep-scan/flash-scan. Deliberately runs here
+  # (GitHub Actions) rather than inside the Cloudflare Worker itself: GeckoTerminal's free
+  # tier 429'd every request from Cloudflare's shared egress IPs even at trivial volume,
+  # while GitHub Actions' IPs run this scanner reliably all day at much higher volume.
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: state-file
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - run: npm ci
+      - run: npm run build
+
+      - run: node dist/watchlistCheck.js
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit updated watchlist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/watchlist.json
+          if git diff --cached --quiet; then
+            echo "No watchlist changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update watchlist state (watchlist check) [skip ci]"
+          if ! git pull --rebase; then
+            echo "::warning::Rebase conflict on watchlist.json (concurrent run) - skipping this run's state update."
+            git rebase --abort
+            exit 0
+          fi
+          git push

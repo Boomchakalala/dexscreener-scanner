@@ -18,6 +18,9 @@ export interface WatchlistEntry {
   addedAt: number; // ms epoch
   expiresAt: number; // ms epoch
   fired: boolean;
+  /** Last-seen 1h volume reading from the watchlist checker, used to evaluate
+   *  requireRisingVolume — undefined until the first check has run for this entry. */
+  priorVolumeH1Usd?: number;
 }
 
 interface WatchlistState {
@@ -36,6 +39,14 @@ async function loadWatchlist(): Promise<WatchlistState> {
 async function saveWatchlist(state: WatchlistState): Promise<void> {
   await mkdir(WATCHLIST_DIR, { recursive: true });
   await writeFile(WATCHLIST_FILE, JSON.stringify(state, null, 2));
+}
+
+export async function loadWatchlistEntries(): Promise<WatchlistEntry[]> {
+  return (await loadWatchlist()).entries;
+}
+
+export async function saveWatchlistEntries(entries: WatchlistEntry[]): Promise<void> {
+  await saveWatchlist({ entries });
 }
 
 /** Merges newly-emitted watch conditions from a deep scan into data/watchlist.json —

@@ -1,4 +1,4 @@
-import type { GeckoPool, OhlcvCandle } from "./types.js";
+import type { GeckoPool, GeckoPoolAttributes, OhlcvCandle } from "./types.js";
 
 const BASE_URL = "https://api.geckoterminal.com/api/v2";
 // A bounded-concurrency pool (no fixed delay) hit 429s reliably, even on a fresh
@@ -141,4 +141,36 @@ export async function getMinuteCandles(
     `/networks/${network}/pools/${poolAddress}/ohlcv/minute?aggregate=${aggregate}&limit=${limit}`
   );
   return parseOhlcv(result);
+}
+
+export interface PoolStats {
+  marketCapUsd: number;
+  liquidityUsd: number;
+  volumeH1Usd: number;
+  volumeH6Usd: number;
+}
+
+/** Single-pool lookup for the watchlist checker — a handful of specific pools every
+ *  few minutes, not a broad scan. Runs from GitHub Actions' IPs (via the shared
+ *  throttled queue above), deliberately not from Cloudflare Workers: GeckoTerminal's
+ *  free tier 429'd every single request from Cloudflare's shared egress IPs even at
+ *  this trivial volume, while GitHub Actions' IPs have run this scanner reliably all
+ *  day at much higher volume. */
+export async function getPoolStats(network: string, poolAddress: string): Promise<PoolStats | null> {
+  try {
+    const result = await get<{ data: { attributes: GeckoPoolAttributes } }>(`/networks/${network}/pools/${poolAddress}`);
+    const attrs = result.data.attributes;
+    const marketCapUsd = Number(attrs.market_cap_usd ?? attrs.fdv_usd ?? 0);
+    const liquidityUsd = Number(attrs.reserve_in_usd ?? 0);
+    if (!marketCapUsd || !liquidityUsd) return null;
+    return {
+      marketCapUsd,
+      liquidityUsd,
+      volumeH1Usd: Number(attrs.volume_usd.h1 ?? 0),
+      volumeH6Usd: Number(attrs.volume_usd.h6 ?? 0),
+    };
+  } catch (err) {
+    console.warn(`  [gecko] pool stats fetch failed, skipping: ${poolAddress} -> ${(err as Error).message}`);
+    return null;
+  }
 }
