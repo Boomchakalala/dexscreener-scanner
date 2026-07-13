@@ -195,6 +195,102 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "triggerHits": 0
+    },
+    {
+      "id": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump-1783980281523",
+      "symbol": "ANSENS",
+      "tokenAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "poolAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.16,
+      "remainingSizeSol": 0.16,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.0015,
+        "description": "Wait for pullback/consolidation toward ~$1.5M MC that holds as a higher low with volume drying, then buy first green reclaim",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00205,
+        "marketCapUsd": 2052535,
+        "liquidityUsd": 62081
+      },
+      "structuralInvalidation": {
+        "price": 0.001,
+        "description": "Break and hold below ~$1.0M MC means the vertical move has fully unwound"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0025,
+          "note": "$2.5M MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.003,
+          "note": "$3.0M MC, only if liquidity thickens"
+        }
+      ],
+      "thesis": "Highest market-quality and broad two-sided flow in the batch, but mid-vertical and thinly backed — only attractive on a pullback to a higher low.",
+      "createdAt": 1783980281523,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump-1783980281523",
+      "symbol": "BlackBear",
+      "tokenAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "poolAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.24,
+      "remainingSizeSol": 0.24,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00015,
+        "description": "Higher low holding ~$150K MC with green reclaim on rising volume and buys retaking sells",
+        "validityWindowMinutes": 480
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000167,
+        "marketCapUsd": 167074,
+        "liquidityUsd": 15109
+      },
+      "structuralInvalidation": {
+        "price": 0.00012,
+        "description": "Loss of ~$120K MC on volume confirms rollover"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00025,
+          "note": "$250K MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00035,
+          "note": "$350K MC if buyers return convincingly"
+        }
+      ],
+      "thesis": "Genuine early run that has stabilised, but liquidity is near-critically thin and sells currently lead — needs a confirmed base before any punt.",
+      "createdAt": 1783980281523,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
