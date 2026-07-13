@@ -1,6 +1,6 @@
 import { runDeepScan } from "./scanners.js";
 
-runDeepScan().catch((err) => {
+runDeepScan(process.env.TRIGGERED_MANUALLY === "true").catch((err) => {
   console.error("Scan failed:", err);
   process.exitCode = 1;
 });

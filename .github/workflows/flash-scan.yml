@@ -4,8 +4,15 @@ on:
   # No schedule: here — GitHub Actions' schedule: event proved badly unreliable at a
   # nominal hourly cadence, measured jittering to 2-3.5h gaps in practice. The real
   # hourly cadence is now driven by a Cloudflare Cron Trigger on telegram-scan-webhook,
-  # which calls workflow_dispatch directly. workflow_dispatch kept here for manual/testing use.
-  workflow_dispatch: {}
+  # which calls workflow_dispatch directly. The manual input lets that same dispatch
+  # call distinguish a real /flash command (which should announce "nothing flashing"
+  # rather than staying silent) from the routine cron tick (which should stay silent).
+  workflow_dispatch:
+    inputs:
+      manual:
+        description: "Set true when dispatched from a real /flash command, not the cron tick"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -33,6 +40,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TRIGGERED_MANUALLY: ${{ inputs.manual }}
 
       - name: Commit updated alert history
         run: |

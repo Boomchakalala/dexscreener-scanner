@@ -4,8 +4,14 @@ on:
   # No schedule: here — GitHub Actions' schedule: event proved unreliable even at a
   # nominal 4h cadence, jittering to 3.5-4.5h in practice. The real 4h cadence is now
   # driven by a Cloudflare Cron Trigger on telegram-scan-webhook, which calls
-  # workflow_dispatch directly. workflow_dispatch kept here for manual/testing use.
-  workflow_dispatch: {}
+  # workflow_dispatch directly. The manual input just labels the Telegram report
+  # "(manual)" when a real /scan command triggered it, vs. the routine cron tick.
+  workflow_dispatch:
+    inputs:
+      manual:
+        description: "Set true when dispatched from a real /scan command, not the cron tick"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -33,6 +39,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TRIGGERED_MANUALLY: ${{ inputs.manual }}
 
       - name: Commit updated alert history, watchlist, and ledger
         run: |
