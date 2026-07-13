@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.95,
+  "balanceSol": 1.969998395314805,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -105,9 +105,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/8N544CG9j44dkzu4CjSWHxpwekxHQPTR4R17Kw9y5FBk",
       "tier": "SPECULATIVE PUNT",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.05,
-      "remainingSizeSol": 0.05,
+      "remainingSizeSol": 0.03,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -140,10 +140,10 @@
       "entryPrice": 0.010102239355349265,
       "entryMarketCapUsd": 10107798.8361203,
       "openedAt": 1783973441631,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1783973474483,
+      "tp1Classification": "STRONG",
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": -0.0000016046851948892105
     },
     {
       "id": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1783973113756",
@@ -204,6 +204,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.01% price impact",
       "timestamp": 1783973443870
+    },
+    {
+      "positionId": "TEST-4MrsXQzaosYNyFd4wKDvgnC5xRtRqgXRrijFTGj9pump-1783975200000",
+      "symbol": "NORMIE",
+      "action": "TP1_PARTIAL",
+      "price": 0.010101428809652827,
+      "sizeSol": 0.020000000000000004,
+      "pnlSol": -0.0000016046851948892105,
+      "reason": "TP1 arrival classified STRONG, sold 40%",
+      "timestamp": 1783973474483
     }
   ]
 }
