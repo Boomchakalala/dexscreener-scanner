@@ -17,7 +17,7 @@ All scheduling is driven by Cloudflare Cron Triggers on the sibling
 workflow_dispatch (GitHub's own `schedule:` event proved unreliable — measured
 2-3.5h gaps on a nominally hourly cron). The same Worker receives Telegram
 `/scan`, `/flash`, and `/ledger` commands via webhook for instant manual runs.
-Repo: `github.com/Boomchakalala/dexscreener-scanner` (private).
+Repo: `github.com/Boomchakalala/dexscreener-scanner` (public — private-repo Actions minutes are metered and this pipeline's ~11,700 min/month of dispatch-driven jobs would exhaust any private quota mid-month; public repos get unlimited free minutes).
 
 ## How it works
 
