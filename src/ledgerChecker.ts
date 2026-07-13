@@ -78,6 +78,10 @@ function fmtMc(marketCapUsd: number): string {
   return `$${Math.round(marketCapUsd / 1000)}K`;
 }
 
+function fmtPct(n: number): string {
+  return `${n >= 0 ? "+" : ""}${n.toFixed(1)}%`;
+}
+
 /** Realistic fill: a real Jupiter route quote for this position's size gives real
  *  price-impact/slippage; falls back to raw pool price (flagged in the log reason) if no
  *  route was found rather than blocking the fill entirely. */
@@ -139,7 +143,7 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
     reason: fill.note,
   });
   await sendTelegramMessage(
-    `**${position.symbol}** — ENTRY filled\n${position.entryCondition.description}\nSize: ${position.sizeSol.toFixed(3)} SOL @ $${fill.price} (~${fmtMc(stats.marketCapUsd)} MC)\n${fill.note}\n[READ](${position.dexUrl})`
+    `**${position.symbol}** — ENTRY filled\n${position.entryCondition.description}\nSize: ${position.sizeSol.toFixed(3)} SOL @ $${fill.price} (MC in: ~${fmtMc(stats.marketCapUsd)})\n${fill.note}\n[READ](${position.dexUrl})`
   );
 }
 
@@ -168,9 +172,10 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
   const entryPrice = position.entryPrice as number;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
+    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
     closePosition(position, ledger, stats.priceUsd, `structural invalidation hit: ${position.structuralInvalidation.description}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (stop)\n${position.structuralInvalidation.description}\nExit: $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (stop)\n${position.structuralInvalidation.description}\nEntry: $${entryPrice} (MC in: ~${fmtMc(position.entryMarketCapUsd as number)}) → Exit: $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
     return;
   }
@@ -207,8 +212,9 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
       pnlSol: pnl,
       reason: `TP1 arrival classified ${classification}, sold ${(sellFraction * 100).toFixed(0)}%`,
     });
+    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
     await sendTelegramMessage(
-      `**${position.symbol}** — TP1 hit (${classification})\nSold ${(sellFraction * 100).toFixed(0)}% @ $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC), keeping ${(100 - sellFraction * 100).toFixed(0)}% as runner\nP&L on this slice: ${pnl.toFixed(4)} SOL`
+      `**${position.symbol}** — TP1 hit (${classification})\nSold ${(sellFraction * 100).toFixed(0)}% @ $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), keeping ${(100 - sellFraction * 100).toFixed(0)}% as runner\nEntry: $${entryPrice} (MC in: ~${fmtMc(position.entryMarketCapUsd as number)}), ${fmtPct(pctMove)}\nP&L on this slice: ${pnl.toFixed(4)} SOL`
     );
   }
 }
@@ -216,20 +222,24 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
 async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promise<void> {
   const stats = await getPoolStats(position.chainId, position.poolAddress);
   if (!stats) return;
+  const entryPrice = position.entryPrice as number;
+  const entryMc = position.entryMarketCapUsd as number;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
+    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
     closePosition(position, ledger, stats.priceUsd, `runner stopped out: ${position.structuralInvalidation.description}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (runner stopped)\nExit: $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (runner stopped)\nEntry: $${entryPrice} (MC in: ~${fmtMc(entryMc)}) → Exit: $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
     return;
   }
 
   const tp2 = position.targets.find((t) => t.label === "TP2");
   if (tp2 && stats.priceUsd >= tp2.price) {
+    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
     closePosition(position, ledger, stats.priceUsd, `final target reached: ${tp2.note}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (final target)\nExit: $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (final target)\nEntry: $${entryPrice} (MC in: ~${fmtMc(entryMc)}) → Exit: $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
   }
 }
