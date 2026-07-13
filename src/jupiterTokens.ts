@@ -25,6 +25,7 @@ interface JupiterToken {
   mcap?: number;
   fdv?: number;
   liquidity?: number;
+  launchpad?: string;
   firstPool?: { id?: string; createdAt?: string };
   stats5m?: JupiterTokenStats;
   stats1h?: JupiterTokenStats;
@@ -59,6 +60,7 @@ function toCandidate(t: JupiterToken): Candidate | null {
     chainId: "solana",
     poolAddress,
     tokenAddress: t.id,
+    launchpad: t.launchpad,
     symbol: t.symbol || t.name || t.id.slice(0, 6),
     dexUrl: `https://dexscreener.com/solana/${poolAddress}`,
     ageHours,
@@ -102,4 +104,26 @@ export async function getJupiterCandidates(): Promise<Candidate[]> {
   const candidates = [...trending, ...traded].map(toCandidate).filter((c): c is Candidate => c !== null);
   console.log(`  [jupiter] second-source discovery: ${trending.length + traded.length} tokens fetched, ${candidates.length} mappable.`);
   return candidates;
+}
+
+const launchpadCache = new Map<string, Promise<string | null>>();
+
+/** Authoritative launchpad lookup — the address vanity suffix alone is NOT reliable
+ *  (PCAT is a genuine pump.fun mint without the "pump" suffix, verified live). */
+export function getLaunchpad(mintAddress: string): Promise<string | null> {
+  let pending = launchpadCache.get(mintAddress);
+  if (!pending) {
+    pending = (async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/search?query=${mintAddress}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+        if (!res.ok) return null;
+        const data = (await res.json()) as JupiterToken[];
+        return data[0]?.launchpad ?? null;
+      } catch {
+        return null;
+      }
+    })();
+    launchpadCache.set(mintAddress, pending);
+  }
+  return pending;
 }

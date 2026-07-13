@@ -144,6 +144,19 @@ export async function getMinuteCandles(
   return parseOhlcv(result);
 }
 
+/** Full single-pool fetch (same shape as list results, so discovery's toCandidate can
+ *  reuse it) — used to force-fetch previously-called tokens that current discovery
+ *  filters would exclude, so they can be followed to conclusion. */
+export async function getPool(network: string, poolAddress: string): Promise<GeckoPool | null> {
+  try {
+    const result = await get<{ data: GeckoPool }>(`/networks/${network}/pools/${poolAddress}`);
+    return result.data;
+  } catch (err) {
+    console.warn(`  [gecko] single pool fetch failed: ${poolAddress} -> ${(err as Error).message}`);
+    return null;
+  }
+}
+
 export interface PoolStats {
   priceUsd: number;
   marketCapUsd: number;

@@ -70,4 +70,11 @@ export interface Candidate {
    *  instead of inventing one. Null until that stage has run. */
   chartRank: { rank: number; of: number } | null;
   qualityRank: { rank: number; of: number } | null;
+  /** True for a token we recently called (paper position / watchlist entry in the last
+   *  48h) that's being deliberately followed to conclusion — it bypasses discovery
+   *  filters (may be off-window or non-pump.fun) and is guaranteed a slot in the batch. */
+  tracked?: boolean;
+  /** Launchpad per Jupiter's metadata ("pump.fun", "met-dbc", ...) when known — the
+   *  address vanity suffix alone is NOT reliable (PCAT is pump.fun without the suffix). */
+  launchpad?: string;
 }

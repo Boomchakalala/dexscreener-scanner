@@ -1,7 +1,7 @@
 import { config } from "./config.js";
 import { getHourlyCandles, getMinuteCandles, getNewPools, getPoolsByVolume, getTrendingPools } from "./gecko.js";
 import { getTradeability } from "./jupiter.js";
-import { getJupiterCandidates } from "./jupiterTokens.js";
+import { getJupiterCandidates, getLaunchpad } from "./jupiterTokens.js";
 import { getRugCheckReport } from "./rugcheck.js";
 import { rankByChartProxy } from "./scoring.js";
 import type { Candidate, GeckoPool } from "./types.js";
@@ -16,7 +16,7 @@ function ageHours(pool: GeckoPool): number | null {
   return (Date.now() - new Date(pool.attributes.pool_created_at).getTime()) / (1000 * 60 * 60);
 }
 
-function toCandidate(network: string, pool: GeckoPool): Candidate | null {
+export function toCandidate(network: string, pool: GeckoPool): Candidate | null {
   const attrs = pool.attributes;
   const marketCapUsd = Number(attrs.market_cap_usd ?? attrs.fdv_usd ?? 0);
   const liquidityUsd = Number(attrs.reserve_in_usd ?? 0);
@@ -55,11 +55,6 @@ function toCandidate(network: string, pool: GeckoPool): Candidate | null {
 function passesFloors(candidate: Candidate): boolean {
   const { floors } = config;
   return (
-    // pump.fun-only: their mints carry a vanity "pump" address suffix that survives the
-    // migration to pumpswap/Raydium, making this a reliable launchpad gate. Non-pump.fun
-    // contracts are where the repeat garbage came from (W26-style copycats on random
-    // launch infra) — hard-gated here so they never reach any later stage.
-    (!config.pumpFunOnly || candidate.tokenAddress.endsWith("pump")) &&
     candidate.marketCapUsd >= floors.minMarketCapUsd &&
     candidate.marketCapUsd <= floors.maxMarketCapUsd &&
     candidate.liquidityUsd >= floors.minLiquidityUsd &&
@@ -136,10 +131,35 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
     }
   }
 
-  const floorSurvivors = [...byToken.values()];
+  let floorSurvivors = [...byToken.values()];
+  if (config.pumpFunOnly) {
+    floorSurvivors = await filterPumpFunOnly(floorSurvivors);
+  }
   const shortlist = rankByChartProxy(floorSurvivors, config.floors.maxShortlist);
 
   return { rawCount, floorSurvivorCount: floorSurvivors.length, shortlist };
+}
+
+/** pump.fun-only launchpad gate. The "pump" address suffix is sufficient but NOT
+ *  necessary — PCAT is a genuine pump.fun mint without it (verified live), and the
+ *  suffix-only version of this gate excluded it one scan after it was the user's best
+ *  call. Non-suffix tokens get an authoritative launchpad lookup from Jupiter (own
+ *  cache, separate rate budget); only confirmed pump.fun survives. */
+async function filterPumpFunOnly(candidates: Candidate[]): Promise<Candidate[]> {
+  const kept: Candidate[] = [];
+  for (const candidate of candidates) {
+    if (candidate.tokenAddress.endsWith("pump") || candidate.launchpad === "pump.fun") {
+      kept.push(candidate);
+      continue;
+    }
+    const launchpad = candidate.launchpad ?? (await getLaunchpad(candidate.tokenAddress));
+    if (launchpad === "pump.fun") {
+      kept.push(candidate);
+    } else {
+      console.log(`  [launchpad] dropping ${candidate.symbol} (${launchpad ?? "unknown"} launchpad, pump.fun-only mode)`);
+    }
+  }
+  return kept;
 }
 
 /** STAGE 3 enrichment — real hourly candles only, for the chart-shortlisted batch.

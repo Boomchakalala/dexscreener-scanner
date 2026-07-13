@@ -3,6 +3,7 @@ import { config } from "./config.js";
 import { FLASH_SYSTEM_PROMPT } from "./flashPrompt.js";
 import type { MarketOverview } from "./marketOverview.js";
 import { SYSTEM_PROMPT } from "./prompt.js";
+import type { PreviousCall } from "./scanners.js";
 import type { AlertHistoryEntry } from "./state.js";
 import type { Candidate } from "./types.js";
 
@@ -19,13 +20,14 @@ function buildUserMessage(
   candidates: Candidate[],
   recentHistory: AlertHistoryEntry[],
   historyLabel: string,
-  context?: { funnel: DiscoveryFunnel; marketOverview: MarketOverview }
+  context?: { funnel: DiscoveryFunnel; marketOverview: MarketOverview; previousCalls?: PreviousCall[] }
 ): string {
   const payload = candidates.map((c) => ({
     symbol: c.symbol,
     tokenAddress: c.tokenAddress,
     poolAddress: c.poolAddress,
     dexUrl: c.dexUrl,
+    previouslyCalled: c.tracked === true,
     ageHours: c.ageHours !== null ? Number(c.ageHours.toFixed(1)) : null,
     marketCapUsd: Math.round(c.marketCapUsd),
     liquidityUsd: Math.round(c.liquidityUsd),
@@ -62,6 +64,7 @@ function buildUserMessage(
     tokenAddress: h.tokenAddress,
     verdict: h.verdict,
     hoursAgo: Number(((Date.now() - h.alertedAt) / (1000 * 60 * 60)).toFixed(1)),
+    mcAtAlertUsd: h.marketCapUsdAtAlert !== undefined ? Math.round(h.marketCapUsdAtAlert) : null,
   }));
 
   const parts: string[] = [];
@@ -72,6 +75,13 @@ function buildUserMessage(
       `Market overview: ${JSON.stringify(context.marketOverview)}`,
       ""
     );
+    if (context.previousCalls && context.previousCalls.length > 0) {
+      parts.push(
+        `Previous calls being followed (for the PREVIOUS CALLS UPDATE section — real recorded data, cite it rather than recomputing):`,
+        JSON.stringify(context.previousCalls, null, 2),
+        ""
+      );
+    }
   }
 
   parts.push(
@@ -126,7 +136,7 @@ async function runAnalysis(
   recentHistory: AlertHistoryEntry[],
   historyLabel: string,
   effort: "medium" | "high",
-  context?: { funnel: DiscoveryFunnel; marketOverview: MarketOverview }
+  context?: { funnel: DiscoveryFunnel; marketOverview: MarketOverview; previousCalls?: PreviousCall[] }
 ): Promise<AnalysisResult> {
   const stream = client.messages.stream({
     model: "claude-opus-4-8",
@@ -226,11 +236,15 @@ export function analyzeCandidates(
   candidates: Candidate[],
   recentHistory: AlertHistoryEntry[],
   funnel: DiscoveryFunnel,
-  marketOverview: MarketOverview
+  marketOverview: MarketOverview,
+  previousCalls: PreviousCall[]
 ): Promise<AnalysisResult> {
-  return runAnalysis(SYSTEM_PROMPT, candidates, recentHistory, "Tokens alerted in the last 48 hours", "medium", {
+  // "high" effort deliberately: the report's prose IS the product, and composition
+  // quality degraded visibly at medium once the batch grew to ~10 candidates.
+  return runAnalysis(SYSTEM_PROMPT, candidates, recentHistory, "Tokens alerted in the last 48 hours", "high", {
     funnel,
     marketOverview,
+    previousCalls,
   });
 }
 
