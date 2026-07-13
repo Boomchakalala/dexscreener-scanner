@@ -85,9 +85,18 @@ function buildUserMessage(
   return parts.join("\n");
 }
 
+export interface WatchCondition {
+  symbol: string;
+  tokenAddress: string;
+  poolAddress: string;
+  condition: { mcMin: number | null; mcMax: number | null; requireRisingVolume: boolean; description: string };
+  validUntilHours: number;
+}
+
 export interface AnalysisResult {
   report: string;
   verdicts: { symbol: string; tokenAddress: string; poolAddress: string; verdict: string }[];
+  watchConditions: WatchCondition[];
 }
 
 async function runAnalysis(
@@ -111,20 +120,43 @@ async function runAnalysis(
   const textBlock = finalMessage.content.find((b): b is Anthropic.TextBlock => b.type === "text");
   const fullText = textBlock?.text ?? "";
 
-  const marker = "---DATA---";
-  const markerIndex = fullText.indexOf(marker);
-  if (markerIndex === -1) {
-    return { report: fullText.trim(), verdicts: [] };
+  const dataMarker = "---DATA---";
+  const watchlistMarker = "---WATCHLIST---";
+
+  const dataMarkerIndex = fullText.indexOf(dataMarker);
+  if (dataMarkerIndex === -1) {
+    return { report: fullText.trim(), verdicts: [], watchConditions: [] };
   }
 
-  const report = fullText.slice(0, markerIndex).trim();
-  const dataBlock = fullText.slice(markerIndex + marker.length).trim();
+  const report = fullText.slice(0, dataMarkerIndex).trim();
+  const afterData = fullText.slice(dataMarkerIndex + dataMarker.length);
+
+  // Flash's prompt has no ---WATCHLIST--- block at all — only the deep-scan prompt emits
+  // one, so this stays absent (and watchConditions stays []) for flash results.
+  const watchlistMarkerIndex = afterData.indexOf(watchlistMarker);
+  const dataBlock = (watchlistMarkerIndex === -1 ? afterData : afterData.slice(0, watchlistMarkerIndex)).trim();
+  const watchlistBlock =
+    watchlistMarkerIndex === -1 ? null : afterData.slice(watchlistMarkerIndex + watchlistMarker.length).trim();
+
+  let verdicts: AnalysisResult["verdicts"] = [];
   try {
-    const verdicts = JSON.parse(dataBlock);
-    return { report, verdicts: Array.isArray(verdicts) ? verdicts : [] };
+    const parsed = JSON.parse(dataBlock);
+    verdicts = Array.isArray(parsed) ? parsed : [];
   } catch {
-    return { report, verdicts: [] };
+    verdicts = [];
   }
+
+  let watchConditions: WatchCondition[] = [];
+  if (watchlistBlock) {
+    try {
+      const parsed = JSON.parse(watchlistBlock);
+      watchConditions = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      watchConditions = [];
+    }
+  }
+
+  return { report, verdicts, watchConditions };
 }
 
 export function analyzeCandidates(

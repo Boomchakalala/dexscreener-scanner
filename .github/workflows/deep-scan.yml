@@ -32,16 +32,16 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      - name: Commit updated alert history
+      - name: Commit updated alert history and watchlist
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/state.json
+          git add data/state.json data/watchlist.json
           if git diff --cached --quiet; then
             echo "No state changes to commit."
             exit 0
           fi
-          git commit -m "chore: update alert state (deep scan) [skip ci]"
+          git commit -m "chore: update alert state + watchlist (deep scan) [skip ci]"
           if ! git pull --rebase; then
             echo "::warning::Rebase conflict on state.json (concurrent run) - skipping this run's state update."
             git rebase --abort

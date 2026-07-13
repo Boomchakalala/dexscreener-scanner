@@ -13,6 +13,7 @@ import { getMarketOverview } from "./marketOverview.js";
 import { rankByQuality } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
+import { mergeWatchConditions } from "./watchlist.js";
 
 function now(): number {
   return Date.now();
@@ -83,7 +84,7 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 
   t = now();
   const recentHistory = await getRecentAlertHistory("deep");
-  const { report, verdicts } = await analyzeCandidates(topCandidates, recentHistory, funnel, marketOverview);
+  const { report, verdicts, watchConditions } = await analyzeCandidates(topCandidates, recentHistory, funnel, marketOverview);
   logStage("Deep analysis (Claude)", t);
 
   t = now();
@@ -94,6 +95,11 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   if (verdicts.length > 0) {
     await recordAlerts("deep", verdicts);
   }
+
+  // Always run this, even with zero new conditions this run — it's also responsible for
+  // pruning expired entries, which should happen every run, not just ones that add new ones.
+  await mergeWatchConditions(watchConditions, topCandidates);
+  console.log(`Merged ${watchConditions.length} new watch condition(s) into data/watchlist.json.`);
 
   logStage("TOTAL", runStart);
 }
