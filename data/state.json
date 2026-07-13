@@ -649,14 +649,6 @@
       "alertedAt": 1783898758322
     },
     {
-      "symbol": "PUMPCAT",
-      "tokenAddress": "8NpXMLQHtvN8jAaLKkfMw1K28Q31UyB6S58RGioksfEF",
-      "poolAddress": "6RevaqT1qfyeUT2ry8jQC9oE23F55YR1qNeeGYr6t9e7",
-      "verdict": "FLASH ALERT",
-      "kind": "flash",
-      "alertedAt": 1783907886718
-    },
-    {
       "symbol": "Bison",
       "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
       "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
@@ -751,6 +743,38 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783926006468
+    },
+    {
+      "symbol": "Wukong",
+      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "poolAddress": "5uNaabDcmHeNtHJbgRMeRVt1y9M6HRfmKBRFfmkgsjAs",
+      "verdict": "SPECULATIVE PUNT",
+      "kind": "deep",
+      "alertedAt": 1783941474268
+    },
+    {
+      "symbol": "PUMPCAT",
+      "tokenAddress": "7mki412wXATW1T3m9YVw6Msxu1JcJtDuT72Ft4Qfpump",
+      "poolAddress": "FHT4RPAw3Ktas2sb3jZQDph37T3fFY4F5P7cLTMBe2nf",
+      "verdict": "SPECULATIVE PUNT",
+      "kind": "deep",
+      "alertedAt": 1783941474268
+    },
+    {
+      "symbol": "Shikoku",
+      "tokenAddress": "2bNi6wZ8uAPdNoGkJZ1cn1FGuvGABBXdtyLjvp2Mpump",
+      "poolAddress": "2rUBkygJ981obKVbMBvxy3TZZW6cwwFWPM1wtVFs5vX3",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783941474268
+    },
+    {
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783941474268
     }
   ],
   "lastTelegramUpdateId": 710125053
