@@ -1,11 +1,14 @@
 name: Telegram listener
 
 on:
-  schedule:
-    # Every 5 min, offset by 3 so it never lands on :00/:05/:10 etc — those exact
-    # marks are GitHub Actions' platform-wide high-load times, which queued this
-    # up ~55-60min apart in practice despite the nominal */30 schedule.
-    - cron: "3,8,13,18,23,28,33,38,43,48,53,58 * * * *"
+  # No schedule: GitHub Actions' `schedule:` trigger proved unreliable even at a
+  # tight 5-min cron (empirically ~1-3.5h gaps between runs, regardless of cron
+  # phrasing) — see the telegram-scan-webhook Cloudflare Worker, which now
+  # handles /scan and /flash instantly via a real Telegram webhook + direct
+  # workflow_dispatch, bypassing this poller entirely. A bot can only have one
+  # active update-delivery mode (webhook OR getUpdates), so running this on a
+  # schedule now would just 409 every time. workflow_dispatch kept only as a
+  # manual fallback if the webhook path ever needs troubleshooting.
   workflow_dispatch: {}
 
 permissions:
