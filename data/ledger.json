@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.95,
+  "balanceSol": 1.980772016447813,
   "positions": [
     {
       "id": "TEST-4ko5tSr5o3H4v1sFtjTSd9MPUW7yx5AFCpkNPoL6pump-1783967615103",
@@ -9,9 +9,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/68nVMrVPyxGJGbGH2P92E93SYhJcbe6QociZrqoqdjcB",
       "tier": "SPECULATIVE PUNT",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.05,
-      "remainingSizeSol": 0.05,
+      "remainingSizeSol": 0.019000000000000003,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -24,8 +24,8 @@
         "liquidityUsd": 100000
       },
       "structuralInvalidation": {
-        "price": 0.001,
-        "description": "TEST — far below current price, should never trigger"
+        "price": 0.003983094400535492,
+        "description": "moved to breakeven after TP1 (normal arrival)"
       },
       "targets": [
         {
@@ -44,10 +44,10 @@
       "entryPrice": 0.003983094400535492,
       "entryMarketCapUsd": 3944588.90787591,
       "openedAt": 1783967751284,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1783967792739,
+      "tp1Classification": "NORMAL",
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": -0.00022798355218687713
     }
   ],
   "tradeLog": [
@@ -60,6 +60,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.74% price impact",
       "timestamp": 1783967753690
+    },
+    {
+      "positionId": "TEST-4ko5tSr5o3H4v1sFtjTSd9MPUW7yx5AFCpkNPoL6pump-1783967615103",
+      "symbol": "febu",
+      "action": "TP1_PARTIAL",
+      "price": 0.00395380149698292,
+      "sizeSol": 0.031,
+      "pnlSol": -0.00022798355218687713,
+      "reason": "TP1 arrival classified NORMAL, sold 62%",
+      "timestamp": 1783967792739
     }
   ]
 }
