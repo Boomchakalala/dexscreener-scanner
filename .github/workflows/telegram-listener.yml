@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: state-file
+  group: telegram-listener-state
   cancel-in-progress: false
 
 jobs:

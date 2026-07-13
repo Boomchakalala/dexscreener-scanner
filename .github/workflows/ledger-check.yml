@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: state-file
+  group: ledger-check-state
   cancel-in-progress: false
 
 jobs:
@@ -47,4 +47,12 @@ jobs:
             git rebase --abort
             exit 0
           fi
-          git push
+          if ! git push; then
+            echo "Push rejected (concurrent run pushed first) - retrying once after a fresh rebase."
+            if ! git pull --rebase; then
+              echo "::warning::Rebase conflict on retry - skipping this run's state update."
+              git rebase --abort
+              exit 0
+            fi
+            git push
+          fi
