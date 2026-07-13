@@ -63,19 +63,32 @@ jobs:
               return 0
             fi
             git commit -m "$message"
+
+            # git pull --rebase refuses to run at all if ANY file in the tree has unstaged
+            # changes - including the other data/*.json files still waiting for their own
+            # commit_and_push call. Stash them out of the way for this file's rebase/push,
+            # then restore them so the next call still sees its pending changes.
+            local stashed=false
+            if ! git diff --quiet -- data/; then
+              git stash push -- data/
+              stashed=true
+            fi
+
             if ! git pull --rebase; then
               echo "::warning::Rebase conflict on $file (concurrent run) - skipping this file's update."
               git rebase --abort
-              return 0
-            fi
-            if ! git push; then
+            elif ! git push; then
               echo "Push rejected for $file - retrying once after a fresh rebase."
               if ! git pull --rebase; then
                 echo "::warning::Rebase conflict on retry for $file - skipping this file's update."
                 git rebase --abort
-                return 0
+              else
+                git push
               fi
-              git push
+            fi
+
+            if [ "$stashed" = true ]; then
+              git stash pop
             fi
           }
 
