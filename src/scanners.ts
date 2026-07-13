@@ -8,16 +8,106 @@ import {
   enrichWithRugCheck,
   excludeDangerRisks,
 } from "./discovery.js";
-import { getGeckoStats, resetGeckoStats } from "./gecko.js";
-import { openPositionsFromTradePlans } from "./ledger.js";
+import { getGeckoStats, getPoolStats, resetGeckoStats } from "./gecko.js";
+import { loadLedger, openPositionsFromTradePlans } from "./ledger.js";
 import { getMarketOverview } from "./marketOverview.js";
 import { rankByQuality } from "./scoring.js";
-import { getRecentAlertHistory, recordAlerts } from "./state.js";
+import { getRecentAlertHistory, recordAlerts, type AlertHistoryEntry } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
 import { mergeWatchConditions } from "./watchlist.js";
 
 function now(): number {
   return Date.now();
+}
+
+function fmtMcShort(marketCapUsd: number): string {
+  if (marketCapUsd >= 1_000_000) return `$${(marketCapUsd / 1_000_000).toFixed(2)}M`;
+  return `$${Math.round(marketCapUsd / 1000)}K`;
+}
+
+/** "What happened to the coins you already called?" — one deterministic line per recent
+ *  call, computed from real ledger/history/live data (Claude writes none of this, so it
+ *  can't drift or hallucinate). Covers every token with a paper position from the last
+ *  24h plus any REC/PUNT verdict from the last 12h — the calls the reader actually acted
+ *  on mentally, not the whole churn of watch/avoid mentions. */
+async function buildFollowUpSection(recentHistory: AlertHistoryEntry[]): Promise<string> {
+  const nowMs = Date.now();
+  const DAY = 24 * 3600 * 1000;
+  const HALF_DAY = 12 * 3600 * 1000;
+
+  interface FollowUpItem {
+    symbol: string;
+    poolAddress: string;
+    thenMc: number | null;
+    status: string;
+    at: number;
+  }
+  const items = new Map<string, FollowUpItem>();
+
+  const ledger = await loadLedger();
+  for (const p of ledger.positions) {
+    if (nowMs - p.createdAt > DAY) continue;
+    const prev = items.get(p.tokenAddress);
+    if (prev && prev.at >= p.createdAt) continue;
+    let status: string;
+    if (p.status === "PENDING_ENTRY") {
+      const minutesLeft = Math.max(0, Math.round((p.createdAt + p.entryCondition.validityWindowMinutes * 60_000 - nowMs) / 60_000));
+      status = `paper: waiting for entry (${minutesLeft}m left)`;
+    } else if (p.status === "MISSED") {
+      status = "paper: entry never triggered";
+    } else if (p.status === "OPEN") {
+      status = `paper: OPEN from $${p.entryPrice}`;
+    } else if (p.status === "TP1_TAKEN") {
+      status = `paper: runner after TP1, realized ${p.realizedPnlSol.toFixed(3)} SOL`;
+    } else {
+      status = `paper: closed, P&L ${p.realizedPnlSol.toFixed(3)} SOL`;
+    }
+    items.set(p.tokenAddress, {
+      symbol: p.symbol,
+      poolAddress: p.poolAddress,
+      thenMc: p.entrySnapshot.marketCapUsd ?? null,
+      status,
+      at: p.createdAt,
+    });
+  }
+
+  const latestByToken = new Map<string, AlertHistoryEntry>();
+  for (const h of recentHistory) {
+    const prev = latestByToken.get(h.tokenAddress);
+    if (!prev || h.alertedAt > prev.alertedAt) latestByToken.set(h.tokenAddress, h);
+  }
+  for (const h of latestByToken.values()) {
+    if (items.has(h.tokenAddress)) continue;
+    if (nowMs - h.alertedAt > HALF_DAY) continue;
+    if (h.verdict !== "RECOMMENDATION" && h.verdict !== "SPECULATIVE PUNT") continue;
+    items.set(h.tokenAddress, {
+      symbol: h.symbol,
+      poolAddress: h.poolAddress,
+      thenMc: h.marketCapUsdAtAlert ?? null,
+      status: `called ${h.verdict}`,
+      at: h.alertedAt,
+    });
+  }
+
+  const picked = [...items.values()].sort((a, b) => b.at - a.at).slice(0, 6);
+  if (picked.length === 0) return "";
+
+  const lines: string[] = [];
+  for (const item of picked) {
+    // History entries don't store chainId; this whole pipeline is Solana-only.
+    const stats = await getPoolStats("solana", item.poolAddress);
+    const hoursAgo = ((nowMs - item.at) / 3_600_000).toFixed(1);
+    let move = "MC now: n/a";
+    if (stats) {
+      move = `now ~${fmtMcShort(stats.marketCapUsd)}`;
+      if (item.thenMc) {
+        const pct = (stats.marketCapUsd / item.thenMc - 1) * 100;
+        move = `~${fmtMcShort(item.thenMc)} → now ~${fmtMcShort(stats.marketCapUsd)} (${pct >= 0 ? "+" : ""}${pct.toFixed(0)}%)`;
+      }
+    }
+    lines.push(`- **${item.symbol}** (${hoursAgo}h ago): ${move} — ${item.status}`);
+  }
+  return `\n\n📌 **Follow-up on recent calls:**\n${lines.join("\n")}`;
 }
 
 function logStage(stage: string, startedAt: number): void {
@@ -118,12 +208,17 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   logStage("Deep analysis (Claude)", t);
 
   t = now();
-  await sendTelegramMessage(`${label}\n\n${report || "NO HIGH-QUALITY SETUPS FOUND."}`);
+  const followUp = await buildFollowUpSection(recentHistory);
+  await sendTelegramMessage(`${label}\n\n${report || "NO HIGH-QUALITY SETUPS FOUND."}${followUp}`);
   logStage("Report generation (Telegram send)", t);
   console.log("Sent analysis to Telegram.");
 
   if (verdicts.length > 0) {
-    await recordAlerts("deep", verdicts);
+    const mcByToken = new Map(topCandidates.map((c) => [c.tokenAddress, c.marketCapUsd]));
+    await recordAlerts(
+      "deep",
+      verdicts.map((v) => ({ ...v, marketCapUsdAtAlert: mcByToken.get(v.tokenAddress) }))
+    );
   }
 
   // Always run this, even with zero new conditions this run — it's also responsible for
@@ -202,7 +297,11 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
   console.log("Sent flash alert to Telegram.");
 
   if (verdicts.length > 0) {
-    await recordAlerts("flash", verdicts);
+    const mcByToken = new Map(candidates.map((c) => [c.tokenAddress, c.marketCapUsd]));
+    await recordAlerts(
+      "flash",
+      verdicts.map((v) => ({ ...v, marketCapUsdAtAlert: mcByToken.get(v.tokenAddress) }))
+    );
   }
 
   // Flash's speed-first enrichment skips RugCheck for the broad shortlist, but a token

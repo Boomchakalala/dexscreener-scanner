@@ -18,6 +18,9 @@ export interface AlertHistoryEntry {
   poolAddress: string;
   verdict: string;
   alertedAt: number; // ms epoch
+  /** Market cap when the alert fired — powers the "follow-up on recent calls" section
+   *  (MC then vs MC now). Optional: entries recorded before this field existed lack it. */
+  marketCapUsdAtAlert?: number;
 }
 
 interface State {
