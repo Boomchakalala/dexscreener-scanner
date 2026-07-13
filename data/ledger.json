@@ -57,7 +57,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.24,
       "remainingSizeSol": 0.24,
       "entryCondition": {
@@ -144,7 +144,8 @@
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "triggerHits": 0
     }
   ],
   "tradeLog": [
@@ -157,6 +158,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1783974970960
+    },
+    {
+      "positionId": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump-1783972515587",
+      "symbol": "Bison",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1783975277571
     }
   ]
 }
