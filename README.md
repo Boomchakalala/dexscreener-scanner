@@ -5,22 +5,33 @@ Fresh Launches (0-2h, $30K-$300K), Survivors (2-8h, $100K-$1M), and Momentum
 (8-24h, $250K-$3M) — for setups showing chart structure, volume behavior, and
 buyer/seller flow that suggest another leg up, while screening out rug risk.
 Sends a Telegram report of the best 1-3 setups plus a runners-overview of a
-few more (or nothing, if nothing qualifies). This does **not** trade anything —
-it's a read-only scanner/alerter. You decide what to do with the alerts.
+few more (or nothing, if nothing qualifies). Alongside the alerts it runs a
+**paper trading ledger** (fake 2 SOL bankroll, `data/ledger.json`): each full
+recommendation also emits a machine-readable trade plan, and a 5-minute
+checker waits for the stated entry trigger, simulates fills with real Jupiter
+price impact (both directions), takes a Claude-classified partial at TP1, and
+rides the runner to its stop or final target. No real money moves anywhere.
 
-Runs on a schedule in GitHub Actions (not on your PC), so it fires every 4h —
-plus a faster flash-alert pass every hour — regardless of whether your
-machine is on. Repo: `github.com/Boomchakalala/dexscreener-scanner` (private).
+All scheduling is driven by Cloudflare Cron Triggers on the sibling
+`telegram-scan-webhook` Worker, which fires the GitHub Actions workflows via
+workflow_dispatch (GitHub's own `schedule:` event proved unreliable — measured
+2-3.5h gaps on a nominally hourly cron). The same Worker receives Telegram
+`/scan`, `/flash`, and `/ledger` commands via webhook for instant manual runs.
+Repo: `github.com/Boomchakalala/dexscreener-scanner` (private).
 
 ## How it works
 
-There are two scheduled jobs (`.github/workflows/`):
+Three dispatch-driven jobs (`.github/workflows/`):
 
 - **Deep scan** (`deep-scan.yml`, every 4h) — the full analysis below.
-- **Flash scan** (`flash-scan.yml`, every hour) — a fast, narrow check for a
-  sharp buy-side spike happening *right now* (5-minute candles, no rug check,
-  cheaper Claude call). Completely silent when nothing qualifies — it does not
-  message you every hour, only when something's actually flashing.
+- **Flash scan** (`flash-scan.yml`, hourly) — a fast, narrow check for a
+  sharp buy-side spike happening *right now* (5-minute candles, cheaper
+  Claude call; flagged tokens get a RugCheck gate before the paper ledger
+  touches them). Silent when nothing qualifies unless manually triggered.
+- **Checks** (`checks.yml`, every 5min) — one combined job that (a) checks
+  every active watch condition from past deep scans against live data,
+  Claude-confirming before alerting, and (b) advances the paper-trading
+  ledger (entry triggers, stops, TP1 partials, targets, MFE/MAE watermarks).
 
 Deep scan runs a four-stage discovery funnel before Claude ever sees a candidate
 (`src/discovery.ts`, `src/scoring.ts`):
@@ -111,20 +122,31 @@ the next scheduled run picks it up.
 
 ```
 src/
-  config.ts        env var loading + validation
-  types.ts         GeckoTerminal / RugCheck / candidate data shapes
-  gecko.ts         GeckoTerminal client (discovery + hourly/5-min candles)
-  rugcheck.ts      RugCheck client (wallet/rug risk)
-  discovery.ts     wide raw scan -> hard floors -> chart shortlist -> candle/rugcheck enrichment
-  scoring.ts       cheap chart-proxy + market-quality pre-scores (RugCheck-blind by design)
-  prompt.ts        deep-scan system prompt (edit to retune the main criteria)
-  flashPrompt.ts   flash-scan system prompt (edit to retune the flash trigger)
-  analysis.ts      calls Claude for either mode, splits report from tracking data
-  telegram.ts      sends the report (chunked for Telegram's 4096-char limit)
-  state.ts         recent-alert history (context for re-alert judgment, not a hard cooldown)
-  main.ts          deep-scan entry point
-  flash.ts         flash-scan entry point
+  config.ts           env var loading + validation
+  types.ts            GeckoTerminal / RugCheck / candidate data shapes
+  gecko.ts            GeckoTerminal client (discovery, candles, single-pool stats)
+  rugcheck.ts         RugCheck client (wallet/rug risk)
+  jupiter.ts          Jupiter quote client (tradeability + simulated fill slippage)
+  discovery.ts        wide raw scan -> hard floors -> chart shortlist -> enrichment
+  scoring.ts          cheap chart-proxy + market-quality pre-scores (RugCheck-blind by design)
+  prompt.ts           deep-scan system prompt (edit to retune the main criteria)
+  flashPrompt.ts      flash-scan system prompt (edit to retune the flash trigger)
+  analysis.ts         calls Claude, splits report from the DATA/WATCHLIST/TRADEPLAN blocks
+  scanners.ts         deep + flash scan orchestration
+  telegram.ts         sends reports (chunked for Telegram's 4096-char limit)
+  state.ts            recent-alert history (context for re-alert judgment)
+  watchlist.ts        watch conditions store (data/watchlist.json — deep scan is sole writer)
+  watchlistChecker.ts checks conditions vs live data (state in data/watchlist-state.json)
+  ledger.ts           paper trading ledger store + position sizing (data/ledger.json)
+  ledgerChecker.ts    entry triggers, stops, TP1 classification, exits, MFE/MAE
+  ledgerReporter.ts   /ledger P&L overview
+  main.ts             deep-scan entry point
+  flash.ts            flash-scan entry point
+  checks.ts           combined watchlist+ledger check entry point (one Actions job)
+  ledgerReport.ts     ledger report entry point
 .github/workflows/
-  deep-scan.yml    runs main.ts every 4h
-  flash-scan.yml   runs flash.ts every hour
+  deep-scan.yml       deep scan (dispatched every 4h by Cloudflare Cron)
+  flash-scan.yml      flash scan (dispatched hourly)
+  checks.yml          watchlist + ledger checks (dispatched every 5min)
+  ledger-report.yml   /ledger command
 ```

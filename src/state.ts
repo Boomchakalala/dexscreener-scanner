@@ -62,13 +62,5 @@ export async function recordAlerts(kind: AlertKind, entries: Omit<AlertHistoryEn
   await saveState(state);
 }
 
-export async function getLastTelegramUpdateId(): Promise<number | undefined> {
-  const state = await loadState();
-  return state.lastTelegramUpdateId;
-}
-
-export async function setLastTelegramUpdateId(updateId: number): Promise<void> {
-  const state = await loadState();
-  state.lastTelegramUpdateId = updateId;
-  await saveState(state);
-}
+// (lastTelegramUpdateId accessors removed with the old polling listener — the field may
+// still appear in existing data/state.json files, which is harmless.)

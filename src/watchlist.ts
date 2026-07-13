@@ -8,6 +8,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WATCHLIST_DIR = path.join(__dirname, "..", "data");
 const WATCHLIST_FILE = path.join(WATCHLIST_DIR, "watchlist.json");
 
+/** Pure condition data — written ONLY by the deep scan. The checker's runtime progress
+ *  (prior volume reading, already-fired flag) lives in data/watchlist-state.json instead,
+ *  written only by the checks run, so the two writers never touch the same file. */
 export interface WatchlistEntry {
   symbol: string;
   tokenAddress: string;
@@ -17,10 +20,6 @@ export interface WatchlistEntry {
   condition: WatchCondition["condition"];
   addedAt: number; // ms epoch
   expiresAt: number; // ms epoch
-  fired: boolean;
-  /** Last-seen 1h volume reading from the watchlist checker, used to evaluate
-   *  requireRisingVolume — undefined until the first check has run for this entry. */
-  priorVolumeH1Usd?: number;
 }
 
 interface WatchlistState {
@@ -43,10 +42,6 @@ async function saveWatchlist(state: WatchlistState): Promise<void> {
 
 export async function loadWatchlistEntries(): Promise<WatchlistEntry[]> {
   return (await loadWatchlist()).entries;
-}
-
-export async function saveWatchlistEntries(entries: WatchlistEntry[]): Promise<void> {
-  await saveWatchlist({ entries });
 }
 
 /** Merges newly-emitted watch conditions from a deep scan into data/watchlist.json —
@@ -74,7 +69,6 @@ export async function mergeWatchConditions(conditions: WatchCondition[], candida
       condition: cond.condition,
       addedAt: now,
       expiresAt: now + Math.max(1, cond.validUntilHours) * 60 * 60 * 1000,
-      fired: false,
     });
   }
 

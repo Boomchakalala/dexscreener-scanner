@@ -6,15 +6,11 @@
   "scripts": {
     "start": "node dist/main.js",
     "start:flash": "node dist/flash.js",
-    "start:listen": "node dist/listen.js",
-    "start:watchlist-check": "node dist/watchlistCheck.js",
-    "start:ledger-check": "node dist/ledgerCheck.js",
+    "start:checks": "node dist/checks.js",
     "start:ledger-report": "node dist/ledgerReport.js",
     "dev": "tsx src/main.ts",
     "dev:flash": "tsx src/flash.ts",
-    "dev:listen": "tsx src/listen.ts",
-    "dev:watchlist-check": "tsx src/watchlistCheck.ts",
-    "dev:ledger-check": "tsx src/ledgerCheck.ts",
+    "dev:checks": "tsx src/checks.ts",
     "dev:ledger-report": "tsx src/ledgerReport.ts",
     "build": "tsc"
   },

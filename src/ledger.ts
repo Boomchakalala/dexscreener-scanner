@@ -45,6 +45,14 @@ export interface Position {
   tp1Classification: "WEAK" | "NORMAL" | "STRONG" | null;
   closedAt: number | null;
   realizedPnlSol: number;
+  /** Consecutive checks where a RECLAIM/BREAKOUT trigger held — a fill needs 2, so a
+   *  single wick through the level between checks doesn't count as "reclaim and hold". */
+  triggerHits?: number;
+  /** Max favorable / adverse excursion watermarks, updated every check while the position
+   *  is open — without these, "would a different exit strategy have done better" can never
+   *  be reconstructed afterward, which is the whole point of paper trading. */
+  highWaterPriceUsd?: number | null;
+  lowWaterPriceUsd?: number | null;
 }
 
 export interface TradeLogEntry {
@@ -116,6 +124,14 @@ export async function openPositionsFromTradePlans(tradePlans: TradePlan[], candi
 
     if (deployed + sizeSol > maxDeployed) continue;
 
+    // WATCH-tier plans are conditional setups ("hold ~1h then reclaim") whose confirmation
+    // legitimately takes hours — a 20-45min fuse makes them structurally un-fillable, so
+    // enforce a 6h floor regardless of what the prompt emitted.
+    const entryCondition =
+      plan.tier === "WATCH"
+        ? { ...plan.entryCondition, validityWindowMinutes: Math.max(plan.entryCondition.validityWindowMinutes, 360) }
+        : plan.entryCondition;
+
     ledger.positions.push({
       id: `${plan.tokenAddress}-${now}`,
       symbol: plan.symbol,
@@ -127,7 +143,7 @@ export async function openPositionsFromTradePlans(tradePlans: TradePlan[], candi
       status: "PENDING_ENTRY",
       sizeSol,
       remainingSizeSol: sizeSol,
-      entryCondition: plan.entryCondition,
+      entryCondition,
       entrySnapshot: plan.entrySnapshot,
       structuralInvalidation: plan.structuralInvalidation,
       targets: plan.targets,

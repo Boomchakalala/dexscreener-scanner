@@ -1,0 +1,86 @@
+name: Checks
+
+on:
+  # workflow_dispatch only — fired every few minutes by the Cloudflare Cron Trigger on
+  # telegram-scan-webhook. Runs BOTH the watchlist check and the ledger check in one job:
+  # Actions bills each job rounded up to a full minute, so the previous two separate
+  # sub-minute workflows cost exactly double this for the same work.
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: checks-state
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - run: npm ci
+      - run: npm run build
+
+      - run: node dist/checks.js
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit updated check state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Per-file local commits, then one fetch + rebase that skips only a commit that
+          # actually conflicts — see deep-scan.yml for the full reasoning. Note this
+          # workflow deliberately does NOT write data/watchlist.json (deep scan is its
+          # sole writer now); the checker's runtime progress lives in watchlist-state.json.
+          commit_if_changed() {
+            local file="$1"
+            local message="$2"
+            git add "$file"
+            if git diff --cached --quiet; then
+              echo "No changes to commit for $file."
+            else
+              git commit -m "$message"
+            fi
+          }
+
+          commit_if_changed data/watchlist-state.json "chore: update watchlist state (checks) [skip ci]"
+          commit_if_changed data/ledger.json "chore: update ledger (checks) [skip ci]"
+
+          rebase_skipping_conflicts() {
+            if ! git rebase origin/master; then
+              echo "::warning::Rebase conflict(s) - skipping only the commit(s) that actually conflict."
+              for i in 1 2 3; do
+                if [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; then
+                  break
+                fi
+                if ! git rebase --skip; then
+                  echo "::warning::Could not continue rebase - aborting entirely, no updates from this run will be pushed."
+                  git rebase --abort || true
+                  return 1
+                fi
+              done
+            fi
+            return 0
+          }
+
+          git fetch origin master
+          rebase_skipping_conflicts
+
+          if ! git push; then
+            echo "Push rejected - retrying once after a fresh rebase."
+            git fetch origin master
+            if rebase_skipping_conflicts; then
+              git push
+            fi
+          fi

@@ -110,7 +110,25 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   await openPositionsFromTradePlans(tradePlans, topCandidates);
   console.log(`Opened ${tradePlans.length} new PENDING_ENTRY position(s) (subject to sizing/dedup rules) in data/ledger.json.`);
 
+  await warnIfPlansMissing(verdicts, tradePlans.length, "deep scan");
+
   logStage("TOTAL", runStart);
+}
+
+/** A malformed ---TRADEPLAN--- block parses silently to [] — without this, trade plans
+ *  could stop flowing to the paper ledger for weeks with no visible symptom. */
+async function warnIfPlansMissing(
+  verdicts: { verdict: string }[],
+  planCount: number,
+  source: string
+): Promise<void> {
+  const actionable = verdicts.filter((v) => v.verdict === "RECOMMENDATION" || v.verdict === "SPECULATIVE PUNT" || v.verdict === "FLASH ALERT");
+  if (actionable.length > 0 && planCount === 0) {
+    console.warn(`${source}: ${actionable.length} actionable verdict(s) but zero parseable trade plans — likely a ---TRADEPLAN--- format break.`);
+    await sendTelegramMessage(
+      `⚠️ The last ${source} produced recommendations but no machine-readable trade plans (likely a format/parse issue) — the paper ledger did not open positions for it.`
+    );
+  }
 }
 
 export async function runFlashScan(triggeredManually = false): Promise<void> {
@@ -163,8 +181,21 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
     await recordAlerts("flash", verdicts);
   }
 
-  await openPositionsFromTradePlans(tradePlans, candidates);
-  console.log(`Opened ${tradePlans.length} new PENDING_ENTRY position(s) from flash (subject to sizing/dedup rules) in data/ledger.json.`);
+  // Flash's speed-first enrichment skips RugCheck for the broad shortlist, but a token
+  // about to get real (paper) capital deserves the same danger-flag gate the deep scan
+  // applies — it's only 1-3 extra lookups on the actually-flagged tokens.
+  if (tradePlans.length > 0) {
+    const flagged = candidates.filter((c) => tradePlans.some((p) => p.tokenAddress === c.tokenAddress));
+    const safeTokens = new Set(excludeDangerRisks(await enrichWithRugCheck(flagged)).map((c) => c.tokenAddress));
+    const safePlans = tradePlans.filter((p) => safeTokens.has(p.tokenAddress));
+    if (safePlans.length < tradePlans.length) {
+      console.log(`Excluded ${tradePlans.length - safePlans.length} flash trade plan(s) with a RugCheck danger-level risk.`);
+    }
+    await openPositionsFromTradePlans(safePlans, candidates);
+    console.log(`Opened ${safePlans.length} new PENDING_ENTRY position(s) from flash (subject to sizing/dedup rules) in data/ledger.json.`);
+  }
+
+  await warnIfPlansMissing(verdicts, tradePlans.length, "flash scan");
 
   logStage("TOTAL", runStart);
 }

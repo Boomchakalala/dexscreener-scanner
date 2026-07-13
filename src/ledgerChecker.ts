@@ -91,6 +91,28 @@ async function simulateFillPrice(tokenAddress: string, sizeSol: number, rawPrice
   return { price: rawPriceUsd * (1 + quote.priceImpactPct / 100), note: `filled with ${quote.priceImpactPct.toFixed(2)}% price impact` };
 }
 
+/** Sell-side counterpart: exits must model slippage too, or the paper results are
+ *  systematically flattered (entries paid impact, exits didn't). Jupiter's quote is for a
+ *  buy of this size; using its impact magnitude downward is an approximation, but far
+ *  closer to reality on thin liquidity than a frictionless exit at raw pool price. */
+async function simulateExitPrice(tokenAddress: string, sellValueSol: number, rawPriceUsd: number): Promise<number> {
+  const quote = await getTradeability(tokenAddress, Math.max(sellValueSol, 0.01));
+  if (!quote) return rawPriceUsd;
+  return rawPriceUsd * (1 - quote.priceImpactPct / 100);
+}
+
+/** MFE/MAE watermarks — updated on every check while capital is at risk, because the
+ *  end-of-experiment strategy comparison ("would a fixed 80/20 have beaten the adaptive
+ *  exits?") is impossible to reconstruct without them. */
+function updateWatermarks(position: Position, priceUsd: number): void {
+  if (position.highWaterPriceUsd == null || priceUsd > position.highWaterPriceUsd) {
+    position.highWaterPriceUsd = priceUsd;
+  }
+  if (position.lowWaterPriceUsd == null || priceUsd < position.lowWaterPriceUsd) {
+    position.lowWaterPriceUsd = priceUsd;
+  }
+}
+
 async function checkPendingEntry(position: Position, ledger: Ledger): Promise<void> {
   const now = Date.now();
   const deadline = position.createdAt + position.entryCondition.validityWindowMinutes * 60_000;
@@ -113,15 +135,49 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
   if (!stats) return;
 
   const { type, triggerPrice } = position.entryCondition;
-  let triggered = type === "IMMEDIATE";
-  if (!triggered && triggerPrice !== null) {
+  let triggered = false;
+
+  if (type === "IMMEDIATE") {
+    // A flash "enter now" gets filled by the NEXT check tick, 5-10 minutes after the
+    // snapshot — an eternity on a spiking memecoin. If it already ran past the chase
+    // guard, the momentum entry is gone: mark MISSED rather than buying the top.
+    if (stats.priceUsd >= position.entrySnapshot.priceUsd * (1 + CHASE_GUARD_PCT)) {
+      position.status = "MISSED";
+      logTrade(ledger, {
+        positionId: position.id,
+        symbol: position.symbol,
+        action: "MISSED",
+        price: stats.priceUsd,
+        sizeSol: 0,
+        pnlSol: 0,
+        reason: `price ran >${(CHASE_GUARD_PCT * 100).toFixed(0)}% past the alert snapshot before fill — not chasing`,
+      });
+      await sendTelegramMessage(
+        `**${position.symbol}** — MISSED (not chasing)\nPrice ran from $${position.entrySnapshot.priceUsd} to $${stats.priceUsd} before the fill window.`
+      );
+      return;
+    }
+    triggered = true;
+  } else if (triggerPrice !== null) {
     if (type === "PULLBACK") {
+      // Single touch fills — a lower fill is a better fill for a buyer, and the
+      // structural stop just below handles the catching-a-knife case.
       triggered = stats.priceUsd <= triggerPrice;
     } else {
-      // BREAKOUT / RECLAIM — waiting for price to reach or clear the trigger level, but
-      // don't chase if it already ran well past it before this check ever happened.
+      // BREAKOUT / RECLAIM — "reclaim and hold" must actually hold: require the level
+      // across two consecutive checks (~5 min apart), so a single wick through it
+      // between checks doesn't count. Chase guard still applies on top.
       const alreadyRanTooFar = stats.priceUsd >= triggerPrice * (1 + CHASE_GUARD_PCT);
-      triggered = stats.priceUsd >= triggerPrice && !alreadyRanTooFar;
+      const atLevel = stats.priceUsd >= triggerPrice && !alreadyRanTooFar;
+      if (atLevel) {
+        position.triggerHits = (position.triggerHits ?? 0) + 1;
+        triggered = position.triggerHits >= 2;
+        if (!triggered) {
+          console.log(`  ${position.symbol}: trigger touched (hit 1 of 2) — waiting for it to hold next check.`);
+        }
+      } else {
+        position.triggerHits = 0;
+      }
     }
   }
   if (!triggered) return;
@@ -131,6 +187,8 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
   position.entryPrice = fill.price;
   position.entryMarketCapUsd = stats.marketCapUsd;
   position.openedAt = now;
+  position.highWaterPriceUsd = fill.price;
+  position.lowWaterPriceUsd = fill.price;
   ledger.balanceSol -= position.sizeSol;
 
   logTrade(ledger, {
@@ -170,12 +228,15 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
   const stats = await getPoolStats(position.chainId, position.poolAddress);
   if (!stats) return;
   const entryPrice = position.entryPrice as number;
+  updateWatermarks(position, stats.priceUsd);
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
-    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
-    closePosition(position, ledger, stats.priceUsd, `structural invalidation hit: ${position.structuralInvalidation.description}`);
+    const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
+    const exitPrice = await simulateExitPrice(position.tokenAddress, sellValueSol, stats.priceUsd);
+    const pctMove = (exitPrice / entryPrice - 1) * 100;
+    closePosition(position, ledger, exitPrice, `structural invalidation hit: ${position.structuralInvalidation.description}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (stop)\n${position.structuralInvalidation.description}\nEntry: $${entryPrice} (MC in: ~${fmtMc(position.entryMarketCapUsd as number)}) → Exit: $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (stop)\n${position.structuralInvalidation.description}\nEntry: $${entryPrice} (MC in: ~${fmtMc(position.entryMarketCapUsd as number)}) → Exit: $${exitPrice} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
     return;
   }
@@ -185,7 +246,8 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
     const classification = await classifyTp1Arrival(position, stats);
     const sellFraction = TP1_SELL_FRACTION[classification];
     const soldSol = position.remainingSizeSol * sellFraction;
-    const proceeds = soldSol * (stats.priceUsd / entryPrice);
+    const sellPrice = await simulateExitPrice(position.tokenAddress, soldSol * (stats.priceUsd / entryPrice), stats.priceUsd);
+    const proceeds = soldSol * (sellPrice / entryPrice);
     const pnl = proceeds - soldSol;
 
     ledger.balanceSol += proceeds;
@@ -207,14 +269,14 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
       positionId: position.id,
       symbol: position.symbol,
       action: "TP1_PARTIAL",
-      price: stats.priceUsd,
+      price: sellPrice,
       sizeSol: soldSol,
       pnlSol: pnl,
       reason: `TP1 arrival classified ${classification}, sold ${(sellFraction * 100).toFixed(0)}%`,
     });
-    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
+    const pctMove = (sellPrice / entryPrice - 1) * 100;
     await sendTelegramMessage(
-      `**${position.symbol}** — TP1 hit (${classification})\nSold ${(sellFraction * 100).toFixed(0)}% @ $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), keeping ${(100 - sellFraction * 100).toFixed(0)}% as runner\nEntry: $${entryPrice} (MC in: ~${fmtMc(position.entryMarketCapUsd as number)}), ${fmtPct(pctMove)}\nP&L on this slice: ${pnl.toFixed(4)} SOL`
+      `**${position.symbol}** — TP1 hit (${classification})\nSold ${(sellFraction * 100).toFixed(0)}% @ $${sellPrice} (MC out: ~${fmtMc(stats.marketCapUsd)}), keeping ${(100 - sellFraction * 100).toFixed(0)}% as runner\nEntry: $${entryPrice} (MC in: ~${fmtMc(position.entryMarketCapUsd as number)}), ${fmtPct(pctMove)}\nP&L on this slice: ${pnl.toFixed(4)} SOL`
     );
   }
 }
@@ -224,22 +286,27 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   if (!stats) return;
   const entryPrice = position.entryPrice as number;
   const entryMc = position.entryMarketCapUsd as number;
+  updateWatermarks(position, stats.priceUsd);
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
-    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
-    closePosition(position, ledger, stats.priceUsd, `runner stopped out: ${position.structuralInvalidation.description}`);
+    const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
+    const exitPrice = await simulateExitPrice(position.tokenAddress, sellValueSol, stats.priceUsd);
+    const pctMove = (exitPrice / entryPrice - 1) * 100;
+    closePosition(position, ledger, exitPrice, `runner stopped out: ${position.structuralInvalidation.description}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (runner stopped)\nEntry: $${entryPrice} (MC in: ~${fmtMc(entryMc)}) → Exit: $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (runner stopped)\nEntry: $${entryPrice} (MC in: ~${fmtMc(entryMc)}) → Exit: $${exitPrice} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
     return;
   }
 
   const tp2 = position.targets.find((t) => t.label === "TP2");
   if (tp2 && stats.priceUsd >= tp2.price) {
-    const pctMove = (stats.priceUsd / entryPrice - 1) * 100;
-    closePosition(position, ledger, stats.priceUsd, `final target reached: ${tp2.note}`);
+    const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
+    const exitPrice = await simulateExitPrice(position.tokenAddress, sellValueSol, stats.priceUsd);
+    const pctMove = (exitPrice / entryPrice - 1) * 100;
+    closePosition(position, ledger, exitPrice, `final target reached: ${tp2.note}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (final target)\nEntry: $${entryPrice} (MC in: ~${fmtMc(entryMc)}) → Exit: $${stats.priceUsd} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (final target)\nEntry: $${entryPrice} (MC in: ~${fmtMc(entryMc)}) → Exit: $${exitPrice} (MC out: ~${fmtMc(stats.marketCapUsd)}), ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
   }
 }
