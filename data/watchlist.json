@@ -14,7 +14,8 @@
       },
       "addedAt": 1783963483484,
       "expiresAt": 1784006683484,
-      "fired": false
+      "fired": false,
+      "priorVolumeH1Usd": 49029.5960890444
     },
     {
       "symbol": "Shikoku",
@@ -30,7 +31,8 @@
       },
       "addedAt": 1783963483484,
       "expiresAt": 1783992283484,
-      "fired": false
+      "fired": false,
+      "priorVolumeH1Usd": 11036.2694364283
     },
     {
       "symbol": "Bison",
@@ -46,7 +48,8 @@
       },
       "addedAt": 1783963483484,
       "expiresAt": 1784006683484,
-      "fired": false
+      "fired": false,
+      "priorVolumeH1Usd": 119388.845985099
     }
   ]
 }
