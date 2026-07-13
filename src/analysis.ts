@@ -42,6 +42,8 @@ function buildUserMessage(
     priceChangeH24: c.priceChangeH24,
     txnsH1: c.txnsH1,
     txnsH6: c.txnsH6,
+    holderCount: c.holderCount ?? null,
+    organicScore: c.organicScore != null ? Math.round(c.organicScore) : null,
     chartStructureRank: c.chartRank ? `#${c.chartRank.rank} of ${c.chartRank.of}` : null,
     marketQualityRank: c.qualityRank ? `#${c.qualityRank.rank} of ${c.qualityRank.of}` : null,
     candles: c.candles,

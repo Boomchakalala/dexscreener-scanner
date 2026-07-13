@@ -86,4 +86,9 @@ export interface Candidate {
    *  the DATA is missing, not because the pool is empty. The real tradeability check is
    *  the live Jupiter route quote on the final batch. */
   liquidityUnknown?: boolean;
+  /** Current unique holders + Jupiter's 0-100 organic-activity score — the "holder
+   *  growth" analysis factor finally has real data behind it (null = lookup failed,
+   *  undefined = not yet enriched). */
+  holderCount?: number | null;
+  organicScore?: number | null;
 }

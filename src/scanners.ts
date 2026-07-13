@@ -6,6 +6,7 @@ import {
   enrichCandidatesForFlash,
   enrichWithCandles,
   enrichWithRugCheck,
+  enrichWithTokenMeta,
   excludeDangerRisks,
   toCandidate,
 } from "./discovery.js";
@@ -259,8 +260,8 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   const trackedInBatch = safe.filter((c) => c.tracked);
 
   t = now();
-  let topCandidates = await addTradeability([...freshCut, ...trackedInBatch]);
-  logStage("Tradeability check (Jupiter, final shortlist only)", t);
+  let topCandidates = await enrichWithTokenMeta(await addTradeability([...freshCut, ...trackedInBatch]));
+  logStage("Tradeability + holder/organic enrichment (Jupiter, final batch only)", t);
   logUniverseDistribution(topCandidates);
 
   const funnel: DiscoveryFunnel = {

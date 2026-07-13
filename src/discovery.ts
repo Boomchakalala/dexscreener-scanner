@@ -1,7 +1,7 @@
 import { config } from "./config.js";
 import { getDexPools, getHourlyCandles, getMinuteCandles, getNewPools, getTrendingPools } from "./gecko.js";
 import { getTradeability } from "./jupiter.js";
-import { getJupiterCandidates, getLaunchpad } from "./jupiterTokens.js";
+import { getJupiterCandidates, getLaunchpad, searchToken } from "./jupiterTokens.js";
 import { getRugCheckReport } from "./rugcheck.js";
 import { rankByChartProxy } from "./scoring.js";
 import type { Candidate, GeckoPool } from "./types.js";
@@ -227,6 +227,13 @@ const ADVISORY_DANGER_RISKS = new Set([
   // small punts with the wallet risk stated loudly, judged by Claude against the actual
   // top-holder table (which it receives) rather than blanket-banned.
   "Single holder ownership",
+  // Serial deployers are practically the norm on pump.fun — Unity was silently
+  // hard-excluded on this flag while doing +403%/6h with 691 holders and real organic
+  // flow. A deployer's rug history is a loud warning worth naming and sizing down for,
+  // not grounds to hide the token from the report entirely. Hard kills are now only the
+  // mechanically-untradeable class: live mint/freeze authority, honeypot-style flags,
+  // and any flag name we haven't classified yet.
+  "Creator history of rugged tokens",
 ]);
 
 export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {
@@ -252,6 +259,23 @@ export async function addTradeability(candidates: Candidate[]): Promise<Candidat
       ...candidate,
       tradeability: await getTradeability(candidate.tokenAddress),
     }))
+  );
+}
+
+/** Holder count + organic-activity score for the final batch (cached Jupiter lookups) —
+ *  "holder growth" was a first-class analysis factor in the original spec, and until
+ *  this existed Claude never received a single holder number. */
+export async function enrichWithTokenMeta(candidates: Candidate[]): Promise<Candidate[]> {
+  return Promise.all(
+    candidates.map(async (candidate) => {
+      if (candidate.holderCount !== undefined && candidate.organicScore !== undefined) return candidate;
+      const meta = await searchToken(candidate.tokenAddress);
+      return {
+        ...candidate,
+        holderCount: meta?.holderCount ?? null,
+        organicScore: meta?.organicScore ?? null,
+      };
+    })
   );
 }
 

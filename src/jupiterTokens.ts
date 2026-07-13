@@ -18,7 +18,7 @@ interface JupiterTokenStats {
   numTraders?: number;
 }
 
-interface JupiterToken {
+export interface JupiterToken {
   id: string;
   symbol?: string;
   name?: string;
@@ -26,6 +26,9 @@ interface JupiterToken {
   fdv?: number;
   liquidity?: number;
   launchpad?: string;
+  holderCount?: number;
+  /** Jupiter's 0-100 activity-quality metric — low with big volume smells like wash/bots. */
+  organicScore?: number;
   firstPool?: { id?: string; createdAt?: string };
   stats5m?: JupiterTokenStats;
   stats1h?: JupiterTokenStats;
@@ -61,6 +64,8 @@ function toCandidate(t: JupiterToken): Candidate | null {
     poolAddress,
     tokenAddress: t.id,
     launchpad: t.launchpad,
+    holderCount: t.holderCount ?? null,
+    organicScore: t.organicScore ?? null,
     symbol: t.symbol || t.name || t.id.slice(0, 6),
     dexUrl: `https://dexscreener.com/solana/${poolAddress}`,
     ageHours,
@@ -106,24 +111,29 @@ export async function getJupiterCandidates(): Promise<Candidate[]> {
   return candidates;
 }
 
-const launchpadCache = new Map<string, Promise<string | null>>();
+const tokenMetaCache = new Map<string, Promise<JupiterToken | null>>();
 
-/** Authoritative launchpad lookup — the address vanity suffix alone is NOT reliable
- *  (PCAT is a genuine pump.fun mint without the "pump" suffix, verified live). */
-export function getLaunchpad(mintAddress: string): Promise<string | null> {
-  let pending = launchpadCache.get(mintAddress);
+/** Cached single-token metadata lookup (launchpad, holderCount, organicScore, ...). */
+export function searchToken(mintAddress: string): Promise<JupiterToken | null> {
+  let pending = tokenMetaCache.get(mintAddress);
   if (!pending) {
     pending = (async () => {
       try {
         const res = await fetch(`${BASE_URL}/search?query=${mintAddress}`, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
         if (!res.ok) return null;
         const data = (await res.json()) as JupiterToken[];
-        return data[0]?.launchpad ?? null;
+        return data[0] ?? null;
       } catch {
         return null;
       }
     })();
-    launchpadCache.set(mintAddress, pending);
+    tokenMetaCache.set(mintAddress, pending);
   }
   return pending;
+}
+
+/** Authoritative launchpad lookup — the address vanity suffix alone is NOT reliable
+ *  (PCAT is a genuine pump.fun mint without the "pump" suffix, verified live). */
+export async function getLaunchpad(mintAddress: string): Promise<string | null> {
+  return (await searchToken(mintAddress))?.launchpad ?? null;
 }
