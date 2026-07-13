@@ -1,8 +1,10 @@
 name: Deep scan
 
 on:
-  schedule:
-    - cron: "0 */4 * * *"
+  # No schedule: here — GitHub Actions' schedule: event proved unreliable even at a
+  # nominal 4h cadence, jittering to 3.5-4.5h in practice. The real 4h cadence is now
+  # driven by a Cloudflare Cron Trigger on telegram-scan-webhook, which calls
+  # workflow_dispatch directly. workflow_dispatch kept here for manual/testing use.
   workflow_dispatch: {}
 
 permissions:
