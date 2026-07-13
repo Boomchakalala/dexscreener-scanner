@@ -95,6 +95,21 @@
       },
       "addedAt": 1783980281522,
       "expiresAt": 1784023481522
+    },
+    {
+      "symbol": "agentx402",
+      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "poolAddress": "3GS25gGKbgrFdvqVLYuqbU54cZyjEFJ56ifUWNiqU8m5",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/3GS25gGKbgrFdvqVLYuqbU54cZyjEFJ56ifUWNiqU8m5",
+      "condition": {
+        "mcMin": 200000,
+        "mcMax": 280000,
+        "requireRisingVolume": true,
+        "description": "holds above ~$200K with rising volume and buy-side flow flipping positive"
+      },
+      "addedAt": 1783982140745,
+      "expiresAt": 1784025340745
     }
   ]
 }
