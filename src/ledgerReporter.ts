@@ -6,6 +6,11 @@ function fmtSol(n: number): string {
   return `${n >= 0 ? "+" : ""}${n.toFixed(4)}`;
 }
 
+function fmtMc(marketCapUsd: number): string {
+  if (marketCapUsd >= 1_000_000) return `$${(marketCapUsd / 1_000_000).toFixed(2)}M`;
+  return `$${Math.round(marketCapUsd / 1000)}K`;
+}
+
 async function unrealizedFor(position: Position): Promise<{ line: string; pnl: number }> {
   const stats = await getPoolStats(position.chainId, position.poolAddress);
   if (!stats || position.entryPrice === null) {
@@ -13,8 +18,9 @@ async function unrealizedFor(position: Position): Promise<{ line: string; pnl: n
   }
   const currentValue = position.remainingSizeSol * (stats.priceUsd / position.entryPrice);
   const pnl = currentValue - position.remainingSizeSol;
+  const entryMc = position.entryMarketCapUsd !== null ? fmtMc(position.entryMarketCapUsd) : "n/a";
   return {
-    line: `- **${position.symbol}** (${position.status}): size ${position.remainingSizeSol.toFixed(3)} SOL, entry $${position.entryPrice}, current $${stats.priceUsd}, unrealized ${fmtSol(pnl)} SOL [READ](${position.dexUrl})`,
+    line: `- **${position.symbol}** (${position.status}): size ${position.remainingSizeSol.toFixed(3)} SOL, entry $${position.entryPrice} (${entryMc} MC), current $${stats.priceUsd} (${fmtMc(stats.marketCapUsd)} MC), unrealized ${fmtSol(pnl)} SOL [READ](${position.dexUrl})`,
     pnl,
   };
 }

@@ -73,6 +73,11 @@ function logTrade(ledger: Ledger, entry: Omit<TradeLogEntry, "timestamp">): void
   ledger.tradeLog.push({ ...entry, timestamp: Date.now() });
 }
 
+function fmtMc(marketCapUsd: number): string {
+  if (marketCapUsd >= 1_000_000) return `$${(marketCapUsd / 1_000_000).toFixed(2)}M`;
+  return `$${Math.round(marketCapUsd / 1000)}K`;
+}
+
 /** Realistic fill: a real Jupiter route quote for this position's size gives real
  *  price-impact/slippage; falls back to raw pool price (flagged in the log reason) if no
  *  route was found rather than blocking the fill entirely. */
@@ -134,7 +139,7 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
     reason: fill.note,
   });
   await sendTelegramMessage(
-    `**${position.symbol}** — ENTRY filled\n${position.entryCondition.description}\nSize: ${position.sizeSol.toFixed(3)} SOL @ $${fill.price}\n${fill.note}\n[READ](${position.dexUrl})`
+    `**${position.symbol}** — ENTRY filled\n${position.entryCondition.description}\nSize: ${position.sizeSol.toFixed(3)} SOL @ $${fill.price} (~${fmtMc(stats.marketCapUsd)} MC)\n${fill.note}\n[READ](${position.dexUrl})`
   );
 }
 
@@ -165,7 +170,7 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     closePosition(position, ledger, stats.priceUsd, `structural invalidation hit: ${position.structuralInvalidation.description}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (stop)\n${position.structuralInvalidation.description}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (stop)\n${position.structuralInvalidation.description}\nExit: $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
     return;
   }
@@ -203,7 +208,7 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
       reason: `TP1 arrival classified ${classification}, sold ${(sellFraction * 100).toFixed(0)}%`,
     });
     await sendTelegramMessage(
-      `**${position.symbol}** — TP1 hit (${classification})\nSold ${(sellFraction * 100).toFixed(0)}% @ $${stats.priceUsd}, keeping ${(100 - sellFraction * 100).toFixed(0)}% as runner\nP&L on this slice: ${pnl.toFixed(4)} SOL`
+      `**${position.symbol}** — TP1 hit (${classification})\nSold ${(sellFraction * 100).toFixed(0)}% @ $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC), keeping ${(100 - sellFraction * 100).toFixed(0)}% as runner\nP&L on this slice: ${pnl.toFixed(4)} SOL`
     );
   }
 }
@@ -215,7 +220,7 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     closePosition(position, ledger, stats.priceUsd, `runner stopped out: ${position.structuralInvalidation.description}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (runner stopped)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (runner stopped)\nExit: $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
     return;
   }
@@ -224,7 +229,7 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   if (tp2 && stats.priceUsd >= tp2.price) {
     closePosition(position, ledger, stats.priceUsd, `final target reached: ${tp2.note}`);
     await sendTelegramMessage(
-      `**${position.symbol}** — EXIT (final target)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+      `**${position.symbol}** — EXIT (final target)\nExit: $${stats.priceUsd} (~${fmtMc(stats.marketCapUsd)} MC)\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
     );
   }
 }
