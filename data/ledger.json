@@ -291,6 +291,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump-1783984701516",
+      "symbol": "LIZARD",
+      "tokenAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
+      "poolAddress": "5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.16,
+      "remainingSizeSol": 0.16,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00021,
+        "description": "Wait for hold of ~$0.00017 then reclaim of ~$0.00021 on rising volume; do not buy the current pullback candle",
+        "validityWindowMinutes": 45
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000195,
+        "marketCapUsd": 191257,
+        "liquidityUsd": 37268
+      },
+      "structuralInvalidation": {
+        "price": 0.00015,
+        "description": "Hourly close below ~$0.00015 breaks the consolidation base and voids the thesis"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00025,
+          "note": "first resistance on the way back up"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00028,
+          "note": "retest of local high, only if volume expands"
+        }
+      ],
+      "thesis": "Cleanest base in the batch — #1 of 17 market quality, 1,188 holders, clean RugCheck, 0% price impact — consolidating near $0.0002 after an 836% day; a continuation trade, entered on the reclaim not the falling knife.",
+      "createdAt": 1783984701516,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
