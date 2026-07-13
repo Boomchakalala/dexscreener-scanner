@@ -45,23 +45,40 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/state.json data/watchlist.json data/ledger.json
-          if git diff --cached --quiet; then
-            echo "No state changes to commit."
-            exit 0
-          fi
-          git commit -m "chore: update alert state + watchlist + ledger (deep scan) [skip ci]"
-          if ! git pull --rebase; then
-            echo "::warning::Rebase conflict on state.json (concurrent run) - skipping this run's state update."
-            git rebase --abort
-            exit 0
-          fi
-          if ! git push; then
-            echo "Push rejected (concurrent run pushed first) - retrying once after a fresh rebase."
-            if ! git pull --rebase; then
-              echo "::warning::Rebase conflict on retry - skipping this run's state update."
-              git rebase --abort
-              exit 0
+
+          # Each file gets its own independent add/commit/rebase/push cycle - NOT bundled
+          # into one commit. watchlist-check.yml and ledger-check.yml now run in their own
+          # concurrency groups (see their workflow files), so they can genuinely run at the
+          # same time as this one. A single bundled commit meant a conflict on just
+          # watchlist.json (from a concurrent watchlist-check push) aborted the whole
+          # rebase and silently discarded this run's state.json/ledger.json changes too -
+          # confirmed happening in practice. Committing per-file means a conflict on one
+          # file only costs that file's update, never the others.
+          commit_and_push() {
+            local file="$1"
+            local message="$2"
+            git add "$file"
+            if git diff --cached --quiet; then
+              echo "No changes to commit for $file."
+              return 0
             fi
-            git push
-          fi
+            git commit -m "$message"
+            if ! git pull --rebase; then
+              echo "::warning::Rebase conflict on $file (concurrent run) - skipping this file's update."
+              git rebase --abort
+              return 0
+            fi
+            if ! git push; then
+              echo "Push rejected for $file - retrying once after a fresh rebase."
+              if ! git pull --rebase; then
+                echo "::warning::Rebase conflict on retry for $file - skipping this file's update."
+                git rebase --abort
+                return 0
+              fi
+              git push
+            fi
+          }
+
+          commit_and_push data/state.json "chore: update alert state (deep scan) [skip ci]"
+          commit_and_push data/watchlist.json "chore: update watchlist (deep scan) [skip ci]"
+          commit_and_push data/ledger.json "chore: update ledger (deep scan) [skip ci]"
