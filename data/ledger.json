@@ -1,5 +1,102 @@
 {
   "balanceSol": 2,
-  "positions": [],
+  "positions": [
+    {
+      "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
+      "symbol": "baby",
+      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
+      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.16,
+      "remainingSizeSol": 0.16,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00019,
+        "description": "clean reclaim and hold of ~$0.00019 with rising volume, or pullback holding ~$0.00013",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000169,
+        "marketCapUsd": 169234,
+        "liquidityUsd": 32238
+      },
+      "structuralInvalidation": {
+        "price": 0.00012,
+        "description": "close below ~$0.00012 breaks the higher-low base"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00022,
+          "note": "prior high"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00028,
+          "note": "only if volume expands"
+        }
+      ],
+      "thesis": "Only clean consolidation base in the batch, ranked #5/13 on structure and quality; small-size punt given thin liquidity.",
+      "createdAt": 1783972515587,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump-1783972515587",
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.24,
+      "remainingSizeSol": 0.24,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00046,
+        "description": "reclaim and hold of ~$0.00046 with volume expanding again",
+        "validityWindowMinutes": 45
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000322,
+        "marketCapUsd": 314619,
+        "liquidityUsd": 49173
+      },
+      "structuralInvalidation": {
+        "price": 0.00028,
+        "description": "close below ~$0.00028 confirms broken trend"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0005,
+          "note": "first resistance"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00057,
+          "note": "recent range high, only if buy volume returns"
+        }
+      ],
+      "thesis": "Spent early runner now rolling over; only relevant if it stops bleeding and reclaims prior structure.",
+      "createdAt": 1783972515587,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    }
+  ],
   "tradeLog": []
 }
