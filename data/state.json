@@ -951,6 +951,14 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783967736295
+    },
+    {
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783972125096
     }
   ],
   "lastTelegramUpdateId": 710125054
