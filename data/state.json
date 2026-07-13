@@ -655,6 +655,54 @@
       "verdict": "FLASH ALERT",
       "kind": "flash",
       "alertedAt": 1783907886718
+    },
+    {
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "verdict": "SPECULATIVE PUNT",
+      "kind": "deep",
+      "alertedAt": 1783912901616
+    },
+    {
+      "symbol": "memecat",
+      "tokenAddress": "CTdVAK1wZ5wgJiMqm41CGF323QTr1ZwAtnJ3MwKDpump",
+      "poolAddress": "Hxokv1hk53qa1pDmfxb2p4PHukm6nS43foa5EEiTUguz",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783912901616
+    },
+    {
+      "symbol": "SUNNYS",
+      "tokenAddress": "Ch1vdFT6dVmkVLbJkBXGBv8iyhWv9ik1C45cYNsFpump",
+      "poolAddress": "323MZ6ovqVfNhZUgFTPjzxXRovGZ6fdy4bCd5ZuUmjJS",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783912901616
+    },
+    {
+      "symbol": "Jonah",
+      "tokenAddress": "4ySYU7LJeyqPRbvXrdCDCaobS3ZuEPqofL4ZFj9YAv2h",
+      "poolAddress": "AiLvX7gFZQpYhXjFTr3XLm6dYwsfV3nBfegGnQ4ABTny",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783912901616
+    },
+    {
+      "symbol": "BLUXEL",
+      "tokenAddress": "E4LtkkDAv5fPL7N4zLZMnFgfwu6WjVRGKnjTbHVTpump",
+      "poolAddress": "EML4Rfp59DACH61Wv94jE27kTbrchSCDZA9HnkmP84vg",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783912901616
+    },
+    {
+      "symbol": "UNC",
+      "tokenAddress": "6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump",
+      "poolAddress": "ak3U4AkfzqqFqTHjsNDbAViCiC8QwzXb9CfkCQeAUx6",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783912901616
     }
   ],
   "lastTelegramUpdateId": 710125053
