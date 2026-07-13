@@ -46,52 +46,53 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Each file gets its own independent add/commit/rebase/push cycle - NOT bundled
-          # into one commit. watchlist-check.yml and ledger-check.yml now run in their own
-          # concurrency groups (see their workflow files), so they can genuinely run at the
-          # same time as this one. A single bundled commit meant a conflict on just
-          # watchlist.json (from a concurrent watchlist-check push) aborted the whole
-          # rebase and silently discarded this run's state.json/ledger.json changes too -
-          # confirmed happening in practice. Committing per-file means a conflict on one
-          # file only costs that file's update, never the others.
-          commit_and_push() {
+          # Each file gets its own local commit (no pulls in between - git add/commit only
+          # cares about the staged file, so this is always safe even with other files still
+          # unstaged). Then ONE fetch + rebase replays all of them on top of the latest
+          # remote; if a specific commit conflicts (e.g. a concurrent watchlist-check push
+          # touched watchlist.json), `rebase --skip` drops just that one commit and keeps
+          # going, so one file's conflict never costs the others. An earlier stash-based
+          # version of this could itself conflict on `stash pop` against a remote that moved
+          # again in between - this fetch-once-rebase-once-skip approach has no such gap.
+          commit_if_changed() {
             local file="$1"
             local message="$2"
             git add "$file"
             if git diff --cached --quiet; then
               echo "No changes to commit for $file."
-              return 0
-            fi
-            git commit -m "$message"
-
-            # git pull --rebase refuses to run at all if ANY file in the tree has unstaged
-            # changes - including the other data/*.json files still waiting for their own
-            # commit_and_push call. Stash them out of the way for this file's rebase/push,
-            # then restore them so the next call still sees its pending changes.
-            local stashed=false
-            if ! git diff --quiet -- data/; then
-              git stash push -- data/
-              stashed=true
-            fi
-
-            if ! git pull --rebase; then
-              echo "::warning::Rebase conflict on $file (concurrent run) - skipping this file's update."
-              git rebase --abort
-            elif ! git push; then
-              echo "Push rejected for $file - retrying once after a fresh rebase."
-              if ! git pull --rebase; then
-                echo "::warning::Rebase conflict on retry for $file - skipping this file's update."
-                git rebase --abort
-              else
-                git push
-              fi
-            fi
-
-            if [ "$stashed" = true ]; then
-              git stash pop
+            else
+              git commit -m "$message"
             fi
           }
 
-          commit_and_push data/state.json "chore: update alert state (deep scan) [skip ci]"
-          commit_and_push data/watchlist.json "chore: update watchlist (deep scan) [skip ci]"
-          commit_and_push data/ledger.json "chore: update ledger (deep scan) [skip ci]"
+          commit_if_changed data/state.json "chore: update alert state (deep scan) [skip ci]"
+          commit_if_changed data/watchlist.json "chore: update watchlist (deep scan) [skip ci]"
+          commit_if_changed data/ledger.json "chore: update ledger (deep scan) [skip ci]"
+
+          rebase_skipping_conflicts() {
+            if ! git rebase origin/master; then
+              echo "::warning::Rebase conflict(s) - skipping only the commit(s) that actually conflict."
+              for i in 1 2 3; do
+                if [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; then
+                  break
+                fi
+                if ! git rebase --skip; then
+                  echo "::warning::Could not continue rebase - aborting entirely, no updates from this run will be pushed."
+                  git rebase --abort || true
+                  return 1
+                fi
+              done
+            fi
+            return 0
+          }
+
+          git fetch origin master
+          rebase_skipping_conflicts
+
+          if ! git push; then
+            echo "Push rejected - retrying once after a fresh rebase."
+            git fetch origin master
+            if rebase_skipping_conflicts; then
+              git push
+            fi
+          fi

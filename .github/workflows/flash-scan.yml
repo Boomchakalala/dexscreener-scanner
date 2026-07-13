@@ -47,45 +47,46 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Independent per-file commits, not bundled - see deep-scan.yml for why (a
-          # conflict on one file must never discard another file's changes).
-          commit_and_push() {
+          # Each file gets its own local commit, then one fetch + rebase (skipping only a
+          # commit that actually conflicts) - see deep-scan.yml for the full reasoning.
+          commit_if_changed() {
             local file="$1"
             local message="$2"
             git add "$file"
             if git diff --cached --quiet; then
               echo "No changes to commit for $file."
-              return 0
-            fi
-            git commit -m "$message"
-
-            # git pull --rebase refuses to run at all if ANY file in the tree has unstaged
-            # changes - including the other data/*.json files still waiting for their own
-            # commit_and_push call. Stash them out of the way for this file's rebase/push,
-            # then restore them so the next call still sees its pending changes.
-            local stashed=false
-            if ! git diff --quiet -- data/; then
-              git stash push -- data/
-              stashed=true
-            fi
-
-            if ! git pull --rebase; then
-              echo "::warning::Rebase conflict on $file (concurrent run) - skipping this file's update."
-              git rebase --abort
-            elif ! git push; then
-              echo "Push rejected for $file - retrying once after a fresh rebase."
-              if ! git pull --rebase; then
-                echo "::warning::Rebase conflict on retry for $file - skipping this file's update."
-                git rebase --abort
-              else
-                git push
-              fi
-            fi
-
-            if [ "$stashed" = true ]; then
-              git stash pop
+            else
+              git commit -m "$message"
             fi
           }
 
-          commit_and_push data/state.json "chore: update alert state (flash scan) [skip ci]"
-          commit_and_push data/ledger.json "chore: update ledger (flash scan) [skip ci]"
+          commit_if_changed data/state.json "chore: update alert state (flash scan) [skip ci]"
+          commit_if_changed data/ledger.json "chore: update ledger (flash scan) [skip ci]"
+
+          rebase_skipping_conflicts() {
+            if ! git rebase origin/master; then
+              echo "::warning::Rebase conflict(s) - skipping only the commit(s) that actually conflict."
+              for i in 1 2 3; do
+                if [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; then
+                  break
+                fi
+                if ! git rebase --skip; then
+                  echo "::warning::Could not continue rebase - aborting entirely, no updates from this run will be pushed."
+                  git rebase --abort || true
+                  return 1
+                fi
+              done
+            fi
+            return 0
+          }
+
+          git fetch origin master
+          rebase_skipping_conflicts
+
+          if ! git push; then
+            echo "Push rejected - retrying once after a fresh rebase."
+            git fetch origin master
+            if rebase_skipping_conflicts; then
+              git push
+            fi
+          fi
