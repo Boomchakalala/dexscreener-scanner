@@ -96,24 +96,25 @@ async function getPoolsPaginated(network: string, path: string, pages: number): 
 
 // Discovery should scan wider than just "trending", but a live test at 24 total pages
 // (4+10+10) lost most of its requests to 429s — the free tier's real burst budget is
-// well short of that. 15 total pages (up from the original 11) is the compromise: a
-// meaningfully wider net that still reliably completes. Candle enrichment downstream
-// adds one more request per shortlisted candidate on the same limiter, so total
-// requests-per-run (~15 + shortlist size) is what actually has to stay under budget,
-// not any single stage's page count.
+// well short of that. 15 total pages is the compromise, weighted toward new_pools:
+// it's the only source that reliably yields in-window (0-24h) tokens, while trending
+// and by-volume mostly return older pools the age floor discards anyway. Candle
+// enrichment downstream adds one more request per shortlisted candidate on the same
+// limiter, so total requests-per-run (~15 + shortlist size) is what has to stay under
+// budget, not any single stage's page count.
 
 export async function getTrendingPools(network: string, pages = 3): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "trending_pools", pages);
 }
 
-export async function getNewPools(network: string, pages = 6): Promise<GeckoPool[]> {
+export async function getNewPools(network: string, pages = 8): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "new_pools", pages);
 }
 
 /** All active pools ranked by 24h volume — the broad net that catches tokens sitting in a
  *  market-cap band regardless of whether they're currently "trending" or brand new.
  *  GeckoTerminal's free tier caps this endpoint's pagination around page 10. */
-export async function getPoolsByVolume(network: string, pages = 6): Promise<GeckoPool[]> {
+export async function getPoolsByVolume(network: string, pages = 4): Promise<GeckoPool[]> {
   return getPoolsPaginated(network, "pools?sort=h24_volume_usd_desc", pages);
 }
 

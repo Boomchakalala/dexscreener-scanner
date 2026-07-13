@@ -24,6 +24,25 @@ function logStage(stage: string, startedAt: number): void {
   console.log(`  [timing] ${stage}: ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
 }
 
+/** Which discovery universe (per the prompt's definitions) each deep-analyze candidate
+ *  falls into — the tell for input starvation. If "off-window" dominates run after run,
+ *  Claude is being fed filler that no universe playbook applies to, and dry reports are
+ *  a discovery problem, not a judgment problem. */
+function logUniverseDistribution(candidates: { ageHours: number | null; marketCapUsd: number }[]): void {
+  const counts = { U1: 0, U2: 0, U3: 0, "off-window": 0 };
+  for (const c of candidates) {
+    const age = c.ageHours;
+    const mc = c.marketCapUsd;
+    if (age !== null && age <= 2 && mc >= 30_000 && mc <= 300_000) counts.U1++;
+    else if (age !== null && age > 2 && age <= 8 && mc >= 100_000 && mc <= 1_000_000) counts.U2++;
+    else if (age !== null && age > 8 && age <= 24 && mc >= 250_000 && mc <= 3_000_000) counts.U3++;
+    else counts["off-window"]++;
+  }
+  console.log(
+    `  [universes] deep-analyze batch: U1 fresh=${counts.U1}, U2 survivors=${counts.U2}, U3 momentum=${counts.U3}, off-window=${counts["off-window"]}`
+  );
+}
+
 function logGeckoStats(): void {
   const s = getGeckoStats();
   const avgMs = s.requestCount > 0 ? Math.round(s.totalTimeMs / s.requestCount) : 0;
@@ -58,8 +77,12 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   const withCandles = await enrichWithCandles(shortlist);
   logStage("Enrichment (candles)", t);
 
-  const quality = rankByQuality(withCandles, config.floors.maxDeepAnalyze);
-  console.log(`Chart + quality ranking narrowed to top ${quality.length} for RugCheck + deep analysis.`);
+  // RugCheck a batch with headroom BEFORE the final cut: danger flags kill 40-50% of a
+  // typical pump.fun-era batch, and excluding after the cut was handing Claude a 5-6
+  // token batch while clean candidates ranked just below never got their slot.
+  const RUGCHECK_HEADROOM = 6;
+  const quality = rankByQuality(withCandles, config.floors.maxDeepAnalyze + RUGCHECK_HEADROOM);
+  console.log(`Chart + quality ranking narrowed to top ${quality.length} for RugCheck (with backfill headroom).`);
 
   t = now();
   const withRugCheck = await enrichWithRugCheck(quality);
@@ -68,12 +91,13 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 
   const safe = excludeDangerRisks(withRugCheck);
   if (safe.length < withRugCheck.length) {
-    console.log(`Excluded ${withRugCheck.length - safe.length} candidates with a RugCheck danger-level (material) risk.`);
+    console.log(`Excluded ${withRugCheck.length - safe.length} of ${withRugCheck.length} on RugCheck danger-level risks (see lines above).`);
   }
 
   t = now();
-  let topCandidates = await addTradeability(safe);
+  let topCandidates = await addTradeability(safe.slice(0, config.floors.maxDeepAnalyze));
   logStage("Tradeability check (Jupiter, final shortlist only)", t);
+  logUniverseDistribution(topCandidates);
 
   const funnel: DiscoveryFunnel = {
     rawCount,

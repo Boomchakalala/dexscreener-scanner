@@ -82,11 +82,14 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
   let rawCount = 0;
 
   for (const network of config.chains) {
-    const [trending, fresh, byVolume] = await Promise.all([
-      getTrendingPools(network),
-      getNewPools(network),
-      getPoolsByVolume(network),
-    ]);
+    // new_pools goes FIRST and alone: it's the only source that reliably produces
+    // in-window (0-24h) tokens — trending/by-volume are dominated by older pools the
+    // age floor kills anyway — and GeckoTerminal's burst budget empties partway
+    // through a run, so whatever queues last eats the 429s. Observed before this
+    // ordering: the lost pages were new_pools ones, i.e. the losses were landing on
+    // exactly the universe (Fresh Launches) the whole strategy prioritizes.
+    const fresh = await getNewPools(network);
+    const [trending, byVolume] = await Promise.all([getTrendingPools(network), getPoolsByVolume(network)]);
 
     const allPools = [...trending, ...fresh, ...byVolume];
     rawCount += allPools.length;
@@ -134,7 +137,15 @@ export async function enrichWithRugCheck(candidates: Candidate[]): Promise<Candi
  *  Applied only after chart + quality ranking, per the "RugCheck is the final filter,
  *  reject only for material risks" rule — never used to eliminate candidates earlier. */
 export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {
-  return candidates.filter((c) => !c.rugCheck?.risks.some((r) => r.level === "danger"));
+  return candidates.filter((c) => {
+    const dangers = c.rugCheck?.risks.filter((r) => r.level === "danger") ?? [];
+    if (dangers.length === 0) return true;
+    // Named per-exclusion logging: danger flags kill 40-50% of a typical pump.fun-era
+    // batch, and whether that's real protection or an endemic-flag false-positive tax
+    // can only be judged with the actual risk names on record.
+    console.log(`  [rugcheck] excluding ${c.symbol} (${c.tokenAddress}): ${dangers.map((r) => r.name).join(", ")}`);
+    return false;
+  });
 }
 
 /** Real Jupiter route quote (price impact, hop count) for a ~0.5 SOL buy — only worth the
