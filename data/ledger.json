@@ -106,7 +106,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.24,
       "remainingSizeSol": 0.24,
       "entryCondition": {
@@ -168,6 +168,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1783975277571
+    },
+    {
+      "positionId": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1783973113756",
+      "symbol": "PCAT",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1783975577942
     }
   ]
 }
