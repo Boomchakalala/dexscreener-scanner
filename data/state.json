@@ -815,6 +815,30 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783941935873
+    },
+    {
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "verdict": "SPECULATIVE PUNT",
+      "kind": "deep",
+      "alertedAt": 1783953817066
+    },
+    {
+      "symbol": "Wukong",
+      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "poolAddress": "5uNaabDcmHeNtHJbgRMeRVt1y9M6HRfmKBRFfmkgsjAs",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783953817066
+    },
+    {
+      "symbol": "grandpa",
+      "tokenAddress": "9FuNQbTitwQyGmzez4X41euocuCEGrTyD2G9vbqrpump",
+      "poolAddress": "6yfHjuZkZiGJ7KkEDmAaDnKaCbE1s77ntCf1XdmeSyYN",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783953817066
     }
   ],
   "lastTelegramUpdateId": 710125054
