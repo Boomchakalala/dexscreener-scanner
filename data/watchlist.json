@@ -14,8 +14,8 @@
       },
       "addedAt": 1783963483484,
       "expiresAt": 1783992283484,
-      "fired": false,
-      "priorVolumeH1Usd": 4229.7161171234
+      "fired": true,
+      "priorVolumeH1Usd": 6243.3617979735
     },
     {
       "symbol": "Bison",
@@ -32,7 +32,7 @@
       "addedAt": 1783967736296,
       "expiresAt": 1784010936296,
       "fired": false,
-      "priorVolumeH1Usd": 119554.104195075
+      "priorVolumeH1Usd": 117306.783643135
     },
     {
       "symbol": "baby",
@@ -49,7 +49,7 @@
       "addedAt": 1783967736296,
       "expiresAt": 1784010936296,
       "fired": false,
-      "priorVolumeH1Usd": 42554.3335649821
+      "priorVolumeH1Usd": 38337.8085007533
     },
     {
       "symbol": "BULLARC",
@@ -66,7 +66,7 @@
       "addedAt": 1783967736296,
       "expiresAt": 1783996536296,
       "fired": false,
-      "priorVolumeH1Usd": 11025.7993558067
+      "priorVolumeH1Usd": 10897.2655229052
     }
   ]
 }
