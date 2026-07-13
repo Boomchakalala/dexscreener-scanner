@@ -1162,6 +1162,69 @@
       "marketCapUsdAtAlert": 48253.02579,
       "kind": "deep",
       "alertedAt": 1783982140744
+    },
+    {
+      "symbol": "agentx402",
+      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 212228.3474073016,
+      "kind": "deep",
+      "alertedAt": 1783983631236
+    },
+    {
+      "symbol": "Wukong",
+      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "poolAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 170920.78901796305,
+      "kind": "deep",
+      "alertedAt": 1783983631236
+    },
+    {
+      "symbol": "HOOD",
+      "tokenAddress": "7q3ebaj8zdd1MMVY7JMkzCMeWkgjqXP4pjK53Pf47cjW",
+      "poolAddress": "6bTw7wRUZWsTnMLnbmnLSuHH2mubMbRiAfTAMEaLj5ma",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 1021057.638,
+      "kind": "deep",
+      "alertedAt": 1783983631236
+    },
+    {
+      "symbol": "ARC",
+      "tokenAddress": "7pbun7uWcE1x23MaRF8iwDRbFee9b6dxsVtXiwLkWNmS",
+      "poolAddress": "9hbMMAeK39RxoAzU9msZ22HNdXedWvj4EMs3dRsCJJmt",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 1161893.335,
+      "kind": "deep",
+      "alertedAt": 1783983631236
+    },
+    {
+      "symbol": "Robinhood",
+      "tokenAddress": "CC9eHZegtXthoMkncruMMtNM2YiQcYsYasfWjXVR5Tm",
+      "poolAddress": "2cuFf3xPJhDhZhBiGH6eHysin9Pswfk8VHKGfPb1e42F",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 3141730.371,
+      "kind": "deep",
+      "alertedAt": 1783983631236
+    },
+    {
+      "symbol": "W26",
+      "tokenAddress": "6nH2jw3UcH5RphDUwQtFXjXpCt6LjjKdcbjE9D8oK1Ef",
+      "poolAddress": "4XHbV1B6UMEu3kqxMR5vYQ2wszREfvUeNG1b14sJtFAj",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 343336.5911,
+      "kind": "deep",
+      "alertedAt": 1783983631236
+    },
+    {
+      "symbol": "SAPPHIRE",
+      "tokenAddress": "2SQDPtSrEEsLMngbjex67o7VnQzBpVLmwF1uEEN2pump",
+      "poolAddress": "2SQDPtSrEEsLMngbjex67o7VnQzBpVLmwF1uEEN2pump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 46676.0469868967,
+      "kind": "deep",
+      "alertedAt": 1783983631236
     }
   ],
   "lastTelegramUpdateId": 710125054
