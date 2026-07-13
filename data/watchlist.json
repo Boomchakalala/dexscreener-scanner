@@ -99,17 +99,32 @@
     {
       "symbol": "agentx402",
       "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "poolAddress": "3GS25gGKbgrFdvqVLYuqbU54cZyjEFJ56ifUWNiqU8m5",
+      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/3GS25gGKbgrFdvqVLYuqbU54cZyjEFJ56ifUWNiqU8m5",
+      "dexUrl": "https://dexscreener.com/solana/cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "condition": {
         "mcMin": 200000,
-        "mcMax": 280000,
+        "mcMax": 300000,
         "requireRisingVolume": true,
-        "description": "holds above ~$200K with rising volume and buy-side flow flipping positive"
+        "description": "reclaims prior high with h1 volume expanding back above ~$100K"
       },
-      "addedAt": 1783982140745,
-      "expiresAt": 1784025340745
+      "addedAt": 1783983631237,
+      "expiresAt": 1784026831237
+    },
+    {
+      "symbol": "Wukong",
+      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "poolAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "condition": {
+        "mcMin": 170000,
+        "mcMax": 250000,
+        "requireRisingVolume": true,
+        "description": "clean reclaim of prior 6h high on rising volume"
+      },
+      "addedAt": 1783983631237,
+      "expiresAt": 1784019631237
     }
   ]
 }
