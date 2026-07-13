@@ -77,4 +77,13 @@ export interface Candidate {
   /** Launchpad per Jupiter's metadata ("pump.fun", "met-dbc", ...) when known — the
    *  address vanity suffix alone is NOT reliable (PCAT is pump.fun without the suffix). */
   launchpad?: string;
+  /** DEX the pool lives on per GeckoTerminal ("pump-fun", "pumpswap", "raydium", ...) —
+   *  pump-fun/pumpswap pools are definitionally pump.fun ecosystem, a free third gate
+   *  signal for fresh tokens Jupiter hasn't indexed a launchpad for yet. */
+  dexId?: string;
+  /** GeckoTerminal frequently reports no liquidity at all for pump.fun/pumpswap pools
+   *  (observed: $1M+ MC tokens showing reserve 0) — when set, liquidityUsd is 0 because
+   *  the DATA is missing, not because the pool is empty. The real tradeability check is
+   *  the live Jupiter route quote on the final batch. */
+  liquidityUnknown?: boolean;
 }

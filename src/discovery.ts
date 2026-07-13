@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import { getHourlyCandles, getMinuteCandles, getNewPools, getPoolsByVolume, getTrendingPools } from "./gecko.js";
+import { getDexPools, getHourlyCandles, getMinuteCandles, getNewPools, getTrendingPools } from "./gecko.js";
 import { getTradeability } from "./jupiter.js";
 import { getJupiterCandidates, getLaunchpad } from "./jupiterTokens.js";
 import { getRugCheckReport } from "./rugcheck.js";
@@ -20,7 +20,11 @@ export function toCandidate(network: string, pool: GeckoPool): Candidate | null 
   const attrs = pool.attributes;
   const marketCapUsd = Number(attrs.market_cap_usd ?? attrs.fdv_usd ?? 0);
   const liquidityUsd = Number(attrs.reserve_in_usd ?? 0);
-  if (!marketCapUsd || !liquidityUsd) return null;
+  // Missing liquidity data is NOT a dealbreaker: GeckoTerminal frequently reports no
+  // reserve at all for pump.fun/pumpswap pools (observed on $1M+ MC tokens) — dropping
+  // those silently blanked out much of the exact universe this scanner hunts. The real
+  // tradeability check is the live Jupiter route quote on the final batch.
+  if (!marketCapUsd) return null;
 
   const symbol = pool.attributes.name.split("/")[0]?.trim() || pool.attributes.name;
   const txnsH1 = attrs.transactions.h1 ?? { buys: 0, sells: 0, buyers: 0, sellers: 0 };
@@ -30,11 +34,13 @@ export function toCandidate(network: string, pool: GeckoPool): Candidate | null 
     chainId: network,
     poolAddress: attrs.address,
     tokenAddress: extractTokenAddress(pool.relationships.base_token.data.id),
+    dexId: pool.relationships.dex?.data?.id,
     symbol,
     dexUrl: `https://dexscreener.com/${network}/${attrs.address}`,
     ageHours: ageHours(pool),
     marketCapUsd,
     liquidityUsd,
+    liquidityUnknown: liquidityUsd === 0 ? true : undefined,
     volume24hUsd: Number(attrs.volume_usd.h24 ?? 0),
     volumeH1Usd: Number(attrs.volume_usd.h1 ?? 0),
     volumeH6Usd: Number(attrs.volume_usd.h6 ?? 0),
@@ -57,7 +63,8 @@ function passesFloors(candidate: Candidate): boolean {
   return (
     candidate.marketCapUsd >= floors.minMarketCapUsd &&
     candidate.marketCapUsd <= floors.maxMarketCapUsd &&
-    candidate.liquidityUsd >= floors.minLiquidityUsd &&
+    // The liquidity floor only applies when the data exists — "unknown" is not "zero".
+    (candidate.liquidityUnknown === true || candidate.liquidityUsd >= floors.minLiquidityUsd) &&
     (candidate.ageHours === null || candidate.ageHours <= floors.maxAgeHours) &&
     // Broad discovery (esp. "sorted by 24h volume") surfaces tokens whose entire
     // volume happened hours ago and have since gone dead. Require some actual
@@ -83,16 +90,20 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
   let rawCount = 0;
 
   for (const network of config.chains) {
-    // new_pools goes FIRST and alone: it's the only source that reliably produces
-    // in-window (0-24h) tokens — trending/by-volume are dominated by older pools the
-    // age floor kills anyway — and GeckoTerminal's burst budget empties partway
-    // through a run, so whatever queues last eats the 429s. Observed before this
-    // ordering: the lost pages were new_pools ones, i.e. the losses were landing on
-    // exactly the universe (Fresh Launches) the whole strategy prioritizes.
+    // Trending-first, per the strategy: start from what's moving right now and scope
+    // from there. GeckoTerminal's burst budget empties partway through a run and
+    // whatever queues LAST eats the 429s, so the order below is the priority order:
+    // trending -> pump.fun curve pools -> pumpswap graduates -> newest pools. The old
+    // whole-market by-volume source is gone (it returned almost exclusively >72h
+    // majors the floors discarded).
+    const trending = await getTrendingPools(network);
+    const [pumpCurve, pumpGraduates] = await Promise.all([
+      getDexPools(network, "pump-fun"),
+      getDexPools(network, "pumpswap"),
+    ]);
     const fresh = await getNewPools(network);
-    const [trending, byVolume] = await Promise.all([getTrendingPools(network), getPoolsByVolume(network)]);
 
-    const allPools = [...trending, ...fresh, ...byVolume];
+    const allPools = [...trending, ...pumpCurve, ...pumpGraduates, ...fresh];
     rawCount += allPools.length;
 
     for (const pool of allPools) {
@@ -140,15 +151,22 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
   return { rawCount, floorSurvivorCount: floorSurvivors.length, shortlist };
 }
 
-/** pump.fun-only launchpad gate. The "pump" address suffix is sufficient but NOT
- *  necessary — PCAT is a genuine pump.fun mint without it (verified live), and the
- *  suffix-only version of this gate excluded it one scan after it was the user's best
- *  call. Non-suffix tokens get an authoritative launchpad lookup from Jupiter (own
- *  cache, separate rate budget); only confirmed pump.fun survives. */
+/** pump.fun-only launchpad gate, three signals in cheap-first order:
+ *  1. "pump" address suffix — sufficient but NOT necessary (PCAT is a genuine pump.fun
+ *     mint without it; the suffix-only gate excluded the user's best live call).
+ *  2. Pool lives on the pump-fun or pumpswap dex — definitionally pump.fun ecosystem,
+ *     and it rescues fresh launches Jupiter hasn't indexed a launchpad for yet.
+ *  3. Jupiter's launchpad metadata (cached lookup, separate rate budget). */
+const PUMP_FUN_DEXES = new Set(["pump-fun", "pumpswap"]);
+
 async function filterPumpFunOnly(candidates: Candidate[]): Promise<Candidate[]> {
   const kept: Candidate[] = [];
   for (const candidate of candidates) {
-    if (candidate.tokenAddress.endsWith("pump") || candidate.launchpad === "pump.fun") {
+    if (
+      candidate.tokenAddress.endsWith("pump") ||
+      candidate.launchpad === "pump.fun" ||
+      (candidate.dexId !== undefined && PUMP_FUN_DEXES.has(candidate.dexId))
+    ) {
       kept.push(candidate);
       continue;
     }
@@ -204,6 +222,11 @@ const ADVISORY_DANGER_RISKS = new Set([
   "Large Amount of LP Unlocked",
   "High ownership",
   "Top 10 holders high ownership",
+  // Concentration is a risk-sizing input, not an auto-death sentence: CASE was rejected
+  // twice on this flag and then sent anyway — the user wants such tokens surfaced as
+  // small punts with the wallet risk stated loudly, judged by Claude against the actual
+  // top-holder table (which it receives) rather than blanket-banned.
+  "Single holder ownership",
 ]);
 
 export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {

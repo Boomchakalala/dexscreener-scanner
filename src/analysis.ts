@@ -30,7 +30,9 @@ function buildUserMessage(
     previouslyCalled: c.tracked === true,
     ageHours: c.ageHours !== null ? Number(c.ageHours.toFixed(1)) : null,
     marketCapUsd: Math.round(c.marketCapUsd),
-    liquidityUsd: Math.round(c.liquidityUsd),
+    // null = the data source didn't report liquidity (common for pump.fun pools), NOT an
+    // empty pool — the tradeability quote below is the real signal in that case.
+    liquidityUsd: c.liquidityUnknown ? null : Math.round(c.liquidityUsd),
     volume24hUsd: Math.round(c.volume24hUsd),
     volumeH1Usd: Math.round(c.volumeH1Usd),
     volumeH6Usd: Math.round(c.volumeH6Usd),

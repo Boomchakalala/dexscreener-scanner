@@ -50,11 +50,19 @@ export function scoreChartProxy(c: Candidate): number {
     pts -= 15; // heavy volume on a red move — reads as distribution, not a base
   }
 
-  return Math.max(0, Math.min(60, pts));
+  // Lower market cap preferred between comparable setups (more room to run) — a modest
+  // thumb on the scale, never enough to carry a weak chart past a strong one.
+  if (c.marketCapUsd <= 150_000) pts += 6;
+  else if (c.marketCapUsd <= 400_000) pts += 3;
+
+  return Math.max(0, Math.min(66, pts));
 }
 
 function scoreLiquidity(c: Candidate): number {
-  const pts = ((c.liquidityUsd - 15_000) / (150_000 - 15_000)) * 25;
+  // Liquidity data is frequently missing for pump.fun/pumpswap pools — score neutral
+  // rather than punishing the data gap; the Jupiter route quote is the real check.
+  if (c.liquidityUnknown) return 10;
+  const pts = ((c.liquidityUsd - 8_000) / (150_000 - 8_000)) * 25;
   return Math.max(0, Math.min(25, pts));
 }
 

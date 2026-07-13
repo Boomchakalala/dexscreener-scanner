@@ -15,7 +15,7 @@ import { getMarketOverview } from "./marketOverview.js";
 import { rankByQuality } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts, type AlertHistoryEntry } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
-import { loadWatchlistEntries, mergeWatchConditions } from "./watchlist.js";
+import { mergeWatchConditions } from "./watchlist.js";
 import type { Candidate } from "./types.js";
 
 function now(): number {
@@ -25,28 +25,33 @@ function now(): number {
 /** Tokens we recently called are followed to conclusion regardless of what current
  *  discovery filters think of them — the suffix-only pump.fun gate famously excluded
  *  PCAT, the user's own favorite live call, one scan after it was made. Grandfathered
- *  tokens get force-fetched, flagged `tracked`, and are guaranteed a batch slot so every
- *  report gives them an updated read or closes the story. Scope ("a few batches"): live
- *  paper positions and active watch conditions for as long as they live, anything else
- *  called REC/PUNT (or with a now-finished position) for 24h ≈ six deep-scan batches. */
+ *  tokens get force-fetched, flagged `tracked`, and take ADDITIONAL batch slots on top
+ *  of fresh discovery (an earlier version let 10 tracked tokens crowd fresh candidates
+ *  down to 2 slots, which read as "nothing qualifies tonight"). Scope, per the user:
+ *  live paper positions + the last 2-3 REC/PUNT calls, hard-capped at 4 total. */
+const MAX_TRACKED = 4;
+
 async function getTrackedTokens(recentHistory: AlertHistoryEntry[]): Promise<{ tokenAddress: string; poolAddress: string }[]> {
   const nowMs = Date.now();
   const DAY = 24 * 3600 * 1000;
   const out = new Map<string, string>();
+
   const ledger = await loadLedger();
   for (const p of ledger.positions) {
     const live = p.status === "PENDING_ENTRY" || p.status === "OPEN" || p.status === "TP1_TAKEN";
-    if (live || nowMs - p.createdAt < DAY) out.set(p.tokenAddress, p.poolAddress);
+    if (live) out.set(p.tokenAddress, p.poolAddress);
   }
-  for (const w of await loadWatchlistEntries()) {
-    if (w.expiresAt > nowMs) out.set(w.tokenAddress, w.poolAddress);
-  }
-  for (const h of recentHistory) {
-    if (nowMs - h.alertedAt > DAY) continue;
-    if (h.verdict !== "RECOMMENDATION" && h.verdict !== "SPECULATIVE PUNT") continue;
+
+  // Most recent REC/PUNT calls fill the remaining slots (newest first).
+  const calls = recentHistory
+    .filter((h) => nowMs - h.alertedAt < DAY && (h.verdict === "RECOMMENDATION" || h.verdict === "SPECULATIVE PUNT"))
+    .sort((a, b) => b.alertedAt - a.alertedAt);
+  for (const h of calls) {
+    if (out.size >= MAX_TRACKED) break;
     if (!out.has(h.tokenAddress)) out.set(h.tokenAddress, h.poolAddress);
   }
-  return [...out].map(([tokenAddress, poolAddress]) => ({ tokenAddress, poolAddress }));
+
+  return [...out].slice(0, MAX_TRACKED).map(([tokenAddress, poolAddress]) => ({ tokenAddress, poolAddress }));
 }
 
 /** Marks in-shortlist tracked tokens and force-fetches the ones discovery dropped. */
@@ -150,7 +155,20 @@ async function buildPreviousCalls(recentHistory: AlertHistoryEntry[]): Promise<P
     });
   }
 
-  return calls.sort((a, b) => a.firstCalledHoursAgo - b.firstCalledHoursAgo).slice(0, 8);
+  // Same scope as tracked-in-batch: the reader wants the last few calls followed, not a
+  // ten-line ledger dump — live-position tokens first, then most recent calls, cap 4.
+  const liveTokens = new Set(
+    ledger.positions
+      .filter((p) => p.status === "PENDING_ENTRY" || p.status === "OPEN" || p.status === "TP1_TAKEN")
+      .map((p) => p.tokenAddress)
+  );
+  return calls
+    .sort((a, b) => {
+      const aLive = liveTokens.has(a.tokenAddress) ? 0 : 1;
+      const bLive = liveTokens.has(b.tokenAddress) ? 0 : 1;
+      return aLive - bLive || a.firstCalledHoursAgo - b.firstCalledHoursAgo;
+    })
+    .slice(0, MAX_TRACKED);
 }
 
 function logStage(stage: string, startedAt: number): void {
@@ -235,12 +253,13 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
     console.log(`Excluded ${withRugCheck.length - safe.length} of ${withRugCheck.length} on RugCheck danger-level risks (see lines above).`);
   }
 
-  const cut = safe.slice(0, config.floors.maxDeepAnalyze);
-  const cutIds = new Set(cut.map((c) => c.tokenAddress));
-  const trackedRescuedAtCut = safe.filter((c) => c.tracked && !cutIds.has(c.tokenAddress));
+  // Tracked tokens take ADDITIONAL slots — the fresh-discovery cut is computed over
+  // non-tracked candidates only, so previous calls can never crowd out new finds.
+  const freshCut = safe.filter((c) => !c.tracked).slice(0, config.floors.maxDeepAnalyze);
+  const trackedInBatch = safe.filter((c) => c.tracked);
 
   t = now();
-  let topCandidates = await addTradeability([...cut, ...trackedRescuedAtCut]);
+  let topCandidates = await addTradeability([...freshCut, ...trackedInBatch]);
   logStage("Tradeability check (Jupiter, final shortlist only)", t);
   logUniverseDistribution(topCandidates);
 
