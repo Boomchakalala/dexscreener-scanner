@@ -65,6 +65,36 @@
       },
       "addedAt": 1783977908667,
       "expiresAt": 1784021108667
+    },
+    {
+      "symbol": "ANSENS",
+      "tokenAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "poolAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "condition": {
+        "mcMin": 1400000,
+        "mcMax": 1600000,
+        "requireRisingVolume": true,
+        "description": "pulls back to ~$1.5M MC, holds a higher low with volume returning on green reclaim"
+      },
+      "addedAt": 1783980281522,
+      "expiresAt": 1784023481522
+    },
+    {
+      "symbol": "BlackBear",
+      "tokenAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "poolAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "condition": {
+        "mcMin": 150000,
+        "mcMax": 200000,
+        "requireRisingVolume": true,
+        "description": "holds ~$150K base, higher low with buys retaking sells on rising volume"
+      },
+      "addedAt": 1783980281522,
+      "expiresAt": 1784023481522
     }
   ]
 }
