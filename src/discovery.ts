@@ -1,6 +1,7 @@
 import { config } from "./config.js";
 import { getHourlyCandles, getMinuteCandles, getNewPools, getPoolsByVolume, getTrendingPools } from "./gecko.js";
 import { getTradeability } from "./jupiter.js";
+import { getJupiterCandidates } from "./jupiterTokens.js";
 import { getRugCheckReport } from "./rugcheck.js";
 import { rankByChartProxy } from "./scoring.js";
 import type { Candidate, GeckoPool } from "./types.js";
@@ -104,7 +105,33 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
     }
   }
 
-  const floorSurvivors = [...seen.values()];
+  // Second source: Jupiter's token API (keyless, entirely separate provider and rate
+  // budget) — its top-traded/trending 1h lists surface hot small caps GeckoTerminal's
+  // three lists miss. Same floors, same dedup; on collisions the higher-volume record wins.
+  if (config.chains.includes("solana")) {
+    const jupiterCandidates = await getJupiterCandidates();
+    rawCount += jupiterCandidates.length;
+    for (const candidate of jupiterCandidates) {
+      if (!passesFloors(candidate)) continue;
+      const existing = seen.get(candidate.poolAddress);
+      if (!existing || candidate.volume24hUsd > existing.volume24hUsd) {
+        seen.set(candidate.poolAddress, candidate);
+      }
+    }
+  }
+
+  // Cross-source dedup by token too: the same token can surface under different pool
+  // addresses from different providers (Jupiter reports the token's first pool, Gecko
+  // whatever pool made its list) — keep whichever record shows more recent trading.
+  const byToken = new Map<string, Candidate>();
+  for (const candidate of seen.values()) {
+    const existing = byToken.get(candidate.tokenAddress);
+    if (!existing || candidate.volumeH1Usd > existing.volumeH1Usd) {
+      byToken.set(candidate.tokenAddress, candidate);
+    }
+  }
+
+  const floorSurvivors = [...byToken.values()];
   const shortlist = rankByChartProxy(floorSurvivors, config.floors.maxShortlist);
 
   return { rawCount, floorSurvivorCount: floorSurvivors.length, shortlist };
@@ -136,15 +163,36 @@ export async function enrichWithRugCheck(candidates: Candidate[]): Promise<Candi
  *  token with a real material risk is physically removed before the LLM ever sees it.
  *  Applied only after chart + quality ranking, per the "RugCheck is the final filter,
  *  reject only for material risks" rule — never used to eliminate candidates earlier. */
+/** Danger-level RugCheck flags Claude is allowed to weigh (with the flag in front of it)
+ *  instead of the token being auto-excluded before any judgment. Chosen from the first
+ *  day of named-exclusion logs, where these killed most of every batch:
+ *  - "Low Liquidity": we already gate liquidity ourselves with a hard floor AND a real
+ *    Jupiter route quote — RugCheck's cruder version shouldn't hold a veto over both.
+ *  - "Large Amount of LP Unlocked": endemic on pump.fun-era pools; a real risk worth
+ *    naming and sizing down for, not an automatic death sentence for the whole class.
+ *  - Ownership-concentration flags: Claude already receives the top-holder table and the
+ *    prompt's pump.fun bonding-curve caveats — it can judge concentration in context.
+ *  Anything NOT on this list (creator rug history, mint/freeze authority, honeypot-style
+ *  flags, and any flag we haven't seen yet) still hard-excludes — unknown stays unsafe. */
+const ADVISORY_DANGER_RISKS = new Set([
+  "Low Liquidity",
+  "Large Amount of LP Unlocked",
+  "High ownership",
+  "Top 10 holders high ownership",
+]);
+
 export function excludeDangerRisks(candidates: Candidate[]): Candidate[] {
   return candidates.filter((c) => {
     const dangers = c.rugCheck?.risks.filter((r) => r.level === "danger") ?? [];
-    if (dangers.length === 0) return true;
-    // Named per-exclusion logging: danger flags kill 40-50% of a typical pump.fun-era
-    // batch, and whether that's real protection or an endemic-flag false-positive tax
-    // can only be judged with the actual risk names on record.
-    console.log(`  [rugcheck] excluding ${c.symbol} (${c.tokenAddress}): ${dangers.map((r) => r.name).join(", ")}`);
-    return false;
+    const material = dangers.filter((r) => !ADVISORY_DANGER_RISKS.has(r.name));
+    if (material.length > 0) {
+      console.log(`  [rugcheck] excluding ${c.symbol} (${c.tokenAddress}): ${material.map((r) => r.name).join(", ")}`);
+      return false;
+    }
+    if (dangers.length > 0) {
+      console.log(`  [rugcheck] keeping ${c.symbol} despite advisory flag(s): ${dangers.map((r) => r.name).join(", ")} — Claude weighs these`);
+    }
+    return true;
   });
 }
 
