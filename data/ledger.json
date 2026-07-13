@@ -98,6 +98,39 @@
       "realizedPnlSol": 0
     },
     {
+      "id": "TEST-4MrsXQzaosYNyFd4wKDvgnC5xRtRqgXRrijFTGj9pump-1783975200000",
+      "symbol": "NORMIE",
+      "tokenAddress": "4MrsXQzaosYNyFd4wKDvgnC5xRtRqgXRrijFTGj9pump",
+      "poolAddress": "8N544CG9j44dkzu4CjSWHxpwekxHQPTR4R17Kw9y5FBk",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/8N544CG9j44dkzu4CjSWHxpwekxHQPTR4R17Kw9y5FBk",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.05,
+      "remainingSizeSol": 0.05,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "TEST POSITION — alert format demo only, not a real signal",
+        "validityWindowMinutes": 60
+      },
+      "entrySnapshot": { "priceUsd": 0.01007, "marketCapUsd": 10121584.13, "liquidityUsd": 262241.21 },
+      "structuralInvalidation": { "price": 0.003, "description": "TEST — far below current price, should never trigger" },
+      "targets": [
+        { "label": "TP1", "price": 0.008, "note": "TEST — already below current price, should trigger on the second check" },
+        { "label": "TP2", "price": 0.02, "note": "TEST — far above current price, should never trigger" }
+      ],
+      "thesis": "TEST POSITION — alert format demo only, not a real signal",
+      "createdAt": 1783975200000,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
       "id": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1783973113756",
       "symbol": "PCAT",
       "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
