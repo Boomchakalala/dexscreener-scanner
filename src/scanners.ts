@@ -9,6 +9,7 @@ import {
   excludeDangerRisks,
 } from "./discovery.js";
 import { getGeckoStats, resetGeckoStats } from "./gecko.js";
+import { openPositionsFromTradePlans } from "./ledger.js";
 import { getMarketOverview } from "./marketOverview.js";
 import { rankByQuality } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts } from "./state.js";
@@ -84,7 +85,12 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 
   t = now();
   const recentHistory = await getRecentAlertHistory("deep");
-  const { report, verdicts, watchConditions } = await analyzeCandidates(topCandidates, recentHistory, funnel, marketOverview);
+  const { report, verdicts, watchConditions, tradePlans } = await analyzeCandidates(
+    topCandidates,
+    recentHistory,
+    funnel,
+    marketOverview
+  );
   logStage("Deep analysis (Claude)", t);
 
   t = now();
@@ -100,6 +106,9 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   // pruning expired entries, which should happen every run, not just ones that add new ones.
   await mergeWatchConditions(watchConditions, topCandidates);
   console.log(`Merged ${watchConditions.length} new watch condition(s) into data/watchlist.json.`);
+
+  await openPositionsFromTradePlans(tradePlans, topCandidates);
+  console.log(`Opened ${tradePlans.length} new PENDING_ENTRY position(s) (subject to sizing/dedup rules) in data/ledger.json.`);
 
   logStage("TOTAL", runStart);
 }

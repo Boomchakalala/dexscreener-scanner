@@ -8,10 +8,12 @@
     "start:flash": "node dist/flash.js",
     "start:listen": "node dist/listen.js",
     "start:watchlist-check": "node dist/watchlistCheck.js",
+    "start:ledger-check": "node dist/ledgerCheck.js",
     "dev": "tsx src/main.ts",
     "dev:flash": "tsx src/flash.ts",
     "dev:listen": "tsx src/listen.ts",
     "dev:watchlist-check": "tsx src/watchlistCheck.ts",
+    "dev:ledger-check": "tsx src/ledgerCheck.ts",
     "build": "tsc"
   },
   "keywords": [],

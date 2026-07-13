@@ -1,10 +1,8 @@
-name: Deep scan
+name: Ledger check
 
 on:
-  # No schedule: here — GitHub Actions' schedule: event proved unreliable even at a
-  # nominal 4h cadence, jittering to 3.5-4.5h in practice. The real 4h cadence is now
-  # driven by a Cloudflare Cron Trigger on telegram-scan-webhook, which calls
-  # workflow_dispatch directly. workflow_dispatch kept here for manual/testing use.
+  # workflow_dispatch only — fired every few minutes by the same Cloudflare Cron Trigger
+  # that fires watchlist-check.yml, on telegram-scan-webhook.
   workflow_dispatch: {}
 
 permissions:
@@ -15,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  scan:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,24 +26,24 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - run: node dist/main.js
+      - run: node dist/ledgerCheck.js
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      - name: Commit updated alert history, watchlist, and ledger
+      - name: Commit updated ledger
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/state.json data/watchlist.json data/ledger.json
+          git add data/ledger.json
           if git diff --cached --quiet; then
-            echo "No state changes to commit."
+            echo "No ledger changes to commit."
             exit 0
           fi
-          git commit -m "chore: update alert state + watchlist + ledger (deep scan) [skip ci]"
+          git commit -m "chore: update paper trading ledger (ledger check) [skip ci]"
           if ! git pull --rebase; then
-            echo "::warning::Rebase conflict on state.json (concurrent run) - skipping this run's state update."
+            echo "::warning::Rebase conflict on ledger.json (concurrent run) - skipping this run's state update."
             git rebase --abort
             exit 0
           fi

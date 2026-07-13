@@ -4,6 +4,7 @@ export interface GeckoPoolAttributes {
   pool_created_at: string | null;
   fdv_usd: string | null;
   market_cap_usd: string | null;
+  base_token_price_usd: string | null;
   price_change_percentage: Record<string, string>;
   transactions: Record<string, { buys: number; sells: number; buyers: number; sellers: number }>;
   volume_usd: Record<string, string>;

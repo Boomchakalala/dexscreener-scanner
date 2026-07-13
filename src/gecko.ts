@@ -144,10 +144,12 @@ export async function getMinuteCandles(
 }
 
 export interface PoolStats {
+  priceUsd: number;
   marketCapUsd: number;
   liquidityUsd: number;
   volumeH1Usd: number;
   volumeH6Usd: number;
+  txnsH1: { buys: number; sells: number; buyers: number; sellers: number };
 }
 
 /** Single-pool lookup for the watchlist checker — a handful of specific pools every
@@ -160,14 +162,17 @@ export async function getPoolStats(network: string, poolAddress: string): Promis
   try {
     const result = await get<{ data: { attributes: GeckoPoolAttributes } }>(`/networks/${network}/pools/${poolAddress}`);
     const attrs = result.data.attributes;
+    const priceUsd = Number(attrs.base_token_price_usd ?? 0);
     const marketCapUsd = Number(attrs.market_cap_usd ?? attrs.fdv_usd ?? 0);
     const liquidityUsd = Number(attrs.reserve_in_usd ?? 0);
-    if (!marketCapUsd || !liquidityUsd) return null;
+    if (!priceUsd || !marketCapUsd || !liquidityUsd) return null;
     return {
+      priceUsd,
       marketCapUsd,
       liquidityUsd,
       volumeH1Usd: Number(attrs.volume_usd.h1 ?? 0),
       volumeH6Usd: Number(attrs.volume_usd.h6 ?? 0),
+      txnsH1: attrs.transactions.h1 ?? { buys: 0, sells: 0, buyers: 0, sellers: 0 },
     };
   } catch (err) {
     console.warn(`  [gecko] pool stats fetch failed, skipping: ${poolAddress} -> ${(err as Error).message}`);

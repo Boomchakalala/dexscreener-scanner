@@ -93,10 +93,28 @@ export interface WatchCondition {
   validUntilHours: number;
 }
 
+export interface TradePlan {
+  symbol: string;
+  tokenAddress: string;
+  poolAddress: string;
+  tier: "RECOMMENDATION" | "SPECULATIVE PUNT" | "WATCH";
+  entrySnapshot: { priceUsd: number; marketCapUsd: number; liquidityUsd: number };
+  entryCondition: {
+    type: "IMMEDIATE" | "PULLBACK" | "BREAKOUT" | "RECLAIM";
+    triggerPrice: number | null;
+    description: string;
+    validityWindowMinutes: number;
+  };
+  structuralInvalidation: { price: number; description: string };
+  targets: { label: "TP1" | "TP2"; price: number; note: string }[];
+  thesis: string;
+}
+
 export interface AnalysisResult {
   report: string;
   verdicts: { symbol: string; tokenAddress: string; poolAddress: string; verdict: string }[];
   watchConditions: WatchCondition[];
+  tradePlans: TradePlan[];
 }
 
 async function runAnalysis(
@@ -122,21 +140,31 @@ async function runAnalysis(
 
   const dataMarker = "---DATA---";
   const watchlistMarker = "---WATCHLIST---";
+  const tradePlanMarker = "---TRADEPLAN---";
 
   const dataMarkerIndex = fullText.indexOf(dataMarker);
   if (dataMarkerIndex === -1) {
-    return { report: fullText.trim(), verdicts: [], watchConditions: [] };
+    return { report: fullText.trim(), verdicts: [], watchConditions: [], tradePlans: [] };
   }
 
   const report = fullText.slice(0, dataMarkerIndex).trim();
   const afterData = fullText.slice(dataMarkerIndex + dataMarker.length);
 
-  // Flash's prompt has no ---WATCHLIST--- block at all — only the deep-scan prompt emits
-  // one, so this stays absent (and watchConditions stays []) for flash results.
+  // Flash's prompt has neither block at all — only the deep-scan prompt emits them, so
+  // both stay absent (and their arrays stay []) for flash results.
   const watchlistMarkerIndex = afterData.indexOf(watchlistMarker);
   const dataBlock = (watchlistMarkerIndex === -1 ? afterData : afterData.slice(0, watchlistMarkerIndex)).trim();
-  const watchlistBlock =
-    watchlistMarkerIndex === -1 ? null : afterData.slice(watchlistMarkerIndex + watchlistMarker.length).trim();
+  const afterWatchlist =
+    watchlistMarkerIndex === -1 ? null : afterData.slice(watchlistMarkerIndex + watchlistMarker.length);
+
+  let watchlistBlock: string | null = null;
+  let tradePlanBlock: string | null = null;
+  if (afterWatchlist !== null) {
+    const tradePlanMarkerIndex = afterWatchlist.indexOf(tradePlanMarker);
+    watchlistBlock = (tradePlanMarkerIndex === -1 ? afterWatchlist : afterWatchlist.slice(0, tradePlanMarkerIndex)).trim();
+    tradePlanBlock =
+      tradePlanMarkerIndex === -1 ? null : afterWatchlist.slice(tradePlanMarkerIndex + tradePlanMarker.length).trim();
+  }
 
   let verdicts: AnalysisResult["verdicts"] = [];
   try {
@@ -156,7 +184,17 @@ async function runAnalysis(
     }
   }
 
-  return { report, verdicts, watchConditions };
+  let tradePlans: TradePlan[] = [];
+  if (tradePlanBlock) {
+    try {
+      const parsed = JSON.parse(tradePlanBlock);
+      tradePlans = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      tradePlans = [];
+    }
+  }
+
+  return { report, verdicts, watchConditions, tradePlans };
 }
 
 export function analyzeCandidates(
