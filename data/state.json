@@ -1063,6 +1063,42 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783977908666
+    },
+    {
+      "symbol": "ANSENS",
+      "tokenAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "poolAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
+      "verdict": "SPECULATIVE PUNT",
+      "marketCapUsdAtAlert": 2052534.5295140801,
+      "kind": "deep",
+      "alertedAt": 1783980281521
+    },
+    {
+      "symbol": "BlackBear",
+      "tokenAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "poolAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 167073.89762080615,
+      "kind": "deep",
+      "alertedAt": 1783980281521
+    },
+    {
+      "symbol": "BULLUNC",
+      "tokenAddress": "7WeP1TmMJqhod7NLYWrNQHfUzMzhxegxuF2j7qdapump",
+      "poolAddress": "HCvQRDcdv4VTSYGWL7TRiXpAvBZQrDTunPRqM1zyc52h",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 87386.846,
+      "kind": "deep",
+      "alertedAt": 1783980281521
+    },
+    {
+      "symbol": "Wukong",
+      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "poolAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 141708.98505972078,
+      "kind": "deep",
+      "alertedAt": 1783980281521
     }
   ],
   "lastTelegramUpdateId": 710125054
