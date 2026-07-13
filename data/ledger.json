@@ -146,6 +146,54 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "triggerHits": 0
+    },
+    {
+      "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783977908668",
+      "symbol": "baby",
+      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
+      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.16,
+      "remainingSizeSol": 0.16,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00013,
+        "description": "Hold/reclaim of ~$0.00013 with returning volume, or clean break back above ~$0.00016; do not chase mid-band",
+        "validityWindowMinutes": 45
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00012525,
+        "marketCapUsd": 127191,
+        "liquidityUsd": 27810
+      },
+      "structuralInvalidation": {
+        "price": 0.0001,
+        "description": "Close below ~$0.0001 (~$85K MC) breaks higher-low structure and fails the consolidation"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00018,
+          "note": "first resistance retest"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00022,
+          "note": "prior high retest, needs volume expansion"
+        }
+      ],
+      "thesis": "Only candidate with real candles and a genuine higher-low consolidation with balanced two-sided flow; low conviction due to ~$28K liquidity, so size small and enter on confirmation.",
+      "createdAt": 1783977908668,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
