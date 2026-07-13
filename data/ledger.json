@@ -204,7 +204,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.16,
       "remainingSizeSol": 0.16,
       "entryCondition": {
@@ -333,6 +333,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1783980674484
+    },
+    {
+      "positionId": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump-1783980281523",
+      "symbol": "ANSENS",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1783982777396
     }
   ]
 }
