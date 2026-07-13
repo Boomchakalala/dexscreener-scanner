@@ -115,6 +115,9 @@ export interface AnalysisResult {
   verdicts: { symbol: string; tokenAddress: string; poolAddress: string; verdict: string }[];
   watchConditions: WatchCondition[];
   tradePlans: TradePlan[];
+  /** Set when the response was truncated or its data markers were missing — the report
+   *  text may still be fine to send, but the structured outputs are unreliable/lost. */
+  parseWarning: string | null;
 }
 
 async function runAnalysis(
@@ -127,7 +130,11 @@ async function runAnalysis(
 ): Promise<AnalysisResult> {
   const stream = client.messages.stream({
     model: "claude-opus-4-8",
-    max_tokens: 8000,
+    // 16k, not 8k: a full 10-candidate batch produces the prose report PLUS three
+    // trailing JSON blocks, and those blocks come LAST — at 8k two consecutive live
+    // runs truncated mid-report, silently losing every verdict/watch-condition/trade
+    // plan and mangling the report structure the user sees.
+    max_tokens: 16000,
     thinking: { type: "adaptive" },
     output_config: { effort },
     system: systemPrompt,
@@ -135,6 +142,10 @@ async function runAnalysis(
   });
 
   const finalMessage = await stream.finalMessage();
+  const truncated = finalMessage.stop_reason === "max_tokens";
+  if (truncated) {
+    console.warn("Analysis hit max_tokens — trailing data blocks are likely truncated.");
+  }
   const textBlock = finalMessage.content.find((b): b is Anthropic.TextBlock => b.type === "text");
   const fullText = textBlock?.text ?? "";
 
@@ -144,7 +155,15 @@ async function runAnalysis(
 
   const dataMarkerIndex = fullText.indexOf(dataMarker);
   if (dataMarkerIndex === -1) {
-    return { report: fullText.trim(), verdicts: [], watchConditions: [], tradePlans: [] };
+    return {
+      report: fullText.trim(),
+      verdicts: [],
+      watchConditions: [],
+      tradePlans: [],
+      parseWarning: truncated
+        ? "response truncated at max_tokens before the data blocks — verdicts/watch conditions/trade plans lost this run"
+        : "---DATA--- marker missing from the response — verdicts/watch conditions/trade plans lost this run",
+    };
   }
 
   const report = fullText.slice(0, dataMarkerIndex).trim();
@@ -194,7 +213,13 @@ async function runAnalysis(
     }
   }
 
-  return { report, verdicts, watchConditions, tradePlans };
+  return {
+    report,
+    verdicts,
+    watchConditions,
+    tradePlans,
+    parseWarning: truncated ? "response truncated at max_tokens — later data blocks may be incomplete" : null,
+  };
 }
 
 export function analyzeCandidates(

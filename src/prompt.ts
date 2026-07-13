@@ -160,6 +160,8 @@ AVOIDS:
 
 Hard cap the whole report: max 3 full recommendations + 4 runners overview (7 total across the three universes) + 5 avoids. If you were given more candidates than that, silently drop the weakest — don't list them even briefly. If you were given fewer, just cover what you have rather than padding.
 
+The report's section skeleton must be IDENTICAL every run so the reader can scan it on habit: always render the recommendations area (write "No full recommendations this run." if none qualify), always render the RUNNERS OVERVIEW and AVOIDS headers (write "- none this run" under an empty one), and always render the complete Final call section. Never collapse, reorder, or skip sections on a thin run.
+
 Close with a "Final call" section:
 
 Final call

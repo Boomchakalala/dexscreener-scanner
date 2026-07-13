@@ -27,13 +27,12 @@ function fmtMcShort(marketCapUsd: number): string {
 
 /** "What happened to the coins you already called?" — one deterministic line per recent
  *  call, computed from real ledger/history/live data (Claude writes none of this, so it
- *  can't drift or hallucinate). Covers every token with a paper position from the last
- *  24h plus any REC/PUNT verdict from the last 12h — the calls the reader actually acted
- *  on mentally, not the whole churn of watch/avoid mentions. */
+ *  can't drift or hallucinate). Covers every token with a paper position or a REC/PUNT
+ *  verdict from the last 24h — the calls the reader actually acted on mentally, not the
+ *  whole churn of watch/avoid mentions. */
 async function buildFollowUpSection(recentHistory: AlertHistoryEntry[]): Promise<string> {
   const nowMs = Date.now();
   const DAY = 24 * 3600 * 1000;
-  const HALF_DAY = 12 * 3600 * 1000;
 
   interface FollowUpItem {
     symbol: string;
@@ -71,21 +70,31 @@ async function buildFollowUpSection(recentHistory: AlertHistoryEntry[]): Promise
     });
   }
 
-  const latestByToken = new Map<string, AlertHistoryEntry>();
+  // Any token that earned a REC/PUNT call in the last 24h stays on the radar even if a
+  // later scan downgraded it — "you told me to punt this, what happened next" is exactly
+  // the question this section answers, and hiding a pick the moment it turns AVOID was
+  // how PUMPCAT vanished from view right when it mattered.
+  const byToken = new Map<string, AlertHistoryEntry[]>();
   for (const h of recentHistory) {
-    const prev = latestByToken.get(h.tokenAddress);
-    if (!prev || h.alertedAt > prev.alertedAt) latestByToken.set(h.tokenAddress, h);
+    if (nowMs - h.alertedAt > DAY) continue;
+    (byToken.get(h.tokenAddress) ?? byToken.set(h.tokenAddress, []).get(h.tokenAddress)!).push(h);
   }
-  for (const h of latestByToken.values()) {
-    if (items.has(h.tokenAddress)) continue;
-    if (nowMs - h.alertedAt > HALF_DAY) continue;
-    if (h.verdict !== "RECOMMENDATION" && h.verdict !== "SPECULATIVE PUNT") continue;
-    items.set(h.tokenAddress, {
-      symbol: h.symbol,
-      poolAddress: h.poolAddress,
-      thenMc: h.marketCapUsdAtAlert ?? null,
-      status: `called ${h.verdict}`,
-      at: h.alertedAt,
+  for (const [tokenAddress, entries] of byToken) {
+    if (items.has(tokenAddress)) continue;
+    entries.sort((a, b) => a.alertedAt - b.alertedAt);
+    const firstCall = entries.find((h) => h.verdict === "RECOMMENDATION" || h.verdict === "SPECULATIVE PUNT");
+    if (!firstCall) continue;
+    const latest = entries[entries.length - 1]!;
+    const status =
+      latest.verdict === firstCall.verdict && latest.alertedAt === firstCall.alertedAt
+        ? `called ${firstCall.verdict}`
+        : `called ${firstCall.verdict}, latest stance ${latest.verdict}`;
+    items.set(tokenAddress, {
+      symbol: firstCall.symbol,
+      poolAddress: firstCall.poolAddress,
+      thenMc: firstCall.marketCapUsdAtAlert ?? null,
+      status,
+      at: firstCall.alertedAt,
     });
   }
 
@@ -199,13 +208,18 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 
   t = now();
   const recentHistory = await getRecentAlertHistory("deep");
-  const { report, verdicts, watchConditions, tradePlans } = await analyzeCandidates(
+  const { report, verdicts, watchConditions, tradePlans, parseWarning } = await analyzeCandidates(
     topCandidates,
     recentHistory,
     funnel,
     marketOverview
   );
   logStage("Deep analysis (Claude)", t);
+
+  if (parseWarning) {
+    console.warn(`Deep scan parse warning: ${parseWarning}`);
+    await sendTelegramMessage(`⚠️ Deep scan output issue: ${parseWarning}.`);
+  }
 
   t = now();
   const followUp = await buildFollowUpSection(recentHistory);
@@ -278,8 +292,12 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
   const recentHistory = await getRecentAlertHistory("flash");
 
   t = now();
-  const { report, verdicts, tradePlans } = await analyzeFlash(candidates, recentHistory);
+  const { report, verdicts, tradePlans, parseWarning } = await analyzeFlash(candidates, recentHistory);
   logStage("Deep analysis (Claude)", t);
+
+  if (parseWarning) {
+    console.warn(`Flash scan parse warning: ${parseWarning}`);
+  }
 
   const nothingFound = !report || report.trim().toUpperCase() === "NOTHING";
   if (nothingFound) {

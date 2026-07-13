@@ -55,6 +55,11 @@ function toCandidate(network: string, pool: GeckoPool): Candidate | null {
 function passesFloors(candidate: Candidate): boolean {
   const { floors } = config;
   return (
+    // pump.fun-only: their mints carry a vanity "pump" address suffix that survives the
+    // migration to pumpswap/Raydium, making this a reliable launchpad gate. Non-pump.fun
+    // contracts are where the repeat garbage came from (W26-style copycats on random
+    // launch infra) — hard-gated here so they never reach any later stage.
+    (!config.pumpFunOnly || candidate.tokenAddress.endsWith("pump")) &&
     candidate.marketCapUsd >= floors.minMarketCapUsd &&
     candidate.marketCapUsd <= floors.maxMarketCapUsd &&
     candidate.liquidityUsd >= floors.minLiquidityUsd &&

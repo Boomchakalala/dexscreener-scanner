@@ -16,6 +16,10 @@ export const config = {
   telegramChatId: required("TELEGRAM_CHAT_ID"),
   anthropicApiKey: required("ANTHROPIC_API_KEY"),
   chains: (process.env.CHAINS ?? "solana").split(",").map((c) => c.trim()).filter(Boolean),
+  // pump.fun mints carry a vanity "pump" address suffix (kept through the pumpswap/Raydium
+  // migration), so this is a reliable launchpad filter. Non-pump.fun contracts proved to be
+  // where the garbage came from (W26 etc.) — "only focus on pump.fun tokens, rest is shit".
+  pumpFunOnly: (process.env.PUMPFUN_ONLY ?? "true") !== "false",
   floors: {
     // Hard code-level bounds — Claude never even sees anything outside these. Span the
     // full three-universe window (Fresh 0-2h/$30K-$300K, Survivors 2-8h/$100K-$1M,
