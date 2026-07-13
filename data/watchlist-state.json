@@ -12,11 +12,15 @@
     "fired": true
   },
   "4CXB7fET9wYsRRhxBYPFjNDA3jijBHVoL7EizanYpump": {
-    "priorVolumeH1Usd": 796.8852189934,
+    "priorVolumeH1Usd": 861.3063718802,
     "fired": false
   },
   "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump": {
     "priorVolumeH1Usd": 17533.0031748656,
+    "fired": false
+  },
+  "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump": {
+    "priorVolumeH1Usd": 56759.7387703871,
     "fired": false
   }
 }
