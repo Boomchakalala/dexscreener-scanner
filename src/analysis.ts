@@ -67,7 +67,10 @@ function buildUserMessage(
     mcAtAlertUsd: h.marketCapUsdAtAlert !== undefined ? Math.round(h.marketCapUsdAtAlert) : null,
   }));
 
-  const parts: string[] = [];
+  const parts: string[] = [
+    // Claude has no clock — without this the report header gets a confidently invented time.
+    `Current UTC time: ${new Date().toISOString().slice(11, 16)} UTC`,
+  ];
 
   if (context) {
     parts.push(
