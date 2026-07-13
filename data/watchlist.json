@@ -35,23 +35,6 @@
       "priorVolumeH1Usd": 64912.266273522
     },
     {
-      "symbol": "baby",
-      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
-      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
-      "condition": {
-        "mcMin": null,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "clean break and hold above 0.00019 with rising volume"
-      },
-      "addedAt": 1783967736296,
-      "expiresAt": 1784010936296,
-      "fired": false,
-      "priorVolumeH1Usd": 47715.2649614564
-    },
-    {
       "symbol": "BULLARC",
       "tokenAddress": "4CXB7fET9wYsRRhxBYPFjNDA3jijBHVoL7EizanYpump",
       "poolAddress": "GTCQYLYfPkWjZWbg6SnCswK3iSayHBL2bDiCeV9UHDEc",
@@ -67,6 +50,21 @@
       "expiresAt": 1783996536296,
       "fired": false,
       "priorVolumeH1Usd": 2871.9599343109
+    },
+    {
+      "symbol": "baby",
+      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
+      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
+      "condition": {
+        "mcMin": 100000,
+        "mcMax": 165000,
+        "requireRisingVolume": true,
+        "description": "reclaims $0.00013-$0.00016 base with returning volume"
+      },
+      "addedAt": 1783977908667,
+      "expiresAt": 1784021108667
     }
   ]
 }
