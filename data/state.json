@@ -991,6 +991,46 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783972515584
+    },
+    {
+      "symbol": "baby",
+      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
+      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
+      "verdict": "SPECULATIVE PUNT",
+      "kind": "deep",
+      "alertedAt": 1783973113753
+    },
+    {
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783973113753
+    },
+    {
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783973113753
+    },
+    {
+      "symbol": "Shikoku",
+      "tokenAddress": "2bNi6wZ8uAPdNoGkJZ1cn1FGuvGABBXdtyLjvp2Mpump",
+      "poolAddress": "2rUBkygJ981obKVbMBvxy3TZZW6cwwFWPM1wtVFs5vX3",
+      "verdict": "WATCH",
+      "kind": "deep",
+      "alertedAt": 1783973113753
+    },
+    {
+      "symbol": "Wukong",
+      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
+      "poolAddress": "5uNaabDcmHeNtHJbgRMeRVt1y9M6HRfmKBRFfmkgsjAs",
+      "verdict": "AVOID",
+      "kind": "deep",
+      "alertedAt": 1783973113753
     }
   ],
   "lastTelegramUpdateId": 710125054
