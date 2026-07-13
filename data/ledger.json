@@ -96,6 +96,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1783973113756",
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.24,
+      "remainingSizeSol": 0.24,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.0003,
+        "description": "wait for a consolidation base to hold ~1h then reclaim ~$0.00030 on renewed volume",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000265,
+        "marketCapUsd": 264679,
+        "liquidityUsd": 41408
+      },
+      "structuralInvalidation": {
+        "price": 0.00018,
+        "description": "loss of ~$0.00018 confirms the pump has fully unwound"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00035,
+          "note": "first target"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00045,
+          "note": "only if proper base builds"
+        }
+      ],
+      "thesis": "Only true in-window Universe 2 name with massive activity, but went vertical to +747% then dumped 44% in an hour so needs a confirmed base before entry.",
+      "createdAt": 1783973113756,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": []
