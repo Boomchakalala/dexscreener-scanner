@@ -647,6 +647,14 @@
       "verdict": "AVOID",
       "kind": "deep",
       "alertedAt": 1783898758322
+    },
+    {
+      "symbol": "PUMPCAT",
+      "tokenAddress": "8NpXMLQHtvN8jAaLKkfMw1K28Q31UyB6S58RGioksfEF",
+      "poolAddress": "6RevaqT1qfyeUT2ry8jQC9oE23F55YR1qNeeGYr6t9e7",
+      "verdict": "FLASH ALERT",
+      "kind": "flash",
+      "alertedAt": 1783907886718
     }
   ],
   "lastTelegramUpdateId": 710125053
