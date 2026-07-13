@@ -18,23 +18,6 @@
       "priorVolumeH1Usd": 6243.3617979735
     },
     {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "condition": {
-        "mcMin": 380000,
-        "mcMax": 420000,
-        "requireRisingVolume": true,
-        "description": "pullback to ~$380K-$420K MC with buy volume returning"
-      },
-      "addedAt": 1783967736296,
-      "expiresAt": 1784010936296,
-      "fired": false,
-      "priorVolumeH1Usd": 64912.266273522
-    },
-    {
       "symbol": "BULLARC",
       "tokenAddress": "4CXB7fET9wYsRRhxBYPFjNDA3jijBHVoL7EizanYpump",
       "poolAddress": "GTCQYLYfPkWjZWbg6SnCswK3iSayHBL2bDiCeV9UHDEc",
@@ -97,21 +80,6 @@
       "expiresAt": 1784023481522
     },
     {
-      "symbol": "agentx402",
-      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "condition": {
-        "mcMin": 200000,
-        "mcMax": 300000,
-        "requireRisingVolume": true,
-        "description": "reclaims prior high with h1 volume expanding back above ~$100K"
-      },
-      "addedAt": 1783983631237,
-      "expiresAt": 1784026831237
-    },
-    {
       "symbol": "Wukong",
       "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
       "poolAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
@@ -125,6 +93,51 @@
       },
       "addedAt": 1783983631237,
       "expiresAt": 1784019631237
+    },
+    {
+      "symbol": "LIZARD",
+      "tokenAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
+      "poolAddress": "5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
+      "condition": {
+        "mcMin": 180000,
+        "mcMax": 215000,
+        "requireRisingVolume": true,
+        "description": "holds ~$0.00017 and reclaims ~$0.00021 (MC ~$206K) on rising volume"
+      },
+      "addedAt": 1783984701515,
+      "expiresAt": 1784049501515
+    },
+    {
+      "symbol": "agentx402",
+      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "condition": {
+        "mcMin": 200000,
+        "mcMax": 260000,
+        "requireRisingVolume": true,
+        "description": "holds above ~$200K MC with volume continuing"
+      },
+      "addedAt": 1783984701515,
+      "expiresAt": 1784027901515
+    },
+    {
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "condition": {
+        "mcMin": 300000,
+        "mcMax": 360000,
+        "requireRisingVolume": true,
+        "description": "holds above $300K MC after +23% recovery with rising volume"
+      },
+      "addedAt": 1783984701515,
+      "expiresAt": 1784027901515
     }
   ]
 }
