@@ -1,20 +1,3 @@
 {
-  "entries": [
-    {
-      "symbol": "ANSEM",
-      "tokenAddress": "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
-      "poolAddress": "6e7V9eegCHw997T72MxgwwJipZ6GJyZF8NvjkzT1rvpN",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/6e7V9eegCHw997T72MxgwwJipZ6GJyZF8NvjkzT1rvpN",
-      "condition": {
-        "mcMin": 0,
-        "mcMax": null,
-        "requireRisingVolume": false,
-        "description": "TEST ENTRY — trivially-true condition, end-to-end pipeline verification only"
-      },
-      "addedAt": 1783956724721,
-      "expiresAt": 1783960324721,
-      "fired": false
-    }
-  ]
+  "entries": []
 }
