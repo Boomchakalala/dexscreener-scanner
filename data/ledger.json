@@ -495,7 +495,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.2350911610122698,
       "remainingSizeSol": 0.2350911610122698,
       "entryCondition": {
@@ -848,6 +848,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784018894109
+    },
+    {
+      "positionId": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump-1784002105450",
+      "symbol": "brain",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784031136637
     }
   ]
 }
