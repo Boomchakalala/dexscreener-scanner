@@ -1,6 +1,6 @@
 {
   "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump": {
-    "priorVolumeH1Usd": 17380.6085677897,
+    "priorVolumeH1Usd": 12706.3419431208,
     "fired": false
   },
   "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump": {
@@ -13,6 +13,10 @@
   },
   "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump": {
     "priorVolumeH1Usd": 34121.9780235276,
+    "fired": false
+  },
+  "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH": {
+    "priorVolumeH1Usd": 69236.2884432656,
     "fired": false
   }
 }
