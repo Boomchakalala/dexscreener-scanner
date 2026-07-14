@@ -300,7 +300,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.16,
       "remainingSizeSol": 0.16,
       "entryCondition": {
@@ -392,6 +392,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1783982777396
+    },
+    {
+      "positionId": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump-1783984701516",
+      "symbol": "LIZARD",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1783987622110
     }
   ]
 }
