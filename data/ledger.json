@@ -543,7 +543,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.2350911610122698,
       "remainingSizeSol": 0.2350911610122698,
       "entryCondition": {
@@ -936,6 +936,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784047945707
+    },
+    {
+      "positionId": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump-1784016486245",
+      "symbol": "TrumpCoin",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784052733829
     }
   ]
 }
