@@ -447,7 +447,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.15672744067484654,
       "remainingSizeSol": 0.15672744067484654,
       "entryCondition": {
@@ -626,6 +626,16 @@
       "pnlSol": -0.04090699156441856,
       "reason": "structural invalidation hit: loss of recent swing low ~$0.0002 means the bounce failed",
       "timestamp": 1783998434339
+    },
+    {
+      "positionId": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump-1784002105450",
+      "symbol": "NYX",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784004758073
     }
   ]
 }
