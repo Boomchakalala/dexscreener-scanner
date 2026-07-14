@@ -726,6 +726,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump-1784045268488",
+      "symbol": "CashDog",
+      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
+      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.15672744067484654,
+      "remainingSizeSol": 0.15672744067484654,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.000075,
+        "description": "wait for pullback to hold the $0.00007-0.00008 base (~$95K-$105K MC) with volume elevated, or a clean reclaim of $0.00014 on fresh volume",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000098,
+        "marketCapUsd": 134189,
+        "liquidityUsd": 29663
+      },
+      "structuralInvalidation": {
+        "price": 0.00006,
+        "description": "loss of $0.00006 (~$82K MC) breaks the base and the thesis"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00014,
+          "note": "~$190K MC, recent high area"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00017,
+          "note": "~$233K MC, reclaim high"
+        }
+      ],
+      "thesis": "Ranked #1 of 24 on structure and #1 of 25 on quality with a genuine base-and-reclaim after the launch dump and a broad 907-holder base; thin ~$30K liquidity caps it to a small punt.",
+      "createdAt": 1784045268488,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
