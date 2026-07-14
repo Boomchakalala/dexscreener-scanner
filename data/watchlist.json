@@ -1,66 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "baby",
-      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
-      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
-      "condition": {
-        "mcMin": 100000,
-        "mcMax": 165000,
-        "requireRisingVolume": true,
-        "description": "reclaims $0.00013-$0.00016 base with returning volume"
-      },
-      "addedAt": 1783977908667,
-      "expiresAt": 1784021108667
-    },
-    {
-      "symbol": "ANSENS",
-      "tokenAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
-      "poolAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
-      "condition": {
-        "mcMin": 1400000,
-        "mcMax": 1600000,
-        "requireRisingVolume": true,
-        "description": "pulls back to ~$1.5M MC, holds a higher low with volume returning on green reclaim"
-      },
-      "addedAt": 1783980281522,
-      "expiresAt": 1784023481522
-    },
-    {
-      "symbol": "BlackBear",
-      "tokenAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
-      "poolAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
-      "condition": {
-        "mcMin": 150000,
-        "mcMax": 200000,
-        "requireRisingVolume": true,
-        "description": "holds ~$150K base, higher low with buys retaking sells on rising volume"
-      },
-      "addedAt": 1783980281522,
-      "expiresAt": 1784023481522
-    },
-    {
-      "symbol": "Wukong",
-      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
-      "poolAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
-      "condition": {
-        "mcMin": 170000,
-        "mcMax": 250000,
-        "requireRisingVolume": true,
-        "description": "clean reclaim of prior 6h high on rising volume"
-      },
-      "addedAt": 1783983631237,
-      "expiresAt": 1784019631237
-    },
-    {
       "symbol": "agentx402",
       "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
@@ -136,21 +76,6 @@
       "expiresAt": 1784045305449
     },
     {
-      "symbol": "brain",
-      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "condition": {
-        "mcMin": 600000,
-        "mcMax": 720000,
-        "requireRisingVolume": true,
-        "description": "holds ~$600K or reclaims ~$720K MC with rising volume"
-      },
-      "addedAt": 1784016486243,
-      "expiresAt": 1784102886243
-    },
-    {
       "symbol": "TrumpCoin",
       "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
       "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
@@ -194,6 +119,36 @@
       },
       "addedAt": 1784016486243,
       "expiresAt": 1784059686243
+    },
+    {
+      "symbol": "INK",
+      "tokenAddress": "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD",
+      "poolAddress": "FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
+      "condition": {
+        "mcMin": 195000,
+        "mcMax": 225000,
+        "requireRisingVolume": true,
+        "description": "holds ~$0.00000205 pullback or reclaims $0.00000222 with volume re-expanding, not fading"
+      },
+      "addedAt": 1784028722886,
+      "expiresAt": 1784071922886
+    },
+    {
+      "symbol": "brain",
+      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "condition": {
+        "mcMin": 1050000,
+        "mcMax": 1350000,
+        "requireRisingVolume": true,
+        "description": "pullback holds ~$1.1M and reclaims with volume, not chasing the +57% candle"
+      },
+      "addedAt": 1784028722886,
+      "expiresAt": 1784071922886
     }
   ]
 }
