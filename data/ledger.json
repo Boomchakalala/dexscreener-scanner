@@ -678,6 +678,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump-1784030883948",
+      "symbol": "FELIX",
+      "tokenAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
+      "poolAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.15672744067484654,
+      "remainingSizeSol": 0.15672744067484654,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.00018,
+        "description": "pullback holds above ~$180K MC with buyers stepping back in / a higher low forming",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000234,
+        "marketCapUsd": 234243,
+        "liquidityUsd": 24699
+      },
+      "structuralInvalidation": {
+        "price": 0.00015,
+        "description": "loss of ~$150K MC signals the initial move is fully retracing"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00035,
+          "note": "~$350K"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0005,
+          "note": "~$500K"
+        }
+      ],
+      "thesis": "Early organic mover (organic 71, 1262 holders, 0% price impact) but thin $25K liquidity and up 2044% in 6h — small-size punt on a pullback only.",
+      "createdAt": 1784030883948,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
