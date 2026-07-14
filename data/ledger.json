@@ -735,7 +735,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.15672744067484654,
       "remainingSizeSol": 0.15672744067484654,
       "entryCondition": {
@@ -926,6 +926,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784033498720
+    },
+    {
+      "positionId": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump-1784045268488",
+      "symbol": "CashDog",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784047945707
     }
   ]
 }
