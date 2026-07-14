@@ -687,7 +687,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.15672744067484654,
       "remainingSizeSol": 0.15672744067484654,
       "entryCondition": {
@@ -868,6 +868,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784031452126
+    },
+    {
+      "positionId": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump-1784030883948",
+      "symbol": "FELIX",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784033498720
     }
   ]
 }
