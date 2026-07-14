@@ -591,7 +591,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.15672744067484654,
       "remainingSizeSol": 0.15672744067484654,
       "entryCondition": {
@@ -742,6 +742,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784009252104
+    },
+    {
+      "positionId": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump-1784016486245",
+      "symbol": "NYX",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784018894109
     }
   ]
 }
