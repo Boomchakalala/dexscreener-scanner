@@ -774,6 +774,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump-1784059660182",
+      "symbol": "CashDog",
+      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
+      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.2350911610122698,
+      "remainingSizeSol": 0.2350911610122698,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00013,
+        "description": "Reclaim of ~$0.00013 (~$140K MC) on rising volume, or a higher low holding ~$0.00008 with buyers returning",
+        "validityWindowMinutes": 480
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000963,
+        "marketCapUsd": 104674,
+        "liquidityUsd": 27908
+      },
+      "structuralInvalidation": {
+        "price": 0.00007,
+        "description": "Close below $0.00007 breaks the higher-low structure — second leg has failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00019,
+          "note": "first resistance from prior second-leg move"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00023,
+          "note": "prior swing high; only if volume expands into a fresh leg"
+        }
+      ],
+      "thesis": "Best chart structure in the batch (#3 of 25) with a genuine higher-low second leg and broad 6h participation, but mid-pullback on thin ~$28K liquidity and null RugCheck — wait for the reclaim, size tiny.",
+      "createdAt": 1784059660182,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
