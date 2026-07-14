@@ -1522,6 +1522,123 @@
       "marketCapUsdAtAlert": 247022.5001529857,
       "kind": "deep",
       "alertedAt": 1784002105447
+    },
+    {
+      "symbol": "brain",
+      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "verdict": "RECOMMENDATION",
+      "marketCapUsdAtAlert": 672104.7974353991,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "TrumpCoin",
+      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 2588580.260195836,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "NYX",
+      "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "verdict": "SPECULATIVE PUNT",
+      "marketCapUsdAtAlert": 553102.436466753,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 377831.2990095978,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "trumpbrain",
+      "tokenAddress": "626cSLqBmBPbk7bTxQmiLqwHH51uKu6SKLjHGw9ppump",
+      "poolAddress": "626cSLqBmBPbk7bTxQmiLqwHH51uKu6SKLjHGw9ppump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 173029.44853103618,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "BULLRUN",
+      "tokenAddress": "CWaTh9UMcF194orWQ3eR6eb1NmEJTu3jWzT9vYdnpump",
+      "poolAddress": "BkugVGeXcavUFuWLYmYTThkjVwA3XGKeELtJqnjaXpA2",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 318406.71339176246,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "Cardtopia",
+      "tokenAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
+      "poolAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 63754.48301913627,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "agentx402",
+      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 169829.79745210425,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "ANSEMINU",
+      "tokenAddress": "5L93JFh5xcof5rbrkrQrsj9L9TWS3faJWmzNXvaGpump",
+      "poolAddress": "5L93JFh5xcof5rbrkrQrsj9L9TWS3faJWmzNXvaGpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 54342.691436736844,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "MelaniaCoin",
+      "tokenAddress": "5JYoWf9rqFmtCtx597s1rRipNRHyWjo5wbtbo1QCpump",
+      "poolAddress": "5JYoWf9rqFmtCtx597s1rRipNRHyWjo5wbtbo1QCpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 126321.31834957276,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "TrumpCoin",
+      "tokenAddress": "2jh4gtRWDrnXPxu9tP3DoR3vVyWSVbTncCBNLGespump",
+      "poolAddress": "2jh4gtRWDrnXPxu9tP3DoR3vVyWSVbTncCBNLGespump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 99435.41688089905,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "Hoppy",
+      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
+      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 130752.246,
+      "kind": "deep",
+      "alertedAt": 1784016486242
+    },
+    {
+      "symbol": "CashDog",
+      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
+      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 68898.46167,
+      "kind": "deep",
+      "alertedAt": 1784016486242
     }
   ],
   "lastTelegramUpdateId": 710125054
