@@ -340,6 +340,102 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "triggerHits": 0
+    },
+    {
+      "id": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump-1783987677549",
+      "symbol": "agentx402",
+      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.16,
+      "remainingSizeSol": 0.16,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.00021,
+        "description": "pullback toward ~$210K MC on fading sell volume, not chasing current candle",
+        "validityWindowMinutes": 45
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000236,
+        "marketCapUsd": 236274,
+        "liquidityUsd": 20295
+      },
+      "structuralInvalidation": {
+        "price": 0.00018,
+        "description": "sustained loss of ~$180K MC breaks the uptrend structure"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0003,
+          "note": "$300K MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0004,
+          "note": "$400K MC if liquidity deepens"
+        }
+      ],
+      "thesis": "Best chart structure in the batch (#1 of 18) with a steady multi-hour climb and clean RugCheck; thin ~$20K liquidity caps size to a small punt.",
+      "createdAt": 1783987677549,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump-1783987677549",
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.16,
+      "remainingSizeSol": 0.16,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.00029,
+        "description": "buy pullback holding ~$0.00029-0.00030 or reclaim of ~$0.00040 on rising volume",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00032732,
+        "marketCapUsd": 347737,
+        "liquidityUsd": 52928
+      },
+      "structuralInvalidation": {
+        "price": 0.0002,
+        "description": "loss of recent swing low ~$0.0002 means the bounce failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00046,
+          "note": "first resistance"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00056,
+          "note": "retest of prior peak"
+        }
+      ],
+      "thesis": "Deepest holder base and volume in the batch bouncing +34.9% off support; choppy structure means wait for the pullback rather than chasing the spike.",
+      "createdAt": 1783987677549,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
