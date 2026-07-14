@@ -1,36 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "NYX",
-      "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "condition": {
-        "mcMin": 480000,
-        "mcMax": 580000,
-        "requireRisingVolume": true,
-        "description": "holds ~$480K or reclaims ~$580K MC with buyers still stepping in"
-      },
-      "addedAt": 1784016486243,
-      "expiresAt": 1784059686243
-    },
-    {
-      "symbol": "PCAT",
-      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
-      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
-      "condition": {
-        "mcMin": 350000,
-        "mcMax": 450000,
-        "requireRisingVolume": true,
-        "description": "holds higher low and reclaims prior range on rising volume with liquidity improving"
-      },
-      "addedAt": 1784016486243,
-      "expiresAt": 1784059686243
-    },
-    {
       "symbol": "INK",
       "tokenAddress": "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD",
       "poolAddress": "FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
