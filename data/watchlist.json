@@ -1,36 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "agentx402",
-      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "condition": {
-        "mcMin": 200000,
-        "mcMax": 220000,
-        "requireRisingVolume": true,
-        "description": "pullback to ~$210K MC holding with buy volume returning"
-      },
-      "addedAt": 1783987677548,
-      "expiresAt": 1784052477548
-    },
-    {
-      "symbol": "BLACKINU",
-      "tokenAddress": "48fHqiTPfQQeic1b2YvQuxaCRLckeDDKv33JSrikpump",
-      "poolAddress": "48fHqiTPfQQeic1b2YvQuxaCRLckeDDKv33JSrikpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/48fHqiTPfQQeic1b2YvQuxaCRLckeDDKv33JSrikpump",
-      "condition": {
-        "mcMin": 600000,
-        "mcMax": 750000,
-        "requireRisingVolume": true,
-        "description": "establishes a higher low and breaks consolidation with volume"
-      },
-      "addedAt": 1784002105449,
-      "expiresAt": 1784045305449
-    },
-    {
       "symbol": "NYX",
       "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
       "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
@@ -106,21 +76,6 @@
       "expiresAt": 1784095683946
     },
     {
-      "symbol": "CashDog",
-      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
-      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
-      "condition": {
-        "mcMin": 95000,
-        "mcMax": 105000,
-        "requireRisingVolume": true,
-        "description": "pullback holds $95K-$105K base with volume elevated, or reclaim of ~$190K on fresh volume"
-      },
-      "addedAt": 1784045268486,
-      "expiresAt": 1784088468486
-    },
-    {
       "symbol": "DYFN",
       "tokenAddress": "6dSpj25Mn2NLnJsw5ED8TKFFdAbRWULhi8Fivzispump",
       "poolAddress": "AYZk9Ws4QfdgFr9Bs1FN1Jt76VMQaMGjkMrthzQzgLby",
@@ -149,6 +104,21 @@
       },
       "addedAt": 1784045268486,
       "expiresAt": 1784088468486
+    },
+    {
+      "symbol": "CashDog",
+      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
+      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "condition": {
+        "mcMin": 135000,
+        "mcMax": 210000,
+        "requireRisingVolume": true,
+        "description": "reclaims ~$0.00013 (~$140K MC) on rising volume, or holds a higher low above $0.00008"
+      },
+      "addedAt": 1784059660181,
+      "expiresAt": 1784102860181
     }
   ]
 }
