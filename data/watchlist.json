@@ -16,36 +16,6 @@
       "expiresAt": 1784052477548
     },
     {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "condition": {
-        "mcMin": null,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "holds ~$0.00029-0.00030 or reclaims ~$0.00040 on rising volume"
-      },
-      "addedAt": 1783987677548,
-      "expiresAt": 1784030877548
-    },
-    {
-      "symbol": "LIZARD",
-      "tokenAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
-      "poolAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
-      "condition": {
-        "mcMin": 170000,
-        "mcMax": 185000,
-        "requireRisingVolume": true,
-        "description": "pullback to ~$180K MC holding with buy volume returning"
-      },
-      "addedAt": 1783987677548,
-      "expiresAt": 1784030877548
-    },
-    {
       "symbol": "Cardtopia",
       "tokenAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
       "poolAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
@@ -74,21 +44,6 @@
       },
       "addedAt": 1784002105449,
       "expiresAt": 1784045305449
-    },
-    {
-      "symbol": "TrumpCoin",
-      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "condition": {
-        "mcMin": 2200000,
-        "mcMax": 2600000,
-        "requireRisingVolume": true,
-        "description": "builds a base and reclaims ~$2.2M MC on returning volume"
-      },
-      "addedAt": 1784016486243,
-      "expiresAt": 1784059686243
     },
     {
       "symbol": "NYX",
@@ -142,13 +97,43 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
       "condition": {
-        "mcMin": 1050000,
-        "mcMax": 1350000,
+        "mcMin": 850000,
+        "mcMax": 1050000,
         "requireRisingVolume": true,
-        "description": "pullback holds ~$1.1M and reclaims with volume, not chasing the +57% candle"
+        "description": "pullback holding ~$850K or reclaim/hold above $1.05M with buy volume returning"
       },
-      "addedAt": 1784028722886,
-      "expiresAt": 1784071922886
+      "addedAt": 1784030883946,
+      "expiresAt": 1784117283946
+    },
+    {
+      "symbol": "FELIX",
+      "tokenAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
+      "poolAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
+      "condition": {
+        "mcMin": 180000,
+        "mcMax": 260000,
+        "requireRisingVolume": true,
+        "description": "pullback holds above ~$180K with buyers stepping back in"
+      },
+      "addedAt": 1784030883946,
+      "expiresAt": 1784074083946
+    },
+    {
+      "symbol": "TrumpCoin",
+      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "condition": {
+        "mcMin": 2000000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "reclaim and hold above ~$2M with volume"
+      },
+      "addedAt": 1784030883946,
+      "expiresAt": 1784095683946
     }
   ]
 }
