@@ -349,7 +349,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.16,
       "remainingSizeSol": 0.16,
       "entryCondition": {
@@ -437,7 +437,7 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "highWaterPriceUsd": 0.0002669822445885677,
-      "lowWaterPriceUsd": 0.0002568737650835727
+      "lowWaterPriceUsd": 0.00025302764027137066
     }
   ],
   "tradeLog": [
@@ -510,6 +510,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.00% price impact",
       "timestamp": 1783989469857
+    },
+    {
+      "positionId": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump-1783987677549",
+      "symbol": "agentx402",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1783990633749
     }
   ]
 }
