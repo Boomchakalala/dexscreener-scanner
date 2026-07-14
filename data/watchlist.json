@@ -16,21 +16,6 @@
       "expiresAt": 1784052477548
     },
     {
-      "symbol": "Cardtopia",
-      "tokenAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "poolAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "condition": {
-        "mcMin": 160000,
-        "mcMax": 220000,
-        "requireRisingVolume": true,
-        "description": "pullback holds ~$160-180K MC and resumes with volume rather than chasing vertical"
-      },
-      "addedAt": 1784002105449,
-      "expiresAt": 1784038105449
-    },
-    {
       "symbol": "BLACKINU",
       "tokenAddress": "48fHqiTPfQQeic1b2YvQuxaCRLckeDDKv33JSrikpump",
       "poolAddress": "48fHqiTPfQQeic1b2YvQuxaCRLckeDDKv33JSrikpump",
@@ -91,21 +76,6 @@
       "expiresAt": 1784071922886
     },
     {
-      "symbol": "brain",
-      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "condition": {
-        "mcMin": 850000,
-        "mcMax": 1050000,
-        "requireRisingVolume": true,
-        "description": "pullback holding ~$850K or reclaim/hold above $1.05M with buy volume returning"
-      },
-      "addedAt": 1784030883946,
-      "expiresAt": 1784117283946
-    },
-    {
       "symbol": "FELIX",
       "tokenAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
       "poolAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
@@ -134,6 +104,51 @@
       },
       "addedAt": 1784030883946,
       "expiresAt": 1784095683946
+    },
+    {
+      "symbol": "CashDog",
+      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
+      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "condition": {
+        "mcMin": 95000,
+        "mcMax": 105000,
+        "requireRisingVolume": true,
+        "description": "pullback holds $95K-$105K base with volume elevated, or reclaim of ~$190K on fresh volume"
+      },
+      "addedAt": 1784045268486,
+      "expiresAt": 1784088468486
+    },
+    {
+      "symbol": "DYFN",
+      "tokenAddress": "6dSpj25Mn2NLnJsw5ED8TKFFdAbRWULhi8Fivzispump",
+      "poolAddress": "AYZk9Ws4QfdgFr9Bs1FN1Jt76VMQaMGjkMrthzQzgLby",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/AYZk9Ws4QfdgFr9Bs1FN1Jt76VMQaMGjkMrthzQzgLby",
+      "condition": {
+        "mcMin": null,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "needs real liquidity growth and rising volume before actionable"
+      },
+      "addedAt": 1784045268486,
+      "expiresAt": 1784088468486
+    },
+    {
+      "symbol": "brain",
+      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "condition": {
+        "mcMin": 820000,
+        "mcMax": 1000000,
+        "requireRisingVolume": true,
+        "description": "reclaim with higher low above ~$900K on returning volume"
+      },
+      "addedAt": 1784045268486,
+      "expiresAt": 1784088468486
     }
   ]
 }
