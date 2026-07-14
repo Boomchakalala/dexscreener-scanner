@@ -534,6 +534,102 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump-1784016486245",
+      "symbol": "TrumpCoin",
+      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.2350911610122698,
+      "remainingSizeSol": 0.2350911610122698,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.0022,
+        "description": "Wait for a consolidation base and a hold above ~$2.2M MC with volume returning on green — no base, no entry",
+        "validityWindowMinutes": 600
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00259,
+        "marketCapUsd": 2588580,
+        "liquidityUsd": 351758
+      },
+      "structuralInvalidation": {
+        "price": 0.0015,
+        "description": "Break back under ~$1.5M MC signals the vertical is fully unwinding"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0035,
+          "note": "$3.5M on a clean base reclaim"
+        },
+        {
+          "label": "TP2",
+          "price": 0.005,
+          "note": "$5M if Trump-narrative flow persists"
+        }
+      ],
+      "thesis": "Highest market quality of the run (marketQualityRank #1, 8,355 holders, $352K liquidity) but vertical to $2.59M with no base — stalk for consolidation rather than chasing.",
+      "createdAt": 1784016486245,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump-1784016486245",
+      "symbol": "NYX",
+      "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.15672744067484654,
+      "remainingSizeSol": 0.15672744067484654,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.00048,
+        "description": "Small punt on a pullback holding ~$480K MC with buyers stepping in, or add on a reclaim of ~$580K with volume",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000553,
+        "marketCapUsd": 553102,
+        "liquidityUsd": 28804
+      },
+      "structuralInvalidation": {
+        "price": 0.0004,
+        "description": "Break of ~$400K MC on rising sell volume means the second leg is done"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00075,
+          "note": "$750K MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.001,
+          "note": "$1M if liquidity thickens"
+        }
+      ],
+      "thesis": "Previously-called survivor up ~66% since the call with firmly buy-heavy flow and a 5,405-holder base, but ~$29K liquidity vs $553K MC forces small size.",
+      "createdAt": 1784016486245,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
