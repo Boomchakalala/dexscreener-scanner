@@ -1,11 +1,7 @@
 {
   "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump": {
-    "priorVolumeH1Usd": 13723.3734183814,
+    "priorVolumeH1Usd": 12308.5357816579,
     "fired": false
-  },
-  "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump": {
-    "priorVolumeH1Usd": 30287.9635572961,
-    "fired": true
   },
   "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump": {
     "priorVolumeH1Usd": 17533.0031748656,
@@ -16,7 +12,11 @@
     "fired": false
   },
   "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH": {
-    "priorVolumeH1Usd": 31597.6446048942,
+    "priorVolumeH1Usd": 33272.5759426067,
+    "fired": false
+  },
+  "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD": {
+    "priorVolumeH1Usd": 377218.834050789,
     "fired": false
   }
 }
