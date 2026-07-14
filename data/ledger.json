@@ -630,6 +630,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD-1784028722888",
+      "symbol": "INK",
+      "tokenAddress": "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD",
+      "poolAddress": "FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.15672744067484654,
+      "remainingSizeSol": 0.15672744067484654,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.00000205,
+        "description": "Wait for a pullback into ~$0.00000205 that holds with volume returning on green, or a reclaim of $0.00000222 on expanding volume — do not buy the top of the staircase",
+        "validityWindowMinutes": 45
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00000221,
+        "marketCapUsd": 219645,
+        "liquidityUsd": 145483
+      },
+      "structuralInvalidation": {
+        "price": 0.00000195,
+        "description": "Close below $0.00000195 breaks the higher-low staircase; top is in, exit"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0000024,
+          "note": "first resistance above the range"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0000027,
+          "note": "only if volume genuinely re-expands rather than fading"
+        }
+      ],
+      "thesis": "Cleanest controlled staircase in the batch with strong liquidity and 0.21% tradeability and 3,248 holders, but dying top-of-range volume, organicScore 0 and risk score 51 cap it at a small punt entered on weakness, not strength",
+      "createdAt": 1784028722888,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
