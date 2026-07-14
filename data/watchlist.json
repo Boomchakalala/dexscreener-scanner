@@ -95,21 +95,6 @@
       "expiresAt": 1784019631237
     },
     {
-      "symbol": "LIZARD",
-      "tokenAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
-      "poolAddress": "5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
-      "condition": {
-        "mcMin": 180000,
-        "mcMax": 215000,
-        "requireRisingVolume": true,
-        "description": "holds ~$0.00017 and reclaims ~$0.00021 (MC ~$206K) on rising volume"
-      },
-      "addedAt": 1783984701515,
-      "expiresAt": 1784049501515
-    },
-    {
       "symbol": "agentx402",
       "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
@@ -117,27 +102,57 @@
       "dexUrl": "https://dexscreener.com/solana/cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "condition": {
         "mcMin": 200000,
-        "mcMax": 260000,
+        "mcMax": 220000,
         "requireRisingVolume": true,
-        "description": "holds above ~$200K MC with volume continuing"
+        "description": "pullback to ~$210K MC holding with buy volume returning"
       },
-      "addedAt": 1783984701515,
-      "expiresAt": 1784027901515
+      "addedAt": 1783987677548,
+      "expiresAt": 1784052477548
     },
     {
       "symbol": "Bison",
       "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
       "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
       "condition": {
-        "mcMin": 300000,
-        "mcMax": 360000,
+        "mcMin": null,
+        "mcMax": null,
         "requireRisingVolume": true,
-        "description": "holds above $300K MC after +23% recovery with rising volume"
+        "description": "holds ~$0.00029-0.00030 or reclaims ~$0.00040 on rising volume"
       },
-      "addedAt": 1783984701515,
-      "expiresAt": 1784027901515
+      "addedAt": 1783987677548,
+      "expiresAt": 1784030877548
+    },
+    {
+      "symbol": "LIZARD",
+      "tokenAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
+      "poolAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
+      "condition": {
+        "mcMin": 170000,
+        "mcMax": 185000,
+        "requireRisingVolume": true,
+        "description": "pullback to ~$180K MC holding with buy volume returning"
+      },
+      "addedAt": 1783987677548,
+      "expiresAt": 1784030877548
+    },
+    {
+      "symbol": "brain",
+      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "condition": {
+        "mcMin": null,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "forms a higher low / base after vertical pump before entry"
+      },
+      "addedAt": 1783987677548,
+      "expiresAt": 1784016477548
     }
   ]
 }
