@@ -1,342 +1,6 @@
 {
   "history": [
     {
-      "kind": "deep",
-      "symbol": "RIBBIT",
-      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
-      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
-      "verdict": "NEEDS CONFIRMATION",
-      "alertedAt": 1783874283791
-    },
-    {
-      "kind": "deep",
-      "symbol": "Hoppy",
-      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
-      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
-      "verdict": "NEEDS CONFIRMATION",
-      "alertedAt": 1783874283791
-    },
-    {
-      "kind": "deep",
-      "symbol": "febu",
-      "tokenAddress": "4ko5tSr5o3H4v1sFtjTSd9MPUW7yx5AFCpkNPoL6pump",
-      "poolAddress": "68nVMrVPyxGJGbGH2P92E93SYhJcbe6QociZrqoqdjcB",
-      "verdict": "AVOID",
-      "alertedAt": 1783874283791
-    },
-    {
-      "kind": "deep",
-      "symbol": "HOME",
-      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
-      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
-      "verdict": "AVOID",
-      "alertedAt": 1783874283791
-    },
-    {
-      "kind": "deep",
-      "symbol": "SCAM",
-      "tokenAddress": "6AVAUKa9uxQpruHZUinFECpXEh1usRVtzQWK8N2wpump",
-      "poolAddress": "B5K3qfft5ALRJBskL7qJPDzbbW76TXLkfKSd1mP4MtgN",
-      "verdict": "AVOID",
-      "alertedAt": 1783874283791
-    },
-    {
-      "kind": "deep",
-      "symbol": "HOOD",
-      "tokenAddress": "h5NciPdMZ5QCB5BYETJMYBMpVx9ZuitR6HcVjyBhood",
-      "poolAddress": "9CTxEyRStwTKLfVTS6c7rfQc7PTxY42YPdQcrHTv53Ao",
-      "verdict": "AVOID",
-      "alertedAt": 1783874283791
-    },
-    {
-      "symbol": "GDOR",
-      "tokenAddress": "2DaygetzXbPWF2vvWzBSVXqmCoGhdRrmP3Be8n8P4egn",
-      "poolAddress": "zYwBMrjp8JWosMFX3jAcsVKkEFj563GLRiAoDkW6zKx",
-      "verdict": "NEEDS CONFIRMATION",
-      "kind": "deep",
-      "alertedAt": 1783878712975
-    },
-    {
-      "symbol": "ANSEM",
-      "tokenAddress": "C5o7VT2DfJ3NKXRTxBXyTpGFQAFW7fKXwvnHQKJcvRHk",
-      "poolAddress": "DunNjEyRTWSE7VELge3ZYrm4WuBfQa7CFKoD8X3YU55i",
-      "verdict": "NEEDS CONFIRMATION",
-      "kind": "deep",
-      "alertedAt": 1783878712975
-    },
-    {
-      "symbol": "W26",
-      "tokenAddress": "CWESwP4aR4iQFh5NihUYkqMsAZVJmwrQwZ6RjMgJ5aw8",
-      "poolAddress": "65Py15xAdaM4TxTxCT7HFWNSCoWdZizH6RPmTJL2Qtzg",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783878712975
-    },
-    {
-      "symbol": "NC",
-      "tokenAddress": "3FjJVwNvqXHCaZzEQd236qYkoCXEWmZMEBwSazkPdmwq",
-      "poolAddress": "3eNmDUmk6BLqPz4Xc5bfxdGm1o8rzuNxMsrBe4g2dksW",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783878712975
-    },
-    {
-      "symbol": "MONA",
-      "tokenAddress": "7dfrmKLUwPrWgxgM6htbFSzTruLCEMFSNvsa7Ry12Ze5",
-      "poolAddress": "3GCiNiJPwfExq5grtsoWr52khvG9gch6B1Xs6ce31BjJ",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783878712975
-    },
-    {
-      "symbol": "HOMEBOY",
-      "tokenAddress": "F8kzBcnYPiFsSysfXmesgmGvWBVdiFSfKFp5TEZqWUok",
-      "poolAddress": "EZSPppC9dTe3AhT3AtSVqNMpEZt2ZFoN9FMuf8gfudsa",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783878712975
-    },
-    {
-      "symbol": "RIBBIT",
-      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
-      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783881496418
-    },
-    {
-      "symbol": "Hoppy",
-      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
-      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783881496418
-    },
-    {
-      "symbol": "HOOD",
-      "tokenAddress": "9HZesAGpQx6N7Dxau7Juc9m6eo1t86n9HqVhKWwDntnw",
-      "poolAddress": "E4vCuunTr5YujMaRooWvKjTYtiqjYkLxerK9ZmkmDZeX",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783881496418
-    },
-    {
-      "symbol": "W26",
-      "tokenAddress": "AAyKGXebUWkJsoC6f4JVF6zeQK4oFK57TmpK9rchyXWD",
-      "poolAddress": "8PQeEz2gyQNpixQ29hKpuMcHGT4UpTCVP17DzRe1jt53",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783881496418
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
-      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783881496418
-    },
-    {
-      "symbol": "BLOCK",
-      "tokenAddress": "HZzcGHJsEoix9uCmLkDqaVsdbjhrEpQQgpP48a1Sy9CT",
-      "poolAddress": "87fAScN3tA9gpkDwfUAfeJBHQpY1QeAYbEu3vBFCdKTc",
-      "verdict": "STRONG SETUP",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "W26",
-      "tokenAddress": "AAyKGXebUWkJsoC6f4JVF6zeQK4oFK57TmpK9rchyXWD",
-      "poolAddress": "8PQeEz2gyQNpixQ29hKpuMcHGT4UpTCVP17DzRe1jt53",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "HOOD",
-      "tokenAddress": "9HZesAGpQx6N7Dxau7Juc9m6eo1t86n9HqVhKWwDntnw",
-      "poolAddress": "E4vCuunTr5YujMaRooWvKjTYtiqjYkLxerK9ZmkmDZeX",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "PumpfunLife",
-      "tokenAddress": "DpqGBmkc6SrY2vA1Yb5KuH571WW1oQJjJdD3d2kupump",
-      "poolAddress": "QRViw782g3LnUd2pL9ug9dbpneY6MdxfvKuQ4uaeAGx",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "UNC",
-      "tokenAddress": "6MJEQQB6wC6wpRrjni15Q7By9DrbdbRFeJU3xqV1pump",
-      "poolAddress": "ak3U4AkfzqqFqTHjsNDbAViCiC8QwzXb9CfkCQeAUx6",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "CFPBnUGrM574mSiT89iLqdn7nBAFsGJkTx1sMzHX9juk",
-      "poolAddress": "CKtBSfgaF694uuA6HCRKaE2rSKKXvjAfgjW13ps8YW26",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
-      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "Hoppy",
-      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
-      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "RIBBIT",
-      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
-      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "LCM",
-      "tokenAddress": "6t4L25gvgdLUMsSUkb4JS5sBpcYyt3eYHoxdusCZpump",
-      "poolAddress": "8vqQuRppHEwFJ3Lrv7a2gGjSzdsvzVWnXfMGPamL3iEB",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783882431263
-    },
-    {
-      "symbol": "BLOCK",
-      "tokenAddress": "HZzcGHJsEoix9uCmLkDqaVsdbjhrEpQQgpP48a1Sy9CT",
-      "poolAddress": "87fAScN3tA9gpkDwfUAfeJBHQpY1QeAYbEu3vBFCdKTc",
-      "verdict": "STRONG SETUP",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "SCATMAN",
-      "tokenAddress": "GSetvqKtoYqx6rJ98wtMHydeswFG85LeNksCfTfA2DV4",
-      "poolAddress": "6Enu2LkT2QcR578MypQCRNcPSRVGtVs4wj2HWM2CiwVT",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "HOOD",
-      "tokenAddress": "9HZesAGpQx6N7Dxau7Juc9m6eo1t86n9HqVhKWwDntnw",
-      "poolAddress": "E4vCuunTr5YujMaRooWvKjTYtiqjYkLxerK9ZmkmDZeX",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "CFPBnUGrM574mSiT89iLqdn7nBAFsGJkTx1sMzHX9juk",
-      "poolAddress": "CKtBSfgaF694uuA6HCRKaE2rSKKXvjAfgjW13ps8YW26",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "AnsemAI",
-      "tokenAddress": "ErxPpUrAWez6Pd3VkByBhdwWDyps7dBnDAnvUoGuAbB3",
-      "poolAddress": "6tcwpMioZYq82niPX7sgpnHfvSegaqoy3Bage66trPyF",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "W26",
-      "tokenAddress": "BqScp6A65fzHa9DnWcsiSL3UNjHtSZsxA55xefLKzghh",
-      "poolAddress": "9wmQAWdYNaty34toDScg7T9YkeRTpATVKELaqYdGr8bB",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "W26",
-      "tokenAddress": "AAyKGXebUWkJsoC6f4JVF6zeQK4oFK57TmpK9rchyXWD",
-      "poolAddress": "8PQeEz2gyQNpixQ29hKpuMcHGT4UpTCVP17DzRe1jt53",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "Hoppy",
-      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
-      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "RIBBIT",
-      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
-      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783883123315
-    },
-    {
-      "symbol": "LCM",
-      "tokenAddress": "6t4L25gvgdLUMsSUkb4JS5sBpcYyt3eYHoxdusCZpump",
-      "poolAddress": "8vqQuRppHEwFJ3Lrv7a2gGjSzdsvzVWnXfMGPamL3iEB",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783886238886
-    },
-    {
-      "symbol": "agentx402",
-      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "poolAddress": "3GS25gGKbgrFdvqVLYuqbU54cZyjEFJ56ifUWNiqU8m5",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783886238886
-    },
-    {
-      "symbol": "RIBBIT",
-      "tokenAddress": "FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump",
-      "poolAddress": "Ak9J6xqrsdPXGMQrscv67yrJYbbvhjqu6TWePikc6N6o",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783886238886
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
-      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783886238886
-    },
-    {
-      "symbol": "Hoppy",
-      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
-      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783886238886
-    },
-    {
-      "symbol": "PumpfunLife",
-      "tokenAddress": "DpqGBmkc6SrY2vA1Yb5KuH571WW1oQJjJdD3d2kupump",
-      "poolAddress": "QRViw782g3LnUd2pL9ug9dbpneY6MdxfvKuQ4uaeAGx",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783886238886
-    },
-    {
       "symbol": "agentx402",
       "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "poolAddress": "3GS25gGKbgrFdvqVLYuqbU54cZyjEFJ56ifUWNiqU8m5",
@@ -1981,6 +1645,96 @@
       "marketCapUsdAtAlert": 31054.8786698181,
       "kind": "deep",
       "alertedAt": 1784045268485
+    },
+    {
+      "symbol": "CashDog",
+      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
+      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 104674.1934,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "CATTEARS",
+      "tokenAddress": "9w47d5K1Whg4HoGFtk7L9XXV1P95tpuz6ehZSfaRpump",
+      "poolAddress": "9w47d5K1Whg4HoGFtk7L9XXV1P95tpuz6ehZSfaRpump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 1369119.2670270198,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "CP",
+      "tokenAddress": "AQDiV5brA4C8r7vHNGjoXv3QjRmLzjPSB9Hg5piVpump",
+      "poolAddress": "DebYNFjgG7RYuPUuBHNU8x45gUJUE5hny7Q4wpYxfcy8",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 713042.0573267294,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "HBULL",
+      "tokenAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+      "poolAddress": "EDX18gJCdijqSLAJA2pp5C2VmA3bTRrx4utxkeJuFRtQ",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 3058714.613,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "MSGA",
+      "tokenAddress": "FzjSYeMaKvJtruzMyoeZzhb6uhA8ZXY9ibeTBM2Upump",
+      "poolAddress": "FzjSYeMaKvJtruzMyoeZzhb6uhA8ZXY9ibeTBM2Upump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 135527.04006672435,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "TrumpCoin",
+      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "poolAddress": "FpJFWZ3nGFVYWkpDXZQM8QaLJzmy6U3NgaA8nc7SNDag",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 338614.9233,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "Kairos",
+      "tokenAddress": "CHFSFUY7uNy37MWAVyeLn6ztrCpvK1uRiDCsjkSGpump",
+      "poolAddress": "CHFSFUY7uNy37MWAVyeLn6ztrCpvK1uRiDCsjkSGpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 62405.962375359384,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "Ascend art",
+      "tokenAddress": "9n2eX9wNwDy3yLe33XR4HXHCeg1eWu5TaeKQUsh8pump",
+      "poolAddress": "9n2eX9wNwDy3yLe33XR4HXHCeg1eWu5TaeKQUsh8pump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 193546.7506873728,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "Peigengoo",
+      "tokenAddress": "BgVMUdzzKUAgjrKmLTT9aKXJUoew9YAqHrJUfs7xpump",
+      "poolAddress": "BgVMUdzzKUAgjrKmLTT9aKXJUoew9YAqHrJUfs7xpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 92009.62409314797,
+      "kind": "deep",
+      "alertedAt": 1784059660180
+    },
+    {
+      "symbol": "BULLCAT",
+      "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 496805.04595798586,
+      "kind": "deep",
+      "alertedAt": 1784059660180
     }
   ],
   "lastTelegramUpdateId": 710125054
