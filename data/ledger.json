@@ -252,7 +252,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.24,
       "remainingSizeSol": 0.24,
       "entryCondition": {
@@ -636,6 +636,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784004758073
+    },
+    {
+      "positionId": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump-1783980281523",
+      "symbol": "BlackBear",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784009252104
     }
   ]
 }
