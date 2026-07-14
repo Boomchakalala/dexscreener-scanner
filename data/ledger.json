@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2,
+  "balanceSol": 1.84,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -397,7 +397,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.16,
       "remainingSizeSol": 0.16,
       "entryCondition": {
@@ -429,13 +429,15 @@
       ],
       "thesis": "Deepest holder base and volume in the batch bouncing +34.9% off support; choppy structure means wait for the pullback rather than chasing the spike.",
       "createdAt": 1783987677549,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.0002669822445885677,
+      "entryMarketCapUsd": 265894.016809496,
+      "openedAt": 1783989464060,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.0002669822445885677,
+      "lowWaterPriceUsd": 0.0002669822445885677
     }
   ],
   "tradeLog": [
@@ -498,6 +500,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1783987622110
+    },
+    {
+      "positionId": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump-1783987677549",
+      "symbol": "Bison",
+      "action": "ENTRY",
+      "price": 0.0002669822445885677,
+      "sizeSol": 0.16,
+      "pnlSol": 0,
+      "reason": "filled with 0.00% price impact",
+      "timestamp": 1783989469857
     }
   ]
 }
