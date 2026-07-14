@@ -438,6 +438,102 @@
       "realizedPnlSol": -0.04090699156441856,
       "highWaterPriceUsd": 0.0002891490523757599,
       "lowWaterPriceUsd": 0.00019872324191835475
+    },
+    {
+      "id": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump-1784002105450",
+      "symbol": "NYX",
+      "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.15672744067484654,
+      "remainingSizeSol": 0.15672744067484654,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.00028,
+        "description": "wait for a higher low holding above ~$280K MC or a controlled reclaim of the recent high on volume",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00033,
+        "marketCapUsd": 333000,
+        "liquidityUsd": 22000
+      },
+      "structuralInvalidation": {
+        "price": 0.00024,
+        "description": "loss of ~$240K MC means the first-hour move failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0005,
+          "note": "~$500K MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0008,
+          "note": "~$800K MC only on volume expansion"
+        }
+      ],
+      "thesis": "Cleanest chart structure in the batch (#1 of 25), fresh Universe 1 launch with 2.2:1 buy skew and 1403 holders in an hour; punt-sized due to thin liquidity and zero organic score.",
+      "createdAt": 1784002105450,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump-1784002105450",
+      "symbol": "brain",
+      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.2350911610122698,
+      "remainingSizeSol": 0.2350911610122698,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.001,
+        "description": "let it base around ~$800K then reclaim ~$1.0M MC on renewed volume before entry",
+        "validityWindowMinutes": 480
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00096,
+        "marketCapUsd": 962000,
+        "liquidityUsd": 174000
+      },
+      "structuralInvalidation": {
+        "price": 0.0007,
+        "description": "sustained trade below ~$700K MC means the parabola is fully retracing"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0011,
+          "note": "reclaim ~$1.1M MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0014,
+          "note": "~$1.4M MC if buyers return in size"
+        }
+      ],
+      "thesis": "Strongest fundamentals in the batch (market quality #1, ~$174K liquidity, 4045 holders, 85 organic) but currently dumping -36% 1h; a base-and-reclaim watch, not a mid-drop buy.",
+      "createdAt": 1784002105450,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
