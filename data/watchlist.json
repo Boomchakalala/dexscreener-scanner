@@ -106,36 +106,6 @@
       "expiresAt": 1784030877548
     },
     {
-      "symbol": "NYX",
-      "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "condition": {
-        "mcMin": 280000,
-        "mcMax": 400000,
-        "requireRisingVolume": true,
-        "description": "higher low holding above ~$280K MC with volume, not chasing the +55% candle"
-      },
-      "addedAt": 1784002105449,
-      "expiresAt": 1784045305449
-    },
-    {
-      "symbol": "brain",
-      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "condition": {
-        "mcMin": 800000,
-        "mcMax": 1100000,
-        "requireRisingVolume": true,
-        "description": "base holds ~$800K then reclaims ~$1.0M MC on renewed volume"
-      },
-      "addedAt": 1784002105449,
-      "expiresAt": 1784045305449
-    },
-    {
       "symbol": "Cardtopia",
       "tokenAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
       "poolAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
@@ -164,6 +134,66 @@
       },
       "addedAt": 1784002105449,
       "expiresAt": 1784045305449
+    },
+    {
+      "symbol": "brain",
+      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
+      "condition": {
+        "mcMin": 600000,
+        "mcMax": 720000,
+        "requireRisingVolume": true,
+        "description": "holds ~$600K or reclaims ~$720K MC with rising volume"
+      },
+      "addedAt": 1784016486243,
+      "expiresAt": 1784102886243
+    },
+    {
+      "symbol": "TrumpCoin",
+      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "condition": {
+        "mcMin": 2200000,
+        "mcMax": 2600000,
+        "requireRisingVolume": true,
+        "description": "builds a base and reclaims ~$2.2M MC on returning volume"
+      },
+      "addedAt": 1784016486243,
+      "expiresAt": 1784059686243
+    },
+    {
+      "symbol": "NYX",
+      "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
+      "condition": {
+        "mcMin": 480000,
+        "mcMax": 580000,
+        "requireRisingVolume": true,
+        "description": "holds ~$480K or reclaims ~$580K MC with buyers still stepping in"
+      },
+      "addedAt": 1784016486243,
+      "expiresAt": 1784059686243
+    },
+    {
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "condition": {
+        "mcMin": 350000,
+        "mcMax": 450000,
+        "requireRisingVolume": true,
+        "description": "holds higher low and reclaims prior range on rising volume with liquidity improving"
+      },
+      "addedAt": 1784016486243,
+      "expiresAt": 1784059686243
     }
   ]
 }
