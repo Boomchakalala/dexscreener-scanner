@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.9157237729168073,
+  "balanceSol": 1.7624658710834626,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -1173,7 +1173,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/85FxXEytkKKZX5kepPo2MpvggQfesfqWp3TPCGAt7uyk",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.1532579018333446,
       "remainingSizeSol": 0.1532579018333446,
       "entryCondition": {
@@ -1205,14 +1205,16 @@
       ],
       "thesis": "Low-cap survivor base ranked #3 on both chart and quality — tightening range at 0.00004-0.00006 with stepping-up prints and a real 758-holder base for the size; only real risk is the thin pool.",
       "createdAt": 1784131709168,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00006003798224477299,
+      "entryMarketCapUsd": 60027.00127,
+      "openedAt": 1784133716979,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0,
-      "triggerHits": 1
+      "triggerHits": 2,
+      "highWaterPriceUsd": 0.00006003798224477299,
+      "lowWaterPriceUsd": 0.00006003798224477299
     }
   ],
   "tradeLog": [
@@ -1445,6 +1447,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784119880950
+    },
+    {
+      "positionId": "GCsMGDGF9DGANC1W3AEovCe9C24984JUs4SFVvwFpump-1784131709168",
+      "symbol": "DAFUAN",
+      "action": "ENTRY",
+      "price": 0.00006003798224477299,
+      "sizeSol": 0.1532579018333446,
+      "pnlSol": 0,
+      "reason": "filled with 0.02% price impact",
+      "timestamp": 1784133722764
     }
   ]
 }
