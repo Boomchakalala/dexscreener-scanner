@@ -11,7 +11,7 @@ import {
   toCandidate,
 } from "./discovery.js";
 import { getGeckoStats, getPool, resetGeckoStats } from "./gecko.js";
-import { loadLedger, openPositionsFromTradePlans } from "./ledger.js";
+import { cancelDeadPendingEntries, loadLedger, openPositionsFromTradePlans } from "./ledger.js";
 import { getMarketOverview } from "./marketOverview.js";
 import { rankByQuality } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts, type AlertHistoryEntry } from "./state.js";
@@ -228,7 +228,7 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 
   t = now();
   const previousCalls = await buildPreviousCalls();
-  const { report, verdicts, watchConditions, tradePlans, parseWarning } = await analyzeCandidates(
+  const { report, verdicts, watchConditions, tradePlans, cancelTokenAddresses, parseWarning } = await analyzeCandidates(
     topCandidates,
     recentHistory,
     funnel,
@@ -264,8 +264,16 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   await mergeWatchConditions(watchConditions, topCandidates);
   console.log(`Merged ${watchConditions.length} new watch condition(s) into data/watchlist.json.`);
 
-  await openPositionsFromTradePlans(tradePlans, topCandidates);
-  console.log(`Opened ${tradePlans.length} new PENDING_ENTRY position(s) (subject to sizing/dedup rules) in data/ledger.json.`);
+  const openResult = await openPositionsFromTradePlans(tradePlans, topCandidates);
+  console.log(`Opened ${openResult.opened.length} of ${tradePlans.length} proposed trade plan(s) in data/ledger.json.`);
+  for (const skip of openResult.skipped) {
+    console.log(`  [ledger] skipped ${skip.symbol}: ${skip.reason}`);
+  }
+
+  const cancelled = await cancelDeadPendingEntries(cancelTokenAddresses);
+  if (cancelled.length > 0) {
+    console.log(`Auto-cancelled ${cancelled.length} dead pending entr${cancelled.length === 1 ? "y" : "ies"}, freeing their reserved capital: ${cancelled.join(", ")}`);
+  }
 
   await warnIfPlansMissing(verdicts, tradePlans.length, "deep scan");
 
@@ -356,8 +364,11 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
     if (safePlans.length < tradePlans.length) {
       console.log(`Excluded ${tradePlans.length - safePlans.length} flash trade plan(s) with a RugCheck danger-level risk.`);
     }
-    await openPositionsFromTradePlans(safePlans, candidates);
-    console.log(`Opened ${safePlans.length} new PENDING_ENTRY position(s) from flash (subject to sizing/dedup rules) in data/ledger.json.`);
+    const openResult = await openPositionsFromTradePlans(safePlans, candidates);
+    console.log(`Opened ${openResult.opened.length} of ${safePlans.length} proposed flash trade plan(s) in data/ledger.json.`);
+    for (const skip of openResult.skipped) {
+      console.log(`  [ledger] skipped ${skip.symbol}: ${skip.reason}`);
+    }
   }
 
   await warnIfPlansMissing(verdicts, tradePlans.length, "flash scan");

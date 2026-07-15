@@ -132,6 +132,10 @@ export interface AnalysisResult {
   verdicts: { symbol: string; tokenAddress: string; poolAddress: string; verdict: string }[];
   watchConditions: WatchCondition[];
   tradePlans: TradePlan[];
+  /** tokenAddresses of previouslyCalled PENDING_ENTRY positions this run's OPEN POSITIONS
+   *  write-up judged dead — cancelled immediately by the caller instead of sitting on
+   *  reserved capital until their validity window naturally expires. */
+  cancelTokenAddresses: string[];
   /** Set when the response was truncated or its data markers were missing — the report
    *  text may still be fine to send, but the structured outputs are unreliable/lost. */
   parseWarning: string | null;
@@ -169,38 +173,48 @@ async function runAnalysis(
   const dataMarker = "---DATA---";
   const watchlistMarker = "---WATCHLIST---";
   const tradePlanMarker = "---TRADEPLAN---";
+  const cancelMarker = "---CANCEL---";
 
-  const dataMarkerIndex = fullText.indexOf(dataMarker);
-  if (dataMarkerIndex === -1) {
+  // Marker-POSITION-based extraction, not an assumed fixed chain: each block runs from
+  // its own marker to whichever OTHER marker actually comes next in the text, regardless
+  // of which markers a given prompt emits or what order. The old assumed-chain version
+  // (DATA -> always expect WATCHLIST next) silently broke flash's parsing completely —
+  // flash's prompt goes DATA straight to TRADEPLAN with no WATCHLIST marker at all, so
+  // the old code's "dataBlock = everything up to the next WATCHLIST" swallowed flash's
+  // ---TRADEPLAN--- marker and JSON right into the DATA block, which then failed to
+  // parse as JSON on every single flash run, ever — confirmed live: zero FLASH-tier
+  // positions exist anywhere in the ledger's history despite flash running for days.
+  const allMarkers = [dataMarker, watchlistMarker, tradePlanMarker, cancelMarker];
+  const found = allMarkers
+    .map((marker) => ({ marker, index: fullText.indexOf(marker) }))
+    .filter((f) => f.index !== -1)
+    .sort((a, b) => a.index - b.index);
+
+  if (found.length === 0 || found[0]!.marker !== dataMarker) {
     return {
       report: fullText.trim(),
       verdicts: [],
       watchConditions: [],
       tradePlans: [],
+      cancelTokenAddresses: [],
       parseWarning: truncated
         ? "response truncated at max_tokens before the data blocks — verdicts/watch conditions/trade plans lost this run"
         : "---DATA--- marker missing from the response — verdicts/watch conditions/trade plans lost this run",
     };
   }
 
-  const report = fullText.slice(0, dataMarkerIndex).trim();
-  const afterData = fullText.slice(dataMarkerIndex + dataMarker.length);
-
-  // Flash's prompt has neither block at all — only the deep-scan prompt emits them, so
-  // both stay absent (and their arrays stay []) for flash results.
-  const watchlistMarkerIndex = afterData.indexOf(watchlistMarker);
-  const dataBlock = (watchlistMarkerIndex === -1 ? afterData : afterData.slice(0, watchlistMarkerIndex)).trim();
-  const afterWatchlist =
-    watchlistMarkerIndex === -1 ? null : afterData.slice(watchlistMarkerIndex + watchlistMarker.length);
-
-  let watchlistBlock: string | null = null;
-  let tradePlanBlock: string | null = null;
-  if (afterWatchlist !== null) {
-    const tradePlanMarkerIndex = afterWatchlist.indexOf(tradePlanMarker);
-    watchlistBlock = (tradePlanMarkerIndex === -1 ? afterWatchlist : afterWatchlist.slice(0, tradePlanMarkerIndex)).trim();
-    tradePlanBlock =
-      tradePlanMarkerIndex === -1 ? null : afterWatchlist.slice(tradePlanMarkerIndex + tradePlanMarker.length).trim();
+  const report = fullText.slice(0, found[0]!.index).trim();
+  const blocks = new Map<string, string>();
+  for (let i = 0; i < found.length; i++) {
+    const start = found[i]!.index + found[i]!.marker.length;
+    const end = i + 1 < found.length ? found[i + 1]!.index : fullText.length;
+    blocks.set(found[i]!.marker, fullText.slice(start, end).trim());
   }
+
+  const dataBlock = blocks.get(dataMarker) ?? "";
+  const watchlistBlock = blocks.get(watchlistMarker) ?? null;
+  const tradePlanBlock = blocks.get(tradePlanMarker) ?? null;
+  const cancelBlock = blocks.get(cancelMarker) ?? null;
 
   let verdicts: AnalysisResult["verdicts"] = [];
   try {
@@ -230,11 +244,22 @@ async function runAnalysis(
     }
   }
 
+  let cancelTokenAddresses: string[] = [];
+  if (cancelBlock) {
+    try {
+      const parsed = JSON.parse(cancelBlock);
+      cancelTokenAddresses = Array.isArray(parsed) ? parsed.filter((x): x is string => typeof x === "string") : [];
+    } catch {
+      cancelTokenAddresses = [];
+    }
+  }
+
   return {
     report,
     verdicts,
     watchConditions,
     tradePlans,
+    cancelTokenAddresses,
     parseWarning: truncated ? "response truncated at max_tokens — later data blocks may be incomplete" : null,
   };
 }
