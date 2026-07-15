@@ -29,6 +29,9 @@ export interface JupiterToken {
   holderCount?: number;
   /** Jupiter's 0-100 activity-quality metric — low with big volume smells like wash/bots. */
   organicScore?: number;
+  /** devMints/devMigrations: how many tokens/migrations the deploying wallet has produced —
+   *  a factory-deployment signature when it's in the hundreds or thousands. */
+  audit?: { devMints?: number; devMigrations?: number };
   firstPool?: { id?: string; createdAt?: string };
   stats5m?: JupiterTokenStats;
   stats1h?: JupiterTokenStats;
@@ -66,6 +69,8 @@ function toCandidate(t: JupiterToken): Candidate | null {
     launchpad: t.launchpad,
     holderCount: t.holderCount ?? null,
     organicScore: t.organicScore ?? null,
+    devMints: t.audit?.devMints ?? null,
+    devMigrations: t.audit?.devMigrations ?? null,
     symbol: t.symbol || t.name || t.id.slice(0, 6),
     dexUrl: `https://dexscreener.com/solana/${poolAddress}`,
     ageHours,

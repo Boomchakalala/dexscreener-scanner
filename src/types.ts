@@ -91,4 +91,11 @@ export interface Candidate {
    *  undefined = not yet enriched). */
   holderCount?: number | null;
   organicScore?: number | null;
+  /** How many tokens/migrations the SAME deploying wallet has produced (Jupiter audit
+   *  data) — a handful is a normal active pump.fun deployer, but hundreds-to-thousands is
+   *  a mass-production/factory signature. Confirmed live: "Dilemma" (devMints: 4862,
+   *  devMigrations: 19) got called "cleanest structure in the batch" while actively
+   *  dumping — this signal existed in data we already fetch but was never surfaced. */
+  devMints?: number | null;
+  devMigrations?: number | null;
 }

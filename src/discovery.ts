@@ -268,12 +268,16 @@ export async function addTradeability(candidates: Candidate[]): Promise<Candidat
 export async function enrichWithTokenMeta(candidates: Candidate[]): Promise<Candidate[]> {
   return Promise.all(
     candidates.map(async (candidate) => {
-      if (candidate.holderCount !== undefined && candidate.organicScore !== undefined) return candidate;
+      if (candidate.holderCount !== undefined && candidate.organicScore !== undefined && candidate.devMints !== undefined) {
+        return candidate;
+      }
       const meta = await searchToken(candidate.tokenAddress);
       return {
         ...candidate,
         holderCount: meta?.holderCount ?? null,
         organicScore: meta?.organicScore ?? null,
+        devMints: meta?.audit?.devMints ?? null,
+        devMigrations: meta?.audit?.devMigrations ?? null,
       };
     })
   );
