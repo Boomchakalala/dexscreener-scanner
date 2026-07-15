@@ -119,6 +119,8 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
   const deadline = position.createdAt + position.entryCondition.validityWindowMinutes * 60_000;
   if (now > deadline) {
     position.status = "MISSED";
+    // Logged to the ledger for the record, but NOT pinged to Telegram — an entry that
+    // never triggered isn't actionable, and with dozens of these a day it was pure noise.
     logTrade(ledger, {
       positionId: position.id,
       symbol: position.symbol,
@@ -128,7 +130,6 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
       pnlSol: 0,
       reason: "entry condition never triggered within its validity window",
     });
-    await sendTelegramMessage(`**${position.symbol}** — MISSED\nEntry condition never triggered: ${position.entryCondition.description}`);
     return;
   }
 
@@ -153,9 +154,6 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
         pnlSol: 0,
         reason: `price ran >${(CHASE_GUARD_PCT * 100).toFixed(0)}% past the alert snapshot before fill — not chasing`,
       });
-      await sendTelegramMessage(
-        `**${position.symbol}** — MISSED (not chasing)\nPrice ran from $${position.entrySnapshot.priceUsd} to $${stats.priceUsd} before the fill window.`
-      );
       return;
     }
     triggered = true;

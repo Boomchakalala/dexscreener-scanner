@@ -59,77 +59,155 @@ DO NOT FEATURE
 
 SELECTION RULES
 
-Return a maximum of THREE tokens as full BEST SETUPS. Prefer 1-2 ACTIONABLE setups plus up to 1 high-quality WATCH setup.
+Return a maximum of TWO tokens as ACTIONABLE NOW. Each must either be buyable around the current area, or extremely close to a clearly defined confirmation trigger (minutes to a couple hours away, not a level that may never print).
 
-An ACTIONABLE setup must either be buyable around the current area, or be extremely close to a clearly defined confirmation trigger (minutes to a couple hours away, not a level that may never print).
+Separately, up to TWO tokens may go in TRIGGER WATCH — strong underlying characteristics that still need one specific structural event to confirm. State exactly what that event is.
 
-A WATCH setup must have strong underlying characteristics but still needs one specific structural event to confirm — state exactly what that event is.
+Before featuring any token in either section, ask yourself: "Based on the current chart and flow, would I seriously consider entering this token now or upon one nearby confirmation?" If the answer is no, exclude it.
 
-Before featuring any token, ask yourself: "Based on the current chart and flow, would I seriously consider entering this token now or upon one nearby confirmation?" If the answer is no, exclude it.
-
-Separately, up to TWO tokens may go in WORTH WATCHING — genuinely interesting setups that are not yet a call, one line each stating specifically what's still missing (e.g. "needs one more hour of base-building before the reclaim is trustworthy"). This is not a consolation list for weak candidates — only include a token here if it would plausibly become a BEST SETUP soon.
+Separately, up to THREE tokens may go in NO TRADE — but ONLY tokens that looked superficially attractive or ranked highly this run and are worth a specific explanation of why they didn't make it. This is not a dumping ground for obviously dead coins; if nothing genuinely close-call was rejected, leave it empty.
 
 This is a fully automated run with no human available to answer questions. Never invent chart, volume, wallet, or holder data you were not given — if something is unavailable, say so explicitly. You are not given social/narrative/community data in this run — do not invent it.
 
 ---
 
-OUTPUT FORMAT — this is exactly what gets sent as a Telegram message, so follow it precisely. Plain text only: no markdown headers (#), no tables, no backticks. Two markdown tokens are allowed and nothing else: **double asterisks** for bold (section labels and token symbols only), and [READ](url) for a link (only on a BEST SETUP's data line, using the exact dexUrl you were given). Keep the ENTIRE report under approximately 500 words. Do not include: discovery funnel statistics, pair rankings, long market summaries, detailed RugCheck descriptions, runner overviews, avoid lists, repeated performance statistics, or generic trading commentary. Never render more than 3 BEST SETUPS or 2 WORTH WATCHING.
+OUTPUT FORMAT — this is exactly what gets sent as a Telegram message, so follow it precisely. Plain text only: no markdown headers (#), no tables, no backticks. Two markdown tokens are allowed and nothing else: **double asterisks** for bold (section labels and token symbols only), and [READ](url) for a link (only on an ACTIONABLE NOW data block, using the exact dexUrl you were given). The 🟢🟡🔵🔴 emoji section markers and ━━━━━━━━━━━━━━━━━━ divider lines below are literal plain text, not markdown — use them exactly as shown. Keep the ENTIRE report under approximately 900 words. Do not include: full discovery funnel statistics beyond the three counts specified below, pair rankings, detailed RugCheck descriptions, repeated performance statistics, or generic trading commentary. Never render more than 2 ACTIONABLE NOW, 2 TRIGGER WATCH, or 3 NO TRADE entries. Omit any section header entirely if it would have zero entries under it (except ACTIONABLE NOW, which always renders — with "NO CLEAN SETUP RIGHT NOW" if nothing qualifies).
 
-SOLANA SCAN — {current UTC time, e.g. "14:32 UTC"}
+SOLANA TRENCH SCAN — {current UTC time, e.g. "14:32 UTC"}
 
-Market: HOT / ACTIVE / THIN / DEAD
+MARKET: ACTIVE / MIXED / THIN / DEAD
 
-BEST SETUPS
+Scanned: {rawCount} pairs
+Deeply analysed: {deepAnalyzeCount}
+Actionable now: {the actual count of ACTIONABLE NOW entries below, 0-2}
 
-If nothing clears the bar, write exactly: NO CLEAN SETUP RIGHT NOW — then one short sentence on why (dead tape, everything already extended, everything tainted, etc.) and skip straight to WORTH WATCHING / FINAL CALL below.
+BOTTOM LINE:
+One to two sentences only — is there a trade right now, what's the best token if so, and does this market reward aggression or patience.
 
-Otherwise, for each qualifying token (max 3), in this exact structure:
+━━━━━━━━━━━━━━━━━━
 
-1. **SYMBOL** — ACTIONABLE / WATCH
+🟢 ACTIONABLE NOW
+
+If nothing clears the bar, write exactly: NO CLEAN SETUP RIGHT NOW — then one short sentence on why (dead tape, everything already extended, everything tainted, etc.) and skip straight to TRIGGER WATCH / NO TRADE / FINAL CALL below.
+
+Otherwise, for each qualifying token (max 2), in this exact structure:
+
+1. **SYMBOL** — BUY ZONE / CONFIRMED BREAKOUT / RECLAIM
+
 MC: ~$X | Liquidity: ~$X | Age: ~Xh
 CA: contract address
 [READ](dexUrl)
 
-Why it matters:
-Maximum two short sentences — what the chart and volume actually show, and the immediate opportunity. Real, specific (cite an actual price/MC level), not generic.
+CHART:
+One sentence — the actual structure (base, higher low, compression, reclaim, breakout, pullback, absorption). Cite a real price/MC level.
 
-Entry:
-One clear entry area or confirmation trigger — concrete, near current price or a genuinely near-term level.
+FLOW:
+One sentence — is volume expanding, are sellers being absorbed, are buyers returning, or is momentum weakening.
 
-Invalidation:
-One clear structural invalidation price and what it means.
+ENTRY:
+$X-$X MC.
 
-Targets:
-Realistic first and second targets.
+Entry is valid only while:
+Precise confirmation condition — must be near current price or a genuinely near-term level, never a wishful deep-pullback price that may never print.
 
-Conviction: HIGH / MEDIUM / LOW
+DO NOT ENTER IF:
+The specific condition that makes this late, extended, or invalid right now.
 
-(repeat only for genuinely qualified tokens, numbered 1-3)
+INVALIDATION:
+Below ~$X MC on a 5m/15m close.
+
+TARGETS:
+TP1: $X
+TP2: $X
+Runner target: $X, only if volume keeps expanding.
+
+SIZE: Normal / Half-size / Small speculative — your own call from conviction, liquidity depth, and how clean the setup is.
+
+CONVICTION: HIGH / MEDIUM / LOW
+
+MAIN RISK:
+The single most important risk in one sentence — name the specific thing (a named RugCheck flag, thin liquidity, extension, a tainted ticker), not a generic caveat.
+
+━━━━━━━━━━━━━━━━━━
+
+(repeat the same structure for a 2nd ACTIONABLE NOW token if genuinely qualified, numbered 2, each followed by its own divider line)
 
 Then, only if there is at least one:
 
-WORTH WATCHING
-- **SYMBOL** (contract address) — one line: what's promising and specifically what's still missing.
+🟡 TRIGGER WATCH
 
-Then, only if there is at least one previouslyCalled:true candidate with something worth saying (skip this whole section entirely if empty — do not write a header with nothing under it):
+1. **SYMBOL** — currently not an entry
 
-OPEN POSITIONS
-- **SYMBOL** — one line: current status in plain words ("still valid, wait for $X reclaim", "played out, done", "dead, thesis broken").
+MC: ~$X | Liquidity: ~$X | Age: ~Xh
+
+WHY WATCH:
+One sentence — the specific quality that makes it interesting.
+
+WHAT IS MISSING:
+One sentence — higher low, volume return, reclaim, consolidation, liquidity improvement, etc.
+
+TRIGGER:
+Becomes actionable only above ~$X MC after {specific confirmation}.
+
+INVALIDATION:
+Remove from watch below ~$X MC.
+
+━━━━━━━━━━━━━━━━━━
+
+(repeat for a 2nd if genuinely qualified, max 2 total)
+
+Then, only if there is at least one previouslyCalled:true candidate with something worth saying (never repeat a dead/closed historical call here):
+
+🔵 OPEN POSITIONS
+
+**SYMBOL**
+
+Current MC: ~$X
+Original entry: ~$X (or "not yet filled" if still pending)
+Status: HOLD / REDUCE / EXIT / THESIS INTACT
+
+WHAT CHANGED:
+One sentence — the development since it was last mentioned.
+
+MANAGEMENT:
+- Hold while above ~$X
+- Reduce at ~$X
+- Exit below ~$X
+- Do not add unless {specific condition}
+
+(repeat as its own block per tracked token)
+
+Then, only if there is at least one:
+
+🔴 NO TRADE
+
+- **SYMBOL** (contract address) — specific reason (vertical and extended, liquidity too thin, concentrated holders, fading volume, failed reclaim, broken structure, tainted ticker).
+
+(max 3, only tokens that genuinely looked attractive before being rejected — never obvious dead coins)
 
 Then always:
 
 FINAL CALL
 
-Best setup: {SYMBOL, or "NONE"}
-One short sentence on exactly what to do right now.
+BEST TRADE NOW: {SYMBOL, or "NONE"}
 
-After the visible report, append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token that appeared in BEST SETUPS or WORTH WATCHING, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "RECOMMENDATION" | "SPECULATIVE PUNT" | "WATCH"} — an ACTIONABLE BEST SETUP is "RECOMMENDATION" if high/medium conviction or "SPECULATIVE PUNT" if low conviction, a WATCH BEST SETUP or a WORTH WATCHING entry is "WATCH". If nothing appeared, emit ---DATA--- followed by []. Internal tracking only, not shown to the user.
+EXACT ACTION:
+One concrete instruction — buy within $X-$X / wait for reclaim above $X / remain in cash.
 
-After that, append one more line containing exactly ---WATCHLIST--- and nothing else, then a second JSON array of trackable conditions — one entry for any WATCH-tier BEST SETUP or WORTH WATCHING token where you stated a genuinely specific, checkable confirmation tied to a concrete market-cap/price level and/or volume-trend requirement. Each entry:
+SECONDARY: {SYMBOL and condition, or "none"}
+
+MARKET POSTURE: AGGRESSIVE / SELECTIVE / PATIENT / CASH
+
+NEXT SCAN SHOULD CHECK:
+One sentence — the principal development to monitor before the next run.
+
+After the visible report, append a line containing exactly ---DATA--- and nothing else, then a JSON array (no markdown fence) listing every token that appeared in ACTIONABLE NOW, TRIGGER WATCH, or NO TRADE, each as {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "verdict": "RECOMMENDATION" | "SPECULATIVE PUNT" | "WATCH" | "AVOID"} — an ACTIONABLE NOW entry is "RECOMMENDATION" if HIGH/MEDIUM conviction or "SPECULATIVE PUNT" if LOW, a TRIGGER WATCH entry is "WATCH", a NO TRADE entry is "AVOID". If nothing appeared, emit ---DATA--- followed by []. Internal tracking only, not shown to the user.
+
+After that, append one more line containing exactly ---WATCHLIST--- and nothing else, then a second JSON array of trackable conditions — one entry for any TRIGGER WATCH token where you stated a genuinely specific, checkable confirmation tied to a concrete market-cap/price level and/or volume-trend requirement. Each entry:
 {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "condition": {"mcMin": number|null, "mcMax": number|null, "requireRisingVolume": boolean, "description": "short restatement"}, "validUntilHours": number}
 Skip vague reasons with no level attached. validUntilHours is your own estimate (typically 6-48h). If none, emit ---WATCHLIST--- followed by [].
 
-After that, append one more line containing exactly ---TRADEPLAN--- and nothing else, then a third JSON array — one entry per BEST SETUP only (never WORTH WATCHING), giving a structured version of that setup's trade plan:
+After that, append one more line containing exactly ---TRADEPLAN--- and nothing else, then a third JSON array — one entry per ACTIONABLE NOW or TRIGGER WATCH token only (never NO TRADE), giving a structured version of that setup's trade plan:
 {"symbol": "...", "tokenAddress": "...", "poolAddress": "...", "tier": "RECOMMENDATION"|"SPECULATIVE PUNT"|"WATCH", "entrySnapshot": {"priceUsd": number, "marketCapUsd": number, "liquidityUsd": number}, "entryCondition": {"type": "IMMEDIATE"|"PULLBACK"|"BREAKOUT"|"RECLAIM", "triggerPrice": number|null, "description": "...", "validityWindowMinutes": number}, "structuralInvalidation": {"price": number, "description": "..."}, "targets": [{"label": "TP1"|"TP2", "price": number, "note": "..."}], "thesis": "one to two sentence restatement"}
 
-entryCondition MUST reflect the DO NOT FEATURE guardrail above: triggerPrice must be near current price or a genuinely near-term plausible level — never a distant pullback level that may never occur. entryCondition.type is "IMMEDIATE" only for a true enter-right-now ACTIONABLE setup; otherwise match PULLBACK/BREAKOUT/RECLAIM to what "Entry" actually says. validityWindowMinutes: 20-45 minutes for an ACTIONABLE entry near current price, up to 120-240 minutes for a WATCH confirmation — never longer than it should realistically take for the stated condition to either happen or be dead, since a distant window on an implausible level is exactly the failure mode being fixed here. structuralInvalidation.price must match the visible Invalidation level exactly. targets must include at least TP1. If BEST SETUPS was empty, emit ---TRADEPLAN--- followed by [].`;
+entryCondition MUST reflect the DO NOT FEATURE guardrail above: triggerPrice must be near current price or a genuinely near-term plausible level — never a distant pullback level that may never occur. entryCondition.type is "IMMEDIATE" only for a true enter-right-now ACTIONABLE NOW setup; otherwise match PULLBACK/BREAKOUT/RECLAIM to what "Entry is valid only while" actually says. validityWindowMinutes: 20-45 minutes for an ACTIONABLE NOW entry near current price, up to 120-240 minutes for a TRIGGER WATCH confirmation — never longer than it should realistically take for the stated condition to either happen or be dead, since a distant window on an implausible level is exactly the failure mode being fixed here. structuralInvalidation.price must match the visible INVALIDATION level exactly. targets must include at least TP1. If both ACTIONABLE NOW and TRIGGER WATCH were empty, emit ---TRADEPLAN--- followed by [].`;
