@@ -783,7 +783,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.2350911610122698,
       "remainingSizeSol": 0.2350911610122698,
       "entryCondition": {
@@ -1114,6 +1114,16 @@
       "pnlSol": -0.04336923551877435,
       "reason": "structural invalidation hit: Clean loss of ~0.00018 turns the pullback into full retracement",
       "timestamp": 1784076721512
+    },
+    {
+      "positionId": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump-1784059660182",
+      "symbol": "CashDog",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784088674431
     }
   ]
 }
