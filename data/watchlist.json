@@ -61,21 +61,6 @@
       "expiresAt": 1784182064499
     },
     {
-      "symbol": "MIM",
-      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
-      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
-      "condition": {
-        "mcMin": 230000,
-        "mcMax": 300000,
-        "requireRisingVolume": true,
-        "description": "reclaim ~0.00026 on rising volume or holds ~0.00016 support"
-      },
-      "addedAt": 1784117264499,
-      "expiresAt": 1784182064499
-    },
-    {
       "symbol": "Bison",
       "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
       "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
@@ -134,6 +119,36 @@
       },
       "addedAt": 1784134097890,
       "expiresAt": 1784162897890
+    },
+    {
+      "symbol": "BULLCAT",
+      "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "condition": {
+        "mcMin": 1650000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "Reclaim above $1.65M MC with h1 buys flipping above sells"
+      },
+      "addedAt": 1784135231087,
+      "expiresAt": 1784178431087
+    },
+    {
+      "symbol": "MIM",
+      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
+      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "condition": {
+        "mcMin": 340000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "Reclaim above $340K MC after a 15m higher low with buy volume returning"
+      },
+      "addedAt": 1784135231087,
+      "expiresAt": 1784178431087
     }
   ]
 }
