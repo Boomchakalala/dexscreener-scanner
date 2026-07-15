@@ -883,7 +883,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.1532579018333446,
       "remainingSizeSol": 0.1532579018333446,
       "entryCondition": {
@@ -1124,6 +1124,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784088674431
+    },
+    {
+      "positionId": "4eBrLFJGn9Qb3iUxybKZJzC1eamuCNyqaQgMoXp8J8Yh-1784088460511",
+      "symbol": "Ralph",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784091076831
     }
   ]
 }
