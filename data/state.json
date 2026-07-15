@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "verdict": "WATCH",
-      "kind": "deep",
-      "alertedAt": 1783972125096
-    },
-    {
-      "symbol": "baby",
-      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
-      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
-      "verdict": "SPECULATIVE PUNT",
-      "kind": "deep",
-      "alertedAt": 1783972515584
-    },
-    {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "verdict": "WATCH",
-      "kind": "deep",
-      "alertedAt": 1783972515584
-    },
-    {
-      "symbol": "Shikoku",
-      "tokenAddress": "2bNi6wZ8uAPdNoGkJZ1cn1FGuvGABBXdtyLjvp2Mpump",
-      "poolAddress": "2rUBkygJ981obKVbMBvxy3TZZW6cwwFWPM1wtVFs5vX3",
-      "verdict": "WATCH",
-      "kind": "deep",
-      "alertedAt": 1783972515584
-    },
-    {
-      "symbol": "PCAT",
-      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
-      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783972515584
-    },
-    {
       "symbol": "baby",
       "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
       "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
@@ -1884,6 +1844,42 @@
       "marketCapUsdAtAlert": 501895.411,
       "kind": "deep",
       "alertedAt": 1784144823380
+    },
+    {
+      "symbol": "BULL",
+      "tokenAddress": "76iSgD2nwjJGVxAtgdnxnWrhm2YkWg9NwEsdRUNtpump",
+      "poolAddress": "D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 85340.64089955161,
+      "kind": "deep",
+      "alertedAt": 1784145450381
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 1919447.307851358,
+      "kind": "deep",
+      "alertedAt": 1784145450381
+    },
+    {
+      "symbol": "Solanadier",
+      "tokenAddress": "FieiBMr1f8xD1fBTk6ULv7dEsQeBP4JYz9u3s3okpump",
+      "poolAddress": "2oxTu6TwNyrXd3rR8q5VYJ8Rx2Tb9R61HS5yeHatJBp6",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 435153.16192059254,
+      "kind": "deep",
+      "alertedAt": 1784145450381
+    },
+    {
+      "symbol": "MAHUTA",
+      "tokenAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "poolAddress": "662As4A3xzmrf7g3iLKuK77zBgFLL5PaJk1jLZHmhBAo",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 181147.81875726327,
+      "kind": "deep",
+      "alertedAt": 1784145450381
     }
   ],
   "lastTelegramUpdateId": 710125054
