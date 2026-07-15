@@ -268,12 +268,27 @@ export async function addTradeability(candidates: Candidate[]): Promise<Candidat
 export async function enrichWithTokenMeta(candidates: Candidate[]): Promise<Candidate[]> {
   return Promise.all(
     candidates.map(async (candidate) => {
-      if (candidate.holderCount !== undefined && candidate.organicScore !== undefined && candidate.devMints !== undefined) {
-        return candidate;
-      }
+      // Jupiter-sourced candidates already carry Jupiter's own circSupply-based mcap —
+      // nothing to correct, and holderCount/organicScore/devMints are already set.
+      const alreadyEnriched =
+        candidate.holderCount !== undefined && candidate.organicScore !== undefined && candidate.devMints !== undefined;
+      if (alreadyEnriched) return candidate;
+
       const meta = await searchToken(candidate.tokenAddress);
+
+      // Market-cap correction: GeckoTerminal reports null market_cap_usd for tokens where
+      // it can't determine real circulating supply, and our fallback then uses fdv_usd —
+      // calculated off TOTAL/max mint supply, which can be wildly larger than what's
+      // actually circulating (confirmed live: MAHUTA's real MC is ~$192K, but the FDV
+      // fallback reported ~$324K off a 1-quadrillion-token total supply vs an actual
+      // ~600M circulating). Jupiter separately tracks circSupply and computes mcap off
+      // that, so prefer it when available — same searchToken call already made for
+      // holder/organic/devMint data, no extra network cost.
+      const marketCapUsd = meta?.mcap && meta.mcap > 0 ? meta.mcap : candidate.marketCapUsd;
+
       return {
         ...candidate,
+        marketCapUsd,
         holderCount: meta?.holderCount ?? null,
         organicScore: meta?.organicScore ?? null,
         devMints: meta?.audit?.devMints ?? null,
