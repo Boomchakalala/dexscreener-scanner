@@ -1731,6 +1731,33 @@
       "marketCapUsdAtAlert": 188088.571488089,
       "kind": "deep",
       "alertedAt": 1784131709165
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "verdict": "RECOMMENDATION",
+      "marketCapUsdAtAlert": 780737.7620735923,
+      "kind": "deep",
+      "alertedAt": 1784134097889
+    },
+    {
+      "symbol": "MIM",
+      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
+      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "verdict": "RECOMMENDATION",
+      "marketCapUsdAtAlert": 401832.72386173,
+      "kind": "deep",
+      "alertedAt": 1784134097889
+    },
+    {
+      "symbol": "MEMEDb",
+      "tokenAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
+      "poolAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 162454.90287374397,
+      "kind": "deep",
+      "alertedAt": 1784134097889
     }
   ],
   "lastTelegramUpdateId": 710125054
