@@ -1262,7 +1262,8 @@
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "triggerHits": 0
     },
     {
       "id": "A6FGkGeJMHucajk6xrj2HwqgJGopoju9ZEN5bXBEpump-1784142998641",
