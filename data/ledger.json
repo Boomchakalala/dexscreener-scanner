@@ -1321,7 +1321,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.22019106834917662,
       "remainingSizeSol": 0.22019106834917662,
       "entryCondition": {
@@ -1370,7 +1370,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.40368362530682383,
       "remainingSizeSol": 0.40368362530682383,
       "entryCondition": {
@@ -1706,6 +1706,26 @@
       "timestamp": 1784149812043,
       "positionId": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump-1784142998641",
       "symbol": "reptilecoin",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
+    },
+    {
+      "timestamp": 1784157756738,
+      "positionId": "76iSgD2nwjJGVxAtgdnxnWrhm2YkWg9NwEsdRUNtpump-1784145450385",
+      "symbol": "BULL",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
+    },
+    {
+      "timestamp": 1784157756738,
+      "positionId": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump-1784156670762",
+      "symbol": "TrumpCoin",
       "action": "MISSED",
       "price": null,
       "sizeSol": 0,
