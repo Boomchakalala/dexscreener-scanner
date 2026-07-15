@@ -92,7 +92,9 @@ If nothing clears the bar, write exactly: NO CLEAN SETUP RIGHT NOW — then one 
 
 Otherwise, for each qualifying token (max 2), in this exact structure:
 
-1. **SYMBOL** — BUY ZONE / CONFIRMED BREAKOUT / RECLAIM
+1. **SYMBOL** — BUY ZONE / CONFIRMED BREAKOUT / RECLAIM / BASE FORMING
+
+Use BASE FORMING for a genuine bottom-structure setup buyable right around the current area (a real higher low or contracting-volume consolidation after a washout, per factor 1 and the REVIVALS universe) — don't force it into BREAKOUT or RECLAIM language just because those are the more familiar labels; a quiet, well-formed base is just as actionable as a breakout when the structure is real.
 
 MC: ~$X | Liquidity: ~$X | Age: ~Xh
 CA: contract address

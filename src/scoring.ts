@@ -28,11 +28,21 @@ export function scoreChartProxy(c: Candidate): number {
 
   let pts = 0;
 
-  // A real up-move on the h6 window, but 150%+ is already extended for this stage,
-  // not "more bullish" — and a negative h6 gets a little credit only if it's shallow.
-  if (h6 > 0 && h6 <= 150) pts += Math.min(30, h6 * 0.6);
-  else if (h6 > 150 && h6 <= 400) pts += 30 - ((h6 - 150) / 250) * 20;
-  else if (h6 < 0) pts += Math.max(0, 10 + h6 / 5);
+  // Base-building is treated as a genuine bullish signal here, not the absence of one.
+  // The old version cliffed toward zero the instant h6 wasn't green (h6=0% scored 0,
+  // h6=-5% scored 9, of a 30-point max) — since this cheap proxy runs BEFORE real candles
+  // are even fetched and decides who reaches the shortlist at all, it was structurally
+  // filtering out exactly the "quiet flat/mildly-red base after a washout" setups that
+  // factor 1 and the REVIVALS universe explicitly want, in favor of whatever was already
+  // pumping when the scan happened to run. Flat-to-mildly-positive (-35% to +15%) now
+  // peaks near +2% and stays substantial across the whole band; only genuinely still-
+  // bleeding tokens (below -35%) taper toward zero, since that's not basing, that's an
+  // active dump. Strong continuation still scores up to the same 30-point cap as before.
+  if (h6 <= -35) pts += Math.max(0, 6 + (h6 + 35) / 10);
+  else if (h6 > -35 && h6 <= 15) pts += Math.max(12, 24 - Math.abs(h6 - 2) * 0.5);
+  else if (h6 > 15 && h6 <= 150) pts += Math.min(30, 18 + (h6 - 15) * 0.09);
+  else if (h6 > 150 && h6 <= 400) pts += Math.max(5, 30 - ((h6 - 150) / 250) * 25);
+  else pts += 5;
 
   // Penalize an apparent vertical one-candle chase: most of the hour's move packed
   // into the last 5 minutes reads as a spike, not structure.
