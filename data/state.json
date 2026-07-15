@@ -1848,6 +1848,42 @@
       "marketCapUsdAtAlert": 1183728.394956432,
       "kind": "deep",
       "alertedAt": 1784142998638
+    },
+    {
+      "symbol": "MAHUTA",
+      "tokenAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "poolAddress": "662As4A3xzmrf7g3iLKuK77zBgFLL5PaJk1jLZHmhBAo",
+      "verdict": "RECOMMENDATION",
+      "marketCapUsdAtAlert": 340848.7066,
+      "kind": "deep",
+      "alertedAt": 1784144823380
+    },
+    {
+      "symbol": "MIM",
+      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
+      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 287475.778972621,
+      "kind": "deep",
+      "alertedAt": 1784144823380
+    },
+    {
+      "symbol": "Solanadier",
+      "tokenAddress": "FieiBMr1f8xD1fBTk6ULv7dEsQeBP4JYz9u3s3okpump",
+      "poolAddress": "2oxTu6TwNyrXd3rR8q5VYJ8Rx2Tb9R61HS5yeHatJBp6",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 389685.1282612612,
+      "kind": "deep",
+      "alertedAt": 1784144823380
+    },
+    {
+      "symbol": "REDBULL",
+      "tokenAddress": "MMhATYB4YAXofPbx6xRgcwZjU6susdbjnVCfYVapump",
+      "poolAddress": "BXERQn8kbFmMmkhHH25b6A5KxhAaDiMdkfVYcHn3z8A4",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 501895.411,
+      "kind": "deep",
+      "alertedAt": 1784144823380
     }
   ],
   "lastTelegramUpdateId": 710125054
