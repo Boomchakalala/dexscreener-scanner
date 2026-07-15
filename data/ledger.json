@@ -1125,7 +1125,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.1532579018333446,
       "remainingSizeSol": 0.1532579018333446,
       "entryCondition": {
@@ -1214,7 +1214,7 @@
       "realizedPnlSol": 0,
       "triggerHits": 2,
       "highWaterPriceUsd": 0.00006003798224477299,
-      "lowWaterPriceUsd": 0.00005762175846752653
+      "lowWaterPriceUsd": 0.000054433360279811984
     }
   ],
   "tradeLog": [
@@ -1457,6 +1457,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.02% price impact",
       "timestamp": 1784133722764
+    },
+    {
+      "positionId": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump-1784131709168",
+      "symbol": "Bison",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784134365144
     }
   ]
 }
