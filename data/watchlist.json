@@ -1,21 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "INK",
-      "tokenAddress": "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD",
-      "poolAddress": "FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
-      "condition": {
-        "mcMin": 195000,
-        "mcMax": 225000,
-        "requireRisingVolume": true,
-        "description": "holds ~$0.00000205 pullback or reclaims $0.00000222 with volume re-expanding, not fading"
-      },
-      "addedAt": 1784028722886,
-      "expiresAt": 1784071922886
-    },
-    {
       "symbol": "FELIX",
       "tokenAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
       "poolAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
@@ -89,6 +74,36 @@
       },
       "addedAt": 1784059660181,
       "expiresAt": 1784102860181
+    },
+    {
+      "symbol": "Cyclospora",
+      "tokenAddress": "GjJsyLWFEHA4TCJBGpobM2tceM4wiQaD3ZPKDhDppump",
+      "poolAddress": "2qujxSBhjbzKSg8E9ekoe2r6M85BNHSZVk3xzskXrh4K",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/2qujxSBhjbzKSg8E9ekoe2r6M85BNHSZVk3xzskXrh4K",
+      "condition": {
+        "mcMin": 190000,
+        "mcMax": 255000,
+        "requireRisingVolume": true,
+        "description": "reclaim ~$255K on rising volume, or hold ~$200K higher low"
+      },
+      "addedAt": 1784074037747,
+      "expiresAt": 1784117237747
+    },
+    {
+      "symbol": "Cardtopia",
+      "tokenAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
+      "poolAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
+      "condition": {
+        "mcMin": null,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "needs a higher low with rising volume and thicker liquidity before actionable"
+      },
+      "addedAt": 1784074037747,
+      "expiresAt": 1784117237747
     }
   ]
 }
