@@ -1758,6 +1758,51 @@
       "marketCapUsdAtAlert": 162454.90287374397,
       "kind": "deep",
       "alertedAt": 1784134097889
+    },
+    {
+      "symbol": "BULLCAT",
+      "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 1505057.3970797511,
+      "kind": "deep",
+      "alertedAt": 1784135231085
+    },
+    {
+      "symbol": "MIM",
+      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
+      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 292696.341272124,
+      "kind": "deep",
+      "alertedAt": 1784135231085
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 944674.6275789315,
+      "kind": "deep",
+      "alertedAt": 1784135231085
+    },
+    {
+      "symbol": "GREENBULL",
+      "tokenAddress": "h7uGTw6tzhkF2UUgMaBDq8CXmfkEiSvAG1GHQA5pump",
+      "poolAddress": "h7uGTw6tzhkF2UUgMaBDq8CXmfkEiSvAG1GHQA5pump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 828110.8011774833,
+      "kind": "deep",
+      "alertedAt": 1784135231085
+    },
+    {
+      "symbol": "KIM",
+      "tokenAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "poolAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 96431.42648500507,
+      "kind": "deep",
+      "alertedAt": 1784135231085
     }
   ],
   "lastTelegramUpdateId": 710125054
