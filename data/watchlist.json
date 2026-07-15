@@ -1,51 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "TrumpCoin",
-      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "condition": {
-        "mcMin": 2000000,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "reclaim and hold above ~$2M with volume"
-      },
-      "addedAt": 1784030883946,
-      "expiresAt": 1784095683946
-    },
-    {
-      "symbol": "DYFN",
-      "tokenAddress": "6dSpj25Mn2NLnJsw5ED8TKFFdAbRWULhi8Fivzispump",
-      "poolAddress": "AYZk9Ws4QfdgFr9Bs1FN1Jt76VMQaMGjkMrthzQzgLby",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/AYZk9Ws4QfdgFr9Bs1FN1Jt76VMQaMGjkMrthzQzgLby",
-      "condition": {
-        "mcMin": null,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "needs real liquidity growth and rising volume before actionable"
-      },
-      "addedAt": 1784045268486,
-      "expiresAt": 1784088468486
-    },
-    {
-      "symbol": "brain",
-      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "condition": {
-        "mcMin": 820000,
-        "mcMax": 1000000,
-        "requireRisingVolume": true,
-        "description": "reclaim with higher low above ~$900K on returning volume"
-      },
-      "addedAt": 1784045268486,
-      "expiresAt": 1784088468486
-    },
-    {
       "symbol": "CashDog",
       "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
       "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
@@ -119,6 +74,66 @@
       },
       "addedAt": 1784088460509,
       "expiresAt": 1784117260509
+    },
+    {
+      "symbol": "MAHUTA",
+      "tokenAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "poolAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "condition": {
+        "mcMin": 480000,
+        "mcMax": 520000,
+        "requireRisingVolume": false,
+        "description": "pullback holds ~$480K-$520K MC with buys still leading"
+      },
+      "addedAt": 1784102859802,
+      "expiresAt": 1784131659802
+    },
+    {
+      "symbol": "PEACHBULL",
+      "tokenAddress": "BL5ADqp5tmV6Zc4t1Z9ExQgf7jJzYiV1oaEHviMLpump",
+      "poolAddress": "CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
+      "condition": {
+        "mcMin": null,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "reclaim ~0.00019 on renewed volume or hold ~0.00013 base with buyers returning"
+      },
+      "addedAt": 1784102859802,
+      "expiresAt": 1784146059802
+    },
+    {
+      "symbol": "Robinhood",
+      "tokenAddress": "B3PqTBtoHxUjFc85rtMAbcqkHYfoBoh3XgutVnqoBkrt",
+      "poolAddress": "C6YtQ7N88XCy2MBbgygs2ySaGuXdfxB9kjbaWv14Sb9T",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/C6YtQ7N88XCy2MBbgygs2ySaGuXdfxB9kjbaWv14Sb9T",
+      "condition": {
+        "mcMin": 40000,
+        "mcMax": 80000,
+        "requireRisingVolume": true,
+        "description": "first higher low holds above ~$40K MC with holders climbing and LP intact"
+      },
+      "addedAt": 1784102859802,
+      "expiresAt": 1784146059802
+    },
+    {
+      "symbol": "Flea",
+      "tokenAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
+      "poolAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
+      "condition": {
+        "mcMin": 110000,
+        "mcMax": 180000,
+        "requireRisingVolume": true,
+        "description": "clean higher low above ~$110K MC with rising volume, overriding tainted ticker"
+      },
+      "addedAt": 1784102859802,
+      "expiresAt": 1784138859802
     }
   ]
 }
