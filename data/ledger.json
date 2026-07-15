@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.9590930084355815,
+  "balanceSol": 1.802365567760735,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -832,7 +832,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/2qujxSBhjbzKSg8E9ekoe2r6M85BNHSZVk3xzskXrh4K",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.15672744067484654,
       "remainingSizeSol": 0.15672744067484654,
       "entryCondition": {
@@ -864,14 +864,16 @@
       ],
       "thesis": "Cleanest organic base in the batch (1,095 holders, organicScore 73, riskScore 1) consolidating after a 6x; small second-leg punt if it reclaims or prints a higher low, sized down for thin $37K liquidity.",
       "createdAt": 1784074037748,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00023322247075488708,
+      "entryMarketCapUsd": 231498.0232,
+      "openedAt": 1784075813583,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0,
-      "triggerHits": 1
+      "triggerHits": 2,
+      "highWaterPriceUsd": 0.00023322247075488708,
+      "lowWaterPriceUsd": 0.00023322247075488708
     }
   ],
   "tradeLog": [
@@ -1044,6 +1046,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784052733829
+    },
+    {
+      "positionId": "GjJsyLWFEHA4TCJBGpobM2tceM4wiQaD3ZPKDhDppump-1784074037748",
+      "symbol": "Cyclospora",
+      "action": "ENTRY",
+      "price": 0.00023322247075488708,
+      "sizeSol": 0.15672744067484654,
+      "pnlSol": 0,
+      "reason": "filled with 0.00% price impact",
+      "timestamp": 1784075824559
     }
   ]
 }
