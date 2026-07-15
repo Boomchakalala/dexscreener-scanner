@@ -1,51 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "CashDog",
-      "tokenAddress": "FyCiT1uzgWPuryg2hVusd6debeQSauGKP3aHnXKopump",
-      "poolAddress": "9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/9HoqoPwKeaJNwUhQuBdyJfX3evhRRBab3qyto8CXBLGN",
-      "condition": {
-        "mcMin": 135000,
-        "mcMax": 210000,
-        "requireRisingVolume": true,
-        "description": "reclaims ~$0.00013 (~$140K MC) on rising volume, or holds a higher low above $0.00008"
-      },
-      "addedAt": 1784059660181,
-      "expiresAt": 1784102860181
-    },
-    {
-      "symbol": "Cyclospora",
-      "tokenAddress": "GjJsyLWFEHA4TCJBGpobM2tceM4wiQaD3ZPKDhDppump",
-      "poolAddress": "2qujxSBhjbzKSg8E9ekoe2r6M85BNHSZVk3xzskXrh4K",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/2qujxSBhjbzKSg8E9ekoe2r6M85BNHSZVk3xzskXrh4K",
-      "condition": {
-        "mcMin": 190000,
-        "mcMax": 255000,
-        "requireRisingVolume": true,
-        "description": "reclaim ~$255K on rising volume, or hold ~$200K higher low"
-      },
-      "addedAt": 1784074037747,
-      "expiresAt": 1784117237747
-    },
-    {
-      "symbol": "Cardtopia",
-      "tokenAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "poolAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "condition": {
-        "mcMin": null,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "needs a higher low with rising volume and thicker liquidity before actionable"
-      },
-      "addedAt": 1784074037747,
-      "expiresAt": 1784117237747
-    },
-    {
       "symbol": "Ralph",
       "tokenAddress": "4eBrLFJGn9Qb3iUxybKZJzC1eamuCNyqaQgMoXp8J8Yh",
       "poolAddress": "9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
@@ -59,21 +14,6 @@
       },
       "addedAt": 1784088460509,
       "expiresAt": 1784131660509
-    },
-    {
-      "symbol": "MEMEDb",
-      "tokenAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
-      "poolAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
-      "condition": {
-        "mcMin": null,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "needs a pullback and first higher low after +5489% vertical before it's touchable"
-      },
-      "addedAt": 1784088460509,
-      "expiresAt": 1784117260509
     },
     {
       "symbol": "MAHUTA",
@@ -121,19 +61,49 @@
       "expiresAt": 1784146059802
     },
     {
+      "symbol": "BULL",
+      "tokenAddress": "76iSgD2nwjJGVxAtgdnxnWrhm2YkWg9NwEsdRUNtpump",
+      "poolAddress": "D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
+      "condition": {
+        "mcMin": 110000,
+        "mcMax": 135000,
+        "requireRisingVolume": true,
+        "description": "reclaim ~0.00012 on rising volume or shallow hold of ~0.00009"
+      },
+      "addedAt": 1784117264499,
+      "expiresAt": 1784160464499
+    },
+    {
       "symbol": "Flea",
       "tokenAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
       "poolAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
       "condition": {
-        "mcMin": 110000,
-        "mcMax": 180000,
+        "mcMin": 550000,
+        "mcMax": 620000,
         "requireRisingVolume": true,
-        "description": "clean higher low above ~$110K MC with rising volume, overriding tainted ticker"
+        "description": "consolidates into ~$550-600K MC higher-low then reclaims on volume"
       },
-      "addedAt": 1784102859802,
-      "expiresAt": 1784138859802
+      "addedAt": 1784117264499,
+      "expiresAt": 1784182064499
+    },
+    {
+      "symbol": "MIM",
+      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
+      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "condition": {
+        "mcMin": 230000,
+        "mcMax": 300000,
+        "requireRisingVolume": true,
+        "description": "reclaim ~0.00026 on rising volume or holds ~0.00016 support"
+      },
+      "addedAt": 1784117264499,
+      "expiresAt": 1784182064499
     }
   ]
 }
