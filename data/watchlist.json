@@ -1,21 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "FELIX",
-      "tokenAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
-      "poolAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
-      "condition": {
-        "mcMin": 180000,
-        "mcMax": 260000,
-        "requireRisingVolume": true,
-        "description": "pullback holds above ~$180K with buyers stepping back in"
-      },
-      "addedAt": 1784030883946,
-      "expiresAt": 1784074083946
-    },
-    {
       "symbol": "TrumpCoin",
       "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
       "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
@@ -104,6 +89,36 @@
       },
       "addedAt": 1784074037747,
       "expiresAt": 1784117237747
+    },
+    {
+      "symbol": "Ralph",
+      "tokenAddress": "4eBrLFJGn9Qb3iUxybKZJzC1eamuCNyqaQgMoXp8J8Yh",
+      "poolAddress": "9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
+      "condition": {
+        "mcMin": 20000,
+        "mcMax": 25000,
+        "requireRisingVolume": true,
+        "description": "pullback into ~0.0000200-0.0000230 (~$20-23K MC) holding with buyers returning, or volume-backed hold above 0.0000311"
+      },
+      "addedAt": 1784088460509,
+      "expiresAt": 1784131660509
+    },
+    {
+      "symbol": "MEMEDb",
+      "tokenAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
+      "poolAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
+      "condition": {
+        "mcMin": null,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "needs a pullback and first higher low after +5489% vertical before it's touchable"
+      },
+      "addedAt": 1784088460509,
+      "expiresAt": 1784117260509
     }
   ]
 }
