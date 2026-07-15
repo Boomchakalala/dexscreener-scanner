@@ -142,13 +142,13 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
       "condition": {
-        "mcMin": 340000,
-        "mcMax": null,
+        "mcMin": 300000,
+        "mcMax": 420000,
         "requireRisingVolume": true,
-        "description": "Reclaim above $340K MC after a 15m higher low with buy volume returning"
+        "description": "Base holds above ~$262K with H1 volume re-expanding"
       },
-      "addedAt": 1784135231087,
-      "expiresAt": 1784178431087
+      "addedAt": 1784140378601,
+      "expiresAt": 1784183578601
     }
   ]
 }
