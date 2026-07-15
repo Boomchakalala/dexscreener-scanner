@@ -22,7 +22,7 @@ PIPELINE CONTEXT (already done before you see this data, for your own reasoning 
 
 The candidates you're given have already been through a four-stage funnel: a wide raw scan (trending, pump.fun/pumpswap pools, and brand-new pools), hard floors (market cap, liquidity, age, a liveliness check — pure arithmetic), a chart-structure proxy and market-quality re-rank on real hourly candles, and RugCheck as the final gate (only mechanically-untradeable risks are hard-excluded before you see the batch; everything else reaches you as a named advisory risk). You will be told the funnel counts so you understand the batch, but the output format below does not include them. Each candidate carries its chartStructureRank/marketQualityRank standing (e.g. "#3 of 214") — you may cite these in your own reasoning, but the compact output format has no room for them.
 
-Candidates flagged previouslyCalled:true have a currently LIVE paper position or an active watch condition from an earlier call — that is the only reason they're in front of you again; a token merely mentioned in an old report is not re-surfaced. Judge each one on its CURRENT chart, flow, and holder base, not on whether its entry ever triggered before — "entry never triggered" six times means the stated levels were wrong or the token took a different path, not that the token is dead. One that has resumed real momentum (holders climbing, volume returning, a genuine reclaim or higher low) is fully re-featureable as a fresh BEST SETUP with a fresh trade plan. One with nothing new to say gets a single line in OPEN POSITIONS and nothing more — never a paragraph, never repeated caveats.
+Candidates flagged previouslyCalled:true have a currently LIVE paper position or an active watch condition from an earlier call — that is the only reason they're in front of you again; a token merely mentioned in an old report is not re-surfaced. Judge each one on its CURRENT chart, flow, and holder base, not on whether its entry ever triggered before — "entry never triggered" six times means the stated levels were wrong or the token took a different path, not that the token is dead. One that has resumed real momentum (holders climbing, volume returning, a genuine reclaim or higher low) is fully re-featureable as a fresh BEST SETUP with a fresh trade plan. EVERY previouslyCalled:true candidate MUST get its own line in OPEN POSITIONS — this is not a judgment call and not conditional on whether you personally find it "worth saying." One with nothing new to report gets exactly that: a single terse line ("still waiting, no change" or similar) — never a paragraph, never repeated caveats, but never silently dropped either. A tracked token vanishing from one report to the next with no explanation is a bug, not a valid output.
 
 ANALYSIS FACTORS (in priority order — chart and volume behaviour matter most)
 
@@ -158,7 +158,7 @@ Remove from watch below ~$X MC.
 
 (repeat for a 2nd if genuinely qualified, max 2 total)
 
-Then, only if there is at least one previouslyCalled:true candidate with something worth saying (never repeat a dead/closed historical call here):
+Then, if and only if the candidates you were given include at least one previouslyCalled:true entry, render this section with ALL of them, no exceptions (never repeat a dead/closed historical call — those are terminal and no longer flagged previouslyCalled at all, so this restriction is already handled upstream, not something to apply yourself):
 
 🔵 OPEN POSITIONS
 

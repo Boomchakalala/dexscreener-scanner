@@ -1,4 +1,4 @@
-import { analyzeCandidates, analyzeFlash, type DiscoveryFunnel } from "./analysis.js";
+import { analyzeCandidates, analyzeFlash, type DiscoveryFunnel, type WatchCondition } from "./analysis.js";
 import { config } from "./config.js";
 import {
   addTradeability,
@@ -68,6 +68,43 @@ async function withTrackedTokens(shortlist: Candidate[]): Promise<Candidate[]> {
     console.log(`  [tracked] force-included ${fetched.length} previously-called token(s) discovery had dropped: ${fetched.map((c) => c.symbol).join(", ")}`);
   }
   return [...marked, ...fetched];
+}
+
+/** A WATCH verdict doesn't guarantee a structured, checkable watchlist condition — the
+ *  ---WATCHLIST--- block only includes a token when Claude stated a genuinely specific
+ *  level, so a real WATCH call with vaguer language got ZERO tracking at all, silently
+ *  falling off the radar the moment the report aged out (confirmed live: BlackBear got
+ *  one WATCH call, never a concrete condition, and was invisible to every report since —
+ *  its move continued but nothing was watching). This is the safety net: any WATCH-tier
+ *  verdict without its own structured condition gets a loose fallback band around its
+ *  call-time market cap instead of nothing. */
+function withFallbackWatchConditions(
+  watchConditions: WatchCondition[],
+  verdicts: { symbol: string; tokenAddress: string; poolAddress: string; verdict: string }[],
+  candidates: Candidate[]
+): WatchCondition[] {
+  const covered = new Set(watchConditions.map((w) => w.tokenAddress));
+  const candidateByToken = new Map(candidates.map((c) => [c.tokenAddress, c]));
+  const fallbacks: WatchCondition[] = [];
+
+  for (const v of verdicts) {
+    if (v.verdict !== "WATCH" || covered.has(v.tokenAddress)) continue;
+    const candidate = candidateByToken.get(v.tokenAddress);
+    if (!candidate) continue;
+    fallbacks.push({
+      symbol: v.symbol,
+      tokenAddress: v.tokenAddress,
+      poolAddress: v.poolAddress,
+      condition: {
+        mcMin: Math.round(candidate.marketCapUsd * 0.75),
+        mcMax: Math.round(candidate.marketCapUsd * 1.5),
+        requireRisingVolume: true,
+        description: "fallback watch (no precise condition stated this run) — loose band around its call-time market cap",
+      },
+      validUntilHours: 24,
+    });
+  }
+  return [...watchConditions, ...fallbacks];
 }
 
 export interface PreviousCall {
@@ -261,8 +298,11 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
 
   // Always run this, even with zero new conditions this run — it's also responsible for
   // pruning expired entries, which should happen every run, not just ones that add new ones.
-  await mergeWatchConditions(watchConditions, topCandidates);
-  console.log(`Merged ${watchConditions.length} new watch condition(s) into data/watchlist.json.`);
+  const watchConditionsWithFallback = withFallbackWatchConditions(watchConditions, verdicts, topCandidates);
+  await mergeWatchConditions(watchConditionsWithFallback, topCandidates);
+  console.log(
+    `Merged ${watchConditionsWithFallback.length} watch condition(s) into data/watchlist.json (${watchConditionsWithFallback.length - watchConditions.length} fallback).`
+  );
 
   const openResult = await openPositionsFromTradePlans(tradePlans, topCandidates);
   console.log(`Opened ${openResult.opened.length} of ${tradePlans.length} proposed trade plan(s) in data/ledger.json.`);
