@@ -10,6 +10,7 @@ import {
   type Position,
   type TradeLogEntry,
 } from "./ledger.js";
+import { getRugCheckReport } from "./rugcheck.js";
 import { sendTelegramMessage } from "./telegram.js";
 
 const client = new Anthropic({ apiKey: config.anthropicApiKey });
@@ -189,7 +190,16 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
   position.openedAt = now;
   position.highWaterPriceUsd = fill.price;
   position.lowWaterPriceUsd = fill.price;
+  position.entryTxnsH1 = { buys: stats.txnsH1.buys, sells: stats.txnsH1.sells };
   ledger.balanceSol -= position.sizeSol;
+
+  // Baseline for the live wallet-distribution check below: the largest holder BY ADDRESS
+  // at fill time, so a later check can tell whether that specific wallet shrank or exited
+  // rather than just noticing a different wallet is now largest.
+  const rugCheck = await getRugCheckReport(position.tokenAddress);
+  const topHolder = rugCheck?.topHolders?.[0] ?? null;
+  position.entryTopHolderAddress = topHolder?.address ?? null;
+  position.entryTopHolderPct = topHolder?.pct ?? null;
 
   logTrade(ledger, {
     positionId: position.id,
@@ -224,11 +234,58 @@ function closePosition(position: Position, ledger: Ledger, exitPrice: number, re
   position.remainingSizeSol = 0;
 }
 
+// Two independent, non-exiting early-warning checks for "I bought and a large wallet
+// started dumping right after" — the thing the price-only stop-loss can't see until it's
+// already too late. Both fire at most once per position (distributionWarned latches).
+const SELL_SPIKE_THRESHOLD_PTS = 20; // percentage-point jump in sell fraction vs entry
+const SELL_SPIKE_MIN_TXNS = 10; // ignore tiny samples — noise, not signal
+const TOP_HOLDER_RELATIVE_DROP = 0.4; // holder's stake shrank by 40%+ vs entry
+const TOP_HOLDER_MC_GROWTH_CEILING = 1.3; // ...and it's not just organic dilution from MC growth
+
+async function checkDistributionHealth(position: Position, stats: PoolStats): Promise<void> {
+  if (position.distributionWarned) return;
+
+  const warnings: string[] = [];
+
+  if (position.entryTxnsH1) {
+    const entryTotal = position.entryTxnsH1.buys + position.entryTxnsH1.sells;
+    const nowTotal = stats.txnsH1.buys + stats.txnsH1.sells;
+    if (entryTotal > 0 && nowTotal >= SELL_SPIKE_MIN_TXNS) {
+      const entrySellPct = (position.entryTxnsH1.sells / entryTotal) * 100;
+      const nowSellPct = (stats.txnsH1.sells / nowTotal) * 100;
+      if (nowSellPct - entrySellPct >= SELL_SPIKE_THRESHOLD_PTS) {
+        warnings.push(`sell pressure jumped from ${entrySellPct.toFixed(0)}% to ${nowSellPct.toFixed(0)}% of h1 flow`);
+      }
+    }
+  }
+
+  if (position.entryTopHolderAddress && position.entryTopHolderPct) {
+    const mcGrowth = position.entryMarketCapUsd ? stats.marketCapUsd / position.entryMarketCapUsd : 1;
+    if (mcGrowth < TOP_HOLDER_MC_GROWTH_CEILING) {
+      const rugCheck = await getRugCheckReport(position.tokenAddress);
+      const stillHolds = rugCheck?.topHolders?.find((h) => h.address === position.entryTopHolderAddress);
+      const currentPct = stillHolds?.pct ?? 0;
+      if (currentPct <= position.entryTopHolderPct * (1 - TOP_HOLDER_RELATIVE_DROP)) {
+        warnings.push(
+          stillHolds
+            ? `entry's top holder shrank from ${position.entryTopHolderPct.toFixed(1)}% to ${currentPct.toFixed(1)}%`
+            : `entry's top holder (was ${position.entryTopHolderPct.toFixed(1)}%) appears to have fully exited`
+        );
+      }
+    }
+  }
+
+  if (warnings.length === 0) return;
+  position.distributionWarned = true;
+  await sendTelegramMessage(`⚠️ **${position.symbol}** — possible distribution\n${warnings.join("; ")}. Not auto-exiting — your call.`);
+}
+
 async function checkOpenPosition(position: Position, ledger: Ledger): Promise<void> {
   const stats = await getPoolStats(position.chainId, position.poolAddress);
   if (!stats) return;
   const entryPrice = position.entryPrice as number;
   updateWatermarks(position, stats.priceUsd);
+  await checkDistributionHealth(position, stats);
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
@@ -287,6 +344,7 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   const entryPrice = position.entryPrice as number;
   const entryMc = position.entryMarketCapUsd as number;
   updateWatermarks(position, stats.priceUsd);
+  await checkDistributionHealth(position, stats);
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);

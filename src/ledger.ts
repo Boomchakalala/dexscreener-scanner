@@ -53,6 +53,19 @@ export interface Position {
    *  be reconstructed afterward, which is the whole point of paper trading. */
   highWaterPriceUsd?: number | null;
   lowWaterPriceUsd?: number | null;
+  /** Buy/sell transaction counts at fill time — the baseline a live sell-pressure-spike
+   *  check compares each subsequent check against, to catch "bought, then the wallets
+   *  immediately started dumping" the same day it happens instead of only after price
+   *  itself breaks the stop. */
+  entryTxnsH1?: { buys: number; sells: number } | null;
+  /** The largest RugCheck-reported holder's address + percentage at fill time — tracked
+   *  by address (not just "current largest") so re-checks detect the SAME wallet
+   *  shrinking or exiting, not a different wallet becoming largest. */
+  entryTopHolderAddress?: string | null;
+  entryTopHolderPct?: number | null;
+  /** Set once a distribution/sell-pressure alert has fired for this position, so the
+   *  5-minute checker doesn't spam the same warning every cycle. */
+  distributionWarned?: boolean;
 }
 
 export interface TradeLogEntry {

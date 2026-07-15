@@ -16,7 +16,7 @@ import { getMarketOverview } from "./marketOverview.js";
 import { rankByQuality } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts, type AlertHistoryEntry } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
-import { mergeWatchConditions } from "./watchlist.js";
+import { loadWatchlistEntries, mergeWatchConditions } from "./watchlist.js";
 import type { Candidate } from "./types.js";
 
 function now(): number {
@@ -27,14 +27,14 @@ function now(): number {
  *  discovery filters think of them — the suffix-only pump.fun gate famously excluded
  *  PCAT, the user's own favorite live call, one scan after it was made. Grandfathered
  *  tokens get force-fetched, flagged `tracked`, and take ADDITIONAL batch slots on top
- *  of fresh discovery (an earlier version let 10 tracked tokens crowd fresh candidates
- *  down to 2 slots, which read as "nothing qualifies tonight"). Scope, per the user:
- *  live paper positions + the last 2-3 REC/PUNT calls, hard-capped at 4 total. */
-const MAX_TRACKED = 4;
+ *  of fresh discovery. Scope tightened per the compact-report redesign: ONLY a currently
+ *  live paper position or an active watch condition counts — "we said something nice
+ *  about it yesterday" is no longer enough. A token merely mentioned in an old report
+ *  should not keep dragging every future report back to it. */
+const MAX_TRACKED = 3;
 
-async function getTrackedTokens(recentHistory: AlertHistoryEntry[]): Promise<{ tokenAddress: string; poolAddress: string }[]> {
+async function getTrackedTokens(): Promise<{ tokenAddress: string; poolAddress: string }[]> {
   const nowMs = Date.now();
-  const DAY = 24 * 3600 * 1000;
   const out = new Map<string, string>();
 
   const ledger = await loadLedger();
@@ -42,22 +42,16 @@ async function getTrackedTokens(recentHistory: AlertHistoryEntry[]): Promise<{ t
     const live = p.status === "PENDING_ENTRY" || p.status === "OPEN" || p.status === "TP1_TAKEN";
     if (live) out.set(p.tokenAddress, p.poolAddress);
   }
-
-  // Most recent REC/PUNT calls fill the remaining slots (newest first).
-  const calls = recentHistory
-    .filter((h) => nowMs - h.alertedAt < DAY && (h.verdict === "RECOMMENDATION" || h.verdict === "SPECULATIVE PUNT"))
-    .sort((a, b) => b.alertedAt - a.alertedAt);
-  for (const h of calls) {
-    if (out.size >= MAX_TRACKED) break;
-    if (!out.has(h.tokenAddress)) out.set(h.tokenAddress, h.poolAddress);
+  for (const w of await loadWatchlistEntries()) {
+    if (w.expiresAt > nowMs) out.set(w.tokenAddress, w.poolAddress);
   }
 
   return [...out].slice(0, MAX_TRACKED).map(([tokenAddress, poolAddress]) => ({ tokenAddress, poolAddress }));
 }
 
 /** Marks in-shortlist tracked tokens and force-fetches the ones discovery dropped. */
-async function withTrackedTokens(shortlist: Candidate[], recentHistory: AlertHistoryEntry[]): Promise<Candidate[]> {
-  const tracked = await getTrackedTokens(recentHistory);
+async function withTrackedTokens(shortlist: Candidate[]): Promise<Candidate[]> {
+  const tracked = await getTrackedTokens();
   if (tracked.length === 0) return shortlist;
   const trackedSet = new Set(tracked.map((t) => t.tokenAddress));
   const present = new Set(shortlist.map((c) => c.tokenAddress));
@@ -85,91 +79,51 @@ export interface PreviousCall {
   paperStatus: string | null;
 }
 
-/** Deterministic then-vs-now context for every recent call — fed to Claude so IT writes
- *  the "PREVIOUS CALLS UPDATE" report section from real numbers (paper status, MC at
- *  call, verdict trajectory) instead of us bolting a stats block onto its prose. Covers
- *  tokens with a paper position or a REC/PUNT verdict from the last 24h. */
-async function buildPreviousCalls(recentHistory: AlertHistoryEntry[]): Promise<PreviousCall[]> {
+/** Deterministic then-vs-now context, scoped to the SAME set as getTrackedTokens (live
+ *  paper position or active watch condition only — no more "anything called in the last
+ *  24h"). The old broader version kept every REC/PUNT call around for a full day, which
+ *  is exactly what turned OPEN POSITIONS into a wall of "no signal, leave it" lines even
+ *  when there was nothing new to report on a token. */
+async function buildPreviousCalls(): Promise<PreviousCall[]> {
   const nowMs = Date.now();
-  const DAY = 24 * 3600 * 1000;
-
-  const paperStatusByToken = new Map<string, { status: string; createdAt: number }>();
   const ledger = await loadLedger();
+
+  const calls: PreviousCall[] = [];
   for (const p of ledger.positions) {
-    if (nowMs - p.createdAt > DAY) continue;
-    const prev = paperStatusByToken.get(p.tokenAddress);
-    if (prev && prev.createdAt >= p.createdAt) continue;
+    if (p.status !== "PENDING_ENTRY" && p.status !== "OPEN" && p.status !== "TP1_TAKEN") continue;
     let status: string;
     if (p.status === "PENDING_ENTRY") {
       const minutesLeft = Math.max(0, Math.round((p.createdAt + p.entryCondition.validityWindowMinutes * 60_000 - nowMs) / 60_000));
       status = `waiting for entry trigger (${minutesLeft}m left)`;
-    } else if (p.status === "MISSED") {
-      status = "entry never triggered (missed)";
     } else if (p.status === "OPEN") {
       status = `position OPEN from $${p.entryPrice}`;
-    } else if (p.status === "TP1_TAKEN") {
-      status = `runner after TP1, realized ${p.realizedPnlSol.toFixed(3)} SOL`;
     } else {
-      status = `closed, P&L ${p.realizedPnlSol.toFixed(3)} SOL`;
+      status = `runner after TP1, realized ${p.realizedPnlSol.toFixed(3)} SOL`;
     }
-    paperStatusByToken.set(p.tokenAddress, { status, createdAt: p.createdAt });
-  }
-
-  // A token that earned a REC/PUNT call stays on the radar even after a later downgrade —
-  // "you told me to punt this, what happened next" is the question this answers, and
-  // hiding a pick the moment it turned AVOID was how PCAT vanished right when it mattered.
-  const byToken = new Map<string, AlertHistoryEntry[]>();
-  for (const h of recentHistory) {
-    if (nowMs - h.alertedAt > DAY) continue;
-    (byToken.get(h.tokenAddress) ?? byToken.set(h.tokenAddress, []).get(h.tokenAddress)!).push(h);
-  }
-
-  const calls: PreviousCall[] = [];
-  for (const [tokenAddress, entries] of byToken) {
-    entries.sort((a, b) => a.alertedAt - b.alertedAt);
-    const firstCall = entries.find((h) => h.verdict === "RECOMMENDATION" || h.verdict === "SPECULATIVE PUNT");
-    const paper = paperStatusByToken.get(tokenAddress);
-    if (!firstCall && !paper) continue;
-    const anchor = firstCall ?? entries[0]!;
-    const trajectory = entries.map((h) => h.verdict).join(" -> ");
     calls.push({
-      symbol: anchor.symbol,
-      tokenAddress,
-      firstCalledHoursAgo: Number(((nowMs - anchor.alertedAt) / 3_600_000).toFixed(1)),
-      callTrajectory: trajectory,
-      mcAtFirstCallUsd: anchor.marketCapUsdAtAlert ?? null,
-      paperStatus: paper?.status ?? null,
+      symbol: p.symbol,
+      tokenAddress: p.tokenAddress,
+      firstCalledHoursAgo: Number(((nowMs - p.createdAt) / 3_600_000).toFixed(1)),
+      callTrajectory: p.tier,
+      mcAtFirstCallUsd: p.entrySnapshot.marketCapUsd ?? null,
+      paperStatus: status,
     });
   }
 
-  // Paper positions whose token never got a history entry (e.g. history commit lost).
-  for (const [tokenAddress, paper] of paperStatusByToken) {
-    if (calls.some((c) => c.tokenAddress === tokenAddress)) continue;
-    const position = ledger.positions.find((p) => p.tokenAddress === tokenAddress)!;
+  for (const w of await loadWatchlistEntries()) {
+    if (w.expiresAt <= nowMs) continue;
+    if (calls.some((c) => c.tokenAddress === w.tokenAddress)) continue;
     calls.push({
-      symbol: position.symbol,
-      tokenAddress,
-      firstCalledHoursAgo: Number(((nowMs - position.createdAt) / 3_600_000).toFixed(1)),
-      callTrajectory: position.tier,
-      mcAtFirstCallUsd: position.entrySnapshot.marketCapUsd ?? null,
-      paperStatus: paper.status,
+      symbol: w.symbol,
+      tokenAddress: w.tokenAddress,
+      firstCalledHoursAgo: Number(((nowMs - w.addedAt) / 3_600_000).toFixed(1)),
+      callTrajectory: "WATCH",
+      mcAtFirstCallUsd: null,
+      paperStatus: `watching: ${w.condition.description}`,
     });
   }
 
-  // Same scope as tracked-in-batch: the reader wants the last few calls followed, not a
-  // ten-line ledger dump — live-position tokens first, then most recent calls, cap 4.
-  const liveTokens = new Set(
-    ledger.positions
-      .filter((p) => p.status === "PENDING_ENTRY" || p.status === "OPEN" || p.status === "TP1_TAKEN")
-      .map((p) => p.tokenAddress)
-  );
-  return calls
-    .sort((a, b) => {
-      const aLive = liveTokens.has(a.tokenAddress) ? 0 : 1;
-      const bLive = liveTokens.has(b.tokenAddress) ? 0 : 1;
-      return aLive - bLive || a.firstCalledHoursAgo - b.firstCalledHoursAgo;
-    })
-    .slice(0, MAX_TRACKED);
+  return calls.slice(0, MAX_TRACKED);
 }
 
 function logStage(stage: string, startedAt: number): void {
@@ -220,7 +174,7 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   );
 
   const recentHistory = await getRecentAlertHistory("deep");
-  const workset = await withTrackedTokens(shortlist, recentHistory);
+  const workset = await withTrackedTokens(shortlist);
 
   if (workset.length === 0) {
     await sendTelegramMessage(`${label} — scanned ${rawCount} pairs, none survived the hard filters this run.`);
@@ -273,7 +227,7 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   const marketOverview = await getMarketOverview();
 
   t = now();
-  const previousCalls = await buildPreviousCalls(recentHistory);
+  const previousCalls = await buildPreviousCalls();
   const { report, verdicts, watchConditions, tradePlans, parseWarning } = await analyzeCandidates(
     topCandidates,
     recentHistory,
