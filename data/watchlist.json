@@ -1,36 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "Ralph",
-      "tokenAddress": "4eBrLFJGn9Qb3iUxybKZJzC1eamuCNyqaQgMoXp8J8Yh",
-      "poolAddress": "9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
-      "condition": {
-        "mcMin": 20000,
-        "mcMax": 25000,
-        "requireRisingVolume": true,
-        "description": "pullback into ~0.0000200-0.0000230 (~$20-23K MC) holding with buyers returning, or volume-backed hold above 0.0000311"
-      },
-      "addedAt": 1784088460509,
-      "expiresAt": 1784131660509
-    },
-    {
-      "symbol": "MAHUTA",
-      "tokenAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
-      "poolAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
-      "condition": {
-        "mcMin": 480000,
-        "mcMax": 520000,
-        "requireRisingVolume": false,
-        "description": "pullback holds ~$480K-$520K MC with buys still leading"
-      },
-      "addedAt": 1784102859802,
-      "expiresAt": 1784131659802
-    },
-    {
       "symbol": "PEACHBULL",
       "tokenAddress": "BL5ADqp5tmV6Zc4t1Z9ExQgf7jJzYiV1oaEHviMLpump",
       "poolAddress": "CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
@@ -104,6 +74,51 @@
       },
       "addedAt": 1784117264499,
       "expiresAt": 1784182064499
+    },
+    {
+      "symbol": "Bison",
+      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
+      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
+      "condition": {
+        "mcMin": 130000,
+        "mcMax": 170000,
+        "requireRisingVolume": true,
+        "description": "pullback to ~$140K MC that holds, or reclaim of 0.000177 with rising volume"
+      },
+      "addedAt": 1784131709166,
+      "expiresAt": 1784174909166
+    },
+    {
+      "symbol": "DAFUAN",
+      "tokenAddress": "GCsMGDGF9DGANC1W3AEovCe9C24984JUs4SFVvwFpump",
+      "poolAddress": "85FxXEytkKKZX5kepPo2MpvggQfesfqWp3TPCGAt7uyk",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/85FxXEytkKKZX5kepPo2MpvggQfesfqWp3TPCGAt7uyk",
+      "condition": {
+        "mcMin": 56000,
+        "mcMax": 75000,
+        "requireRisingVolume": true,
+        "description": "holds above 0.00005 and reclaims ~0.00006 on rising volume"
+      },
+      "addedAt": 1784131709166,
+      "expiresAt": 1784174909166
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "condition": {
+        "mcMin": 1300000,
+        "mcMax": 1600000,
+        "requireRisingVolume": true,
+        "description": "stops flushing, prints higher low and reclaims above ~$1.4M MC with buy volume returning"
+      },
+      "addedAt": 1784131709166,
+      "expiresAt": 1784160509166
     }
   ]
 }
