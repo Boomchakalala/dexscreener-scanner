@@ -1790,6 +1790,42 @@
       "marketCapUsdAtAlert": 1317885.1451638765,
       "kind": "deep",
       "alertedAt": 1784136449329
+    },
+    {
+      "symbol": "MIM",
+      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
+      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
+      "verdict": "RECOMMENDATION",
+      "marketCapUsdAtAlert": 314380.895770059,
+      "kind": "deep",
+      "alertedAt": 1784140378599
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 2071137.210013991,
+      "kind": "deep",
+      "alertedAt": 1784140378599
+    },
+    {
+      "symbol": "BULLCAT",
+      "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 1437128.2425084847,
+      "kind": "deep",
+      "alertedAt": 1784140378599
+    },
+    {
+      "symbol": "TST",
+      "tokenAddress": "C9ciQpxvkDdFXuGpDJWSM6iQSMK8pwEuiTVN4RPRpump",
+      "poolAddress": "3Dq9wfmWTXuambrhi3VRu5b6g8UcSYev3DWgYBhhmSxC",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 148009.57938,
+      "kind": "deep",
+      "alertedAt": 1784140378599
     }
   ],
   "lastTelegramUpdateId": 710125054
