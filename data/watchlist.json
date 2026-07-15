@@ -1,36 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "PEACHBULL",
-      "tokenAddress": "BL5ADqp5tmV6Zc4t1Z9ExQgf7jJzYiV1oaEHviMLpump",
-      "poolAddress": "CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
-      "condition": {
-        "mcMin": null,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "reclaim ~0.00019 on renewed volume or hold ~0.00013 base with buyers returning"
-      },
-      "addedAt": 1784102859802,
-      "expiresAt": 1784146059802
-    },
-    {
-      "symbol": "Robinhood",
-      "tokenAddress": "B3PqTBtoHxUjFc85rtMAbcqkHYfoBoh3XgutVnqoBkrt",
-      "poolAddress": "C6YtQ7N88XCy2MBbgygs2ySaGuXdfxB9kjbaWv14Sb9T",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/C6YtQ7N88XCy2MBbgygs2ySaGuXdfxB9kjbaWv14Sb9T",
-      "condition": {
-        "mcMin": 40000,
-        "mcMax": 80000,
-        "requireRisingVolume": true,
-        "description": "first higher low holds above ~$40K MC with holders climbing and LP intact"
-      },
-      "addedAt": 1784102859802,
-      "expiresAt": 1784146059802
-    },
-    {
       "symbol": "Flea",
       "tokenAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
       "poolAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
@@ -106,21 +76,6 @@
       "expiresAt": 1784162897890
     },
     {
-      "symbol": "BULLCAT",
-      "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
-      "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
-      "condition": {
-        "mcMin": 1650000,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "Reclaim above $1.65M MC with h1 buys flipping above sells"
-      },
-      "addedAt": 1784135231087,
-      "expiresAt": 1784178431087
-    },
-    {
       "symbol": "MIM",
       "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
       "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
@@ -179,6 +134,21 @@
       },
       "addedAt": 1784145450383,
       "expiresAt": 1784188650383
+    },
+    {
+      "symbol": "BULLCAT",
+      "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "condition": {
+        "mcMin": 1150000,
+        "mcMax": 1600000,
+        "requireRisingVolume": true,
+        "description": "h1 downtrend flattens and reclaims on rising volume off ~$1.15M"
+      },
+      "addedAt": 1784149812040,
+      "expiresAt": 1784214612040
     }
   ]
 }
