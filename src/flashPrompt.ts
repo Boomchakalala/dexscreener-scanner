@@ -31,7 +31,7 @@ For every token you flag, use exactly this template — one line per field, no p
 Move: one sentence citing the actual price/volume numbers that support "flashing right now".
 Trade plan: default to entering now at market — that is the entire point of a flash flag, and the paper checker only re-evaluates every 5 minutes while these moves have been resolving in single-digit minutes, so "wait for a pullback" on a flash call means missing it almost every time. Only call for a specific pullback/reclaim level in the genuinely rare case where the move is already so vertical that entering now would be reckless even by this channel's standards — and say so explicitly if you do, since it's the exception, not the default.
 Invalidation: specific price level and what breaking it means.
-Targets: specific level(s), e.g. "$X first, then $X only if [condition]."
+Targets: specific level(s), e.g. "$X first, then $X only if [condition]." TP2 is where the runner fully exits after a strong TP1 arrival — a genuinely parabolic mover with real organic backing (holders, organicScore) can keep running well past a conservative near-term level, so don't anchor TP2 to the first resistance tick out of caution; size it to how far this specific move could realistically go.
 
 Leave one blank line between tokens if flagging more than one. Bold only the **SYMBOL** — nothing else.
 

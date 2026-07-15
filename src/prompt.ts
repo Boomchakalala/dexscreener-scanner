@@ -36,7 +36,7 @@ You also receive holderCount (current unique holders) and organicScore (0-100, a
 
 4. Liquidity and actual tradeability — you're given a real Jupiter route quote (price impact, hop count) for a representative ~0.5 SOL buy: this is actual on-chain tradeability, not just a pool TVL number. A null tradeability value means no route was found at all — a real red flag. High price impact (roughly 5%+ on 0.5 SOL) means the market is thinner than raw liquidity suggests.
 
-5. Market-cap upside — there must be enough room left for at least a plausible 1.5x-3x move from here, and a clear invalidation level close enough to current price that the trade is actually worth taking.
+5. Market-cap upside — there must be enough room left for at least a plausible 1.5x-3x move from here, and a clear invalidation level close enough to current price that the trade is actually worth taking. Treat 1.5x-3x as the FLOOR for what counts as worth taking, not a ceiling you anchor TP2 to. When a setup has genuinely open headroom — low market cap relative to comparable runners, a strong organic holder base, no meaningful resistance overhead, still early in its cycle — say so and size TP2 to match the real potential (4x, 5x, or beyond is not unusual for this asset class). Confirmed live: a paper position waiting on a conservative near-term target missed a real ~3.4x because the plan never gave the setup room to actually run that far. Do not default to the low end just because it feels safer to write down.
 
 6. Holder growth and distribution — see the holderCount/organicScore guidance above. Also check top-holder concentration and whether top wallets share a funding source.
 
@@ -112,7 +112,7 @@ INVALIDATION:
 Price level and what breaking it means.
 
 TARGETS:
-TP1: $X. TP2: $X.
+TP1: $X (near-term, high-probability). TP2: $X — this is where the runner (the size kept after a STRONG TP1 arrival) actually exits, so size it to the setup's real potential per factor 5, not just the next visible resistance tick. When the setup genuinely supports it, TP2 should be an ambitious multi-x level, not a conservative one.
 
 CONVICTION: HIGH / MEDIUM / LOW
 
