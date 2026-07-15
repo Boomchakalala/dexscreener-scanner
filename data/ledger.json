@@ -874,6 +874,54 @@
       "triggerHits": 2,
       "highWaterPriceUsd": 0.00023322247075488708,
       "lowWaterPriceUsd": 0.00016868571689170425
+    },
+    {
+      "id": "4eBrLFJGn9Qb3iUxybKZJzC1eamuCNyqaQgMoXp8J8Yh-1784088460511",
+      "symbol": "Ralph",
+      "tokenAddress": "4eBrLFJGn9Qb3iUxybKZJzC1eamuCNyqaQgMoXp8J8Yh",
+      "poolAddress": "9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9HzfTbsk1ZUEgQcCtv1NCke56UmBfHSk6gUZQh16qUpW",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.1532579018333446,
+      "remainingSizeSol": 0.1532579018333446,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.0000225,
+        "description": "Wait for pullback into ~0.0000200-0.0000230 support zone holding with buyers returning, or a volume-backed hold above 0.0000311 — do not chase the reclaim candle",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000311,
+        "marketCapUsd": 31117,
+        "liquidityUsd": 25000
+      },
+      "structuralInvalidation": {
+        "price": 0.0000086,
+        "description": "Close below 0.0000086 loses the reclaim base (~$8.6K MC) — structure broken"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.000045,
+          "note": "~$45K MC, revisit of prior range"
+        },
+        {
+          "label": "TP2",
+          "price": 0.000062,
+          "note": "~$62K MC, needs volume returning"
+        }
+      ],
+      "thesis": "Cleanest early structure in a messy batch — pump→retrace→higher-low→reclaim at just $31K MC, market-quality #1 of 23, clean RugCheck; low-confidence punt due to null/thin liquidity and fading volume on the reclaim.",
+      "createdAt": 1784088460511,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
