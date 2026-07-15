@@ -1359,7 +1359,8 @@
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "triggerHits": 0
     }
   ],
   "tradeLog": [
