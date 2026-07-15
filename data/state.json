@@ -1,38 +1,6 @@
 {
   "history": [
     {
-      "symbol": "baby",
-      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
-      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
-      "verdict": "SPECULATIVE PUNT",
-      "kind": "deep",
-      "alertedAt": 1783977908666
-    },
-    {
-      "symbol": "PCAT",
-      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
-      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
-      "verdict": "WATCH",
-      "kind": "deep",
-      "alertedAt": 1783977908666
-    },
-    {
-      "symbol": "Shikoku",
-      "tokenAddress": "2bNi6wZ8uAPdNoGkJZ1cn1FGuvGABBXdtyLjvp2Mpump",
-      "poolAddress": "2rUBkygJ981obKVbMBvxy3TZZW6cwwFWPM1wtVFs5vX3",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783977908666
-    },
-    {
-      "symbol": "BULLUNC",
-      "tokenAddress": "7WeP1TmMJqhod7NLYWrNQHfUzMzhxegxuF2j7qdapump",
-      "poolAddress": "HCvQRDcdv4VTSYGWL7TRiXpAvBZQrDTunPRqM1zyc52h",
-      "verdict": "AVOID",
-      "kind": "deep",
-      "alertedAt": 1783977908666
-    },
-    {
       "symbol": "ANSENS",
       "tokenAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
       "poolAddress": "BMdzPM7GjKVupEpsqNttRLSiMZfkNpff32YJoHvRpump",
@@ -1885,6 +1853,33 @@
       "marketCapUsdAtAlert": 166410.5967622989,
       "kind": "deep",
       "alertedAt": 1784149812038
+    },
+    {
+      "symbol": "PNT",
+      "tokenAddress": "9YwmLJrnMiaC5CJ3QRGqJhGhjrk6Bu2N8diWDrvbBC1h",
+      "poolAddress": "5UwshC9W5ijR3Q33bqUSqw6ks1c7PZUqM9Zs43xXvD3C",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 120677.00213203006,
+      "kind": "deep",
+      "alertedAt": 1784152770897
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "5BtLFutzexsjF4M6YxJZ328fiybv8uUmJMeGC9CbZd2z",
+      "poolAddress": "7dZdcb9QZD5tiJySjYmxGB9zHQgytYS8PHTGQZMosvFi",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 997786.9944980553,
+      "kind": "deep",
+      "alertedAt": 1784152770897
+    },
+    {
+      "symbol": "MAHUTA",
+      "tokenAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "poolAddress": "662As4A3xzmrf7g3iLKuK77zBgFLL5PaJk1jLZHmhBAo",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 169965.34519348785,
+      "kind": "deep",
+      "alertedAt": 1784152770897
     }
   ],
   "lastTelegramUpdateId": 710125054
