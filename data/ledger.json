@@ -931,7 +931,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.1532579018333446,
       "remainingSizeSol": 0.1532579018333446,
       "entryCondition": {
@@ -1279,6 +1279,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784091076831
+    },
+    {
+      "positionId": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump-1784102859803",
+      "symbol": "MAHUTA",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784105462546
     }
   ]
 }
