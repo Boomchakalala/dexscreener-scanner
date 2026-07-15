@@ -979,7 +979,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.22988685275001686,
       "remainingSizeSol": 0.22988685275001686,
       "entryCondition": {
@@ -1028,7 +1028,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/C6YtQ7N88XCy2MBbgygs2ySaGuXdfxB9kjbaWv14Sb9T",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.22988685275001686,
       "remainingSizeSol": 0.22988685275001686,
       "entryCondition": {
@@ -1467,6 +1467,26 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784134365144
+    },
+    {
+      "timestamp": 1784136449334,
+      "positionId": "BL5ADqp5tmV6Zc4t1Z9ExQgf7jJzYiV1oaEHviMLpump-1784102859803",
+      "symbol": "PEACHBULL",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
+    },
+    {
+      "timestamp": 1784136449334,
+      "positionId": "B3PqTBtoHxUjFc85rtMAbcqkHYfoBoh3XgutVnqoBkrt-1784102859803",
+      "symbol": "Robinhood",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
     }
   ]
 }
