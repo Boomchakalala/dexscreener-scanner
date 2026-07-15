@@ -1224,7 +1224,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.21149590453001552,
       "remainingSizeSol": 0.21149590453001552,
       "entryCondition": {
@@ -1648,6 +1648,16 @@
       "timestamp": 1784145450386,
       "positionId": "A6FGkGeJMHucajk6xrj2HwqgJGopoju9ZEN5bXBEpump-1784142998641",
       "symbol": "Dilemma",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
+    },
+    {
+      "timestamp": 1784149812043,
+      "positionId": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump-1784142998641",
+      "symbol": "reptilecoin",
       "action": "MISSED",
       "price": null,
       "sizeSol": 0,
