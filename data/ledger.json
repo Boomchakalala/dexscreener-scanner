@@ -1361,6 +1361,54 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "triggerHits": 0
+    },
+    {
+      "id": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump-1784156670762",
+      "symbol": "TrumpCoin",
+      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.40368362530682383,
+      "remainingSizeSol": 0.40368362530682383,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00036,
+        "description": "Wait for a pullback and clean reclaim of ~$0.00036 rather than chasing the +133% 5-min vertical spike",
+        "validityWindowMinutes": 20
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000415,
+        "marketCapUsd": 414916,
+        "liquidityUsd": 51650
+      },
+      "structuralInvalidation": {
+        "price": 0.0003,
+        "description": "Loss of $0.00030 means the blow-off top has failed and the move is reversing"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0005,
+          "note": "first target on continuation"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00065,
+          "note": "only if volume expands and buys keep leading"
+        }
+      ],
+      "thesis": "Parabolic real-time acceleration with dominant buy flow, strong organicScore 79 and 6358 holders.",
+      "createdAt": 1784156670762,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
