@@ -922,6 +922,150 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump-1784102859803",
+      "symbol": "MAHUTA",
+      "tokenAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "poolAddress": "6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/6w35ZYDQTrJwVPkuEBJG4QMjnBZceeW8QoerdEjRpump",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.1532579018333446,
+      "remainingSizeSol": 0.1532579018333446,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.0005,
+        "description": "pullback holding ~$480K-$520K MC with buys still leading, do not chase the vertical candle",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00065,
+        "marketCapUsd": 650581,
+        "liquidityUsd": 30145
+      },
+      "structuralInvalidation": {
+        "price": 0.0004,
+        "description": "break and hold below ~$400K MC means the up-move is unwinding"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00085,
+          "note": "$850K MC, trim aggressively on thin liquidity"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0011,
+          "note": "$1.1M MC stretch target"
+        }
+      ],
+      "thesis": "Genuine broad buy flow (1353 vs 612 buys 1h, 2616 holders, top-4 market quality) on a 14x day, but $30K liquidity under $650K cap caps this to a small fast in/out punt only.",
+      "createdAt": 1784102859803,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "BL5ADqp5tmV6Zc4t1Z9ExQgf7jJzYiV1oaEHviMLpump-1784102859803",
+      "symbol": "PEACHBULL",
+      "tokenAddress": "BL5ADqp5tmV6Zc4t1Z9ExQgf7jJzYiV1oaEHviMLpump",
+      "poolAddress": "CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CE13Pk5MfVABdwoRXQWEd1Kjy6jtVMdkxKTwCGkB1mSL",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.22988685275001686,
+      "remainingSizeSol": 0.22988685275001686,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.00019,
+        "description": "reclaim ~0.00019 on renewed volume, or a pullback visibly holding ~0.00013 with buyers stepping back in",
+        "validityWindowMinutes": 600
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0001568,
+        "marketCapUsd": 163983,
+        "liquidityUsd": 16227
+      },
+      "structuralInvalidation": {
+        "price": 0.00012,
+        "description": "loss of ~0.00012 means the pump fully round-tripped"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00022,
+          "note": "first resistance"
+        },
+        {
+          "label": "TP2",
+          "price": 0.000235,
+          "note": "retest of the high"
+        }
+      ],
+      "thesis": "Fresh Universe-1 pump with a broad 961-holder base and chart-structure rank #5, but mid-retrace on just $16K liquidity — needs a higher low or reclaim before it's actionable.",
+      "createdAt": 1784102859803,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "B3PqTBtoHxUjFc85rtMAbcqkHYfoBoh3XgutVnqoBkrt-1784102859803",
+      "symbol": "Robinhood",
+      "tokenAddress": "B3PqTBtoHxUjFc85rtMAbcqkHYfoBoh3XgutVnqoBkrt",
+      "poolAddress": "C6YtQ7N88XCy2MBbgygs2ySaGuXdfxB9kjbaWv14Sb9T",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/C6YtQ7N88XCy2MBbgygs2ySaGuXdfxB9kjbaWv14Sb9T",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.22988685275001686,
+      "remainingSizeSol": 0.22988685275001686,
+      "entryCondition": {
+        "type": "PULLBACK",
+        "triggerPrice": 0.00004,
+        "description": "first higher low holds above ~$40K MC with holder count climbing past ~250 and volume still coming in",
+        "validityWindowMinutes": 600
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000455,
+        "marketCapUsd": 45550,
+        "liquidityUsd": 76050
+      },
+      "structuralInvalidation": {
+        "price": 0.000035,
+        "description": "LP pulled or break below ~$35K MC; unlocked-LP flag makes this a hard stop"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00008,
+          "note": "$80K MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00012,
+          "note": "$120K MC if base holds"
+        }
+      ],
+      "thesis": "Batch-best market-quality (#1 of 25) and healthiest liquidity of the fresh launches, but a 52 RugCheck score and unlocked LP demand a prove-it-first higher low before any minimal-size entry.",
+      "createdAt": 1784102859803,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
