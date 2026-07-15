@@ -1,114 +1,6 @@
 {
   "history": [
     {
-      "symbol": "LIZARD",
-      "tokenAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
-      "poolAddress": "5SGH3r8p76VcHzzY1pxRwcELbehZxBRX1DBNZvLvdfsh",
-      "verdict": "SPECULATIVE PUNT",
-      "marketCapUsdAtAlert": 191257.0284,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "agentx402",
-      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 214488.21683415552,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "HOOD",
-      "tokenAddress": "4R8MXfLtRcDUh9EZwzD1ciwiMrpdDabUYdnPf5V7pump",
-      "poolAddress": "4R8MXfLtRcDUh9EZwzD1ciwiMrpdDabUYdnPf5V7pump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 103543.82936151953,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "Wukong",
-      "tokenAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
-      "poolAddress": "F4TnftPoSHihw9TTcz7pkg2t8P6QEHag4yayMVGSpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 139658.36420660687,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "baby",
-      "tokenAddress": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump",
-      "poolAddress": "7WRi7eK7TyHtZcDt7MbMuiBuz731JaCcXqbHTzQb7szs",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 112831.3472,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 310765.9398488576,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "BlackBear",
-      "tokenAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
-      "poolAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 224967.19213095747,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "Unity",
-      "tokenAddress": "FNNV23SsY3BYEPe4PzjU4h4PeJ4YAR8JJ9kngPyUpump",
-      "poolAddress": "FNNV23SsY3BYEPe4PzjU4h4PeJ4YAR8JJ9kngPyUpump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 139069.63652066397,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "SAPPHIRE",
-      "tokenAddress": "2SQDPtSrEEsLMngbjex67o7VnQzBpVLmwF1uEEN2pump",
-      "poolAddress": "2SQDPtSrEEsLMngbjex67o7VnQzBpVLmwF1uEEN2pump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 72833.2608402782,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "blackfebu",
-      "tokenAddress": "7RJiGtMVxih75Z4EKY9NdyhRmDPBChzuEfQatZ4Spump",
-      "poolAddress": "7RJiGtMVxih75Z4EKY9NdyhRmDPBChzuEfQatZ4Spump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 37441.24567550073,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
-      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 212683.6242,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
-      "symbol": "Hoppy",
-      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
-      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 148978.3956,
-      "kind": "deep",
-      "alertedAt": 1783984701514
-    },
-    {
       "symbol": "agentx402",
       "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
       "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
@@ -1727,6 +1619,33 @@
       "marketCapUsdAtAlert": 414916.39497567393,
       "kind": "flash",
       "alertedAt": 1784156670395
+    },
+    {
+      "symbol": "STRATA",
+      "tokenAddress": "2zEsbQkv3sPqW5onrzEicyRy36RU64aUtvLYZkgz1Ljh",
+      "poolAddress": "2MCjHiamdvs1hAKmfodHFHKjbSJ5iEtjpBPi7Bv5a23J",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 142694.1374012692,
+      "kind": "deep",
+      "alertedAt": 1784157756733
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 923517.7409383167,
+      "kind": "deep",
+      "alertedAt": 1784157756733
+    },
+    {
+      "symbol": "WIFARG",
+      "tokenAddress": "CV9dcP2D9hYtcnNtoHoY4NQEN9fYxfBbQN72wkd5pump",
+      "poolAddress": "CV9dcP2D9hYtcnNtoHoY4NQEN9fYxfBbQN72wkd5pump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 875594.40639406,
+      "kind": "deep",
+      "alertedAt": 1784157756733
     }
   ],
   "lastTelegramUpdateId": 710125054
