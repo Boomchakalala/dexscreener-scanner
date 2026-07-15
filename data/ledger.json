@@ -1215,6 +1215,102 @@
       "triggerHits": 2,
       "highWaterPriceUsd": 0.00006292408676676593,
       "lowWaterPriceUsd": 0.000032605882003107
+    },
+    {
+      "id": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump-1784142998641",
+      "symbol": "reptilecoin",
+      "tokenAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
+      "poolAddress": "2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.21149590453001552,
+      "remainingSizeSol": 0.21149590453001552,
+      "entryCondition": {
+        "type": "BREAKOUT",
+        "triggerPrice": 0.0000023,
+        "description": "Enter only after a higher low holds above ~$230K MC and price reclaims local highs on rising volume",
+        "validityWindowMinutes": 360
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00000254,
+        "marketCapUsd": 254002,
+        "liquidityUsd": 48253
+      },
+      "structuralInvalidation": {
+        "price": 0.0000018,
+        "description": "Below ~$180K MC invalidates the revival"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0000034,
+          "note": "retest of recent high zone"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0000045,
+          "note": "extension only if volume expands"
+        }
+      ],
+      "thesis": "Genuine organic revival (74 organicScore, 2838 holders) but currently vertical; only actionable on a consolidation and reclaim.",
+      "createdAt": 1784142998641,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    },
+    {
+      "id": "A6FGkGeJMHucajk6xrj2HwqgJGopoju9ZEN5bXBEpump-1784142998641",
+      "symbol": "Dilemma",
+      "tokenAddress": "A6FGkGeJMHucajk6xrj2HwqgJGopoju9ZEN5bXBEpump",
+      "poolAddress": "BzLnePrp2tneHVrctX5MAnrPcMbpfu9spWPXUpCy216q",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BzLnePrp2tneHVrctX5MAnrPcMbpfu9spWPXUpCy216q",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.21149590453001552,
+      "remainingSizeSol": 0.21149590453001552,
+      "entryCondition": {
+        "type": "BREAKOUT",
+        "triggerPrice": 0.0000335,
+        "description": "Break and hold above ~$34K MC with volume and buyers accelerating",
+        "validityWindowMinutes": 360
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000308,
+        "marketCapUsd": 30815,
+        "liquidityUsd": 0
+      },
+      "structuralInvalidation": {
+        "price": 0.0000215,
+        "description": "Below ~$22K MC breaks the higher-low structure"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.000045,
+          "note": "first extension above breakout"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00006,
+          "note": "only if volume confirms"
+        }
+      ],
+      "thesis": "Cleanest visible higher-low structure in the batch at tiny cap, but needs real volume expansion to confirm the breakout isn't a single-wallet pop.",
+      "createdAt": 1784142998641,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
