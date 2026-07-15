@@ -31,21 +31,6 @@
       "expiresAt": 1784146059802
     },
     {
-      "symbol": "BULL",
-      "tokenAddress": "76iSgD2nwjJGVxAtgdnxnWrhm2YkWg9NwEsdRUNtpump",
-      "poolAddress": "D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
-      "condition": {
-        "mcMin": 110000,
-        "mcMax": 135000,
-        "requireRisingVolume": true,
-        "description": "reclaim ~0.00012 on rising volume or shallow hold of ~0.00009"
-      },
-      "addedAt": 1784117264499,
-      "expiresAt": 1784160464499
-    },
-    {
       "symbol": "Flea",
       "tokenAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
       "poolAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
@@ -179,6 +164,21 @@
       },
       "addedAt": 1784142998640,
       "expiresAt": 1784207798640
+    },
+    {
+      "symbol": "BULL",
+      "tokenAddress": "76iSgD2nwjJGVxAtgdnxnWrhm2YkWg9NwEsdRUNtpump",
+      "poolAddress": "D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
+      "condition": {
+        "mcMin": 100000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "reclaim ~0.0001 (~$100K MC) with rising volume and fresh buyers"
+      },
+      "addedAt": 1784145450383,
+      "expiresAt": 1784188650383
     }
   ]
 }
