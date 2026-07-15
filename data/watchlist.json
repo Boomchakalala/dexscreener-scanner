@@ -149,6 +149,36 @@
       },
       "addedAt": 1784140378601,
       "expiresAt": 1784183578601
+    },
+    {
+      "symbol": "reptilecoin",
+      "tokenAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
+      "poolAddress": "2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
+      "condition": {
+        "mcMin": 230000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "Reclaim local highs above ~$230K MC after a higher low, on sustained volume"
+      },
+      "addedAt": 1784142998640,
+      "expiresAt": 1784229398640
+    },
+    {
+      "symbol": "Dilemma",
+      "tokenAddress": "A6FGkGeJMHucajk6xrj2HwqgJGopoju9ZEN5bXBEpump",
+      "poolAddress": "BzLnePrp2tneHVrctX5MAnrPcMbpfu9spWPXUpCy216q",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BzLnePrp2tneHVrctX5MAnrPcMbpfu9spWPXUpCy216q",
+      "condition": {
+        "mcMin": 34000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "Break and hold above ~$34K MC with buyers/volume accelerating"
+      },
+      "addedAt": 1784142998640,
+      "expiresAt": 1784207798640
     }
   ]
 }
