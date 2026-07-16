@@ -1970,7 +1970,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/He6pECrSVi123qabQJRiGEonMbBZ7e8PZ9NmUxKqpump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.4361834753808779,
       "remainingSizeSol": 0.4361834753808779,
       "entryCondition": {
@@ -2491,6 +2491,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784237767881
+    },
+    {
+      "positionId": "He6pECrSVi123qabQJRiGEonMbBZ7e8PZ9NmUxKqpump-1784239479176",
+      "symbol": "bet",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784241369143
     }
   ]
 }
