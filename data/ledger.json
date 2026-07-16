@@ -1714,7 +1714,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/HDMxrKo8U4KFcgqDGELRFb1vXtcogViAFniCNXRvpump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.43065569463043435,
       "remainingSizeSol": 0.43065569463043435,
       "entryCondition": {
@@ -2145,6 +2145,16 @@
       "pnlSol": 0.09680480241841719,
       "reason": "final target reached: runner target if volume expands and holds above TP1",
       "timestamp": 1784204170835
+    },
+    {
+      "positionId": "HDMxrKo8U4KFcgqDGELRFb1vXtcogViAFniCNXRvpump-1784207068773",
+      "symbol": "STEVE",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784208980646
     }
   ]
 }
