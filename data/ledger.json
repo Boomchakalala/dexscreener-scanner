@@ -1865,6 +1865,54 @@
       },
       "entryTopHolderAddress": "9kvtkx6iADZ1UuJTTNpB9QzeSRHFkh8JDHZ1X2ipoU6e",
       "entryTopHolderPct": 14.143892023827123
+    },
+    {
+      "id": "13HepzvpuWLnNsHtTVjRfcuymjdtyXPfzCTHLxBVpump-1784232249643",
+      "symbol": "$MEMETIC",
+      "tokenAddress": "13HepzvpuWLnNsHtTVjRfcuymjdtyXPfzCTHLxBVpump",
+      "poolAddress": "13HepzvpuWLnNsHtTVjRfcuymjdtyXPfzCTHLxBVpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/13HepzvpuWLnNsHtTVjRfcuymjdtyXPfzCTHLxBVpump",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.4361834753808779,
+      "remainingSizeSol": 0.4361834753808779,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now on live vertical spike with strong multi-wallet buy dominance",
+        "validityWindowMinutes": 10
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000155718,
+        "marketCapUsd": 155718,
+        "liquidityUsd": 14798
+      },
+      "structuralInvalidation": {
+        "price": 0.00012,
+        "description": "Breakdown back below pre-spike base signals failed pump and flush risk"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00023,
+          "note": "First measured extension of the spike"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00031,
+          "note": "Only if buy flow and holders keep expanding"
+        }
+      ],
+      "thesis": "Fresh token spiking +44.9% on latest 5m candle with 5x buy-over-sell dominance from ~974 buyers, live right now.",
+      "createdAt": 1784232249643,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
