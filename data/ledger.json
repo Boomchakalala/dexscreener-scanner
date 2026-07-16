@@ -2018,7 +2018,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.4361834753808779,
       "remainingSizeSol": 0.4361834753808779,
       "entryCondition": {
@@ -2549,6 +2549,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784241369143
+    },
+    {
+      "positionId": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump-1784243053450",
+      "symbol": "CASHCOW",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784244967778
     }
   ]
 }
