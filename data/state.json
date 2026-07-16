@@ -1,132 +1,6 @@
 {
   "history": [
     {
-      "symbol": "INK",
-      "tokenAddress": "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD",
-      "poolAddress": "FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
-      "verdict": "SPECULATIVE PUNT",
-      "marketCapUsdAtAlert": 219645.1,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "FELIX",
-      "tokenAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
-      "poolAddress": "Ayh1jEyvubun4Gku3sHDTrVk6wSFS6UNzF863esBpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 213958.67201973268,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "bullbrain",
-      "tokenAddress": "4SLVH8rturi925CyqaRTJUajPBix7JNJaGL5EGoZpump",
-      "poolAddress": "4SLVH8rturi925CyqaRTJUajPBix7JNJaGL5EGoZpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 122226.34122944876,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "BULIK",
-      "tokenAddress": "FRPkiVD6viVZaikA6bPLr7hokMygmGpomo566oeHpump",
-      "poolAddress": "FRPkiVD6viVZaikA6bPLr7hokMygmGpomo566oeHpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 193129.25146425166,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "CUDDLEFISH",
-      "tokenAddress": "GKfy62eGEVjQXrMtRBX3ZopGxy2DnCoX1ZCieAUEpump",
-      "poolAddress": "CAmCK6g6foc24T5DECzcKsanFjjN1p4XcCJR6U7EMzDt",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 30374.55766,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "brain",
-      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 1299256.263523357,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "TrumpCoin",
-      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "poolAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 1715363.1106104385,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "NYX",
-      "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 305435.27438816545,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "Cardtopia",
-      "tokenAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "poolAddress": "CLrsRz21tZtHe7hkt34d8zC9t6gwLziw9SdMM6o1pump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 69932.86098238191,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "Apple",
-      "tokenAddress": "FH6JAFobgS9yjaZKhuCmJUsfgyWsWivZeWuPdAC1KYNT",
-      "poolAddress": "9YbeZ5AmKtiPUpPD4Xpfw8XJvu5v4DcPn4jBHvVx3bTv",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 1851594.477,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "TRASH",
-      "tokenAddress": "Fd1werXeWJVK7mq8N4AgghPCTBz8zakFAyGgWBCTvCwq",
-      "poolAddress": "2sQd4Fg96h35ghS9cfZd4kwyecUVCQ9y9JWLwTgmG3Vp",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 116382.838716383,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "FELIX",
-      "tokenAddress": "Ft9o9q7N8HEXsdjFCVEyYtuNCs7Css2r48rTq9qnJJqg",
-      "poolAddress": "9qJYYAxKbzwLmFgcn32hY8zCjkixGebJTfVUYomMHchc",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 45507.53295,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "HBULL",
-      "tokenAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
-      "poolAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 1922562.1131722683,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 137093.033241612,
-      "kind": "deep",
-      "alertedAt": 1784028722885
-    },
-    {
       "symbol": "brain",
       "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
       "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
@@ -1358,6 +1232,42 @@
       "marketCapUsdAtAlert": 79202.29847,
       "kind": "flash",
       "alertedAt": 1784199870200
+    },
+    {
+      "symbol": "CASHCOW",
+      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "poolAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 654884.109494813,
+      "kind": "deep",
+      "alertedAt": 1784202263908
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 1509596.2797523213,
+      "kind": "deep",
+      "alertedAt": 1784202263908
+    },
+    {
+      "symbol": "HBULL",
+      "tokenAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+      "poolAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 3114175.999438634,
+      "kind": "deep",
+      "alertedAt": 1784202263908
+    },
+    {
+      "symbol": "YUKI",
+      "tokenAddress": "3v2ekTxcn6voD4RDzhwaf5z1VXFxGBxoUKEWZRfBpump",
+      "poolAddress": "7hPS3ViQKLKQmia2PGtMd9iwHY1HTb1TCrz2NLLbnuYy",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 133019.21589718093,
+      "kind": "deep",
+      "alertedAt": 1784202263908
     }
   ],
   "lastTelegramUpdateId": 710125054
