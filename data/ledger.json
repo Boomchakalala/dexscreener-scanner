@@ -1753,6 +1753,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784210666941",
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.43065569463043435,
+      "remainingSizeSol": 0.43065569463043435,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market on accelerating breakout with expanding volume",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0001054,
+        "marketCapUsd": 102807,
+        "liquidityUsd": 14606
+      },
+      "structuralInvalidation": {
+        "price": 0.00007,
+        "description": "Loss of breakout base signals leg failure"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00013,
+          "note": "Next extension above prior high"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00017,
+          "note": "Only if volume and holder growth keep expanding"
+        }
+      ],
+      "thesis": "Sharp 2x spike in last 30 min on session-high volume with buy-dominant flow and decent organic backing.",
+      "createdAt": 1784210666941,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
