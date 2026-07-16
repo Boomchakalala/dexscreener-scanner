@@ -1187,6 +1187,15 @@
       "marketCapUsdAtAlert": 184705.98836363343,
       "kind": "flash",
       "alertedAt": 1784207068475
+    },
+    {
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 102806.9362413391,
+      "kind": "flash",
+      "alertedAt": 1784210666475
     }
   ],
   "lastTelegramUpdateId": 710125054
