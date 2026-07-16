@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.050537395820046,
+  "balanceSol": 1.5994191687396357,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -1818,7 +1818,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.4511182270804101,
       "remainingSizeSol": 0.4511182270804101,
       "entryCondition": {
@@ -1850,13 +1850,21 @@
       ],
       "thesis": "Fresh reclaim to new local high after a pullback, buy-dominant flow with healthy holders/organicScore, escalated since the last alert.",
       "createdAt": 1784228679241,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00010519857309067796,
+      "entryMarketCapUsd": 103434.523590298,
+      "openedAt": 1784228772971,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00010519857309067796,
+      "lowWaterPriceUsd": 0.00010519857309067796,
+      "entryTxnsH1": {
+        "buys": 127,
+        "sells": 101
+      },
+      "entryTopHolderAddress": "9kvtkx6iADZ1UuJTTNpB9QzeSRHFkh8JDHZ1X2ipoU6e",
+      "entryTopHolderPct": 14.143892023827123
     }
   ],
   "tradeLog": [
@@ -2299,6 +2307,16 @@
       "pnlSol": 0.003525182469875515,
       "reason": "runner stopped out: tightened after a weak TP1 arrival",
       "timestamp": 1784220972042
+    },
+    {
+      "positionId": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784228679241",
+      "symbol": "PCAT",
+      "action": "ENTRY",
+      "price": 0.00010519857309067796,
+      "sizeSol": 0.4511182270804101,
+      "pnlSol": 0,
+      "reason": "filled with 1.62% price impact",
+      "timestamp": 1784228776392
     }
   ]
 }
