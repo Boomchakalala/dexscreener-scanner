@@ -1466,7 +1466,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.40368362530682383,
       "remainingSizeSol": 0.40368362530682383,
       "entryCondition": {
@@ -1837,6 +1837,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784162210219
+    },
+    {
+      "positionId": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump-1784163875654",
+      "symbol": "reptilecoin",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784165794068
     }
   ]
 }
