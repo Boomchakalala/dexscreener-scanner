@@ -1409,6 +1409,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump-1784160270426",
+      "symbol": "BUYSEXUAL",
+      "tokenAddress": "8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump",
+      "poolAddress": "8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.40368362530682383,
+      "remainingSizeSol": 0.40368362530682383,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Live buy-dominant momentum, m5 accelerating, not yet extended",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00045,
+        "marketCapUsd": 450789,
+        "liquidityUsd": 27456
+      },
+      "structuralInvalidation": {
+        "price": 0.00036,
+        "description": "Break below h1 base signals momentum failure"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00058,
+          "note": "First extension target"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00075,
+          "note": "Runner if buy flow and holders keep expanding"
+        }
+      ],
+      "thesis": "Buy-dominant sustained uptrend (90% h6, 50% h1) with m5 acceleration and heavy volume on a healthy-organic token that isn't yet overextended.",
+      "createdAt": 1784160270426,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
