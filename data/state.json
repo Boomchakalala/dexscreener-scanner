@@ -1079,6 +1079,15 @@
       "marketCapUsdAtAlert": 124216.01013509731,
       "kind": "flash",
       "alertedAt": 1784228678776
+    },
+    {
+      "symbol": "$MEMETIC",
+      "tokenAddress": "13HepzvpuWLnNsHtTVjRfcuymjdtyXPfzCTHLxBVpump",
+      "poolAddress": "13HepzvpuWLnNsHtTVjRfcuymjdtyXPfzCTHLxBVpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 155717.68130934387,
+      "kind": "flash",
+      "alertedAt": 1784232249246
     }
   ],
   "lastTelegramUpdateId": 710125054
