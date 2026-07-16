@@ -1666,7 +1666,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.1942213088497537,
       "remainingSizeSol": 0.1942213088497537,
       "entryCondition": {
@@ -2221,6 +2221,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.15% price impact",
       "timestamp": 1784210777915
+    },
+    {
+      "timestamp": 1784218048514,
+      "positionId": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump-1784202263912",
+      "symbol": "CASHCOW",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
     }
   ]
 }
