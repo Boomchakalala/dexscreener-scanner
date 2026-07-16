@@ -1196,6 +1196,15 @@
       "marketCapUsdAtAlert": 102806.9362413391,
       "kind": "flash",
       "alertedAt": 1784210666475
+    },
+    {
+      "symbol": "BULLDOG",
+      "tokenAddress": "4LjLUvg56sBrzstX6Cw9YYr3k31PdZGQg5u2mCM4pump",
+      "poolAddress": "4LjLUvg56sBrzstX6Cw9YYr3k31PdZGQg5u2mCM4pump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 137139.3149366235,
+      "kind": "flash",
+      "alertedAt": 1784214283643
     }
   ],
   "lastTelegramUpdateId": 710125054
