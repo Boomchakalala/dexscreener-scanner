@@ -1418,7 +1418,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.40368362530682383,
       "remainingSizeSol": 0.40368362530682383,
       "entryCondition": {
@@ -1779,6 +1779,16 @@
       "sizeSol": 0,
       "pnlSol": 0,
       "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
+    },
+    {
+      "positionId": "8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump-1784160270426",
+      "symbol": "BUYSEXUAL",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784162210219
     }
   ]
 }
