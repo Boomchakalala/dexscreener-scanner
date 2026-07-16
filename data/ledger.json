@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.969494188316692,
+  "balanceSol": 2.050537395820046,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -1762,9 +1762,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.43065569463043435,
-      "remainingSizeSol": 0.07751802503347821,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -1799,8 +1799,8 @@
       "openedAt": 1784210774570,
       "tp1TakenAt": 1784220373079,
       "tp1Classification": "WEAK",
-      "closedAt": null,
-      "realizedPnlSol": 0.08948632866637779,
+      "closedAt": 1784220972042,
+      "realizedPnlSol": 0.0930115111362533,
       "highWaterPriceUsd": 0.00013592251693803696,
       "lowWaterPriceUsd": 0.00008537117560906286,
       "entryTxnsH1": {
@@ -2241,6 +2241,16 @@
       "pnlSol": 0.08948632866637779,
       "reason": "TP1 arrival classified WEAK, sold 82%",
       "timestamp": 1784220373079
+    },
+    {
+      "positionId": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784210666941",
+      "symbol": "PCAT",
+      "action": "EXIT",
+      "price": 0.00011337424799481772,
+      "sizeSol": 0.07751802503347821,
+      "pnlSol": 0.003525182469875515,
+      "reason": "runner stopped out: tightened after a weak TP1 arrival",
+      "timestamp": 1784220972042
     }
   ]
 }
