@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.9575258846837924,
+  "balanceSol": 1.5268701900533581,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -1762,7 +1762,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.43065569463043435,
       "remainingSizeSol": 0.43065569463043435,
       "entryCondition": {
@@ -1794,13 +1794,21 @@
       ],
       "thesis": "Sharp 2x spike in last 30 min on session-high volume with buy-dominant flow and decent organic backing.",
       "createdAt": 1784210666941,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00010844274387647305,
+      "entryMarketCapUsd": 108192.351228555,
+      "openedAt": 1784210774570,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00010844274387647305,
+      "lowWaterPriceUsd": 0.00010844274387647305,
+      "entryTxnsH1": {
+        "buys": 163,
+        "sells": 153
+      },
+      "entryTopHolderAddress": "9kvtkx6iADZ1UuJTTNpB9QzeSRHFkh8JDHZ1X2ipoU6e",
+      "entryTopHolderPct": 13.87685722279359
     }
   ],
   "tradeLog": [
@@ -2203,6 +2211,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784208980646
+    },
+    {
+      "positionId": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784210666941",
+      "symbol": "PCAT",
+      "action": "ENTRY",
+      "price": 0.00010844274387647305,
+      "sizeSol": 0.43065569463043435,
+      "pnlSol": 0,
+      "reason": "filled with 0.15% price impact",
+      "timestamp": 1784210777915
     }
   ]
 }
