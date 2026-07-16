@@ -44,6 +44,21 @@
       },
       "addedAt": 1784149812040,
       "expiresAt": 1784214612040
+    },
+    {
+      "symbol": "CASHCOW",
+      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "poolAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "condition": {
+        "mcMin": 600000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "Higher low holding above ~$600K MC with volume re-expanding after the parabola cools"
+      },
+      "addedAt": 1784202263910,
+      "expiresAt": 1784245463910
     }
   ]
 }
