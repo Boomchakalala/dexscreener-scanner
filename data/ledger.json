@@ -1457,6 +1457,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump-1784163875654",
+      "symbol": "reptilecoin",
+      "tokenAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
+      "poolAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.40368362530682383,
+      "remainingSizeSol": 0.40368362530682383,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market on fresh m5 acceleration with organic backing",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000397,
+        "marketCapUsd": 396948,
+        "liquidityUsd": 31541
+      },
+      "structuralInvalidation": {
+        "price": 0.00032,
+        "description": "Close below this level means the fresh push failed and momentum is gone"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0005,
+          "note": "First target on continuation"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00065,
+          "note": "Runner exit if buy-flow and holder growth keep expanding"
+        }
+      ],
+      "thesis": "Fresh +18% m5 leg extending a strong h1/h6 uptrend with organicScore 77 and near-3k holders backing a live move.",
+      "createdAt": 1784163875654,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
