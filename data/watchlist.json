@@ -1,96 +1,6 @@
 {
   "entries": [
     {
-      "symbol": "Flea",
-      "tokenAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
-      "poolAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
-      "condition": {
-        "mcMin": 550000,
-        "mcMax": 620000,
-        "requireRisingVolume": true,
-        "description": "consolidates into ~$550-600K MC higher-low then reclaims on volume"
-      },
-      "addedAt": 1784117264499,
-      "expiresAt": 1784182064499
-    },
-    {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "condition": {
-        "mcMin": 130000,
-        "mcMax": 170000,
-        "requireRisingVolume": true,
-        "description": "pullback to ~$140K MC that holds, or reclaim of 0.000177 with rising volume"
-      },
-      "addedAt": 1784131709166,
-      "expiresAt": 1784174909166
-    },
-    {
-      "symbol": "DAFUAN",
-      "tokenAddress": "GCsMGDGF9DGANC1W3AEovCe9C24984JUs4SFVvwFpump",
-      "poolAddress": "85FxXEytkKKZX5kepPo2MpvggQfesfqWp3TPCGAt7uyk",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/85FxXEytkKKZX5kepPo2MpvggQfesfqWp3TPCGAt7uyk",
-      "condition": {
-        "mcMin": 56000,
-        "mcMax": 75000,
-        "requireRisingVolume": true,
-        "description": "holds above 0.00005 and reclaims ~0.00006 on rising volume"
-      },
-      "addedAt": 1784131709166,
-      "expiresAt": 1784174909166
-    },
-    {
-      "symbol": "SOLdiers",
-      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
-      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
-      "condition": {
-        "mcMin": 1300000,
-        "mcMax": 1600000,
-        "requireRisingVolume": true,
-        "description": "stops flushing, prints higher low and reclaims above ~$1.4M MC with buy volume returning"
-      },
-      "addedAt": 1784131709166,
-      "expiresAt": 1784160509166
-    },
-    {
-      "symbol": "MEMEDb",
-      "tokenAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
-      "poolAddress": "rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/rriwiGHspFi2kavAeb4Gii6rr7Mj5pfaGH6ABRkpump",
-      "condition": {
-        "mcMin": 180000,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "Reclaim above ~$180K MC with a fresh base candle and rising volume"
-      },
-      "addedAt": 1784134097890,
-      "expiresAt": 1784162897890
-    },
-    {
-      "symbol": "MIM",
-      "tokenAddress": "4p37V4YA54Jou7k3TWnwxeDXqtB9BQRik6NL3noJpump",
-      "poolAddress": "BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/BTafPrEjNu8KMwYSpdvYYHMwJKPWopVg5ByUyYDcNDn",
-      "condition": {
-        "mcMin": 300000,
-        "mcMax": 420000,
-        "requireRisingVolume": true,
-        "description": "Base holds above ~$262K with H1 volume re-expanding"
-      },
-      "addedAt": 1784140378601,
-      "expiresAt": 1784183578601
-    },
-    {
       "symbol": "reptilecoin",
       "tokenAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
       "poolAddress": "2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
@@ -119,21 +29,6 @@
       },
       "addedAt": 1784142998640,
       "expiresAt": 1784207798640
-    },
-    {
-      "symbol": "BULL",
-      "tokenAddress": "76iSgD2nwjJGVxAtgdnxnWrhm2YkWg9NwEsdRUNtpump",
-      "poolAddress": "D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/D6J8DKfEszfQJ4cY9UL2ru7w5kMhgjBMmZib64qUbvAj",
-      "condition": {
-        "mcMin": 100000,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "reclaim ~0.0001 (~$100K MC) with rising volume and fresh buyers"
-      },
-      "addedAt": 1784145450383,
-      "expiresAt": 1784188650383
     },
     {
       "symbol": "BULLCAT",
