@@ -1,87 +1,6 @@
 {
   "history": [
     {
-      "symbol": "PNT",
-      "tokenAddress": "8Z71EdWcyRHZvRXZqvo8FbF6y3XAhc4fZHjR4Dm6kvBF",
-      "poolAddress": "42aKFCT5YGcgrTUDuuuv5NrDpJbu21ShcQEx5KJSQS3N",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 165140.2389,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "DREAM",
-      "tokenAddress": "7wRLv6bbM6parikoXC3a15dhRwhPFPrhN11RKREwhE1S",
-      "poolAddress": "2o5n8DLdwKPKo5uJdy2rNmcP8MGbzR2KJof2PoLMnaJY",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 181615.2594,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "SEA",
-      "tokenAddress": "EFTMZ6b4hHLMLXFPEb9UMTC8s1JmUpX27ivSv3EWWCyY",
-      "poolAddress": "CBzqF96sZgDfhdUDXSUf52DVQSKQ8dYyc23b8ix3us3d",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 137090.489,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "CATTEARS",
-      "tokenAddress": "9w47d5K1Whg4HoGFtk7L9XXV1P95tpuz6ehZSfaRpump",
-      "poolAddress": "9w47d5K1Whg4HoGFtk7L9XXV1P95tpuz6ehZSfaRpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 1784742.2848897192,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "W26",
-      "tokenAddress": "6G7aq3edqaaBmrpNUnHBLV4x2KAWZHHosVZX8YH7RDis",
-      "poolAddress": "GyfgaxydBgtuD7xoxEG5PDN7s37y3WUzUP8turbcP72P",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 159362.891659363,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "金狗",
-      "tokenAddress": "FKr64rmHB2PZUpmwCGQFq6LzfJogfciGuAWZ2h7fyacs",
-      "poolAddress": "GfuFVgvMZn7SFzwYbc9hSmQs5cLipJyx9SYVQ6DQbdKc",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 129829.019029829,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "INK",
-      "tokenAddress": "Eo94Qc5TtKhsEsWsuTEMPSQ75YSLaTkBfe79Zon5DziD",
-      "poolAddress": "FMEeD4ksAfnG69kdbnzUHWehGPRP4EW1bcj3pZ4X41vc",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 226133.5407,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "TrumpCoin",
-      "tokenAddress": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
-      "poolAddress": "FpJFWZ3nGFVYWkpDXZQM8QaLJzmy6U3NgaA8nc7SNDag",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 480164.2122,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
-      "symbol": "CP",
-      "tokenAddress": "AQDiV5brA4C8r7vHNGjoXv3QjRmLzjPSB9Hg5piVpump",
-      "poolAddress": "DebYNFjgG7RYuPUuBHNU8x45gUJUE5hny7Q4wpYxfcy8",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 546773.9338,
-      "kind": "deep",
-      "alertedAt": 1784068401735
-    },
-    {
       "symbol": "Cyclospora",
       "tokenAddress": "GjJsyLWFEHA4TCJBGpobM2tceM4wiQaD3ZPKDhDppump",
       "poolAddress": "2qujxSBhjbzKSg8E9ekoe2r6M85BNHSZVk3xzskXrh4K",
@@ -998,6 +917,15 @@
       "marketCapUsdAtAlert": 119206.45446609934,
       "kind": "flash",
       "alertedAt": 1784239478893
+    },
+    {
+      "symbol": "CASHCOW",
+      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "poolAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 685670.2087929646,
+      "kind": "flash",
+      "alertedAt": 1784243052988
     }
   ],
   "lastTelegramUpdateId": 710125054
