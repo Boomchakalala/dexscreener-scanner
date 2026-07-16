@@ -1268,6 +1268,15 @@
       "marketCapUsdAtAlert": 133019.21589718093,
       "kind": "deep",
       "alertedAt": 1784202263908
+    },
+    {
+      "symbol": "Kagarara",
+      "tokenAddress": "G15cvYmpvfCprdYguXXi4UoMZPN1Kf93Fq1C8hffpump",
+      "poolAddress": "6obnhtrMg7Jhn9J2qEqEmunfKgZYTEtKrN6kNuUbNi95",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 30152.90808,
+      "kind": "flash",
+      "alertedAt": 1784203478733
     }
   ],
   "lastTelegramUpdateId": 710125054
