@@ -1556,6 +1556,15 @@
       "marketCapUsdAtAlert": 396947.8120124883,
       "kind": "flash",
       "alertedAt": 1784163875187
+    },
+    {
+      "symbol": "RJ",
+      "tokenAddress": "2it43obQHUmfK4x8swUF8ncwPyRkCpb6CVU3tGefpump",
+      "poolAddress": "2it43obQHUmfK4x8swUF8ncwPyRkCpb6CVU3tGefpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 48385.62296031028,
+      "kind": "flash",
+      "alertedAt": 1784167472731
     }
   ],
   "lastTelegramUpdateId": 710125054
