@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.5268701900533581,
+  "balanceSol": 1.969494188316692,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -1762,9 +1762,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.43065569463043435,
-      "remainingSizeSol": 0.43065569463043435,
+      "remainingSizeSol": 0.07751802503347821,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -1777,8 +1777,8 @@
         "liquidityUsd": 14606
       },
       "structuralInvalidation": {
-        "price": 0.00007,
-        "description": "Loss of breakout base signals leg failure"
+        "price": 0.00011922137193823652,
+        "description": "tightened after a weak TP1 arrival"
       },
       "targets": [
         {
@@ -1797,11 +1797,11 @@
       "entryPrice": 0.00010844274387647305,
       "entryMarketCapUsd": 108192.351228555,
       "openedAt": 1784210774570,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784220373079,
+      "tp1Classification": "WEAK",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.00012899651372244426,
+      "realizedPnlSol": 0.08948632866637779,
+      "highWaterPriceUsd": 0.00013592251693803696,
       "lowWaterPriceUsd": 0.00008537117560906286,
       "entryTxnsH1": {
         "buys": 163,
@@ -2231,6 +2231,16 @@
       "sizeSol": 0,
       "pnlSol": 0,
       "reason": "auto-cancelled: latest scan judged the thesis dead before the entry window expired"
+    },
+    {
+      "positionId": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784210666941",
+      "symbol": "PCAT",
+      "action": "TP1_PARTIAL",
+      "price": 0.00013592251693803696,
+      "sizeSol": 0.35313766959695614,
+      "pnlSol": 0.08948632866637779,
+      "reason": "TP1 arrival classified WEAK, sold 82%",
+      "timestamp": 1784220373079
     }
   ]
 }
