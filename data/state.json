@@ -955,24 +955,6 @@
       "alertedAt": 1784202263908
     },
     {
-      "symbol": "BULLDOG",
-      "tokenAddress": "4LjLUvg56sBrzstX6Cw9YYr3k31PdZGQg5u2mCM4pump",
-      "poolAddress": "4LjLUvg56sBrzstX6Cw9YYr3k31PdZGQg5u2mCM4pump",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 137139.3149366235,
-      "kind": "flash",
-      "alertedAt": 1784214283643
-    },
-    {
-      "symbol": "bul",
-      "tokenAddress": "DRhgZun6hRwH9ZuN8WnBqNg2o3SxGrPXdXh51XXfpump",
-      "poolAddress": "DRhgZun6hRwH9ZuN8WnBqNg2o3SxGrPXdXh51XXfpump",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 193563.9909859955,
-      "kind": "flash",
-      "alertedAt": 1784217875556
-    },
-    {
       "symbol": "PCAT",
       "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
       "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
@@ -998,6 +980,24 @@
       "marketCapUsdAtAlert": 4883157.532192275,
       "kind": "flash",
       "alertedAt": 1784235865096
+    },
+    {
+      "symbol": "bet",
+      "tokenAddress": "He6pECrSVi123qabQJRiGEonMbBZ7e8PZ9NmUxKqpump",
+      "poolAddress": "He6pECrSVi123qabQJRiGEonMbBZ7e8PZ9NmUxKqpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 343484.17955294723,
+      "kind": "flash",
+      "alertedAt": 1784239478893
+    },
+    {
+      "symbol": "GLITCHTBL",
+      "tokenAddress": "GLTcxcu9yRiqxW7dY1i24XvDKbua9RF3RnzzQHK3dBw2",
+      "poolAddress": "GLTcxcu9yRiqxW7dY1i24XvDKbua9RF3RnzzQHK3dBw2",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 119206.45446609934,
+      "kind": "flash",
+      "alertedAt": 1784239478893
     }
   ],
   "lastTelegramUpdateId": 710125054
