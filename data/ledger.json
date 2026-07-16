@@ -1657,6 +1657,54 @@
       },
       "entryTopHolderAddress": "CpUqDC9bhDEoZ6NfjgWtr3Ra6tou6yJH3Tkkn6UrY7RT",
       "entryTopHolderPct": 18.24603520658954
+    },
+    {
+      "id": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump-1784202263912",
+      "symbol": "CASHCOW",
+      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "poolAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "tier": "WATCH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.1942213088497537,
+      "remainingSizeSol": 0.1942213088497537,
+      "entryCondition": {
+        "type": "RECLAIM",
+        "triggerPrice": 0.0006,
+        "description": "Enter only after a higher low forms and holds above ~$600K MC with volume returning on the reclaim, not the initial spike",
+        "validityWindowMinutes": 360
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000655,
+        "marketCapUsd": 654884,
+        "liquidityUsd": 42243
+      },
+      "structuralInvalidation": {
+        "price": 0.00045,
+        "description": "Below ~$450K MC the post-parabola structure breaks and confirms distribution"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0009,
+          "note": "Retest of prior spike highs near ~$900K MC"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0015,
+          "note": "Runner exit ~$1.5M MC if broad buyer base sustains"
+        }
+      ],
+      "thesis": "Genuine broad buyer participation for a 6h token, but currently too vertical to chase; only actionable once it bases and volume re-expands above ~$600K MC.",
+      "createdAt": 1784202263912,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
