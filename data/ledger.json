@@ -1553,6 +1553,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784178259455",
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.40368362530682383,
+      "remainingSizeSol": 0.40368362530682383,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Breakout to new local high with rebuilding volume and buy-dominant flow",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000051,
+        "marketCapUsd": 49456,
+        "liquidityUsd": 10279
+      },
+      "structuralInvalidation": {
+        "price": 0.0000415,
+        "description": "Loss of pre-breakout consolidation base means the breakout failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00006,
+          "note": "First extension target"
+        },
+        {
+          "label": "TP2",
+          "price": 0.000075,
+          "note": "Only if volume keeps expanding on green candles"
+        }
+      ],
+      "thesis": "Fresh breakout to new local high on expanding volume with healthy holder base and buy-dominant flow.",
+      "createdAt": 1784178259455,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
