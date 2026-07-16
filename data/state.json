@@ -1,105 +1,6 @@
 {
   "history": [
     {
-      "symbol": "agentx402",
-      "tokenAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "poolAddress": "cEVB54GaMohQf8GwE79ckFbSMSZvWPL27Z2nj7apump",
-      "verdict": "SPECULATIVE PUNT",
-      "marketCapUsdAtAlert": 236273.92369207751,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "Bison",
-      "tokenAddress": "GwZvGvVzjWTL1mvpw55KQWztTQvWo3B6ew16N2aspump",
-      "poolAddress": "6TJuebvz9hqJaybCWpKm7ygmFqcxHxJ3Azi5BJhmHak",
-      "verdict": "SPECULATIVE PUNT",
-      "marketCapUsdAtAlert": 347737.001646515,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "LIZARD",
-      "tokenAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
-      "poolAddress": "7NTs9FPw7tP2Bfjcn8eAJZUr4ApG8n9ZbXkT7Adwpump",
-      "verdict": "SPECULATIVE PUNT",
-      "marketCapUsdAtAlert": 202291.1714893371,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "Hospital",
-      "tokenAddress": "95fu1GW5ubRK8JgfxnH9CGNitGdxpRuMv5LkJCJfpump",
-      "poolAddress": "w2uvhHVLc9vB7VMme5eA9Nr98RagwNYULxPQuBDRTzY",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 45087.00062,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "brain",
-      "tokenAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "poolAddress": "9oDndFiC7RW42vZcmSzacTKMWE9kgeqnzwXDGLSkpump",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 344660.4716263772,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "Shikoku",
-      "tokenAddress": "2bNi6wZ8uAPdNoGkJZ1cn1FGuvGABBXdtyLjvp2Mpump",
-      "poolAddress": "2rUBkygJ981obKVbMBvxy3TZZW6cwwFWPM1wtVFs5vX3",
-      "verdict": "WATCH",
-      "marketCapUsdAtAlert": 52549.12597,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "JUGGERNAUT",
-      "tokenAddress": "6kJZC3kPSDwD79gD4jtKLUwdiEKV2tibh75AZ3euvb54",
-      "poolAddress": "JASJHqs2wnFfVwryxwyEPXLfhqHNY4LR8UbQeYWCuFpx",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 206004.751,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "capy",
-      "tokenAddress": "AiG8eaX7QU1ijjnjEZsu9aZS8XE3wTSWsjWpUoe5pump",
-      "poolAddress": "BjsVL5jzCtUWZNBxpgRGspPH68PWcsnY8SP7gZ8ysYDy",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 48699.2797,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "HOME",
-      "tokenAddress": "gsoZaYPVioFi9GRaehCnvNqUSNWYNZNVKT9oyoJpump",
-      "poolAddress": "34hC1UWpc1gTnM9W3zvhesimRE1GpQxq9CWWFohB31Rd",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 236133.7072,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "BLACKPEPE",
-      "tokenAddress": "Fzao43KxhdcVHQLzJgea7pKfQburGSxEdvQpcxiNpump",
-      "poolAddress": "Fzao43KxhdcVHQLzJgea7pKfQburGSxEdvQpcxiNpump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 118315.29730795533,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
-      "symbol": "Hoppy",
-      "tokenAddress": "DUYw2p3NC6zDdsSrazV4JdDFKtRk2K4mw764EWs2pump",
-      "poolAddress": "AoXFMDQMaevMEJgKuMTHbptoeoCjW8bDYKniXMhkNDpc",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 147120.2384,
-      "kind": "deep",
-      "alertedAt": 1783987677546
-    },
-    {
       "symbol": "NYX",
       "tokenAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
       "poolAddress": "3UXSLKVxF5L6AaugmUhkRBoKETtThQwj6bD6qYkbpump",
@@ -1414,15 +1315,6 @@
       "alertedAt": 1784140378599
     },
     {
-      "symbol": "SOLGUY",
-      "tokenAddress": "9FRByUiuZHFLuQhLd51Z9LRWNfLcpQEs1u7uSs5mpump",
-      "poolAddress": "EtyjaKYULE2vV1ruXS6WUFiKuN4F8TN8SoRp2aDKEo7X",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 326499.6177,
-      "kind": "flash",
-      "alertedAt": 1784142264759
-    },
-    {
       "symbol": "reptilecoin",
       "tokenAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
       "poolAddress": "2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
@@ -1655,6 +1547,15 @@
       "marketCapUsdAtAlert": 450789.38408172264,
       "kind": "flash",
       "alertedAt": 1784160270063
+    },
+    {
+      "symbol": "reptilecoin",
+      "tokenAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
+      "poolAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 396947.8120124883,
+      "kind": "flash",
+      "alertedAt": 1784163875187
     }
   ],
   "lastTelegramUpdateId": 710125054
