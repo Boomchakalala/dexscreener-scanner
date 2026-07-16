@@ -1601,6 +1601,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "HDMxrKo8U4KFcgqDGELRFb1vXtcogViAFniCNXRvpump-1784199870518",
+      "symbol": "STEVE",
+      "tokenAddress": "HDMxrKo8U4KFcgqDGELRFb1vXtcogViAFniCNXRvpump",
+      "poolAddress": "C3SY9YLBeAr81t6c8Fdt6drwgMyuJThLMqfuk8fQx9xH",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/C3SY9YLBeAr81t6c8Fdt6drwgMyuJThLMqfuk8fQx9xH",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.40368362530682383,
+      "remainingSizeSol": 0.40368362530682383,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Volume-backed reclaim of session high on latest 5m candle",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00007853,
+        "marketCapUsd": 79202,
+        "liquidityUsd": 28221
+      },
+      "structuralInvalidation": {
+        "price": 0.000066,
+        "description": "Loss of reclaim base signals breakout failure"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00009,
+          "note": "next resistance / +15%"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00011,
+          "note": "runner target if volume expands and holds above TP1"
+        }
+      ],
+      "thesis": "Sharp volume-backed 5m breakout reclaiming session high with buy-dominant flow across many wallets.",
+      "createdAt": 1784199870518,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
