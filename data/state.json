@@ -1646,6 +1646,15 @@
       "marketCapUsdAtAlert": 875594.40639406,
       "kind": "deep",
       "alertedAt": 1784157756733
+    },
+    {
+      "symbol": "BUYSEXUAL",
+      "tokenAddress": "8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump",
+      "poolAddress": "8Gw5ERAe6hxMKyYWVXVhok6jhcvQkAfKH1bFBeQepump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 450789.38408172264,
+      "kind": "flash",
+      "alertedAt": 1784160270063
     }
   ],
   "lastTelegramUpdateId": 710125054
