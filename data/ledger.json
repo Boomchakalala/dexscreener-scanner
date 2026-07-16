@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.431241944269648,
+  "balanceSol": 1.6185109070812809,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -1610,9 +1610,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/C3SY9YLBeAr81t6c8Fdt6drwgMyuJThLMqfuk8fQx9xH",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.40368362530682383,
-      "remainingSizeSol": 0.40368362530682383,
+      "remainingSizeSol": 0.2422101751840943,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -1645,11 +1645,11 @@
       "entryPrice": 0.00007901936485595625,
       "entryMarketCapUsd": 77832.00979,
       "openedAt": 1784199967440,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784201472492,
+      "tp1Classification": "STRONG",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.00008655336232211083,
+      "realizedPnlSol": 0.0257955126889034,
+      "highWaterPriceUsd": 0.00009174259320636546,
       "lowWaterPriceUsd": 0.0000695365497257652,
       "entryTxnsH1": {
         "buys": 132,
@@ -2029,6 +2029,16 @@
       "pnlSol": 0,
       "reason": "filled with 1.26% price impact",
       "timestamp": 1784199970190
+    },
+    {
+      "positionId": "HDMxrKo8U4KFcgqDGELRFb1vXtcogViAFniCNXRvpump-1784199870518",
+      "symbol": "STEVE",
+      "action": "TP1_PARTIAL",
+      "price": 0.00009164277153526881,
+      "sizeSol": 0.16147345012272954,
+      "pnlSol": 0.0257955126889034,
+      "reason": "TP1 arrival classified STRONG, sold 40%",
+      "timestamp": 1784201472492
     }
   ]
 }
