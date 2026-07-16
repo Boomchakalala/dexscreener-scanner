@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.5994191687396357,
+  "balanceSol": 1.9826521608221723,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -1818,9 +1818,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "CLOSED",
       "sizeSol": 0.4511182270804101,
-      "remainingSizeSol": 0.4511182270804101,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -1855,10 +1855,10 @@
       "openedAt": 1784228772971,
       "tp1TakenAt": null,
       "tp1Classification": null,
-      "closedAt": null,
-      "realizedPnlSol": 0,
+      "closedAt": 1784229068045,
+      "realizedPnlSol": -0.06788523499787352,
       "highWaterPriceUsd": 0.00010519857309067796,
-      "lowWaterPriceUsd": 0.00010519857309067796,
+      "lowWaterPriceUsd": 0.00008936806696832455,
       "entryTxnsH1": {
         "buys": 127,
         "sells": 101
@@ -2317,6 +2317,16 @@
       "pnlSol": 0,
       "reason": "filled with 1.62% price impact",
       "timestamp": 1784228776392
+    },
+    {
+      "positionId": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784228679241",
+      "symbol": "PCAT",
+      "action": "EXIT",
+      "price": 0.00008936806696832455,
+      "sizeSol": 0.4511182270804101,
+      "pnlSol": -0.06788523499787352,
+      "reason": "structural invalidation hit: Loss of this level means the reclaim failed and momentum is done",
+      "timestamp": 1784229068045
     }
   ]
 }
