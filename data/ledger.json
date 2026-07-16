@@ -1809,6 +1809,54 @@
       },
       "entryTopHolderAddress": "9kvtkx6iADZ1UuJTTNpB9QzeSRHFkh8JDHZ1X2ipoU6e",
       "entryTopHolderPct": 13.87685722279359
+    },
+    {
+      "id": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH-1784228679241",
+      "symbol": "PCAT",
+      "tokenAddress": "3dejiWxvpL6QH63rBE38fSrVbna8pVrKbmbPPDke7wuH",
+      "poolAddress": "CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CF2isNUfkkdi3j8aq5yXhKSc6DeramGpGL7MfNFq7KVD",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.4511182270804101,
+      "remainingSizeSol": 0.4511182270804101,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now on clean reclaim above prior consolidation with rising buy flow",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00012296,
+        "marketCapUsd": 124216,
+        "liquidityUsd": 16238
+      },
+      "structuralInvalidation": {
+        "price": 0.0000995,
+        "description": "Loss of this level means the reclaim failed and momentum is done"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.000138,
+          "note": "prior local high"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00017,
+          "note": "only if breaks prior high on continued buy flow"
+        }
+      ],
+      "thesis": "Fresh reclaim to new local high after a pullback, buy-dominant flow with healthy holders/organicScore, escalated since the last alert.",
+      "createdAt": 1784228679241,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
