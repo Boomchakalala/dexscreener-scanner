@@ -2353,6 +2353,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "FpZj2FWJy3wJHH9VJwU7MqpgvK7qLBke1GjxnrVSpump-1784282652872",
+      "symbol": "Datacenter",
+      "tokenAddress": "FpZj2FWJy3wJHH9VJwU7MqpgvK7qLBke1GjxnrVSpump",
+      "poolAddress": "D47ZQ7BcNvDhjviQattcvm4WcJLouqTXwkU4QER5vePn",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/D47ZQ7BcNvDhjviQattcvm4WcJLouqTXwkU4QER5vePn",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.4552752677019787,
+      "remainingSizeSol": 0.4552752677019787,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market; h1 +78% with volume accelerating and buy-dominant flow.",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00006358821730215486,
+        "marketCapUsd": 65974,
+        "liquidityUsd": 20808
+      },
+      "structuralInvalidation": {
+        "price": 0.00005,
+        "description": "Loss of the breakout base near 0.000050 confirms the run has failed."
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00007,
+          "note": "Retest/break of recent high."
+        },
+        {
+          "label": "TP2",
+          "price": 0.00009,
+          "note": "Only if volume keeps expanding and buyers stay dominant."
+        }
+      ],
+      "thesis": "Live acceleration: h1 +78% with h1 volume already over half of the entire h6 total, higher highs on buy-dominant multi-wallet flow, MC still only ~$66k.",
+      "createdAt": 1784282652872,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
