@@ -2057,6 +2057,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "TGTrnjkirTrmJwdrHZ9MRh4J46C8jFRMs3Ayyozpump-1784246669001",
+      "symbol": "smolcat",
+      "tokenAddress": "TGTrnjkirTrmJwdrHZ9MRh4J46C8jFRMs3Ayyozpump",
+      "poolAddress": "9UGAjBhdkHKVABtgdq2CTEaXEDxW7a4i75iGFxhCqjUb",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/9UGAjBhdkHKVABtgdq2CTEaXEDxW7a4i75iGFxhCqjUb",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.4361834753808779,
+      "remainingSizeSol": 0.4361834753808779,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now on fresh two-candle breakout to new highs with expanding volume and buy-dominant flow.",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000309,
+        "marketCapUsd": 30935,
+        "liquidityUsd": 0
+      },
+      "structuralInvalidation": {
+        "price": 0.0000155,
+        "description": "Loss of breakout base signals failed spike."
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00004,
+          "note": "First resistance / take partials."
+        },
+        {
+          "label": "TP2",
+          "price": 0.000055,
+          "note": "Runner exit if volume and buy pressure sustain."
+        }
+      ],
+      "thesis": "Sharp two-candle acceleration to new highs on rising volume and dominant buys — spike is live and early.",
+      "createdAt": 1784246669001,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
