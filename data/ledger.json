@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.4109669307892758,
+  "balanceSol": 1.4055943155866353,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2476,9 +2476,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/BMZZcAfd78N6UiCNmmJrcarzL1S5MF1AJBxT1DDZ9yCx",
       "tier": "FLASH",
-      "status": "CLOSED",
+      "status": "OPEN",
       "sizeSol": 0.39644967875520476,
-      "remainingSizeSol": 0,
+      "remainingSizeSol": 0.39644967875520476,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -2513,8 +2513,8 @@
       "openedAt": 1784297130276,
       "tp1TakenAt": null,
       "tp1Classification": null,
-      "closedAt": 1784328331777,
-      "realizedPnlSol": -0.3910770635525641,
+      "closedAt": null,
+      "realizedPnlSol": 0,
       "highWaterPriceUsd": 0.00009185461573930543,
       "lowWaterPriceUsd": 0.00004616990861657221,
       "entryTxnsH1": {
@@ -3177,6 +3177,16 @@
       "pnlSol": -0.3910770635525641,
       "reason": "emergency exit: liquidity fell to ~$0 from ~$13546 at entry (60%+ drop, confirmed 2 checks) — likely liquidity pull",
       "timestamp": 1784328331777
+    },
+    {
+      "positionId": "HUd5WbkBzbYomTKs5h8DLDWYaAdQdHndtJm6uE4u5NB-1784297029572",
+      "symbol": "CAVIAR",
+      "action": "CORRECTION",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "Prior EXIT (emergency liquidity-rug trigger) was a false positive: GeckoTerminal reported reserve_in_usd near $0 for this pool while the token was still trading normally (confirmed live: unchanged price, real h24 volume). Position restored to OPEN at its original entry; the erroneous realized P&L reversed. Root-cause check removed in commit b5bbe6d.",
+      "timestamp": 1784328686939
     }
   ]
 }
