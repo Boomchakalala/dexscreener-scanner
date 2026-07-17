@@ -2305,6 +2305,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "5tH4uCqtLQZ48pjSQ55MyR59KaqCE73az2A1nR4pump-1784279029689",
+      "symbol": "OH",
+      "tokenAddress": "5tH4uCqtLQZ48pjSQ55MyR59KaqCE73az2A1nR4pump",
+      "poolAddress": "5tH4uCqtLQZ48pjSQ55MyR59KaqCE73az2A1nR4pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/5tH4uCqtLQZ48pjSQ55MyR59KaqCE73az2A1nR4pump",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.4552752677019787,
+      "remainingSizeSol": 0.4552752677019787,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter at market on accelerating h1 momentum with expanding volume and buy-dominant flow",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00013,
+        "marketCapUsd": 130493,
+        "liquidityUsd": 14790
+      },
+      "structuralInvalidation": {
+        "price": 0.0001,
+        "description": "Close below the h1 breakout leg means momentum has broken"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00018,
+          "note": "First extension target"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00025,
+          "note": "Only if volume keeps expanding and buyers stay dominant"
+        }
+      ],
+      "thesis": "Accelerating live momentum: h1 +93%, m5 +11%, volume expanding into the last hour with healthy organicScore 76 and 1,106 holders.",
+      "createdAt": 1784279029689,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
