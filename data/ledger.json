@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.069433035008994,
+  "balanceSol": 1.6141577673070153,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2362,7 +2362,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/D47ZQ7BcNvDhjviQattcvm4WcJLouqTXwkU4QER5vePn",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.4552752677019787,
       "remainingSizeSol": 0.4552752677019787,
       "entryCondition": {
@@ -2394,13 +2394,21 @@
       ],
       "thesis": "Live acceleration: h1 +78% with h1 volume already over half of the entire h6 total, higher highs on buy-dominant multi-wallet flow, MC still only ~$66k.",
       "createdAt": 1784282652872,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00006376965192151248,
+      "entryMarketCapUsd": 62118.54204,
+      "openedAt": 1784282728383,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00006376965192151248,
+      "lowWaterPriceUsd": 0.00006376965192151248,
+      "entryTxnsH1": {
+        "buys": 291,
+        "sells": 227
+      },
+      "entryTopHolderAddress": "EVYMaqDBnUFNMRYTuqiFvPKFUXpFe62YJJpfCwjUykUR",
+      "entryTopHolderPct": 16.149346711706205
     }
   ],
   "tradeLog": [
@@ -2983,6 +2991,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784280935830
+    },
+    {
+      "positionId": "FpZj2FWJy3wJHH9VJwU7MqpgvK7qLBke1GjxnrVSpump-1784282652872",
+      "symbol": "Datacenter",
+      "action": "ENTRY",
+      "price": 0.00006376965192151248,
+      "sizeSol": 0.4552752677019787,
+      "pnlSol": 0,
+      "reason": "filled with 2.66% price impact",
+      "timestamp": 1784282730987
     }
   ]
 }
