@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.5275531894506647,
+  "balanceSol": 1.798418721287183,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2419,9 +2419,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/F1tmTeGWjckT4eKiEAS1rC61hU7hC1HhCbnjLxrqxZh8",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.43084833548608487,
-      "remainingSizeSol": 0.43084833548608487,
+      "remainingSizeSol": 0.2585090012916509,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -2454,11 +2454,11 @@
       "entryPrice": 0.00012479860529718132,
       "entryMarketCapUsd": 114813.8684,
       "openedAt": 1784289932998,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784291441777,
+      "tp1Classification": "STRONG",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.00015171394425355652,
+      "realizedPnlSol": 0.09852619764208434,
+      "highWaterPriceUsd": 0.00019614582332167616,
       "lowWaterPriceUsd": 0.00010145663794957522,
       "entryTxnsH1": {
         "buys": 739,
@@ -3079,6 +3079,16 @@
       "pnlSol": 0,
       "reason": "filled with 2.12% price impact",
       "timestamp": 1784289935767
+    },
+    {
+      "positionId": "GxGpZwrKUqiY5Jj8X2jUrifycPiMqxSPiLjWXZZDpump-1784289830640",
+      "symbol": "JOHN",
+      "action": "TP1_PARTIAL",
+      "price": 0.00019614582332167616,
+      "sizeSol": 0.17233933419443395,
+      "pnlSol": 0.09852619764208434,
+      "reason": "TP1 arrival classified STRONG, sold 40%",
+      "timestamp": 1784291441777
     }
   ]
 }
