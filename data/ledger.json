@@ -2410,6 +2410,54 @@
       "entryTopHolderAddress": "EVYMaqDBnUFNMRYTuqiFvPKFUXpFe62YJJpfCwjUykUR",
       "entryTopHolderPct": 16.149346711706205,
       "distributionWarned": true
+    },
+    {
+      "id": "GxGpZwrKUqiY5Jj8X2jUrifycPiMqxSPiLjWXZZDpump-1784289830640",
+      "symbol": "JOHN",
+      "tokenAddress": "GxGpZwrKUqiY5Jj8X2jUrifycPiMqxSPiLjWXZZDpump",
+      "poolAddress": "F1tmTeGWjckT4eKiEAS1rC61hU7hC1HhCbnjLxrqxZh8",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/F1tmTeGWjckT4eKiEAS1rC61hU7hC1HhCbnjLxrqxZh8",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.43084833548608487,
+      "remainingSizeSol": 0.43084833548608487,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now on live two-candle acceleration with doubling volume and buy-dominant flow",
+        "validityWindowMinutes": 10
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0001242,
+        "marketCapUsd": 114404,
+        "liquidityUsd": 12720
+      },
+      "structuralInvalidation": {
+        "price": 0.00007,
+        "description": "Loss of the breakout base means the spike has failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00018,
+          "note": "First extension"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00025,
+          "note": "Only if volume keeps expanding and buys stay dominant"
+        }
+      ],
+      "thesis": "Brand-new token spiking vertically with volume doubling and price closing near high, no rejection wick yet.",
+      "createdAt": 1784289830640,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
