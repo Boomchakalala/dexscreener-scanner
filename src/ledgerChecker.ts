@@ -278,38 +278,15 @@ async function checkDistributionHealth(position: Position, stats: PoolStats): Pr
   await sendTelegramMessage(`⚠️ **${position.symbol}** — possible distribution\n${warnings.join("; ")}. Not auto-exiting — your call.`);
 }
 
-// Emergency exit for a genuine liquidity pull, independent of the price-based structural
-// stop (which a STRONG runner may have left far away, and which a rug can blow through in
-// a single 5-min tick anyway). Requires 2 consecutive checks below the threshold — like
-// triggerHits's "hold, don't wick" pattern — because getPoolStats (as of this fix) no
-// longer treats one flaky 0/low liquidity reading as missing data, and a real rug stays
-// drained on the next check while a bad reading typically doesn't.
-const LIQUIDITY_RUG_DROP_PCT = 0.6;
-
-async function checkLiquidityRugExit(position: Position, ledger: Ledger, stats: PoolStats): Promise<boolean> {
-  const entryLiquidity = position.entrySnapshot.liquidityUsd;
-  const entryPrice = position.entryPrice as number;
-  if (!entryLiquidity || stats.liquidityUsd > entryLiquidity * (1 - LIQUIDITY_RUG_DROP_PCT)) {
-    position.lowLiquidityHits = 0;
-    return false;
-  }
-
-  position.lowLiquidityHits = (position.lowLiquidityHits ?? 0) + 1;
-  if (position.lowLiquidityHits < 2) {
-    console.log(`  ${position.symbol}: liquidity down ${(((entryLiquidity - stats.liquidityUsd) / entryLiquidity) * 100).toFixed(0)}% vs entry (hit 1 of 2) — confirming next check.`);
-    return false;
-  }
-
-  const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
-  const exitPrice = await simulateExitPrice(position.tokenAddress, sellValueSol, stats.priceUsd);
-  const pctMove = (exitPrice / entryPrice - 1) * 100;
-  const reason = `emergency exit: liquidity fell to ~$${Math.round(stats.liquidityUsd)} from ~$${Math.round(entryLiquidity)} at entry (${(LIQUIDITY_RUG_DROP_PCT * 100).toFixed(0)}%+ drop, confirmed 2 checks) — likely liquidity pull`;
-  closePosition(position, ledger, exitPrice, reason);
-  await sendTelegramMessage(
-    `🚨 **${position.symbol}** — EMERGENCY EXIT (liquidity pulled)\n${reason}\nEntry: $${entryPrice} → Exit: $${exitPrice}, ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
-  );
-  return true;
-}
+// REMOVED 2026-07-18: a liquidity-drop-based emergency exit shipped and false-triggered
+// within the first hour — GeckoTerminal's reserve_in_usd is not just occasionally flaky for
+// pump.fun/pumpswap pools, it's persistently near-zero for some of them (confirmed live on
+// CAVIAR: still reading ~$0 an hour later while the token had real $12K+ h24 volume and an
+// unchanged price), so "2 consecutive checks" gave zero protection — the bad reading never
+// recovers because it isn't noise, it's a standing characteristic of that pool on this data
+// source. Closed CAVIAR at a fabricated ~-98.6% loss on a token that was never rugged. Do
+// not resurrect an exit condition keyed on this field without a corroborating signal this
+// data source can't fake (e.g. price itself, which the structural stop already watches).
 
 async function checkOpenPosition(position: Position, ledger: Ledger): Promise<void> {
   const stats = await getPoolStats(position.chainId, position.poolAddress);
@@ -317,7 +294,6 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
   const entryPrice = position.entryPrice as number;
   updateWatermarks(position, stats.priceUsd);
   await checkDistributionHealth(position, stats);
-  if (await checkLiquidityRugExit(position, ledger, stats)) return;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
@@ -383,7 +359,6 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   const entryMc = position.entryMarketCapUsd as number;
   updateWatermarks(position, stats.priceUsd);
   await checkDistributionHealth(position, stats);
-  if (await checkLiquidityRugExit(position, ledger, stats)) return;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
