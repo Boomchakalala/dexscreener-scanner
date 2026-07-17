@@ -2218,7 +2218,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.4552752677019787,
       "remainingSizeSol": 0.4552752677019787,
       "entryCondition": {
@@ -2809,6 +2809,16 @@
       "pnlSol": 0.05270533184219248,
       "reason": "final target reached: Only if volume keeps expanding and buyer dominance holds",
       "timestamp": 1784267171781
+    },
+    {
+      "positionId": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump-1784271870536",
+      "symbol": "KIM",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784272862070
     }
   ]
 }
