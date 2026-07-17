@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.9826521608221723,
+  "balanceSol": 1.5464686854412943,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2114,7 +2114,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/DLdbWd6ceG4F3ZyMnat1JPweA1CFkRuszKv3zVSK8ywF",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.4361834753808779,
       "remainingSizeSol": 0.4361834753808779,
       "entryCondition": {
@@ -2146,13 +2146,21 @@
       ],
       "thesis": "Steady high-volume uptrend +132% h6 with 1168 buyers vs 207 sellers still making new highs, next deep review would miss the window.",
       "createdAt": 1784253872573,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.000012110694968094453,
+      "entryMarketCapUsd": 1216211.077,
+      "openedAt": 1784253966180,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.000012110694968094453,
+      "lowWaterPriceUsd": 0.000012110694968094453,
+      "entryTxnsH1": {
+        "buys": 3780,
+        "sells": 2734
+      },
+      "entryTopHolderAddress": "HvsaM5WjjcVW9pzCTrTavJmiLzQi7dfgM1T2PtaLh7hw",
+      "entryTopHolderPct": 14.638853988173755
     }
   ],
   "tradeLog": [
@@ -2665,6 +2673,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784247662272
+    },
+    {
+      "positionId": "4j1Ws3m9C4JNRmH9uuaMzx5UbKnbqRHBVwUWReQWuAvd-1784253872573",
+      "symbol": "TENEO",
+      "action": "ENTRY",
+      "price": 0.000012110694968094453,
+      "sizeSol": 0.4361834753808779,
+      "pnlSol": 0,
+      "reason": "filled with 0.00% price impact",
+      "timestamp": 1784253969012
     }
   ]
 }
