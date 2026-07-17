@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.9584015249367495,
+  "balanceSol": 1.5275531894506647,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2419,7 +2419,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/F1tmTeGWjckT4eKiEAS1rC61hU7hC1HhCbnjLxrqxZh8",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.43084833548608487,
       "remainingSizeSol": 0.43084833548608487,
       "entryCondition": {
@@ -2451,13 +2451,21 @@
       ],
       "thesis": "Brand-new token spiking vertically with volume doubling and price closing near high, no rejection wick yet.",
       "createdAt": 1784289830640,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00012479860529718132,
+      "entryMarketCapUsd": 114813.8684,
+      "openedAt": 1784289932998,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00012479860529718132,
+      "lowWaterPriceUsd": 0.00012479860529718132,
+      "entryTxnsH1": {
+        "buys": 739,
+        "sells": 458
+      },
+      "entryTopHolderAddress": "8n6q2SH5z3sGBYuu1JGyerERqZcV1mDXKQxpk4efaDtQ",
+      "entryTopHolderPct": 26.6260444139025
     }
   ],
   "tradeLog": [
@@ -3060,6 +3068,16 @@
       "pnlSol": -0.1110315100722446,
       "reason": "structural invalidation hit: Loss of the breakout base near 0.000050 confirms the run has failed.",
       "timestamp": 1784287231567
+    },
+    {
+      "positionId": "GxGpZwrKUqiY5Jj8X2jUrifycPiMqxSPiLjWXZZDpump-1784289830640",
+      "symbol": "JOHN",
+      "action": "ENTRY",
+      "price": 0.00012479860529718132,
+      "sizeSol": 0.43084833548608487,
+      "pnlSol": 0,
+      "reason": "filled with 2.12% price impact",
+      "timestamp": 1784289935767
     }
   ]
 }
