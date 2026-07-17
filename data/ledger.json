@@ -2467,6 +2467,54 @@
       "entryTopHolderAddress": "8n6q2SH5z3sGBYuu1JGyerERqZcV1mDXKQxpk4efaDtQ",
       "entryTopHolderPct": 26.6260444139025,
       "distributionWarned": true
+    },
+    {
+      "id": "HUd5WbkBzbYomTKs5h8DLDWYaAdQdHndtJm6uE4u5NB-1784297029572",
+      "symbol": "CAVIAR",
+      "tokenAddress": "HUd5WbkBzbYomTKs5h8DLDWYaAdQdHndtJm6uE4u5NB",
+      "poolAddress": "BMZZcAfd78N6UiCNmmJrcarzL1S5MF1AJBxT1DDZ9yCx",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/BMZZcAfd78N6UiCNmmJrcarzL1S5MF1AJBxT1DDZ9yCx",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.39644967875520476,
+      "remainingSizeSol": 0.39644967875520476,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now on live launch spike with expanding volume and buy-dominant flow",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000473,
+        "marketCapUsd": 36537,
+        "liquidityUsd": 13546
+      },
+      "structuralInvalidation": {
+        "price": 0.0000366,
+        "description": "Close below breakout base means launch pop is over"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00006,
+          "note": "First resistance / partial exit"
+        },
+        {
+          "label": "TP2",
+          "price": 0.000075,
+          "note": "Only if volume and buy pressure continue expanding"
+        }
+      ],
+      "thesis": "Brand-new token spiking with two green candles, expanding volume and 101 unique buyers dominating sells.",
+      "createdAt": 1784297029572,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
