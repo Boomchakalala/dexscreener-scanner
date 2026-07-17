@@ -2209,6 +2209,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump-1784271870536",
+      "symbol": "KIM",
+      "tokenAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "poolAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.4552752677019787,
+      "remainingSizeSol": 0.4552752677019787,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market on live buy-dominant spike; size small due to thin liquidity",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000102,
+        "marketCapUsd": 102220,
+        "liquidityUsd": 12024
+      },
+      "structuralInvalidation": {
+        "price": 0.0000875,
+        "description": "Close below signals buy pressure failed and spike is over"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00013,
+          "note": "First resistance / initial take-profit"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00017,
+          "note": "Only if buy flow stays dominant and volume keeps expanding"
+        }
+      ],
+      "thesis": "Sharp fresh acceleration with 636 vs 73 h1 buy dominance across 564 buyers, expanding volume, healthy organicScore 65 and 1205 holders",
+      "createdAt": 1784271870536,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
