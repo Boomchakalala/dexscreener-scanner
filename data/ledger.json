@@ -2161,6 +2161,54 @@
       },
       "entryTopHolderAddress": "HvsaM5WjjcVW9pzCTrTavJmiLzQi7dfgM1T2PtaLh7hw",
       "entryTopHolderPct": 14.638853988173755
+    },
+    {
+      "id": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump-1784264659980",
+      "symbol": "HBULL",
+      "tokenAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+      "poolAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.40721515615485493,
+      "remainingSizeSol": 0.40721515615485493,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market while buy flow and volume are still expanding on a sustained h1/h6 uptrend.",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0051,
+        "marketCapUsd": 5103750,
+        "liquidityUsd": 140650
+      },
+      "structuralInvalidation": {
+        "price": 0.0044,
+        "description": "Break below ~$0.0044 signals momentum break and buyers giving up."
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0061,
+          "note": "First resistance / conservative near-term target."
+        },
+        {
+          "label": "TP2",
+          "price": 0.0075,
+          "note": "Runner exit if buy-side flow and volume keep expanding."
+        }
+      ],
+      "thesis": "Clean, still-live momentum: +31% h1 with expanding volume, buy-dominant flow across 435 wallets, organicScore 85 and healthy holder base.",
+      "createdAt": 1784264659980,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
