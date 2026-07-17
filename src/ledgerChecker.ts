@@ -278,12 +278,46 @@ async function checkDistributionHealth(position: Position, stats: PoolStats): Pr
   await sendTelegramMessage(`⚠️ **${position.symbol}** — possible distribution\n${warnings.join("; ")}. Not auto-exiting — your call.`);
 }
 
+// Emergency exit for a genuine liquidity pull, independent of the price-based structural
+// stop (which a STRONG runner may have left far away, and which a rug can blow through in
+// a single 5-min tick anyway). Requires 2 consecutive checks below the threshold — like
+// triggerHits's "hold, don't wick" pattern — because getPoolStats (as of this fix) no
+// longer treats one flaky 0/low liquidity reading as missing data, and a real rug stays
+// drained on the next check while a bad reading typically doesn't.
+const LIQUIDITY_RUG_DROP_PCT = 0.6;
+
+async function checkLiquidityRugExit(position: Position, ledger: Ledger, stats: PoolStats): Promise<boolean> {
+  const entryLiquidity = position.entrySnapshot.liquidityUsd;
+  const entryPrice = position.entryPrice as number;
+  if (!entryLiquidity || stats.liquidityUsd > entryLiquidity * (1 - LIQUIDITY_RUG_DROP_PCT)) {
+    position.lowLiquidityHits = 0;
+    return false;
+  }
+
+  position.lowLiquidityHits = (position.lowLiquidityHits ?? 0) + 1;
+  if (position.lowLiquidityHits < 2) {
+    console.log(`  ${position.symbol}: liquidity down ${(((entryLiquidity - stats.liquidityUsd) / entryLiquidity) * 100).toFixed(0)}% vs entry (hit 1 of 2) — confirming next check.`);
+    return false;
+  }
+
+  const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
+  const exitPrice = await simulateExitPrice(position.tokenAddress, sellValueSol, stats.priceUsd);
+  const pctMove = (exitPrice / entryPrice - 1) * 100;
+  const reason = `emergency exit: liquidity fell to ~$${Math.round(stats.liquidityUsd)} from ~$${Math.round(entryLiquidity)} at entry (${(LIQUIDITY_RUG_DROP_PCT * 100).toFixed(0)}%+ drop, confirmed 2 checks) — likely liquidity pull`;
+  closePosition(position, ledger, exitPrice, reason);
+  await sendTelegramMessage(
+    `🚨 **${position.symbol}** — EMERGENCY EXIT (liquidity pulled)\n${reason}\nEntry: $${entryPrice} → Exit: $${exitPrice}, ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+  );
+  return true;
+}
+
 async function checkOpenPosition(position: Position, ledger: Ledger): Promise<void> {
   const stats = await getPoolStats(position.chainId, position.poolAddress);
   if (!stats) return;
   const entryPrice = position.entryPrice as number;
   updateWatermarks(position, stats.priceUsd);
   await checkDistributionHealth(position, stats);
+  if (await checkLiquidityRugExit(position, ledger, stats)) return;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
@@ -312,13 +346,19 @@ async function checkOpenPosition(position: Position, ledger: Ledger): Promise<vo
     position.tp1TakenAt = Date.now();
     position.tp1Classification = classification;
 
-    if (classification === "NORMAL") {
-      position.structuralInvalidation = { price: entryPrice, description: "moved to breakeven after TP1 (normal arrival)" };
-    } else if (classification === "WEAK") {
+    if (classification === "WEAK") {
       const tightened = entryPrice + (tp1.price - entryPrice) * 0.5;
       position.structuralInvalidation = { price: tightened, description: "tightened after a weak TP1 arrival" };
+    } else {
+      // NORMAL and STRONG both ratchet to breakeven. STRONG still gets far more room than
+      // WEAK's tightened stop (no trailing stop right on top of it), but a runner that
+      // already banked a real TP1 win should never be allowed to round-trip into a net
+      // loss on the position overall — confirmed live: JOHN banked +0.099 SOL at a STRONG
+      // TP1 (kept the original, unmoved stop per the old logic) then lost -0.255 SOL when
+      // the runner rugged, 2.5x the entire TP1 gain and the single worst trade on the ledger.
+      const description = classification === "STRONG" ? "moved to breakeven after a strong TP1 arrival" : "moved to breakeven after TP1 (normal arrival)";
+      position.structuralInvalidation = { price: entryPrice, description };
     }
-    // STRONG keeps the original stop — "do not use a tight trailing stop immediately".
 
     logTrade(ledger, {
       positionId: position.id,
@@ -343,6 +383,7 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   const entryMc = position.entryMarketCapUsd as number;
   updateWatermarks(position, stats.priceUsd);
   await checkDistributionHealth(position, stats);
+  if (await checkLiquidityRugExit(position, ledger, stats)) return;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
@@ -367,6 +408,35 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   }
 }
 
+/** Immediately attempts to fill any brand-new IMMEDIATE-entry PENDING_ENTRY positions for
+ *  the given tokens, instead of letting them sit until the next independent 5-min Checks
+ *  cron tick. A flash "enter now" alert is exactly the case where that 5-10 minute wait is
+ *  most costly — the whole point of an IMMEDIATE entry is that the move is happening right
+ *  now, and CHASE_GUARD_PCT above already rejects it as MISSED if price ran too far away in
+ *  the meantime. Closing this gap fills more of them without loosening the chase guard
+ *  itself (confirmed live: FLASH's IMMEDIATE entries missed 15 of 22 tries). Safe to call
+ *  with tokens that never got a position or already resolved — those are no-ops. */
+export async function attemptImmediateFills(tokenAddresses: string[]): Promise<void> {
+  if (tokenAddresses.length === 0) return;
+  const targets = new Set(tokenAddresses);
+  const ledger = await loadLedger();
+  let touched = false;
+
+  for (const position of ledger.positions) {
+    if (position.status !== "PENDING_ENTRY" || position.entryCondition.type !== "IMMEDIATE" || !targets.has(position.tokenAddress)) {
+      continue;
+    }
+    touched = true;
+    try {
+      await checkPendingEntry(position, ledger);
+    } catch (err) {
+      console.error(`Immediate-fill attempt failed for ${position.symbol}:`, err);
+    }
+  }
+
+  if (touched) await saveLedger(ledger);
+}
+
 export async function runLedgerCheck(): Promise<void> {
   const ledger = await loadLedger();
   console.log(
@@ -374,9 +444,18 @@ export async function runLedgerCheck(): Promise<void> {
   );
 
   for (const position of ledger.positions) {
-    if (position.status === "PENDING_ENTRY") await checkPendingEntry(position, ledger);
-    else if (position.status === "OPEN") await checkOpenPosition(position, ledger);
-    else if (position.status === "TP1_TAKEN") await checkTp1TakenPosition(position, ledger);
+    try {
+      if (position.status === "PENDING_ENTRY") await checkPendingEntry(position, ledger);
+      else if (position.status === "OPEN") await checkOpenPosition(position, ledger);
+      else if (position.status === "TP1_TAKEN") await checkTp1TakenPosition(position, ledger);
+    } catch (err) {
+      // One position's failure (a bad API call, a Telegram send hiccup) must not throw away
+      // this whole run's saveLedger for every OTHER position already processed, and must not
+      // block their entry/exit notifications either — confirmed as a real gap: this loop had
+      // no per-position isolation, so a single throw mid-loop silently skipped both
+      // persistence and notifications for every position after it that cycle.
+      console.error(`Ledger check failed for position ${position.symbol} (${position.id}):`, err);
+    }
   }
 
   await saveLedger(ledger);

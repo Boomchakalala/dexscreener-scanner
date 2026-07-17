@@ -178,8 +178,17 @@ export async function getPoolStats(network: string, poolAddress: string): Promis
     const attrs = result.data.attributes;
     const priceUsd = Number(attrs.base_token_price_usd ?? 0);
     const marketCapUsd = Number(attrs.market_cap_usd ?? attrs.fdv_usd ?? 0);
+    // Do NOT gate on liquidityUsd here — GeckoTerminal routinely reports reserve_in_usd
+    // as 0 for perfectly healthy pump.fun/pumpswap pools (same quirk discovery.ts works
+    // around with `liquidityUnknown`). Nulling the whole stats object out over a bad
+    // liquidity read was silently no-opping every entry/stop/TP/watchlist check for that
+    // position on that tick — confirmed live: WATCH-tier positions sat with triggerHits
+    // stuck at 0 across 6-10h validity windows (dozens of checks) despite plenty of price
+    // movement, because a single 0-liquidity read makes this function bail out entirely.
+    // Price and market cap are what every caller actually gates decisions on; liquidity is
+    // informational here.
     const liquidityUsd = Number(attrs.reserve_in_usd ?? 0);
-    if (!priceUsd || !marketCapUsd || !liquidityUsd) return null;
+    if (!priceUsd || !marketCapUsd) return null;
     return {
       priceUsd,
       marketCapUsd,

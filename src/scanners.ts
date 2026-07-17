@@ -11,6 +11,7 @@ import {
   toCandidate,
 } from "./discovery.js";
 import { getGeckoStats, getPool, resetGeckoStats } from "./gecko.js";
+import { attemptImmediateFills } from "./ledgerChecker.js";
 import { cancelDeadPendingEntries, loadLedger, openPositionsFromTradePlans } from "./ledger.js";
 import { getMarketOverview } from "./marketOverview.js";
 import { rankByQuality } from "./scoring.js";
@@ -309,6 +310,9 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   for (const skip of openResult.skipped) {
     console.log(`  [ledger] skipped ${skip.symbol}: ${skip.reason}`);
   }
+  // Rare on deep scan (almost all IMMEDIATE entries come from flash), but a true ACTIONABLE
+  // NOW pick deserves the same instant-fill attempt rather than waiting on the next cron tick.
+  await attemptImmediateFills(tradePlans.map((p) => p.tokenAddress));
 
   const cancelled = await cancelDeadPendingEntries(cancelTokenAddresses);
   if (cancelled.length > 0) {
@@ -409,6 +413,10 @@ export async function runFlashScan(triggeredManually = false): Promise<void> {
     for (const skip of openResult.skipped) {
       console.log(`  [ledger] skipped ${skip.symbol}: ${skip.reason}`);
     }
+    // Flash is speed-first: try the fill right now rather than leaving an IMMEDIATE entry
+    // to wait up to 5-10 minutes for the next independent Checks cron tick, by which point
+    // the move it's meant to catch may already be over.
+    await attemptImmediateFills(safePlans.map((p) => p.tokenAddress));
   }
 
   await warnIfPlansMissing(verdicts, tradePlans.length, "flash scan");

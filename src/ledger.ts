@@ -66,6 +66,11 @@ export interface Position {
   /** Set once a distribution/sell-pressure alert has fired for this position, so the
    *  5-minute checker doesn't spam the same warning every cycle. */
   distributionWarned?: boolean;
+  /** Consecutive checks where liquidity has read 60%+ below entry — needs 2 (like
+   *  triggerHits) before it's trusted as a real liquidity pull rather than one flaky
+   *  GeckoTerminal reading, since getPoolStats no longer treats a single 0/low liquidity
+   *  tick as missing data. */
+  lowLiquidityHits?: number;
 }
 
 export interface TradeLogEntry {

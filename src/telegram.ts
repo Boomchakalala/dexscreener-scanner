@@ -56,7 +56,11 @@ function chunkMessage(text: string): string[] {
   return chunks;
 }
 
-async function sendSingleMessage(text: string): Promise<void> {
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function attemptSend(text: string): Promise<void> {
   const res = await fetch(`${API_URL}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -71,6 +75,22 @@ async function sendSingleMessage(text: string): Promise<void> {
   if (!res.ok) {
     const body = await res.text();
     throw new Error(`Telegram send failed: ${res.status} ${body}`);
+  }
+}
+
+// A single transient 429/5xx used to drop an ENTRY/EXIT notification silently — the
+// per-position try/catch elsewhere stops one bad send from killing the whole ledger check,
+// but the message itself was still just gone. One retry after a short delay is cheap
+// insurance against exactly that.
+const SEND_RETRY_DELAY_MS = 1500;
+
+async function sendSingleMessage(text: string): Promise<void> {
+  try {
+    await attemptSend(text);
+  } catch (err) {
+    console.warn(`Telegram send failed, retrying once: ${(err as Error).message}`);
+    await sleep(SEND_RETRY_DELAY_MS);
+    await attemptSend(text);
   }
 }
 
