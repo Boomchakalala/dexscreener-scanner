@@ -613,15 +613,6 @@
       "alertedAt": 1784202263908
     },
     {
-      "symbol": "Jimothy",
-      "tokenAddress": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
-      "poolAddress": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 379288.7566108245,
-      "kind": "flash",
-      "alertedAt": 1784257466891
-    },
-    {
       "symbol": "HBULL",
       "tokenAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
       "poolAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
@@ -656,6 +647,15 @@
       "marketCapUsdAtAlert": 130493.49944213065,
       "kind": "flash",
       "alertedAt": 1784279029323
+    },
+    {
+      "symbol": "Datacenter",
+      "tokenAddress": "FpZj2FWJy3wJHH9VJwU7MqpgvK7qLBke1GjxnrVSpump",
+      "poolAddress": "D47ZQ7BcNvDhjviQattcvm4WcJLouqTXwkU4QER5vePn",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 65973.62135,
+      "kind": "flash",
+      "alertedAt": 1784282652571
     }
   ],
   "lastTelegramUpdateId": 710125054
