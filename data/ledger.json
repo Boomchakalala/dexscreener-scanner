@@ -2266,7 +2266,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.4552752677019787,
       "remainingSizeSol": 0.4552752677019787,
       "entryCondition": {
@@ -2867,6 +2867,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784272862070
+    },
+    {
+      "positionId": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn-1784275476979",
+      "symbol": "SOLdiers",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784277376379
     }
   ]
 }
