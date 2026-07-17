@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.8020439943418398,
+  "balanceSol": 1.405594315586635,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2476,7 +2476,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/BMZZcAfd78N6UiCNmmJrcarzL1S5MF1AJBxT1DDZ9yCx",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.39644967875520476,
       "remainingSizeSol": 0.39644967875520476,
       "entryCondition": {
@@ -2508,13 +2508,21 @@
       ],
       "thesis": "Brand-new token spiking with two green candles, expanding volume and 101 unique buyers dominating sells.",
       "createdAt": 1784297029572,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00009185461573930543,
+      "entryMarketCapUsd": 46688.4603,
+      "openedAt": 1784297130276,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00009185461573930543,
+      "lowWaterPriceUsd": 0.00009185461573930543,
+      "entryTxnsH1": {
+        "buys": 365,
+        "sells": 112
+      },
+      "entryTopHolderAddress": "DNyxWKQyMwX1fcZ28jSVf6ywQEWknLT4ZM7otvWbVf1a",
+      "entryTopHolderPct": 99.96568587647464
     }
   ],
   "tradeLog": [
@@ -3147,6 +3155,16 @@
       "pnlSol": -0.254883728236994,
       "reason": "runner stopped out: Loss of the breakout base means the spike has failed",
       "timestamp": 1784292334126
+    },
+    {
+      "positionId": "HUd5WbkBzbYomTKs5h8DLDWYaAdQdHndtJm6uE4u5NB-1784297029572",
+      "symbol": "CAVIAR",
+      "action": "ENTRY",
+      "price": 0.00009185461573930543,
+      "sizeSol": 0.39644967875520476,
+      "pnlSol": 0,
+      "reason": "filled with 98.95% price impact",
+      "timestamp": 1784297132874
     }
   ]
 }
