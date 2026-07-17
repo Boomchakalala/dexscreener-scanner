@@ -703,15 +703,6 @@
       "alertedAt": 1784202263908
     },
     {
-      "symbol": "smolcat",
-      "tokenAddress": "TGTrnjkirTrmJwdrHZ9MRh4J46C8jFRMs3Ayyozpump",
-      "poolAddress": "9UGAjBhdkHKVABtgdq2CTEaXEDxW7a4i75iGFxhCqjUb",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 30934.53851,
-      "kind": "flash",
-      "alertedAt": 1784246668676
-    },
-    {
       "symbol": "TENEO",
       "tokenAddress": "4j1Ws3m9C4JNRmH9uuaMzx5UbKnbqRHBVwUWReQWuAvd",
       "poolAddress": "DLdbWd6ceG4F3ZyMnat1JPweA1CFkRuszKv3zVSK8ywF",
@@ -737,6 +728,15 @@
       "marketCapUsdAtAlert": 5103750.270467708,
       "kind": "flash",
       "alertedAt": 1784264659530
+    },
+    {
+      "symbol": "KIM",
+      "tokenAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "poolAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 102219.7809551051,
+      "kind": "flash",
+      "alertedAt": 1784271870126
     }
   ],
   "lastTelegramUpdateId": 710125054
