@@ -523,24 +523,6 @@
       "alertedAt": 1784202263908
     },
     {
-      "symbol": "SOLdiers",
-      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
-      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 1053054.304496816,
-      "kind": "flash",
-      "alertedAt": 1784275476712
-    },
-    {
-      "symbol": "OH",
-      "tokenAddress": "5tH4uCqtLQZ48pjSQ55MyR59KaqCE73az2A1nR4pump",
-      "poolAddress": "5tH4uCqtLQZ48pjSQ55MyR59KaqCE73az2A1nR4pump",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 130493.49944213065,
-      "kind": "flash",
-      "alertedAt": 1784279029323
-    },
-    {
       "symbol": "Datacenter",
       "tokenAddress": "FpZj2FWJy3wJHH9VJwU7MqpgvK7qLBke1GjxnrVSpump",
       "poolAddress": "D47ZQ7BcNvDhjviQattcvm4WcJLouqTXwkU4QER5vePn",
@@ -566,6 +548,15 @@
       "marketCapUsdAtAlert": 36536.95453,
       "kind": "flash",
       "alertedAt": 1784297027657
+    },
+    {
+      "symbol": "Goated",
+      "tokenAddress": "7X3hES3ZLJUZFmBjWomo14wjPRJhmyzbJQ71Nf9Np1Tm",
+      "poolAddress": "49rxctvFVkBYas34YzbdrpPRSiGaykviLfkCfSjBYGa7",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 71687.83051,
+      "kind": "flash",
+      "alertedAt": 1784304237858
     }
   ],
   "lastTelegramUpdateId": 710125054
