@@ -2257,6 +2257,54 @@
       "tp1Classification": null,
       "closedAt": null,
       "realizedPnlSol": 0
+    },
+    {
+      "id": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn-1784275476979",
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.4552752677019787,
+      "remainingSizeSol": 0.4552752677019787,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market; sustained buy-dominant momentum with expanding volume",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0,
+        "marketCapUsd": 1053054,
+        "liquidityUsd": 182893
+      },
+      "structuralInvalidation": {
+        "price": 900000,
+        "description": "Market cap back below ~$900k means the h1 breakout failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 1300000,
+          "note": "First market-cap target on continuation"
+        },
+        {
+          "label": "TP2",
+          "price": 1800000,
+          "note": "Runner exit if volume and buyer dominance persist"
+        }
+      ],
+      "thesis": "Live buy-dominant momentum, h1 +37% with accelerating volume and strong holder/organic backing off h24 lows",
+      "createdAt": 1784275476979,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
