@@ -91,15 +91,6 @@
       "alertedAt": 1784202263908
     },
     {
-      "symbol": "Goated",
-      "tokenAddress": "7X3hES3ZLJUZFmBjWomo14wjPRJhmyzbJQ71Nf9Np1Tm",
-      "poolAddress": "49rxctvFVkBYas34YzbdrpPRSiGaykviLfkCfSjBYGa7",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 71687.83051,
-      "kind": "flash",
-      "alertedAt": 1784304237858
-    },
-    {
       "symbol": "TEMPO",
       "tokenAddress": "C2YR5UxDNJ8gpbxAg5w5ePkt9yEFPfq1T74kc4WTJFSC",
       "poolAddress": "BX6RxDe6QaiEBeFKypS4oVDr7RdivXrevBdJrBYuhBsZ",
@@ -134,6 +125,15 @@
       "marketCapUsdAtAlert": 94357.18952345122,
       "kind": "flash",
       "alertedAt": 1784325824708
+    },
+    {
+      "symbol": "KIM",
+      "tokenAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "poolAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 254554.79257704524,
+      "kind": "flash",
+      "alertedAt": 1784329424854
     }
   ],
   "lastTelegramUpdateId": 710125054
