@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.405594315586635,
+  "balanceSol": 1.4109669307892758,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2476,9 +2476,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/BMZZcAfd78N6UiCNmmJrcarzL1S5MF1AJBxT1DDZ9yCx",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "CLOSED",
       "sizeSol": 0.39644967875520476,
-      "remainingSizeSol": 0.39644967875520476,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -2513,8 +2513,8 @@
       "openedAt": 1784297130276,
       "tp1TakenAt": null,
       "tp1Classification": null,
-      "closedAt": null,
-      "realizedPnlSol": 0,
+      "closedAt": 1784328331777,
+      "realizedPnlSol": -0.3910770635525641,
       "highWaterPriceUsd": 0.00009185461573930543,
       "lowWaterPriceUsd": 0.00004616990861657221,
       "entryTxnsH1": {
@@ -2524,7 +2524,7 @@
       "entryTopHolderAddress": "DNyxWKQyMwX1fcZ28jSVf6ywQEWknLT4ZM7otvWbVf1a",
       "entryTopHolderPct": 99.96568587647464,
       "distributionWarned": true,
-      "lowLiquidityHits": 1
+      "lowLiquidityHits": 2
     }
   ],
   "tradeLog": [
@@ -3167,6 +3167,16 @@
       "pnlSol": 0,
       "reason": "filled with 98.95% price impact",
       "timestamp": 1784297132874
+    },
+    {
+      "positionId": "HUd5WbkBzbYomTKs5h8DLDWYaAdQdHndtJm6uE4u5NB-1784297029572",
+      "symbol": "CAVIAR",
+      "action": "EXIT",
+      "price": 0.000001244797338474903,
+      "sizeSol": 0.39644967875520476,
+      "pnlSol": -0.3910770635525641,
+      "reason": "emergency exit: liquidity fell to ~$0 from ~$13546 at entry (60%+ drop, confirmed 2 checks) — likely liquidity pull",
+      "timestamp": 1784328331777
     }
   ]
 }
