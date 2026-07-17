@@ -2459,13 +2459,14 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "highWaterPriceUsd": 0.00012479860529718132,
-      "lowWaterPriceUsd": 0.00012479860529718132,
+      "lowWaterPriceUsd": 0.00010963266358448453,
       "entryTxnsH1": {
         "buys": 739,
         "sells": 458
       },
       "entryTopHolderAddress": "8n6q2SH5z3sGBYuu1JGyerERqZcV1mDXKQxpk4efaDtQ",
-      "entryTopHolderPct": 26.6260444139025
+      "entryTopHolderPct": 26.6260444139025,
+      "distributionWarned": true
     }
   ],
   "tradeLog": [
