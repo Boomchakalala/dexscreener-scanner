@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.8509779825220678,
+  "balanceSol": 2.069433035008994,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2114,9 +2114,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/DLdbWd6ceG4F3ZyMnat1JPweA1CFkRuszKv3zVSK8ywF",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.4361834753808779,
-      "remainingSizeSol": 0.1657497206447336,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -2151,9 +2151,9 @@
       "openedAt": 1784253966180,
       "tp1TakenAt": 1784259666384,
       "tp1Classification": "NORMAL",
-      "closedAt": null,
-      "realizedPnlSol": 0.03407554234462917,
-      "highWaterPriceUsd": 0.000015941982857459962,
+      "closedAt": 1784267171781,
+      "realizedPnlSol": 0.08678087418682165,
+      "highWaterPriceUsd": 0.000016009803088812552,
       "lowWaterPriceUsd": 0.000012110694968094453,
       "entryTxnsH1": {
         "buys": 3780,
@@ -2751,6 +2751,16 @@
       "pnlSol": 0,
       "reason": "entry condition never triggered within its validity window",
       "timestamp": 1784266567562
+    },
+    {
+      "positionId": "4j1Ws3m9C4JNRmH9uuaMzx5UbKnbqRHBVwUWReQWuAvd-1784253872573",
+      "symbol": "TENEO",
+      "action": "EXIT",
+      "price": 0.000015961670973665594,
+      "sizeSol": 0.1657497206447336,
+      "pnlSol": 0.05270533184219248,
+      "reason": "final target reached: Only if volume keeps expanding and buyer dominance holds",
+      "timestamp": 1784267171781
     }
   ]
 }
