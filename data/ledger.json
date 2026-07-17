@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.6141577673070153,
+  "balanceSol": 1.9584015249367495,
   "positions": [
     {
       "id": "6Cn9XH2SCi79Nam7mhH5L1kfwFwPhfresmg6Q4Eipump-1783972515587",
@@ -2362,9 +2362,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/D47ZQ7BcNvDhjviQattcvm4WcJLouqTXwkU4QER5vePn",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "CLOSED",
       "sizeSol": 0.4552752677019787,
-      "remainingSizeSol": 0.4552752677019787,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -2399,16 +2399,17 @@
       "openedAt": 1784282728383,
       "tp1TakenAt": null,
       "tp1Classification": null,
-      "closedAt": null,
-      "realizedPnlSol": 0,
+      "closedAt": 1784287231567,
+      "realizedPnlSol": -0.1110315100722446,
       "highWaterPriceUsd": 0.00006376965192151248,
-      "lowWaterPriceUsd": 0.00005219080414687824,
+      "lowWaterPriceUsd": 0.00004921698690455088,
       "entryTxnsH1": {
         "buys": 291,
         "sells": 227
       },
       "entryTopHolderAddress": "EVYMaqDBnUFNMRYTuqiFvPKFUXpFe62YJJpfCwjUykUR",
-      "entryTopHolderPct": 16.149346711706205
+      "entryTopHolderPct": 16.149346711706205,
+      "distributionWarned": true
     }
   ],
   "tradeLog": [
@@ -3001,6 +3002,16 @@
       "pnlSol": 0,
       "reason": "filled with 2.66% price impact",
       "timestamp": 1784282730987
+    },
+    {
+      "positionId": "FpZj2FWJy3wJHH9VJwU7MqpgvK7qLBke1GjxnrVSpump-1784282652872",
+      "symbol": "Datacenter",
+      "action": "EXIT",
+      "price": 0.00004821765239084223,
+      "sizeSol": 0.4552752677019787,
+      "pnlSol": -0.1110315100722446,
+      "reason": "structural invalidation hit: Loss of the breakout base near 0.000050 confirms the run has failed.",
+      "timestamp": 1784287231567
     }
   ]
 }
