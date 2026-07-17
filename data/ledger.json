@@ -2153,7 +2153,7 @@
       "tp1Classification": "NORMAL",
       "closedAt": null,
       "realizedPnlSol": 0.03407554234462917,
-      "highWaterPriceUsd": 0.000015700996743035685,
+      "highWaterPriceUsd": 0.000015784573679250327,
       "lowWaterPriceUsd": 0.000012110694968094453,
       "entryTxnsH1": {
         "buys": 3780,
@@ -2170,7 +2170,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.40721515615485493,
       "remainingSizeSol": 0.40721515615485493,
       "entryCondition": {
@@ -2741,6 +2741,16 @@
       "pnlSol": 0.03407554234462917,
       "reason": "TP1 arrival classified NORMAL, sold 62%",
       "timestamp": 1784259666384
+    },
+    {
+      "positionId": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump-1784264659980",
+      "symbol": "HBULL",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784266567562
     }
   ]
 }
