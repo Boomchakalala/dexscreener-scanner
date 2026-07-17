@@ -1,34 +1,19 @@
 {
   "entries": [
     {
-      "symbol": "reptilecoin",
-      "tokenAddress": "BtUiqGdsW3H47yvtyKSLhQfzVpwov3wyYY6qssU9pump",
-      "poolAddress": "2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
+      "symbol": "OH",
+      "tokenAddress": "5tH4uCqtLQZ48pjSQ55MyR59KaqCE73az2A1nR4pump",
+      "poolAddress": "4Zx8tFzTJjvY3B9kjun3s3dawVEVm4cSbfLr5DXyrDAR",
       "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/2sfWTARfymBdSEGZ7NQTSsuRamaqcyi1oapkDyisR8Xy",
+      "dexUrl": "https://dexscreener.com/solana/4Zx8tFzTJjvY3B9kjun3s3dawVEVm4cSbfLr5DXyrDAR",
       "condition": {
-        "mcMin": 230000,
+        "mcMin": 170000,
         "mcMax": null,
         "requireRisingVolume": true,
-        "description": "Reclaim local highs above ~$230K MC after a higher low, on sustained volume"
+        "description": "Reclaim above ~$170K MC on rising volume with a higher low holding"
       },
-      "addedAt": 1784142998640,
-      "expiresAt": 1784229398640
-    },
-    {
-      "symbol": "CASHCOW",
-      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
-      "poolAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
-      "chainId": "solana",
-      "dexUrl": "https://dexscreener.com/solana/D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
-      "condition": {
-        "mcMin": 600000,
-        "mcMax": null,
-        "requireRisingVolume": true,
-        "description": "Higher low holding above ~$600K MC with volume re-expanding after the parabola cools"
-      },
-      "addedAt": 1784202263910,
-      "expiresAt": 1784245463910
+      "addedAt": 1784304410533,
+      "expiresAt": 1784347610533
     }
   ]
 }
