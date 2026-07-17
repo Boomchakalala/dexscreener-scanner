@@ -926,6 +926,15 @@
       "marketCapUsdAtAlert": 685670.2087929646,
       "kind": "flash",
       "alertedAt": 1784243052988
+    },
+    {
+      "symbol": "smolcat",
+      "tokenAddress": "TGTrnjkirTrmJwdrHZ9MRh4J46C8jFRMs3Ayyozpump",
+      "poolAddress": "9UGAjBhdkHKVABtgdq2CTEaXEDxW7a4i75iGFxhCqjUb",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 30934.53851,
+      "kind": "flash",
+      "alertedAt": 1784246668676
     }
   ],
   "lastTelegramUpdateId": 710125054
