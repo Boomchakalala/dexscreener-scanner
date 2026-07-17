@@ -2523,7 +2523,8 @@
       },
       "entryTopHolderAddress": "DNyxWKQyMwX1fcZ28jSVf6ywQEWknLT4ZM7otvWbVf1a",
       "entryTopHolderPct": 99.96568587647464,
-      "distributionWarned": true
+      "distributionWarned": true,
+      "lowLiquidityHits": 1
     }
   ],
   "tradeLog": [
