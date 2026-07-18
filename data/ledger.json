@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.6853405450530645,
+  "balanceSol": 2.967289526438118,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -238,9 +238,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/EAeurSge8RTdfAq6yZFoocCRVwv8uFaWbzis5PM7a9vq",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "CLOSED",
       "sizeSol": 0.36618280159814515,
-      "remainingSizeSol": 0.36618280159814515,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -276,10 +276,10 @@
       "openedAt": 1784405030835,
       "tp1TakenAt": null,
       "tp1Classification": null,
-      "closedAt": null,
-      "realizedPnlSol": 0,
+      "closedAt": 1784406028399,
+      "realizedPnlSol": -0.08423382021309161,
       "highWaterPriceUsd": 0.00006818157400676008,
-      "lowWaterPriceUsd": 0.0000596851573326927,
+      "lowWaterPriceUsd": 0.00005392479341268581,
       "entryTxnsH1": {
         "buys": 351,
         "sells": 249
@@ -408,6 +408,16 @@
       "pnlSol": 0,
       "reason": "filled with 1.66% price impact",
       "timestamp": 1784405033116
+    },
+    {
+      "positionId": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump-1784405030834",
+      "symbol": "Nenem",
+      "action": "EXIT",
+      "price": 0.00005249761937627008,
+      "sizeSol": 0.36618280159814515,
+      "pnlSol": -0.08423382021309161,
+      "reason": "structural invalidation hit: Loss of 0.000055 breaks the last leg and ends the move",
+      "timestamp": 1784406028399
     }
   ]
 }
