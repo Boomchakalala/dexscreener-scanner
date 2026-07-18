@@ -2534,7 +2534,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/B38Qwnqtah775zkTFh3tMnZguzjQtxTvQMrZrJu1y3r",
       "tier": "SPECULATIVE PUNT",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.11244754524693082,
       "remainingSizeSol": 0.11244754524693082,
       "entryCondition": {
@@ -3236,6 +3236,16 @@
       "pnlSol": 0,
       "reason": "Prior EXIT (emergency liquidity-rug trigger) was a false positive: GeckoTerminal reported reserve_in_usd near $0 for this pool while the token was still trading normally (confirmed live: unchanged price, real h24 volume). Position restored to OPEN at its original entry; the erroneous realized P&L reversed. Root-cause check removed in commit b5bbe6d.",
       "timestamp": 1784328686939
+    },
+    {
+      "positionId": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump-1784333204910",
+      "symbol": "KIM",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784335830574
     }
   ]
 }
