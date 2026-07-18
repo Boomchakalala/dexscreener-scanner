@@ -1,33 +1,6 @@
 {
   "history": [
     {
-      "symbol": "SAITAMA",
-      "tokenAddress": "65JQDUkabYnLEM1hzAiEyTy8FtYxDWRevbestmkDS9b7",
-      "poolAddress": "6v8rPLuCwZuYEiVj4ctU7FCsBo6LSTrAQG8Nno2fxvUF",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 75941.96756542311,
-      "kind": "deep",
-      "alertedAt": 1784189252073
-    },
-    {
-      "symbol": "Flea",
-      "tokenAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
-      "poolAddress": "5eiJm3oJRXcd3Aahg338P9DFULG8PPzmCUXGoFKpump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 243769.2862221882,
-      "kind": "deep",
-      "alertedAt": 1784189252073
-    },
-    {
-      "symbol": "BULLGOD",
-      "tokenAddress": "HFmbKBN7fYCY2PPGYgwkvb7mAuo1v6cmWv1CPK6Xpump",
-      "poolAddress": "HFmbKBN7fYCY2PPGYgwkvb7mAuo1v6cmWv1CPK6Xpump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 500544.280840206,
-      "kind": "deep",
-      "alertedAt": 1784189252073
-    },
-    {
       "symbol": "CASHCOW",
       "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
       "poolAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
@@ -152,6 +125,15 @@
       "marketCapUsdAtAlert": 267277.9652,
       "kind": "flash",
       "alertedAt": 1784361816358
+    },
+    {
+      "symbol": "BULLCAT",
+      "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 518776.9719748869,
+      "kind": "flash",
+      "alertedAt": 1784365413595
     }
   ],
   "lastTelegramUpdateId": 710125054
