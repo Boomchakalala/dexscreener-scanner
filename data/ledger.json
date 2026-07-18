@@ -2525,6 +2525,54 @@
       "entryTopHolderPct": 99.96568587647464,
       "distributionWarned": true,
       "lowLiquidityHits": 2
+    },
+    {
+      "id": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump-1784333204910",
+      "symbol": "KIM",
+      "tokenAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "poolAddress": "B38Qwnqtah775zkTFh3tMnZguzjQtxTvQMrZrJu1y3r",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/B38Qwnqtah775zkTFh3tMnZguzjQtxTvQMrZrJu1y3r",
+      "tier": "SPECULATIVE PUNT",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.11244754524693082,
+      "remainingSizeSol": 0.11244754524693082,
+      "entryCondition": {
+        "type": "BREAKOUT",
+        "triggerPrice": 0.00027,
+        "description": "Reclaim/hold above ~0.00027 on rising volume, or a defended dip to ~0.00022",
+        "validityWindowMinutes": 40
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00025,
+        "marketCapUsd": 266901,
+        "liquidityUsd": 37529
+      },
+      "structuralInvalidation": {
+        "price": 0.00018,
+        "description": "Below 0.00018 the higher-low structure breaks"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00032,
+          "note": "prior local high retest"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00048,
+          "note": "continuation if breakout holds and liquidity thickens"
+        }
+      ],
+      "thesis": "Constructive higher-low base after a clean climb with genuine buy pressure and a 1,471-holder base; small size only given thin liquidity, ~22% top-two concentration and a rugged-creator flag.",
+      "createdAt": 1784333204910,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
     }
   ],
   "tradeLog": [
