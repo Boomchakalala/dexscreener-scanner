@@ -80,6 +80,33 @@
       "marketCapUsdAtAlert": 62733.50403901193,
       "kind": "flash",
       "alertedAt": 1784383435083
+    },
+    {
+      "symbol": "Sagawa",
+      "tokenAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
+      "poolAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 641991.6289186707,
+      "kind": "deep",
+      "alertedAt": 1784385525897
+    },
+    {
+      "symbol": "$NO BRAIN",
+      "tokenAddress": "ATidV7cp3CqUS2W13hEhicZuLVriqVRRH5KTFn2xpump",
+      "poolAddress": "ATidV7cp3CqUS2W13hEhicZuLVriqVRRH5KTFn2xpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 365797.1416989106,
+      "kind": "deep",
+      "alertedAt": 1784385525897
+    },
+    {
+      "symbol": "NYANJIM",
+      "tokenAddress": "D6mSkFmPskEWMEqEpdMMfUEsJdEcQdTSzbG7J2GWpump",
+      "poolAddress": "D6mSkFmPskEWMEqEpdMMfUEsJdEcQdTSzbG7J2GWpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 222648.33459057135,
+      "kind": "deep",
+      "alertedAt": 1784385525897
     }
   ],
   "lastTelegramUpdateId": 710125054
