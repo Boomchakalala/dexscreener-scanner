@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.967289526438118,
+  "balanceSol": 2.611214783265544,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -286,6 +286,63 @@
       },
       "entryTopHolderAddress": "AnXs8vAKY2pvJcMchGV9ivtw9p8ub1QYAAw99R3E18ez",
       "entryTopHolderPct": 14.706473787070376
+    },
+    {
+      "id": "NvFqYKxDLMrXZ5UyK6Zs39AwsvjBvbUXZ3FmT2P8VC7-1784412294734",
+      "symbol": "parcel",
+      "tokenAddress": "NvFqYKxDLMrXZ5UyK6Zs39AwsvjBvbUXZ3FmT2P8VC7",
+      "poolAddress": "8foUqXeQFWWS9wgYGww2iXHdv3oLDQhmSzVywDwUFz6w",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/8foUqXeQFWWS9wgYGww2iXHdv3oLDQhmSzVywDwUFz6w",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.35607474317257415,
+      "remainingSizeSol": 0.35607474317257415,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now on fresh buy-dominant launch spike",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000565,
+        "marketCapUsd": 56496,
+        "liquidityUsd": 20255
+      },
+      "structuralInvalidation": {
+        "price": 0.000045,
+        "description": "Loss of breakout base = failed launch pop"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00009,
+          "note": "first extension target"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00014,
+          "note": "only if buy dominance and volume hold"
+        }
+      ],
+      "thesis": "Ultra-fresh launch up 20% m5 with 336 unique buyers vs 40 sellers signaling live broad-based demand",
+      "confidence": "LOW",
+      "createdAt": 1784412294734,
+      "entryPrice": 0.0000012564790800876917,
+      "entryMarketCapUsd": 63830.11879,
+      "openedAt": 1784412294736,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.0000012564790800876917,
+      "lowWaterPriceUsd": 0.0000012564790800876917,
+      "entryTxnsH1": {
+        "buys": 626,
+        "sells": 165
+      },
+      "entryTopHolderAddress": "9XuiwVt2cTUBLkKbBZFGEUgQS64htNfdWMdm7GGs1HrU",
+      "entryTopHolderPct": 80.00051099558515
     }
   ],
   "tradeLog": [
@@ -418,6 +475,16 @@
       "pnlSol": -0.08423382021309161,
       "reason": "structural invalidation hit: Loss of 0.000055 breaks the last leg and ends the move",
       "timestamp": 1784406028399
+    },
+    {
+      "positionId": "NvFqYKxDLMrXZ5UyK6Zs39AwsvjBvbUXZ3FmT2P8VC7-1784412294734",
+      "symbol": "parcel",
+      "action": "ENTRY",
+      "price": 0.0000012564790800876917,
+      "sizeSol": 0.35607474317257415,
+      "pnlSol": 0,
+      "reason": "filled with 99.75% price impact",
+      "timestamp": 1784412296990
     }
   ]
 }
