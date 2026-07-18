@@ -107,6 +107,15 @@
       "marketCapUsdAtAlert": 476632.256,
       "kind": "flash",
       "alertedAt": 1784397837321
+    },
+    {
+      "symbol": "DBULL",
+      "tokenAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
+      "poolAddress": "5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 118344.4983,
+      "kind": "flash",
+      "alertedAt": 1784401428297
     }
   ],
   "lastTelegramUpdateId": 710125054
