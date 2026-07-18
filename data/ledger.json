@@ -1,5 +1,54 @@
 {
   "balanceSol": 3,
-  "positions": [],
+  "positions": [
+    {
+      "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
+      "symbol": "SR20",
+      "tokenAddress": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3",
+      "poolAddress": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3",
+      "tier": "FLASH",
+      "status": "PENDING_ENTRY",
+      "sizeSol": 0.5,
+      "remainingSizeSol": 0.5,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Fresh m5 +11% acceleration with buy-dominant flow off a base; enter at market.",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000686,
+        "marketCapUsd": 68602,
+        "liquidityUsd": 10556
+      },
+      "structuralInvalidation": {
+        "price": 0.000056,
+        "description": "Close below invalidates the reclaim and resumes the h6 downtrend."
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.000085,
+          "note": "First resistance / prior local high area."
+        },
+        {
+          "label": "TP2",
+          "price": 0.000105,
+          "note": "Only if buy flow expands and it reclaims prior high with volume."
+        }
+      ],
+      "thesis": "Buy-dominant re-acceleration (m5 +11%, h1 +75%) with strong organicScore 74 and 889 holders after a pullback.",
+      "createdAt": 1784387020266,
+      "entryPrice": null,
+      "entryMarketCapUsd": null,
+      "openedAt": null,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0
+    }
+  ],
   "tradeLog": []
 }
