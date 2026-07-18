@@ -107,6 +107,15 @@
       "marketCapUsdAtAlert": 68602.02892947647,
       "kind": "flash",
       "alertedAt": 1784387019916
+    },
+    {
+      "symbol": "IVY",
+      "tokenAddress": "6hJ8NyjpgRv2Dvur1jwsQfkNqynnghTsLpEP5cjEAmXd",
+      "poolAddress": "2bknQKgM41hs1jnWCb1Uu4iEm558jyGc1ELNJ7ct8k5z",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 125120.58320254825,
+      "kind": "flash",
+      "alertedAt": 1784390616421
     }
   ],
   "lastTelegramUpdateId": 710125054
