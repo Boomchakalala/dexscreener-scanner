@@ -1,5 +1,5 @@
 {
-  "balanceSol": 3,
+  "balanceSol": 2.5,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -9,7 +9,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/XP8eVM8tmorbCpx69A25xsGabdu2ejKhwwz4W5KQHcb",
       "tier": "FLASH",
-      "status": "PENDING_ENTRY",
+      "status": "OPEN",
       "sizeSol": 0.5,
       "remainingSizeSol": 0.5,
       "entryCondition": {
@@ -41,14 +41,33 @@
       ],
       "thesis": "Buy-dominant re-acceleration (m5 +11%, h1 +75%) with strong organicScore 74 and 889 holders after a pullback.",
       "createdAt": 1784387020266,
-      "entryPrice": null,
-      "entryMarketCapUsd": null,
-      "openedAt": null,
+      "entryPrice": 0.00007580822982066237,
+      "entryMarketCapUsd": 74796.00781536,
+      "openedAt": 1784387404362,
       "tp1TakenAt": null,
       "tp1Classification": null,
       "closedAt": null,
-      "realizedPnlSol": 0
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00007580822982066237,
+      "lowWaterPriceUsd": 0.00007580822982066237,
+      "entryTxnsH1": {
+        "buys": 227,
+        "sells": 142
+      },
+      "entryTopHolderAddress": "6EzG5zVTTY8UGWY4PuUzYZpJon1qhhSRfMPeLVoRw948",
+      "entryTopHolderPct": 30.547423416222426
     }
   ],
-  "tradeLog": []
+  "tradeLog": [
+    {
+      "positionId": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
+      "symbol": "SR20",
+      "action": "ENTRY",
+      "price": 0.00007580822982066237,
+      "sizeSol": 0.5,
+      "pnlSol": 0,
+      "reason": "filled with 1.35% price impact",
+      "timestamp": 1784387407313
+    }
+  ]
 }
