@@ -1,5 +1,5 @@
 {
-  "balanceSol": 3.0043417633367566,
+  "balanceSol": 2.5043417633367566,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -172,6 +172,63 @@
       },
       "entryTopHolderAddress": "DJb9YC2E34QX3zbukbFGmo59AgcVYTQ9UVYHS2LHMSZJ",
       "entryTopHolderPct": 5.586816069768112
+    },
+    {
+      "id": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump-1784401428563",
+      "symbol": "DBULL",
+      "tokenAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
+      "poolAddress": "5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.5,
+      "remainingSizeSol": 0.5,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market on live buy-dominant uptrend pressing toward local high",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00012046,
+        "marketCapUsd": 118344,
+        "liquidityUsd": 27587
+      },
+      "structuralInvalidation": {
+        "price": 0.000105,
+        "description": "Breaks rising higher-low structure, recovery failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00013,
+          "note": "prior swing high"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00016,
+          "note": "only on clean break of 0.00013 with renewed volume"
+        }
+      ],
+      "thesis": "Orderly hour-long climb with 2:1 buy dominance and holding volume reclaiming toward the local high.",
+      "confidence": "MEDIUM",
+      "createdAt": 1784401428563,
+      "entryPrice": 0.00012811725382331975,
+      "entryMarketCapUsd": 124952.3493,
+      "openedAt": 1784401428564,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00012811725382331975,
+      "lowWaterPriceUsd": 0.00012811725382331975,
+      "entryTxnsH1": {
+        "buys": 1172,
+        "sells": 536
+      },
+      "entryTopHolderAddress": "3nvUkLQxFAmHXENeJ6VgXCHpqZaFXspX4SFvXHRuFKfQ",
+      "entryTopHolderPct": 11.356825013504707
     }
   ],
   "tradeLog": [
@@ -254,6 +311,16 @@
       "pnlSol": -0.009844064255764784,
       "reason": "runner stopped out: moved to breakeven after a strong TP1 arrival",
       "timestamp": 1784400627201
+    },
+    {
+      "positionId": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump-1784401428563",
+      "symbol": "DBULL",
+      "action": "ENTRY",
+      "price": 0.00012811725382331975,
+      "sizeSol": 0.5,
+      "pnlSol": 0,
+      "reason": "filled with 2.53% price impact",
+      "timestamp": 1784401430934
     }
   ]
 }
