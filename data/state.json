@@ -100,15 +100,6 @@
       "alertedAt": 1784333204907
     },
     {
-      "symbol": "PONS",
-      "tokenAddress": "54oZRJ3fe9XB34bDK9KLZaptMGdVnjPABCFAfRxvjxen",
-      "poolAddress": "DutFEgZaA3JhYZESWvQEXc1Q1WFxhyrkzCvDtXoqGrqJ",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 743494.958,
-      "kind": "flash",
-      "alertedAt": 1784336610707
-    },
-    {
       "symbol": "Jimothy",
       "tokenAddress": "AXkXDHko4JHe1PHrgRmDG9TxUxNRFfQnY4d562RYpump",
       "poolAddress": "AXkXDHko4JHe1PHrgRmDG9TxUxNRFfQnY4d562RYpump",
@@ -143,6 +134,15 @@
       "marketCapUsdAtAlert": 619509.3639,
       "kind": "flash",
       "alertedAt": 1784354631159
+    },
+    {
+      "symbol": "CASHCOW",
+      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "poolAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 538924.5902509069,
+      "kind": "flash",
+      "alertedAt": 1784358220782
     }
   ],
   "lastTelegramUpdateId": 710125054
