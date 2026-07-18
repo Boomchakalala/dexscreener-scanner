@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.714158084305659,
+  "balanceSol": 2.804211480814065,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -9,9 +9,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/XP8eVM8tmorbCpx69A25xsGabdu2ejKhwwz4W5KQHcb",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.5,
-      "remainingSizeSol": 0.09000000000000002,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -46,8 +46,8 @@
       "openedAt": 1784387404362,
       "tp1TakenAt": 1784395229431,
       "tp1Classification": "WEAK",
-      "closedAt": null,
-      "realizedPnlSol": 0.057778943515946646,
+      "closedAt": 1784398526962,
+      "realizedPnlSol": 0.057832340024352544,
       "highWaterPriceUsd": 0.00009666237000716348,
       "lowWaterPriceUsd": 0.00006229118398993268,
       "entryTxnsH1": {
@@ -164,7 +164,7 @@
       "tp1Classification": "STRONG",
       "closedAt": null,
       "realizedPnlSol": 0.007822059161111089,
-      "highWaterPriceUsd": 0.0006164077493031629,
+      "highWaterPriceUsd": 0.0007609747018044032,
       "lowWaterPriceUsd": 0.0005725849319108032,
       "entryTxnsH1": {
         "buys": 3041,
@@ -234,6 +234,16 @@
       "pnlSol": 0.007822059161111089,
       "reason": "TP1 arrival classified STRONG, sold 40%",
       "timestamp": 1784397932743
+    },
+    {
+      "positionId": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
+      "symbol": "SR20",
+      "action": "EXIT",
+      "price": 0.00007585320642933853,
+      "sizeSol": 0.09000000000000002,
+      "pnlSol": 0.000053396508405897936,
+      "reason": "runner stopped out: tightened after a weak TP1 arrival",
+      "timestamp": 1784398526962
     }
   ]
 }
