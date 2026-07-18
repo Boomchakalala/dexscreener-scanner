@@ -134,6 +134,15 @@
       "marketCapUsdAtAlert": 308020.6566468437,
       "kind": "deep",
       "alertedAt": 1784333204907
+    },
+    {
+      "symbol": "PONS",
+      "tokenAddress": "54oZRJ3fe9XB34bDK9KLZaptMGdVnjPABCFAfRxvjxen",
+      "poolAddress": "DutFEgZaA3JhYZESWvQEXc1Q1WFxhyrkzCvDtXoqGrqJ",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 743494.958,
+      "kind": "flash",
+      "alertedAt": 1784336610707
     }
   ],
   "lastTelegramUpdateId": 710125054
