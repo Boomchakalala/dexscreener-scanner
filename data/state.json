@@ -37,24 +37,6 @@
       "alertedAt": 1784333204907
     },
     {
-      "symbol": "Stickbug",
-      "tokenAddress": "78pTmgyrPmwenmRHCn5xNPZiEES662RJqQDbWMKbRZ1g",
-      "poolAddress": "Hn1LLSZfQCk7STtpvfZfSxfDBAgUkCj5U2rpqTovi71c",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 94178.92082,
-      "kind": "flash",
-      "alertedAt": 1784369023220
-    },
-    {
-      "symbol": "PONS",
-      "tokenAddress": "486U5VY1KsGV4dejxjWR3LPM5SRpbxUivjRGXnhCd5m4",
-      "poolAddress": "67p4KbiTVVvBvcxVqKaxtV4uzgMbrenPrkDS1drPRNWr",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 642271.3423,
-      "kind": "flash",
-      "alertedAt": 1784369023220
-    },
-    {
       "symbol": "Sagawa",
       "tokenAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
       "poolAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
@@ -116,6 +98,15 @@
       "marketCapUsdAtAlert": 125120.58320254825,
       "kind": "flash",
       "alertedAt": 1784390616421
+    },
+    {
+      "symbol": "Tilly",
+      "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
+      "poolAddress": "4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 476632.256,
+      "kind": "flash",
+      "alertedAt": 1784397837321
     }
   ],
   "lastTelegramUpdateId": 710125054
