@@ -8,12 +8,14 @@ import {
   enrichWithRugCheck,
   enrichWithTokenMeta,
   excludeDangerRisks,
+  passesFloors,
   toCandidate,
 } from "./discovery.js";
 import { getGeckoStats, getPool, resetGeckoStats } from "./gecko.js";
 import { attemptImmediateFills } from "./ledgerChecker.js";
 import { cancelDeadPendingEntries, loadLedger, openPositionsFromTradePlans } from "./ledger.js";
 import { getMarketOverview } from "./marketOverview.js";
+import { getRevivalRecheckBatch, looksLikeRevival, recordSeenCandidates } from "./revival.js";
 import { rankByQuality } from "./scoring.js";
 import { getRecentAlertHistory, recordAlerts, type AlertHistoryEntry } from "./state.js";
 import { sendTelegramMessage } from "./telegram.js";
@@ -69,6 +71,35 @@ async function withTrackedTokens(shortlist: Candidate[]): Promise<Candidate[]> {
     console.log(`  [tracked] force-included ${fetched.length} previously-called token(s) discovery had dropped: ${fetched.map((c) => c.symbol).join(", ")}`);
   }
   return [...marked, ...fetched];
+}
+
+/** Re-admits aged tokens from revival.ts's persisted history that are now showing genuine
+ *  renewed volume/buyers — the only mechanism by which a token that's aged out of every
+ *  trending/new-pool feed this scanner queries ever gets a second look, instead of being
+ *  forgotten the moment it stopped being fresh. Re-fetched candidates (whether or not they
+ *  end up looking like a revival) are recorded back into history so lastCheckedAt advances
+ *  and the same handful don't get re-fetched again next run. */
+async function withRevivalCandidates(workset: Candidate[]): Promise<Candidate[]> {
+  const present = new Set(workset.map((c) => c.tokenAddress));
+  const due = await getRevivalRecheckBatch(present);
+  if (due.length === 0) return workset;
+
+  const rechecked: Candidate[] = [];
+  const revived: Candidate[] = [];
+  for (const entry of due) {
+    const pool = await getPool(entry.chainId, entry.poolAddress);
+    const candidate = pool ? toCandidate(entry.chainId, pool) : null;
+    if (!candidate) continue;
+    rechecked.push(candidate);
+    if (passesFloors(candidate) && looksLikeRevival(candidate, entry)) {
+      revived.push({ ...candidate, revival: true });
+    }
+  }
+  if (rechecked.length > 0) await recordSeenCandidates(rechecked);
+  if (revived.length > 0) {
+    console.log(`  [revival] re-admitted ${revived.length} of ${due.length} re-checked aged token(s): ${revived.map((c) => c.symbol).join(", ")}`);
+  }
+  return [...workset, ...revived];
 }
 
 /** A WATCH verdict doesn't guarantee a structured, checkable watchlist condition — the
@@ -205,14 +236,18 @@ export async function runDeepScan(triggeredManually = false): Promise<void> {
   resetGeckoStats();
 
   let t = now();
-  const { rawCount, floorSurvivorCount, shortlist } = await discoverCandidates();
+  const { rawCount, floorSurvivorCount, floorSurvivors, shortlist } = await discoverCandidates();
   logStage("Discovery + universe filtering", t);
   console.log(
     `Discovered ${rawCount} raw pairs, ${floorSurvivorCount} passed hard floors, ${shortlist.length} chart-shortlisted.`
   );
+  // Persist the full floor-survivor census (not just the chart-shortlisted top N) so a
+  // token that just didn't have the best chart THIS run can still be re-checked later via
+  // revival.ts once it ages past what trending/new-pool feeds naturally resurface.
+  await recordSeenCandidates(floorSurvivors);
 
   const recentHistory = await getRecentAlertHistory("deep");
-  const workset = await withTrackedTokens(shortlist);
+  const workset = await withRevivalCandidates(await withTrackedTokens(shortlist));
 
   if (workset.length === 0) {
     await sendTelegramMessage(`${label} — scanned ${rawCount} pairs, none survived the hard filters this run.`);

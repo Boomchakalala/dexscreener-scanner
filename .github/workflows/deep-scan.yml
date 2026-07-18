@@ -41,7 +41,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TRIGGERED_MANUALLY: ${{ inputs.manual }}
 
-      - name: Commit updated alert history, watchlist, and ledger
+      - name: Commit updated alert history, watchlist, ledger, and token history
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -68,6 +68,7 @@ jobs:
           commit_if_changed data/state.json "chore: update alert state (deep scan) [skip ci]"
           commit_if_changed data/watchlist.json "chore: update watchlist (deep scan) [skip ci]"
           commit_if_changed data/ledger.json "chore: update ledger (deep scan) [skip ci]"
+          commit_if_changed data/token-history.json "chore: update token history (deep scan) [skip ci]"
 
           rebase_skipping_conflicts() {
             if ! git rebase origin/master; then

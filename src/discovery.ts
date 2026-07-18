@@ -58,7 +58,7 @@ export function toCandidate(network: string, pool: GeckoPool): Candidate | null 
   };
 }
 
-function passesFloors(candidate: Candidate): boolean {
+export function passesFloors(candidate: Candidate): boolean {
   const { floors } = config;
   return (
     candidate.marketCapUsd >= floors.minMarketCapUsd &&
@@ -76,6 +76,11 @@ function passesFloors(candidate: Candidate): boolean {
 export interface DiscoveryResult {
   rawCount: number;
   floorSurvivorCount: number;
+  /** Every token that passed the hard floors this run, not just the chart-shortlisted top
+   *  N — this is the full census revival.ts persists, so a decent-but-not-this-run's-best-
+   *  chart token still gets remembered and can be re-checked once it ages past what
+   *  trending/new-pool feeds naturally resurface. */
+  floorSurvivors: Candidate[];
   shortlist: Candidate[];
 }
 
@@ -148,7 +153,7 @@ export async function discoverCandidates(): Promise<DiscoveryResult> {
   }
   const shortlist = rankByChartProxy(floorSurvivors, config.floors.maxShortlist);
 
-  return { rawCount, floorSurvivorCount: floorSurvivors.length, shortlist };
+  return { rawCount, floorSurvivorCount: floorSurvivors.length, floorSurvivors, shortlist };
 }
 
 /** pump.fun-only launchpad gate, three signals in cheap-first order:

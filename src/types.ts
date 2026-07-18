@@ -74,6 +74,10 @@ export interface Candidate {
    *  48h) that's being deliberately followed to conclusion — it bypasses discovery
    *  filters (may be off-window or non-pump.fun) and is guaranteed a slot in the batch. */
   tracked?: boolean;
+  /** True for a candidate resurfaced from revival.ts's persisted token history — an aged
+   *  (12h-30d) token discovery's own trending/new-pool feeds no longer surface naturally,
+   *  re-checked and re-admitted because it's now showing genuine renewed volume/buyers. */
+  revival?: boolean;
   /** Launchpad per Jupiter's metadata ("pump.fun", "met-dbc", ...) when known — the
    *  address vanity suffix alone is NOT reliable (PCAT is pump.fun without the suffix). */
   launchpad?: string;

@@ -28,6 +28,9 @@ function buildUserMessage(
     poolAddress: c.poolAddress,
     dexUrl: c.dexUrl,
     previouslyCalled: c.tracked === true,
+    // Resurfaced from our own history after aging out of trending/new-pool feeds — flags
+    // to the model that this is a candidate REVIVALS universe read, not a fresh discovery.
+    revivalCandidate: c.revival === true,
     ageHours: c.ageHours !== null ? Number(c.ageHours.toFixed(1)) : null,
     marketCapUsd: Math.round(c.marketCapUsd),
     // null = the data source didn't report liquidity (common for pump.fun pools), NOT an
