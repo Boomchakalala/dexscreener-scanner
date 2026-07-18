@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.916310371923004,
+  "balanceSol": 2.5663531272922437,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -115,6 +115,63 @@
       },
       "entryTopHolderAddress": "DCiEu2RdmA4MqGGSxZ2SfXBZztnhnh8ADPTTFVrvra5Y",
       "entryTopHolderPct": 11.622852898310198
+    },
+    {
+      "id": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump-1784397837788",
+      "symbol": "Tilly",
+      "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
+      "poolAddress": "4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.3499572446307605,
+      "remainingSizeSol": 0.3499572446307605,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now, live acceleration reclaiming toward prior peak on buy-dominant flow",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000542,
+        "marketCapUsd": 476632,
+        "liquidityUsd": 57210
+      },
+      "structuralInvalidation": {
+        "price": 0.0004,
+        "description": "Loses reclaim base; pump rolling over"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00061,
+          "note": "Prior local peak"
+        },
+        {
+          "label": "TP2",
+          "price": 0.0008,
+          "note": "Only on peak breakout with continued volume"
+        }
+      ],
+      "thesis": "Last three candles accelerating to new local highs with expanding volume and buy-dominant flow, though extremely extended on the day.",
+      "confidence": "LOW",
+      "createdAt": 1784397837788,
+      "entryPrice": 0.0005725849319108032,
+      "entryMarketCapUsd": 530622.1945,
+      "openedAt": 1784397837790,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.0005725849319108032,
+      "lowWaterPriceUsd": 0.0005725849319108032,
+      "entryTxnsH1": {
+        "buys": 3041,
+        "sells": 2223
+      },
+      "entryTopHolderAddress": "DJb9YC2E34QX3zbukbFGmo59AgcVYTQ9UVYHS2LHMSZJ",
+      "entryTopHolderPct": 5.586816069768112
     }
   ],
   "tradeLog": [
@@ -157,6 +214,16 @@
       "pnlSol": 0.057778943515946646,
       "reason": "TP1 arrival classified WEAK, sold 82%",
       "timestamp": 1784395229431
+    },
+    {
+      "positionId": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump-1784397837788",
+      "symbol": "Tilly",
+      "action": "ENTRY",
+      "price": 0.0005725849319108032,
+      "sizeSol": 0.3499572446307605,
+      "pnlSol": 0,
+      "reason": "filled with 2.60% price impact",
+      "timestamp": 1784397840263
     }
   ]
 }
