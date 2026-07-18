@@ -134,6 +134,24 @@
       "marketCapUsdAtAlert": 518776.9719748869,
       "kind": "flash",
       "alertedAt": 1784365413595
+    },
+    {
+      "symbol": "Stickbug",
+      "tokenAddress": "78pTmgyrPmwenmRHCn5xNPZiEES662RJqQDbWMKbRZ1g",
+      "poolAddress": "Hn1LLSZfQCk7STtpvfZfSxfDBAgUkCj5U2rpqTovi71c",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 94178.92082,
+      "kind": "flash",
+      "alertedAt": 1784369023220
+    },
+    {
+      "symbol": "PONS",
+      "tokenAddress": "486U5VY1KsGV4dejxjWR3LPM5SRpbxUivjRGXnhCd5m4",
+      "poolAddress": "67p4KbiTVVvBvcxVqKaxtV4uzgMbrenPrkDS1drPRNWr",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 642271.3423,
+      "kind": "flash",
+      "alertedAt": 1784369023220
     }
   ],
   "lastTelegramUpdateId": 710125054
