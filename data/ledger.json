@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.2,
+  "balanceSol": 2.4485314284070574,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -65,9 +65,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/2bknQKgM41hs1jnWCb1Uu4iEm558jyGc1ELNJ7ct8k5z",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "CLOSED",
       "sizeSol": 0.3,
-      "remainingSizeSol": 0.3,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -103,10 +103,10 @@
       "openedAt": 1784390616745,
       "tp1TakenAt": null,
       "tp1Classification": null,
-      "closedAt": null,
-      "realizedPnlSol": 0,
+      "closedAt": 1784391629720,
+      "realizedPnlSol": -0.05146857159294299,
       "highWaterPriceUsd": 0.00012086062199197845,
-      "lowWaterPriceUsd": 0.00011026150644976596,
+      "lowWaterPriceUsd": 0.00009235700312866013,
       "entryTxnsH1": {
         "buys": 347,
         "sells": 276
@@ -135,6 +135,16 @@
       "pnlSol": 0,
       "reason": "filled with 3.69% price impact",
       "timestamp": 1784390619102
+    },
+    {
+      "positionId": "6hJ8NyjpgRv2Dvur1jwsQfkNqynnghTsLpEP5cjEAmXd-1784390616744",
+      "symbol": "IVY",
+      "action": "EXIT",
+      "price": 0.00009134483232091421,
+      "sizeSol": 0.3,
+      "pnlSol": -0.05146857159294299,
+      "reason": "structural invalidation hit: Close back below the m5 spike origin means breakout failed",
+      "timestamp": 1784391629720
     }
   ]
 }
