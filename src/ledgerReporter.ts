@@ -11,16 +11,20 @@ function fmtMc(marketCapUsd: number): string {
   return `$${Math.round(marketCapUsd / 1000)}K`;
 }
 
+function confSuffix(position: Position): string {
+  return position.confidence ? ` [${position.confidence}]` : "";
+}
+
 async function unrealizedFor(position: Position): Promise<{ line: string; pnl: number }> {
   const stats = await getPoolStats(position.chainId, position.poolAddress);
   if (!stats || position.entryPrice === null) {
-    return { line: `- **${position.symbol}** (${position.status}): size ${position.remainingSizeSol.toFixed(3)} SOL, current price unavailable`, pnl: 0 };
+    return { line: `- **${position.symbol}** (${position.status}${confSuffix(position)}): size ${position.remainingSizeSol.toFixed(3)} SOL, current price unavailable`, pnl: 0 };
   }
   const currentValue = position.remainingSizeSol * (stats.priceUsd / position.entryPrice);
   const pnl = currentValue - position.remainingSizeSol;
   const entryMc = position.entryMarketCapUsd !== null ? fmtMc(position.entryMarketCapUsd) : "n/a";
   return {
-    line: `- **${position.symbol}** (${position.status}): size ${position.remainingSizeSol.toFixed(3)} SOL, entry $${position.entryPrice} (${entryMc} MC), current $${stats.priceUsd} (${fmtMc(stats.marketCapUsd)} MC), unrealized ${fmtSol(pnl)} SOL [READ](${position.dexUrl})`,
+    line: `- **${position.symbol}** (${position.status}${confSuffix(position)}): size ${position.remainingSizeSol.toFixed(3)} SOL, entry $${position.entryPrice} (${entryMc} MC), current $${stats.priceUsd} (${fmtMc(stats.marketCapUsd)} MC), unrealized ${fmtSol(pnl)} SOL [READ](${position.dexUrl})`,
     pnl,
   };
 }
@@ -28,12 +32,12 @@ async function unrealizedFor(position: Position): Promise<{ line: string; pnl: n
 function pendingLine(position: Position): string {
   const deadline = position.createdAt + position.entryCondition.validityWindowMinutes * 60_000;
   const minutesLeft = Math.max(0, Math.round((deadline - Date.now()) / 60_000));
-  return `- **${position.symbol}**: waiting for ${position.entryCondition.description} (${minutesLeft}m left) [READ](${position.dexUrl})`;
+  return `- **${position.symbol}**${confSuffix(position)}: waiting for ${position.entryCondition.description} (${minutesLeft}m left) [READ](${position.dexUrl})`;
 }
 
 function closedLine(position: Position): string {
   const outcome = position.realizedPnlSol >= 0 ? "WIN" : "LOSS";
-  return `- **${position.symbol}** (${position.tier}, ${outcome}): P&L ${fmtSol(position.realizedPnlSol)} SOL`;
+  return `- **${position.symbol}** (${position.tier}${confSuffix(position)}, ${outcome}): P&L ${fmtSol(position.realizedPnlSol)} SOL`;
 }
 
 export async function runLedgerReport(): Promise<void> {

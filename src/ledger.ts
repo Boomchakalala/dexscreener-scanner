@@ -19,6 +19,20 @@ const SIZE_PCT_BY_TIER: Record<TradePlan["tier"], number> = {
   FLASH: 0.22,
 };
 
+// FLASH-only conviction layer: every flash alert used to size identically (22%, almost
+// always the MAX_SIZE_SOL cap in practice) regardless of setup quality. MEDIUM keeps
+// today's exact value so a typical flash's size doesn't change; LOW meaningfully sizes
+// down thinner-evidence setups; HIGH sizes up but will still usually hit the same
+// MAX_SIZE_SOL hard cap as MEDIUM at the current bankroll — that's the pre-existing
+// "0.5 SOL per trade regardless of tier" risk ceiling doing its job, not a bug, and it'll
+// start showing real separation from MEDIUM once the bankroll grows enough that 22%/30%
+// stop both exceeding the cap.
+const FLASH_SIZE_PCT_BY_CONFIDENCE: Record<"LOW" | "MEDIUM" | "HIGH", number> = {
+  LOW: 0.12,
+  MEDIUM: 0.22,
+  HIGH: 0.3,
+};
+
 export type PositionStatus = "PENDING_ENTRY" | "OPEN" | "TP1_TAKEN" | "CLOSED" | "MISSED";
 
 export interface Position {
@@ -37,6 +51,9 @@ export interface Position {
   structuralInvalidation: TradePlan["structuralInvalidation"];
   targets: TradePlan["targets"];
   thesis: string;
+  /** FLASH-only conviction read that set its size (see FLASH_SIZE_PCT_BY_CONFIDENCE) —
+   *  undefined for every other tier. */
+  confidence?: "LOW" | "MEDIUM" | "HIGH";
   createdAt: number;
   entryPrice: number | null;
   entryMarketCapUsd: number | null;
@@ -152,7 +169,11 @@ export async function openPositionsFromTradePlans(tradePlans: TradePlan[], candi
       continue;
     }
 
-    const pct = SIZE_PCT_BY_TIER[plan.tier];
+    // FLASH sizes off its own confidence read instead of a flat tier %; anything else
+    // (missing/malformed confidence) falls back to MEDIUM — today's exact prior behavior —
+    // rather than guessing or fabricating a conviction level that was never actually given.
+    const pct =
+      plan.tier === "FLASH" ? FLASH_SIZE_PCT_BY_CONFIDENCE[plan.confidence ?? "MEDIUM"] ?? FLASH_SIZE_PCT_BY_CONFIDENCE.MEDIUM : SIZE_PCT_BY_TIER[plan.tier];
     if (pct === undefined) {
       result.skipped.push({ symbol: plan.symbol, reason: `unknown tier "${plan.tier}"` });
       continue;
@@ -191,6 +212,7 @@ export async function openPositionsFromTradePlans(tradePlans: TradePlan[], candi
       structuralInvalidation: plan.structuralInvalidation,
       targets: plan.targets,
       thesis: plan.thesis,
+      confidence: plan.tier === "FLASH" ? plan.confidence ?? "MEDIUM" : undefined,
       createdAt: now,
       entryPrice: null,
       entryMarketCapUsd: null,

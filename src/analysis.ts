@@ -130,6 +130,10 @@ export interface TradePlan {
   structuralInvalidation: { price: number; description: string };
   targets: { label: "TP1" | "TP2"; price: number; note: string }[];
   thesis: string;
+  /** FLASH-tier only — sizes the position within the FLASH slot instead of every flash
+   *  alert getting the same flat size regardless of how good the setup actually is.
+   *  Ignored/defaults to MEDIUM for other tiers. */
+  confidence?: "LOW" | "MEDIUM" | "HIGH";
 }
 
 export interface AnalysisResult {

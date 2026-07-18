@@ -208,8 +208,9 @@ async function checkPendingEntry(position: Position, ledger: Ledger): Promise<vo
     pnlSol: 0,
     reason: fill.note,
   });
+  const confidenceLine = position.confidence ? ` (${position.confidence} confidence)` : "";
   await sendTelegramMessage(
-    `**${position.symbol}** — ENTRY filled\n${position.entryCondition.description}\nSize: ${position.sizeSol.toFixed(3)} SOL @ $${fill.price} (MC in: ~${fmtMc(stats.marketCapUsd)})\n${fill.note}\n[READ](${position.dexUrl})`
+    `**${position.symbol}** — ENTRY filled${confidenceLine}\n${position.entryCondition.description}\nSize: ${position.sizeSol.toFixed(3)} SOL @ $${fill.price} (MC in: ~${fmtMc(stats.marketCapUsd)})\n${fill.note}\n[READ](${position.dexUrl})`
   );
 }
 
