@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.8714764813342026,
+  "balanceSol": 3.0515233466512095,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -181,9 +181,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.5,
-      "remainingSizeSol": 0.19,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -219,10 +219,10 @@
       "openedAt": 1784401428564,
       "tp1TakenAt": 1784401529955,
       "tp1Classification": "NORMAL",
-      "closedAt": null,
-      "realizedPnlSol": 0.057134717997446016,
+      "closedAt": 1784402124482,
+      "realizedPnlSol": 0.04718158331445288,
       "highWaterPriceUsd": 0.00015350756516267932,
-      "lowWaterPriceUsd": 0.00012811725382331975,
+      "lowWaterPriceUsd": 0.00012280962271245122,
       "entryTxnsH1": {
         "buys": 1172,
         "sells": 536
@@ -331,6 +331,16 @@
       "pnlSol": 0.057134717997446016,
       "reason": "TP1 arrival classified NORMAL, sold 62%",
       "timestamp": 1784401529955
+    },
+    {
+      "positionId": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump-1784401428563",
+      "symbol": "DBULL",
+      "action": "EXIT",
+      "price": 0.00012140584181006333,
+      "sizeSol": 0.19,
+      "pnlSol": -0.009953134682993137,
+      "reason": "runner stopped out: moved to breakeven after TP1 (normal arrival)",
+      "timestamp": 1784402124482
     }
   ]
 }
