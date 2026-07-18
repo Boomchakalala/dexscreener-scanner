@@ -116,6 +116,15 @@
       "marketCapUsdAtAlert": 118344.4983,
       "kind": "flash",
       "alertedAt": 1784401428297
+    },
+    {
+      "symbol": "Nenem",
+      "tokenAddress": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump",
+      "poolAddress": "EAeurSge8RTdfAq6yZFoocCRVwv8uFaWbzis5PM7a9vq",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 75366.80696,
+      "kind": "flash",
+      "alertedAt": 1784405030391
     }
   ],
   "lastTelegramUpdateId": 710125054
