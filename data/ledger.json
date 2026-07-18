@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.5663531272922437,
+  "balanceSol": 2.714158084305659,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -124,9 +124,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.3499572446307605,
-      "remainingSizeSol": 0.3499572446307605,
+      "remainingSizeSol": 0.2099743467784563,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -139,8 +139,8 @@
         "liquidityUsd": 57210
       },
       "structuralInvalidation": {
-        "price": 0.0004,
-        "description": "Loses reclaim base; pump rolling over"
+        "price": 0.0005725849319108032,
+        "description": "moved to breakeven after a strong TP1 arrival"
       },
       "targets": [
         {
@@ -160,11 +160,11 @@
       "entryPrice": 0.0005725849319108032,
       "entryMarketCapUsd": 530622.1945,
       "openedAt": 1784397837790,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784397932742,
+      "tp1Classification": "STRONG",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.0005725849319108032,
+      "realizedPnlSol": 0.007822059161111089,
+      "highWaterPriceUsd": 0.0006164077493031629,
       "lowWaterPriceUsd": 0.0005725849319108032,
       "entryTxnsH1": {
         "buys": 3041,
@@ -224,6 +224,16 @@
       "pnlSol": 0,
       "reason": "filled with 2.60% price impact",
       "timestamp": 1784397840263
+    },
+    {
+      "positionId": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump-1784397837788",
+      "symbol": "Tilly",
+      "action": "TP1_PARTIAL",
+      "price": 0.0006045802204845019,
+      "sizeSol": 0.1399828978523042,
+      "pnlSol": 0.007822059161111089,
+      "reason": "TP1 arrival classified STRONG, sold 40%",
+      "timestamp": 1784397932743
     }
   ]
 }
