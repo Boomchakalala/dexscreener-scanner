@@ -61,6 +61,12 @@ export function toCandidate(network: string, pool: GeckoPool): Candidate | null 
 export function passesFloors(candidate: Candidate): boolean {
   const { floors } = config;
   return (
+    // A pool address identical to the token's own mint can never be a real distinct AMM
+    // pool — confirmed live: Jupiter's firstPool.id occasionally reports exactly this for a
+    // token, and a trade plan built on it can never fill (GeckoTerminal's single-pool
+    // lookup 404s forever, it isn't a pool that exists). Reject at the source rather than
+    // letting a position get created that's structurally unable to ever check its own price.
+    candidate.poolAddress !== candidate.tokenAddress &&
     candidate.marketCapUsd >= floors.minMarketCapUsd &&
     candidate.marketCapUsd <= floors.maxMarketCapUsd &&
     // The liquidity floor only applies when the data exists — "unknown" is not "zero".
