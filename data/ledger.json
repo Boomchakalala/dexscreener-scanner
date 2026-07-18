@@ -55,7 +55,8 @@
         "sells": 142
       },
       "entryTopHolderAddress": "6EzG5zVTTY8UGWY4PuUzYZpJon1qhhSRfMPeLVoRw948",
-      "entryTopHolderPct": 30.547423416222426
+      "entryTopHolderPct": 30.547423416222426,
+      "distributionWarned": true
     },
     {
       "id": "6hJ8NyjpgRv2Dvur1jwsQfkNqynnghTsLpEP5cjEAmXd-1784390616744",
