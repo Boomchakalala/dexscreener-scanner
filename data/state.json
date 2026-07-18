@@ -40,24 +40,6 @@
       "symbol": "Sagawa",
       "tokenAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
       "poolAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 593802.4986789136,
-      "kind": "flash",
-      "alertedAt": 1784383435083
-    },
-    {
-      "symbol": "SPY",
-      "tokenAddress": "QFupCpn5Kw9eUXWwsK4tKn3rxueotUwgrknv4dkpump",
-      "poolAddress": "QFupCpn5Kw9eUXWwsK4tKn3rxueotUwgrknv4dkpump",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 62733.50403901193,
-      "kind": "flash",
-      "alertedAt": 1784383435083
-    },
-    {
-      "symbol": "Sagawa",
-      "tokenAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
-      "poolAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
       "verdict": "AVOID",
       "marketCapUsdAtAlert": 641991.6289186707,
       "kind": "deep",
@@ -80,24 +62,6 @@
       "marketCapUsdAtAlert": 222648.33459057135,
       "kind": "deep",
       "alertedAt": 1784385525897
-    },
-    {
-      "symbol": "SR20",
-      "tokenAddress": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3",
-      "poolAddress": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 68602.02892947647,
-      "kind": "flash",
-      "alertedAt": 1784387019916
-    },
-    {
-      "symbol": "IVY",
-      "tokenAddress": "6hJ8NyjpgRv2Dvur1jwsQfkNqynnghTsLpEP5cjEAmXd",
-      "poolAddress": "2bknQKgM41hs1jnWCb1Uu4iEm558jyGc1ELNJ7ct8k5z",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 125120.58320254825,
-      "kind": "flash",
-      "alertedAt": 1784390616421
     },
     {
       "symbol": "Tilly",
@@ -125,6 +89,15 @@
       "marketCapUsdAtAlert": 75366.80696,
       "kind": "flash",
       "alertedAt": 1784405030391
+    },
+    {
+      "symbol": "parcel",
+      "tokenAddress": "NvFqYKxDLMrXZ5UyK6Zs39AwsvjBvbUXZ3FmT2P8VC7",
+      "poolAddress": "8foUqXeQFWWS9wgYGww2iXHdv3oLDQhmSzVywDwUFz6w",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 56496.17546,
+      "kind": "flash",
+      "alertedAt": 1784412294295
     }
   ],
   "lastTelegramUpdateId": 710125054
