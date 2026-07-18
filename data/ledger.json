@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.5043417633367566,
+  "balanceSol": 2.8714764813342026,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -181,9 +181,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.5,
-      "remainingSizeSol": 0.5,
+      "remainingSizeSol": 0.19,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -196,8 +196,8 @@
         "liquidityUsd": 27587
       },
       "structuralInvalidation": {
-        "price": 0.000105,
-        "description": "Breaks rising higher-low structure, recovery failed"
+        "price": 0.00012811725382331975,
+        "description": "moved to breakeven after TP1 (normal arrival)"
       },
       "targets": [
         {
@@ -217,11 +217,11 @@
       "entryPrice": 0.00012811725382331975,
       "entryMarketCapUsd": 124952.3493,
       "openedAt": 1784401428564,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784401529955,
+      "tp1Classification": "NORMAL",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.00012811725382331975,
+      "realizedPnlSol": 0.057134717997446016,
+      "highWaterPriceUsd": 0.00015350756516267932,
       "lowWaterPriceUsd": 0.00012811725382331975,
       "entryTxnsH1": {
         "buys": 1172,
@@ -321,6 +321,16 @@
       "pnlSol": 0,
       "reason": "filled with 2.53% price impact",
       "timestamp": 1784401430934
+    },
+    {
+      "positionId": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump-1784401428563",
+      "symbol": "DBULL",
+      "action": "TP1_PARTIAL",
+      "price": 0.00015172997371945714,
+      "sizeSol": 0.31,
+      "pnlSol": 0.057134717997446016,
+      "reason": "TP1 arrival classified NORMAL, sold 62%",
+      "timestamp": 1784401529955
     }
   ]
 }
