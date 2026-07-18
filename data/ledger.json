@@ -1,5 +1,5 @@
 {
-  "balanceSol": 3.0515233466512095,
+  "balanceSol": 2.6853405450530645,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -229,6 +229,63 @@
       },
       "entryTopHolderAddress": "3nvUkLQxFAmHXENeJ6VgXCHpqZaFXspX4SFvXHRuFKfQ",
       "entryTopHolderPct": 11.356825013504707
+    },
+    {
+      "id": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump-1784405030834",
+      "symbol": "Nenem",
+      "tokenAddress": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump",
+      "poolAddress": "EAeurSge8RTdfAq6yZFoocCRVwv8uFaWbzis5PM7a9vq",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/EAeurSge8RTdfAq6yZFoocCRVwv8uFaWbzis5PM7a9vq",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.36618280159814515,
+      "remainingSizeSol": 0.36618280159814515,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Live spike, buy-dominant flow with expanding volume on latest candles",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000741,
+        "marketCapUsd": 75367,
+        "liquidityUsd": 20622
+      },
+      "structuralInvalidation": {
+        "price": 0.000055,
+        "description": "Loss of 0.000055 breaks the last leg and ends the move"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00009,
+          "note": "next round level / first resistance"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00012,
+          "note": "only if volume and buyers keep expanding"
+        }
+      ],
+      "thesis": "Sharp fresh 5-min breakout with buy-dominant flow still live on a small-cap mover",
+      "confidence": "LOW",
+      "createdAt": 1784405030834,
+      "entryPrice": 0.00006818157400676008,
+      "entryMarketCapUsd": 69147.23954,
+      "openedAt": 1784405030835,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00006818157400676008,
+      "lowWaterPriceUsd": 0.00006818157400676008,
+      "entryTxnsH1": {
+        "buys": 351,
+        "sells": 249
+      },
+      "entryTopHolderAddress": "AnXs8vAKY2pvJcMchGV9ivtw9p8ub1QYAAw99R3E18ez",
+      "entryTopHolderPct": 14.706473787070376
     }
   ],
   "tradeLog": [
@@ -341,6 +398,16 @@
       "pnlSol": -0.009953134682993137,
       "reason": "runner stopped out: moved to breakeven after TP1 (normal arrival)",
       "timestamp": 1784402124482
+    },
+    {
+      "positionId": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump-1784405030834",
+      "symbol": "Nenem",
+      "action": "ENTRY",
+      "price": 0.00006818157400676008,
+      "sizeSol": 0.36618280159814515,
+      "pnlSol": 0,
+      "reason": "filled with 1.66% price impact",
+      "timestamp": 1784405033116
     }
   ]
 }
