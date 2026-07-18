@@ -1,0 +1,372 @@
+[
+  {
+    "tokenAddress": "3wwU3njdLCT3ebRUrTFeHwKG6zamiiCKwmpShSK2pump",
+    "poolAddress": "4mt1PvMBZENLbKQ4onj7SyoXmmbiN2sp2Vqtd8TdZecL",
+    "chainId": "solana",
+    "symbol": "Mouse",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 696876.0724,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "6PkDr62LVXDLajbqi2P4PUkxHy5CQsENx3fNXLN4pump",
+    "poolAddress": "6PkDr62LVXDLajbqi2P4PUkxHy5CQsENx3fNXLN4pump",
+    "chainId": "solana",
+    "symbol": "Ricky",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 47372.5722123983,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "7YCTXLpRn1zSgfU7o99RsyCnu7B8vUJAs9HxXKvMpump",
+    "poolAddress": "A4HdyNyaEPMC4ekrBeoYwwSYVgkEuT5xZnwiE8Kp5uT5",
+    "chainId": "solana",
+    "symbol": "Wifout",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 33847.3855288623,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "3ME1VBnWV6qdCSrKNndCqteS6LHRoM4nFcV99AeHpump",
+    "poolAddress": "3ME1VBnWV6qdCSrKNndCqteS6LHRoM4nFcV99AeHpump",
+    "chainId": "solana",
+    "symbol": "Pedro",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 128224.49299116695,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "6weTzoLKhoYGChmkhotrJhNKwZdB8TWBG7XG3qmGpump",
+    "poolAddress": "6weTzoLKhoYGChmkhotrJhNKwZdB8TWBG7XG3qmGpump",
+    "chainId": "solana",
+    "symbol": "BISCOTTI",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 120334.7991876332,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "AXkXDHko4JHe1PHrgRmDG9TxUxNRFfQnY4d562RYpump",
+    "poolAddress": "AXkXDHko4JHe1PHrgRmDG9TxUxNRFfQnY4d562RYpump",
+    "chainId": "solana",
+    "symbol": "Jimothy",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 71730.67153019506,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "AjBgThd5o37Q59sCw4AkQL7oRKo39APNGvCYiNvgpump",
+    "poolAddress": "AjBgThd5o37Q59sCw4AkQL7oRKo39APNGvCYiNvgpump",
+    "chainId": "solana",
+    "symbol": "cope",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 60329.946503949235,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+    "poolAddress": "7V6Sk63y8Rr1MvcN5mYNp61wgFhy4EeQg5gUASk9pump",
+    "chainId": "solana",
+    "symbol": "HBULL",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 2600890.9639123417,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
+    "poolAddress": "BQDTXj9bvYRY9hksEmnXVMxsPu5VwFDW3bwiXpiDpump",
+    "chainId": "solana",
+    "symbol": "Sagawa",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 641991.6289186707,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+    "poolAddress": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+    "chainId": "solana",
+    "symbol": "BULLCAT",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 334318.1276166682,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
+    "poolAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
+    "chainId": "solana",
+    "symbol": "Tilly",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 163264.59118215434,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "6oGuFDbEeaSzTcvrmmd2MqfNYwHKXFoN7regcR22pump",
+    "poolAddress": "6oGuFDbEeaSzTcvrmmd2MqfNYwHKXFoN7regcR22pump",
+    "chainId": "solana",
+    "symbol": "NEEGY",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 325838.1328940548,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+    "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+    "chainId": "solana",
+    "symbol": "SOLdiers",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 594401.8892759358,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+    "poolAddress": "DCZLnE5pnSiLipEtgcLuLJZaHnRxjiqygkb4JBYTDiPq",
+    "chainId": "solana",
+    "symbol": "CASHCOW",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 363403.638662215,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "HF7FU8xM4SrAKU7pCkJmNkWYW1yGtanQSQntCu67pump",
+    "poolAddress": "HF7FU8xM4SrAKU7pCkJmNkWYW1yGtanQSQntCu67pump",
+    "chainId": "solana",
+    "symbol": "CAVIAR",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 91215.59439834557,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
+    "poolAddress": "5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
+    "chainId": "solana",
+    "symbol": "DBULL",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 46949.86816,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+    "poolAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+    "chainId": "solana",
+    "symbol": "KIM",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 233000.63128167202,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3",
+    "poolAddress": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3",
+    "chainId": "solana",
+    "symbol": "SR20",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 76570.62114869601,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "He6pECrSVi123qabQJRiGEonMbBZ7e8PZ9NmUxKqpump",
+    "poolAddress": "He6pECrSVi123qabQJRiGEonMbBZ7e8PZ9NmUxKqpump",
+    "chainId": "solana",
+    "symbol": "bet",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 125200.45917272852,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "4rLx5rzCp4Bb8Zvz9pQECPzPTKdJQ9p8arKMTh22pump",
+    "poolAddress": "4rLx5rzCp4Bb8Zvz9pQECPzPTKdJQ9p8arKMTh22pump",
+    "chainId": "solana",
+    "symbol": "CARDCAT",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 106055.11033991464,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "BdmmbhuqmMcswTCpP5Dy9H6E87ZqDMULVAWdzu4ZhqTS",
+    "poolAddress": "X6QQMinoSJDPCzawH6dQmffv3uNgaRQqCQuu76ChewS",
+    "chainId": "solana",
+    "symbol": "Quasi",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 51966.9664724832,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "9jVRLpzqYQBBhVejgtvCrBnivng62fjWrHxePh79pump",
+    "poolAddress": "9jVRLpzqYQBBhVejgtvCrBnivng62fjWrHxePh79pump",
+    "chainId": "solana",
+    "symbol": "KLEF",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 124033.77794621092,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "Fe25x8nkw1gfmM2aAVLSHedWu27nuzJ6vpdd1uASpump",
+    "poolAddress": "7LcL9CsB2QxsSQ2DCP6MpQPz4NJwxewQs49DRpH6t251",
+    "chainId": "solana",
+    "symbol": "NOLAN",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 37158.36396,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "85cijDaLqMUW4xmsTZJDhmXA4AXQPtro7FWieA7Zec7w",
+    "poolAddress": "tCGsipLtLHDk5GjK5DN7yXqLBC5FxjEPyZKfdjD8WRr",
+    "chainId": "solana",
+    "symbol": "B2H",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 316608.5798,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "CVhWiQ2SBhpTJ3xAR3ekf3uf8Ns2tNzj3mEtzKSpump",
+    "poolAddress": "CVhWiQ2SBhpTJ3xAR3ekf3uf8Ns2tNzj3mEtzKSpump",
+    "chainId": "solana",
+    "symbol": "WINGIT",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 7542354.509147613,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "ATidV7cp3CqUS2W13hEhicZuLVriqVRRH5KTFn2xpump",
+    "poolAddress": "ATidV7cp3CqUS2W13hEhicZuLVriqVRRH5KTFn2xpump",
+    "chainId": "solana",
+    "symbol": "$NO BRAIN",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 365797.1416989106,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "DiY2ULv58GYeASRiU7ArvmqiGmKjwJFGEzCLCC8wpump",
+    "poolAddress": "DiY2ULv58GYeASRiU7ArvmqiGmKjwJFGEzCLCC8wpump",
+    "chainId": "solana",
+    "symbol": "SIGNAL",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 99179.54960727412,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump",
+    "poolAddress": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump",
+    "chainId": "solana",
+    "symbol": "Nenem",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 89732.74470077705,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "D6mSkFmPskEWMEqEpdMMfUEsJdEcQdTSzbG7J2GWpump",
+    "poolAddress": "D6mSkFmPskEWMEqEpdMMfUEsJdEcQdTSzbG7J2GWpump",
+    "chainId": "solana",
+    "symbol": "NYANJIM",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 222648.33459057135,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "DnmhiZeYkZxCy1UzN2MpsGg4jip8sDav4nREdfthpump",
+    "poolAddress": "DnmhiZeYkZxCy1UzN2MpsGg4jip8sDav4nREdfthpump",
+    "chainId": "solana",
+    "symbol": "Birdie",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 131981.08528794933,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "HVRtNeFPrDcAA9Yu3WrTEdCsTLGJiYDiQbqjg3efpump",
+    "poolAddress": "HVRtNeFPrDcAA9Yu3WrTEdCsTLGJiYDiQbqjg3efpump",
+    "chainId": "solana",
+    "symbol": "CUBEMAN",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 1924511.8638687998,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "BfgGdykof78YmChgWYv1pbcyNVxEwvZFkQaRtXhupump",
+    "poolAddress": "BfgGdykof78YmChgWYv1pbcyNVxEwvZFkQaRtXhupump",
+    "chainId": "solana",
+    "symbol": "dilemma",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 50222.62013500662,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "8Ps57XjjavWrZKKyH94mpfUgCoRzw1tinjS1Kv4Qpump",
+    "poolAddress": "8Ps57XjjavWrZKKyH94mpfUgCoRzw1tinjS1Kv4Qpump",
+    "chainId": "solana",
+    "symbol": "$CLOAK",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 60521.71749568362,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "QFupCpn5Kw9eUXWwsK4tKn3rxueotUwgrknv4dkpump",
+    "poolAddress": "QFupCpn5Kw9eUXWwsK4tKn3rxueotUwgrknv4dkpump",
+    "chainId": "solana",
+    "symbol": "SPY",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 65775.81981388941,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+    "poolAddress": "8X1N2HmiP11UXidmyRNHLoBGjAhXU4rk5GnrVYGYpump",
+    "chainId": "solana",
+    "symbol": "BlackBear",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 973980.9387040826,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "59dCaphi38eZHiuZjJ2n26BuEcktu9ohdH8eAQd8pump",
+    "poolAddress": "59dCaphi38eZHiuZjJ2n26BuEcktu9ohdH8eAQd8pump",
+    "chainId": "solana",
+    "symbol": "KIMI3",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 61383.712678059324,
+    "timesChecked": 1
+  },
+  {
+    "tokenAddress": "5yJgw6a8bb1nRsmEBr6vzX5pt6sQekzqG9nfmxqMpump",
+    "poolAddress": "5yJgw6a8bb1nRsmEBr6vzX5pt6sQekzqG9nfmxqMpump",
+    "chainId": "solana",
+    "symbol": "PROPHECY",
+    "firstSeenAt": 1784385262762,
+    "lastCheckedAt": 1784385262762,
+    "lowestMarketCapUsd": 80900.38160747125,
+    "timesChecked": 1
+  }
+]
