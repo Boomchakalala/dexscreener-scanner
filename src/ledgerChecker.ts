@@ -288,12 +288,54 @@ async function checkDistributionHealth(position: Position, stats: PoolStats): Pr
 // not resurrect an exit condition keyed on this field without a corroborating signal this
 // data source can't fake (e.g. price itself, which the structural stop already watches).
 
+// Dead-position exit: a token that stops trading entirely just sits OPEN forever, since it
+// crosses neither the stop nor a target — and while open it still counts against the 40%
+// capital-deployment cap, silently blocking every other new trade plan behind it.
+// Confirmed live: CAVIAR went to zero h1/h6 volume within hours of entry and then sat OPEN
+// for 24h+, alone eating 70% of the entire cap and causing every single flash/deep-scan
+// trade plan in that window to be skipped for "would exceed 40% capital cap". Keyed on
+// volume, not liquidity — GeckoTerminal's reserve_in_usd is proven unreliable for this
+// project's pools, but a pool showing genuinely zero buy/sell volume for hours is a real,
+// hard-to-fake signal that nothing is happening, not a data-quality quirk.
+const DORMANCY_MIN_OPEN_MINUTES = 120; // give a fresh entry room for a normal early lull
+const DORMANCY_VOLUME_THRESHOLD_USD = 25; // effectively zero — any real activity clears this
+
+async function checkDormancyExit(position: Position, ledger: Ledger, stats: PoolStats): Promise<boolean> {
+  const openedAt = position.openedAt as number;
+  if (Date.now() - openedAt < DORMANCY_MIN_OPEN_MINUTES * 60_000) return false;
+
+  const isDormant = stats.volumeH1Usd < DORMANCY_VOLUME_THRESHOLD_USD && stats.volumeH6Usd < DORMANCY_VOLUME_THRESHOLD_USD * 2;
+  if (!isDormant) {
+    position.dormantHits = 0;
+    return false;
+  }
+
+  position.dormantHits = (position.dormantHits ?? 0) + 1;
+  if (position.dormantHits < 2) {
+    console.log(`  ${position.symbol}: near-zero volume (hit 1 of 2) — confirming next check before calling it dead.`);
+    return false;
+  }
+
+  const entryPrice = position.entryPrice as number;
+  const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
+  const exitPrice = await simulateExitPrice(position.tokenAddress, sellValueSol, stats.priceUsd);
+  const pctMove = (exitPrice / entryPrice - 1) * 100;
+  const hoursOpen = ((Date.now() - openedAt) / 3_600_000).toFixed(1);
+  const reason = `stale position: h1 volume ~$${Math.round(stats.volumeH1Usd)} / h6 volume ~$${Math.round(stats.volumeH6Usd)} after ${hoursOpen}h open — no real trading activity, freeing capital`;
+  closePosition(position, ledger, exitPrice, reason);
+  await sendTelegramMessage(
+    `**${position.symbol}** — EXIT (stale, no activity)\n${reason}\nEntry: $${entryPrice} → Exit: $${exitPrice}, ${fmtPct(pctMove)}\nP&L: ${position.realizedPnlSol.toFixed(4)} SOL`
+  );
+  return true;
+}
+
 async function checkOpenPosition(position: Position, ledger: Ledger): Promise<void> {
   const stats = await getPoolStats(position.chainId, position.poolAddress);
   if (!stats) return;
   const entryPrice = position.entryPrice as number;
   updateWatermarks(position, stats.priceUsd);
   await checkDistributionHealth(position, stats);
+  if (await checkDormancyExit(position, ledger, stats)) return;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);
@@ -359,6 +401,7 @@ async function checkTp1TakenPosition(position: Position, ledger: Ledger): Promis
   const entryMc = position.entryMarketCapUsd as number;
   updateWatermarks(position, stats.priceUsd);
   await checkDistributionHealth(position, stats);
+  if (await checkDormancyExit(position, ledger, stats)) return;
 
   if (stats.priceUsd <= position.structuralInvalidation.price) {
     const sellValueSol = position.remainingSizeSol * (stats.priceUsd / entryPrice);

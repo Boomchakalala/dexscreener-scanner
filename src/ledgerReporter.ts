@@ -1,5 +1,5 @@
 import { getPoolStats } from "./gecko.js";
-import { loadLedger, type Position } from "./ledger.js";
+import { loadLedger, STARTING_BALANCE_SOL, type Position } from "./ledger.js";
 import { sendTelegramMessage } from "./telegram.js";
 
 function fmtSol(n: number): string {
@@ -49,8 +49,8 @@ export async function runLedgerReport(): Promise<void> {
   const totalUnrealized = unrealizedResults.reduce((sum, r) => sum + r.pnl, 0);
   const totalRealized = ledger.positions.reduce((sum, p) => sum + p.realizedPnlSol, 0);
   const equity = ledger.balanceSol + totalUnrealized;
-  const overallPnl = equity - 2; // starting balance
-  const overallPnlPct = (overallPnl / 2) * 100;
+  const overallPnl = equity - STARTING_BALANCE_SOL;
+  const overallPnlPct = (overallPnl / STARTING_BALANCE_SOL) * 100;
 
   const wins = closed.filter((p) => p.realizedPnlSol >= 0).length;
   const winRate = closed.length > 0 ? (wins / closed.length) * 100 : 0;
@@ -60,7 +60,7 @@ export async function runLedgerReport(): Promise<void> {
     "📊 **Paper Trading Ledger**",
     "",
     `Balance: ${ledger.balanceSol.toFixed(4)} SOL | Equity (incl. open positions): ${equity.toFixed(4)} SOL`,
-    `Overall P&L: ${fmtSol(overallPnl)} SOL (${overallPnlPct >= 0 ? "+" : ""}${overallPnlPct.toFixed(1)}%) since starting at 2 SOL`,
+    `Overall P&L: ${fmtSol(overallPnl)} SOL (${overallPnlPct >= 0 ? "+" : ""}${overallPnlPct.toFixed(1)}%) since starting at ${STARTING_BALANCE_SOL} SOL`,
   ];
 
   if (open.length > 0) {

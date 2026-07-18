@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LEDGER_DIR = path.join(__dirname, "..", "data");
 const LEDGER_FILE = path.join(LEDGER_DIR, "ledger.json");
 
-const STARTING_BALANCE_SOL = 2;
+export const STARTING_BALANCE_SOL = 3;
 const MAX_SIZE_SOL = 0.5;
 const MAX_DEPLOYED_PCT = 0.4;
 // Phase 1+ sizing tiers.
@@ -66,6 +66,9 @@ export interface Position {
   /** Set once a distribution/sell-pressure alert has fired for this position, so the
    *  5-minute checker doesn't spam the same warning every cycle. */
   distributionWarned?: boolean;
+  /** Consecutive checks where h1/h6 volume has read near-zero — needs 2 (like triggerHits)
+   *  before a dead position is force-closed, so one quiet 5-min tick doesn't false-trigger. */
+  dormantHits?: number;
 }
 
 export interface TradeLogEntry {
