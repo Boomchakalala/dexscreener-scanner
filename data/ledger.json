@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.5,
+  "balanceSol": 2.2,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -56,6 +56,63 @@
       },
       "entryTopHolderAddress": "6EzG5zVTTY8UGWY4PuUzYZpJon1qhhSRfMPeLVoRw948",
       "entryTopHolderPct": 30.547423416222426
+    },
+    {
+      "id": "6hJ8NyjpgRv2Dvur1jwsQfkNqynnghTsLpEP5cjEAmXd-1784390616744",
+      "symbol": "IVY",
+      "tokenAddress": "6hJ8NyjpgRv2Dvur1jwsQfkNqynnghTsLpEP5cjEAmXd",
+      "poolAddress": "2bknQKgM41hs1jnWCb1Uu4iEm558jyGc1ELNJ7ct8k5z",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/2bknQKgM41hs1jnWCb1Uu4iEm558jyGc1ELNJ7ct8k5z",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.3,
+      "remainingSizeSol": 0.3,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market on the live m5 +64%/h1 +78% breakout; small size given thin liquidity",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.000125,
+        "marketCapUsd": 125121,
+        "liquidityUsd": 13464
+      },
+      "structuralInvalidation": {
+        "price": 0.000095,
+        "description": "Close back below the m5 spike origin means breakout failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.000185,
+          "note": "first extension target"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00028,
+          "note": "only if buy flow and holders keep expanding"
+        }
+      ],
+      "thesis": "Fresh vertical spike with rare healthy organicScore 75 and 580 holders backing buy-dominant flow",
+      "confidence": "LOW",
+      "createdAt": 1784390616744,
+      "entryPrice": 0.00011026150644976596,
+      "entryMarketCapUsd": 106339.94820163,
+      "openedAt": 1784390616745,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00011026150644976596,
+      "lowWaterPriceUsd": 0.00011026150644976596,
+      "entryTxnsH1": {
+        "buys": 347,
+        "sells": 276
+      },
+      "entryTopHolderAddress": "DCiEu2RdmA4MqGGSxZ2SfXBZztnhnh8ADPTTFVrvra5Y",
+      "entryTopHolderPct": 11.622852898310198
     }
   ],
   "tradeLog": [
@@ -68,6 +125,16 @@
       "pnlSol": 0,
       "reason": "filled with 1.35% price impact",
       "timestamp": 1784387407313
+    },
+    {
+      "positionId": "6hJ8NyjpgRv2Dvur1jwsQfkNqynnghTsLpEP5cjEAmXd-1784390616744",
+      "symbol": "IVY",
+      "action": "ENTRY",
+      "price": 0.00011026150644976596,
+      "sizeSol": 0.3,
+      "pnlSol": 0,
+      "reason": "filled with 3.69% price impact",
+      "timestamp": 1784390619102
     }
   ]
 }
