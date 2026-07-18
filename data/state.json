@@ -1,33 +1,6 @@
 {
   "history": [
     {
-      "symbol": "STRATA",
-      "tokenAddress": "2zEsbQkv3sPqW5onrzEicyRy36RU64aUtvLYZkgz1Ljh",
-      "poolAddress": "2MCjHiamdvs1hAKmfodHFHKjbSJ5iEtjpBPi7Bv5a23J",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 142694.1374012692,
-      "kind": "deep",
-      "alertedAt": 1784157756733
-    },
-    {
-      "symbol": "SOLdiers",
-      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
-      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 923517.7409383167,
-      "kind": "deep",
-      "alertedAt": 1784157756733
-    },
-    {
-      "symbol": "WIFARG",
-      "tokenAddress": "CV9dcP2D9hYtcnNtoHoY4NQEN9fYxfBbQN72wkd5pump",
-      "poolAddress": "CV9dcP2D9hYtcnNtoHoY4NQEN9fYxfBbQN72wkd5pump",
-      "verdict": "AVOID",
-      "marketCapUsdAtAlert": 875594.40639406,
-      "kind": "deep",
-      "alertedAt": 1784157756733
-    },
-    {
       "symbol": "SAITAMA",
       "tokenAddress": "65JQDUkabYnLEM1hzAiEyTy8FtYxDWRevbestmkDS9b7",
       "poolAddress": "6v8rPLuCwZuYEiVj4ctU7FCsBo6LSTrAQG8Nno2fxvUF",
@@ -91,15 +64,6 @@
       "alertedAt": 1784202263908
     },
     {
-      "symbol": "TEMPO",
-      "tokenAddress": "C2YR5UxDNJ8gpbxAg5w5ePkt9yEFPfq1T74kc4WTJFSC",
-      "poolAddress": "BX6RxDe6QaiEBeFKypS4oVDr7RdivXrevBdJrBYuhBsZ",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 1326133.604,
-      "kind": "flash",
-      "alertedAt": 1784307844825
-    },
-    {
       "symbol": "DBULL",
       "tokenAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
       "poolAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
@@ -134,6 +98,42 @@
       "marketCapUsdAtAlert": 254554.79257704524,
       "kind": "flash",
       "alertedAt": 1784329424854
+    },
+    {
+      "symbol": "KIM",
+      "tokenAddress": "L8VV5THQCh7oN37TwgVRRSVqb5FuPydXS9Roy1tpump",
+      "poolAddress": "B38Qwnqtah775zkTFh3tMnZguzjQtxTvQMrZrJu1y3r",
+      "verdict": "SPECULATIVE PUNT",
+      "marketCapUsdAtAlert": 266901.34500742535,
+      "kind": "deep",
+      "alertedAt": 1784333204907
+    },
+    {
+      "symbol": "Jimothy",
+      "tokenAddress": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "poolAddress": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 7207396.845486059,
+      "kind": "deep",
+      "alertedAt": 1784333204907
+    },
+    {
+      "symbol": "SOLdiers",
+      "tokenAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "poolAddress": "B4ptaVsUe6YbtBwAS38WFeweSrVNfQLCcj9JRrtjU8vn",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 686013.3645994101,
+      "kind": "deep",
+      "alertedAt": 1784333204907
+    },
+    {
+      "symbol": "CARDCAT",
+      "tokenAddress": "4rLx5rzCp4Bb8Zvz9pQECPzPTKdJQ9p8arKMTh22pump",
+      "poolAddress": "5JNdLXz62Z7e3npZLeSBDZMBY7x8byFQBcE73QKaQy3X",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 308020.6566468437,
+      "kind": "deep",
+      "alertedAt": 1784333204907
     }
   ],
   "lastTelegramUpdateId": 710125054
