@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.4842073444009243,
+  "balanceSol": 2.670277620847654,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -632,9 +632,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/636bkx7Ugs6Vdb9FhAJdwFdi4afupHDarrTW2nTVuEag",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.5,
-      "remainingSizeSol": 0.19,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -670,8 +670,8 @@
       "openedAt": 1784459075433,
       "tp1TakenAt": 1784460678351,
       "tp1Classification": "NORMAL",
-      "closedAt": null,
-      "realizedPnlSol": 0.046932934653039604,
+      "closedAt": 1784464275939,
+      "realizedPnlSol": 0.04300321109976951,
       "highWaterPriceUsd": 0.0008891225453559367,
       "lowWaterPriceUsd": 0.0005810665962951037,
       "entryTxnsH1": {
@@ -1039,6 +1039,16 @@
       "pnlSol": 0.14851394004147767,
       "reason": "final target reached: only if buy flow and volume keep expanding",
       "timestamp": 1784463383302
+    },
+    {
+      "positionId": "2cAtqsRafKS7baN3mvJARhyZiMRdW4fZYNUUWUrCpump-1784459075432",
+      "symbol": "Agamemnon",
+      "action": "EXIT",
+      "price": 0.0006109287796882672,
+      "sizeSol": 0.19,
+      "pnlSol": -0.0039297235532700925,
+      "reason": "runner stopped out: moved to breakeven after TP1 (normal arrival)",
+      "timestamp": 1784464275939
     }
   ]
 }
