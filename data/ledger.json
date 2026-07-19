@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.171504476092398,
+  "balanceSol": 2.4842073444009243,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -689,9 +689,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CAycxv1n2MQqcmgubGJoS5qDsbFgRpGcZR1DVvHYec8f",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.2736482137784145,
-      "remainingSizeSol": 0.16418892826704867,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -727,9 +727,9 @@
       "openedAt": 1784462664034,
       "tp1TakenAt": 1784463081088,
       "tp1Classification": "STRONG",
-      "closedAt": null,
-      "realizedPnlSol": 0.055291622872659624,
-      "highWaterPriceUsd": 0.00016505585655376308,
+      "closedAt": 1784463383302,
+      "realizedPnlSol": 0.2038055629141373,
+      "highWaterPriceUsd": 0.00021000172525310656,
       "lowWaterPriceUsd": 0.00010966189082082897,
       "entryTxnsH1": {
         "buys": 1632,
@@ -1029,6 +1029,16 @@
       "pnlSol": 0.055291622872659624,
       "reason": "TP1 arrival classified STRONG, sold 40%",
       "timestamp": 1784463081088
+    },
+    {
+      "positionId": "HaFwupSf5TYe7wdpiNvSEFDsxSKc6pkGkcGHtHL8cUUe-1784462664032",
+      "symbol": "CXMT",
+      "action": "EXIT",
+      "price": 0.00020885444692126485,
+      "sizeSol": 0.16418892826704867,
+      "pnlSol": 0.14851394004147767,
+      "reason": "final target reached: only if buy flow and volume keep expanding",
+      "timestamp": 1784463383302
     }
   ]
 }
