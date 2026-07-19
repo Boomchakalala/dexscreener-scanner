@@ -64,15 +64,6 @@
       "alertedAt": 1784385525897
     },
     {
-      "symbol": "parcel",
-      "tokenAddress": "NvFqYKxDLMrXZ5UyK6Zs39AwsvjBvbUXZ3FmT2P8VC7",
-      "poolAddress": "8foUqXeQFWWS9wgYGww2iXHdv3oLDQhmSzVywDwUFz6w",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 56496.17546,
-      "kind": "flash",
-      "alertedAt": 1784412294295
-    },
-    {
       "symbol": "CASHCOW",
       "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
       "poolAddress": "DCZLnE5pnSiLipEtgcLuLJZaHnRxjiqygkb4JBYTDiPq",
@@ -125,6 +116,15 @@
       "marketCapUsdAtAlert": 418411.5262,
       "kind": "flash",
       "alertedAt": 1784433875631
+    },
+    {
+      "symbol": "Birdie",
+      "tokenAddress": "DnmhiZeYkZxCy1UzN2MpsGg4jip8sDav4nREdfthpump",
+      "poolAddress": "Gi2DnJHfFrVKc8FCMd7isnfPHFeKdDBvGgYtyk1Zx23V",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 133064.9134,
+      "kind": "flash",
+      "alertedAt": 1784444681324
     }
   ],
   "lastTelegramUpdateId": 710125054
