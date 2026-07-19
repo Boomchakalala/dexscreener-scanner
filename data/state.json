@@ -125,6 +125,15 @@
       "marketCapUsdAtAlert": 133064.9134,
       "kind": "flash",
       "alertedAt": 1784444681324
+    },
+    {
+      "symbol": "Emma",
+      "tokenAddress": "BcAFoHRTkQcErCjf8T6E7tM9fLtczxwzj8SHLBMbVWWb",
+      "poolAddress": "EuZvcfjnaBr4c48gEH4kXLHi4hAwnCt7tXmbyHE1Af9T",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 49097.64875,
+      "kind": "flash",
+      "alertedAt": 1784448284760
     }
   ],
   "lastTelegramUpdateId": 710125054
