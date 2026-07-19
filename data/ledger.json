@@ -352,7 +352,7 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/DCZLnE5pnSiLipEtgcLuLJZaHnRxjiqygkb4JBYTDiPq",
       "tier": "WATCH",
-      "status": "PENDING_ENTRY",
+      "status": "MISSED",
       "sizeSol": 0.3134516827451603,
       "remainingSizeSol": 0.3134516827451603,
       "entryCondition": {
@@ -708,6 +708,16 @@
       "pnlSol": -0.04071995600027373,
       "reason": "structural invalidation hit: Close back below 0.00040 means breakout failed",
       "timestamp": 1784434578649
+    },
+    {
+      "positionId": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump-1784419587886",
+      "symbol": "CASHCOW",
+      "action": "MISSED",
+      "price": null,
+      "sizeSol": 0,
+      "pnlSol": 0,
+      "reason": "entry condition never triggered within its validity window",
+      "timestamp": 1784441472970
     }
   ]
 }
