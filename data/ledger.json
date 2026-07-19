@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.679550942583622,
+  "balanceSol": 2.179550942583622,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -449,6 +449,63 @@
       },
       "entryTopHolderAddress": "DJb9YC2E34QX3zbukbFGmo59AgcVYTQ9UVYHS2LHMSZJ",
       "entryTopHolderPct": 6.5412773182505175
+    },
+    {
+      "id": "6weTzoLKhoYGChmkhotrJhNKwZdB8TWBG7XG3qmGpump-1784433876310",
+      "symbol": "BISCOTTI",
+      "tokenAddress": "6weTzoLKhoYGChmkhotrJhNKwZdB8TWBG7XG3qmGpump",
+      "poolAddress": "8fuAW2fH3PsPPv6uvAjrm9mNoGpfMcezfAVWVyrxf8fF",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/8fuAW2fH3PsPPv6uvAjrm9mNoGpfMcezfAVWVyrxf8fF",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.5,
+      "remainingSizeSol": 0.5,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now at market on fresh breakout candle closing on highs with expanding volume",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00047535,
+        "marketCapUsd": 418412,
+        "liquidityUsd": 59414
+      },
+      "structuralInvalidation": {
+        "price": 0.0004,
+        "description": "Close back below 0.00040 means breakout failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00057,
+          "note": "first resistance / measured continuation"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00072,
+          "note": "runner exit if volume keeps expanding"
+        }
+      ],
+      "thesis": "Sharp breakout from base with buy-dominant flow and expanding volume on the last two candles.",
+      "confidence": "MEDIUM",
+      "createdAt": 1784433876310,
+      "entryPrice": 0.0004167979031152553,
+      "entryMarketCapUsd": 435347.9205,
+      "openedAt": 1784433876312,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.0004167979031152553,
+      "lowWaterPriceUsd": 0.0004167979031152553,
+      "entryTxnsH1": {
+        "buys": 641,
+        "sells": 307
+      },
+      "entryTopHolderAddress": "8GWVnvAhSNQVEw5RBJQfvv1noAT1jrRRx7mzfPK4QBgb",
+      "entryTopHolderPct": 7.075738771014118
     }
   ],
   "tradeLog": [
@@ -631,6 +688,16 @@
       "pnlSol": -0.0024333341585789925,
       "reason": "runner stopped out: tightened after a weak TP1 arrival",
       "timestamp": 1784431882927
+    },
+    {
+      "positionId": "6weTzoLKhoYGChmkhotrJhNKwZdB8TWBG7XG3qmGpump-1784433876310",
+      "symbol": "BISCOTTI",
+      "action": "ENTRY",
+      "price": 0.0004167979031152553,
+      "sizeSol": 0.5,
+      "pnlSol": 0,
+      "reason": "filled with 2.06% price impact",
+      "timestamp": 1784433878708
     }
   ]
 }
