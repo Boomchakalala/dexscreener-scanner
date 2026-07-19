@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.0067535677083725,
+  "balanceSol": 2.171504476092398,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -689,9 +689,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/CAycxv1n2MQqcmgubGJoS5qDsbFgRpGcZR1DVvHYec8f",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.2736482137784145,
-      "remainingSizeSol": 0.2736482137784145,
+      "remainingSizeSol": 0.16418892826704867,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -704,8 +704,8 @@
         "liquidityUsd": 20022
       },
       "structuralInvalidation": {
-        "price": 0.00008,
-        "description": "Loss of launch base means initial pop has failed"
+        "price": 0.00010966189082082897,
+        "description": "moved to breakeven after a strong TP1 arrival"
       },
       "targets": [
         {
@@ -725,11 +725,11 @@
       "entryPrice": 0.00010966189082082897,
       "entryMarketCapUsd": 108264.6128,
       "openedAt": 1784462664034,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784463081088,
+      "tp1Classification": "STRONG",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.00012242349284639063,
+      "realizedPnlSol": 0.055291622872659624,
+      "highWaterPriceUsd": 0.00016505585655376308,
       "lowWaterPriceUsd": 0.00010966189082082897,
       "entryTxnsH1": {
         "buys": 1632,
@@ -1019,6 +1019,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.00% price impact",
       "timestamp": 1784462666340
+    },
+    {
+      "positionId": "HaFwupSf5TYe7wdpiNvSEFDsxSKc6pkGkcGHtHL8cUUe-1784462664032",
+      "symbol": "CXMT",
+      "action": "TP1_PARTIAL",
+      "price": 0.00016505585655376308,
+      "sizeSol": 0.1094592855113658,
+      "pnlSol": 0.055291622872659624,
+      "reason": "TP1 arrival classified STRONG, sold 40%",
+      "timestamp": 1784463081088
     }
   ]
 }
