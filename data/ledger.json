@@ -620,7 +620,8 @@
         "sells": 104
       },
       "entryTopHolderAddress": "FdH8Z1ijckV6Ujebj2g6ttyF3GKNJvJMbXZsjENQZ2Tr",
-      "entryTopHolderPct": 80.3291896878489
+      "entryTopHolderPct": 80.3291896878489,
+      "distributionWarned": true
     }
   ],
   "tradeLog": [
