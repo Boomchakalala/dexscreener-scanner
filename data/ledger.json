@@ -556,7 +556,7 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "highWaterPriceUsd": 0.00013176898698162527,
-      "lowWaterPriceUsd": 0.00010750854815172377,
+      "lowWaterPriceUsd": 0.00010569402114959996,
       "entryTxnsH1": {
         "buys": 616,
         "sells": 563
@@ -613,7 +613,7 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "highWaterPriceUsd": 0.000055589575702979645,
-      "lowWaterPriceUsd": 0.000055589575702979645,
+      "lowWaterPriceUsd": 0.00005319352794601812,
       "entryTxnsH1": {
         "buys": 570,
         "sells": 104
