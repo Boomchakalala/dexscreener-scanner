@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.280401781486787,
+  "balanceSol": 2.0067535677083725,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -680,6 +680,63 @@
       },
       "entryTopHolderAddress": "9G1NnqmSUbec9o9WpNoCM9PN6ehCM176HTWvjqVf5y6r",
       "entryTopHolderPct": 5.064806552323179
+    },
+    {
+      "id": "HaFwupSf5TYe7wdpiNvSEFDsxSKc6pkGkcGHtHL8cUUe-1784462664032",
+      "symbol": "CXMT",
+      "tokenAddress": "HaFwupSf5TYe7wdpiNvSEFDsxSKc6pkGkcGHtHL8cUUe",
+      "poolAddress": "CAycxv1n2MQqcmgubGJoS5qDsbFgRpGcZR1DVvHYec8f",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/CAycxv1n2MQqcmgubGJoS5qDsbFgRpGcZR1DVvHYec8f",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.2736482137784145,
+      "remainingSizeSol": 0.2736482137784145,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Enter now on live buy-dominant spike; size small given thin two-candle history",
+        "validityWindowMinutes": 12
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0001028,
+        "marketCapUsd": 82058,
+        "liquidityUsd": 20022
+      },
+      "structuralInvalidation": {
+        "price": 0.00008,
+        "description": "Loss of launch base means initial pop has failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00013,
+          "note": "first extension"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00018,
+          "note": "only if buy flow and volume keep expanding"
+        }
+      ],
+      "thesis": "Fresh migration accelerating with +26% latest candle, expanding volume and dominant buy flow.",
+      "confidence": "LOW",
+      "createdAt": 1784462664032,
+      "entryPrice": 0.00010966189082082897,
+      "entryMarketCapUsd": 108264.6128,
+      "openedAt": 1784462664034,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.00010966189082082897,
+      "lowWaterPriceUsd": 0.00010966189082082897,
+      "entryTxnsH1": {
+        "buys": 1632,
+        "sells": 601
+      },
+      "entryTopHolderAddress": "5G3BvpDXw4xLdLwUD2teoAfFxVumVxxJHmxLq2NiQGTB",
+      "entryTopHolderPct": 80.0000134703334
     }
   ],
   "tradeLog": [
@@ -952,6 +1009,16 @@
       "pnlSol": 0.046932934653039604,
       "reason": "TP1 arrival classified NORMAL, sold 62%",
       "timestamp": 1784460678351
+    },
+    {
+      "positionId": "HaFwupSf5TYe7wdpiNvSEFDsxSKc6pkGkcGHtHL8cUUe-1784462664032",
+      "symbol": "CXMT",
+      "action": "ENTRY",
+      "price": 0.00010966189082082897,
+      "sizeSol": 0.2736482137784145,
+      "pnlSol": 0,
+      "reason": "filled with 0.00% price impact",
+      "timestamp": 1784462666340
     }
   ]
 }
