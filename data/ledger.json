@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.670277620847654,
+  "balanceSol": 2.6702776240597013,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -573,9 +573,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/EuZvcfjnaBr4c48gEH4kXLHi4hAwnCt7tXmbyHE1Af9T",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.2566597183900018,
-      "remainingSizeSol": 0.15399583103400105,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -611,8 +611,8 @@
       "openedAt": 1784448285209,
       "tp1TakenAt": 1784451077521,
       "tp1Classification": "STRONG",
-      "closedAt": null,
-      "realizedPnlSol": 0.08419768846625512,
+      "closedAt": 1784474473946,
+      "realizedPnlSol": -0.06979813935569885,
       "highWaterPriceUsd": 0.0001037781604448714,
       "lowWaterPriceUsd": 0.000041503794422718966,
       "entryTxnsH1": {
@@ -622,7 +622,7 @@
       "entryTopHolderAddress": "FdH8Z1ijckV6Ujebj2g6ttyF3GKNJvJMbXZsjENQZ2Tr",
       "entryTopHolderPct": 80.3291896878489,
       "distributionWarned": true,
-      "dormantHits": 1
+      "dormantHits": 2
     },
     {
       "id": "2cAtqsRafKS7baN3mvJARhyZiMRdW4fZYNUUWUrCpump-1784459075432",
@@ -1049,6 +1049,16 @@
       "pnlSol": -0.0039297235532700925,
       "reason": "runner stopped out: moved to breakeven after TP1 (normal arrival)",
       "timestamp": 1784464275939
+    },
+    {
+      "positionId": "BcAFoHRTkQcErCjf8T6E7tM9fLtczxwzj8SHLBMbVWWb-1784448285207",
+      "symbol": "Emma",
+      "action": "EXIT",
+      "price": 1.1594881034559522e-12,
+      "sizeSol": 0.15399583103400105,
+      "pnlSol": -0.15399582782195398,
+      "reason": "stale position: h1 volume ~$0 / h6 volume ~$0 after 7.3h open — no real trading activity, freeing capital",
+      "timestamp": 1784474473946
     }
   ]
 }
