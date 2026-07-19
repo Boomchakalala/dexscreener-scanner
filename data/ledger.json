@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.6255629738480724,
+  "balanceSol": 2.679550942583622,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -401,9 +401,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
       "tier": "FLASH",
-      "status": "TP1_TAKEN",
+      "status": "CLOSED",
       "sizeSol": 0.3134516827451603,
-      "remainingSizeSol": 0.05642130289412889,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -439,10 +439,10 @@
       "openedAt": 1784430287273,
       "tp1TakenAt": 1784430978480,
       "tp1Classification": "WEAK",
-      "closedAt": null,
-      "realizedPnlSol": 0.06988692053253176,
+      "closedAt": 1784431882927,
+      "realizedPnlSol": 0.06745358637395277,
       "highWaterPriceUsd": 0.0005863888107975806,
-      "lowWaterPriceUsd": 0.00044432359806063383,
+      "lowWaterPriceUsd": 0.00044219664661480283,
       "entryTxnsH1": {
         "buys": 542,
         "sells": 612
@@ -621,6 +621,16 @@
       "pnlSol": 0.06988692053253176,
       "reason": "TP1 arrival classified WEAK, sold 82%",
       "timestamp": 1784430978480
+    },
+    {
+      "positionId": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump-1784430287272",
+      "symbol": "Tilly",
+      "action": "EXIT",
+      "price": 0.0004334966334823208,
+      "sizeSol": 0.05642130289412889,
+      "pnlSol": -0.0024333341585789925,
+      "reason": "runner stopped out: tightened after a weak TP1 arrival",
+      "timestamp": 1784431882927
     }
   ]
 }
