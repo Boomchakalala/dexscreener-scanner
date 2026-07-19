@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.0690328440156027,
+  "balanceSol": 2.4234688468337477,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -515,9 +515,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/Gi2DnJHfFrVKc8FCMd7isnfPHFeKdDBvGgYtyk1Zx23V",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "CLOSED",
       "sizeSol": 0.5,
-      "remainingSizeSol": 0.5,
+      "remainingSizeSol": 0,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -553,10 +553,10 @@
       "openedAt": 1784444681772,
       "tp1TakenAt": null,
       "tp1Classification": null,
-      "closedAt": null,
-      "realizedPnlSol": 0,
+      "closedAt": 1784453775089,
+      "realizedPnlSol": -0.1455639971818548,
       "highWaterPriceUsd": 0.00013176898698162527,
-      "lowWaterPriceUsd": 0.00010551222084464657,
+      "lowWaterPriceUsd": 0.00009542114371259217,
       "entryTxnsH1": {
         "buys": 616,
         "sells": 563
@@ -864,6 +864,16 @@
       "pnlSol": 0.08419768846625512,
       "reason": "TP1 arrival classified STRONG, sold 40%",
       "timestamp": 1784451077521
+    },
+    {
+      "positionId": "DnmhiZeYkZxCy1UzN2MpsGg4jip8sDav4nREdfthpump-1784444681771",
+      "symbol": "Birdie",
+      "action": "EXIT",
+      "price": 0.00009340734608232694,
+      "sizeSol": 0.5,
+      "pnlSol": -0.1455639971818548,
+      "reason": "structural invalidation hit: Loss of the pullback low breaks the reclaim structure",
+      "timestamp": 1784453775089
     }
   ]
 }
