@@ -100,24 +100,6 @@
       "alertedAt": 1784419587883
     },
     {
-      "symbol": "Tilly",
-      "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
-      "poolAddress": "4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 426922.6986,
-      "kind": "flash",
-      "alertedAt": 1784430286997
-    },
-    {
-      "symbol": "BISCOTTI",
-      "tokenAddress": "6weTzoLKhoYGChmkhotrJhNKwZdB8TWBG7XG3qmGpump",
-      "poolAddress": "8fuAW2fH3PsPPv6uvAjrm9mNoGpfMcezfAVWVyrxf8fF",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 418411.5262,
-      "kind": "flash",
-      "alertedAt": 1784433875631
-    },
-    {
       "symbol": "Birdie",
       "tokenAddress": "DnmhiZeYkZxCy1UzN2MpsGg4jip8sDav4nREdfthpump",
       "poolAddress": "Gi2DnJHfFrVKc8FCMd7isnfPHFeKdDBvGgYtyk1Zx23V",
@@ -134,6 +116,15 @@
       "marketCapUsdAtAlert": 49097.64875,
       "kind": "flash",
       "alertedAt": 1784448284760
+    },
+    {
+      "symbol": "Agamemnon",
+      "tokenAddress": "2cAtqsRafKS7baN3mvJARhyZiMRdW4fZYNUUWUrCpump",
+      "poolAddress": "636bkx7Ugs6Vdb9FhAJdwFdi4afupHDarrTW2nTVuEag",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 600520.235965836,
+      "kind": "flash",
+      "alertedAt": 1784459074925
     }
   ],
   "lastTelegramUpdateId": 710125054
