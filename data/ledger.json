@@ -562,7 +562,8 @@
         "sells": 563
       },
       "entryTopHolderAddress": "8BB614jAWjKbuirbcktCLFGT7AsgHjNcvxeSANNtfg3x",
-      "entryTopHolderPct": 11.643978016618727
+      "entryTopHolderPct": 11.643978016618727,
+      "dormantHits": 0
     },
     {
       "id": "BcAFoHRTkQcErCjf8T6E7tM9fLtczxwzj8SHLBMbVWWb-1784448285207",
