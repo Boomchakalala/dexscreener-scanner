@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.1388309865833484,
+  "balanceSol": 1.8821712681933467,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -563,6 +563,63 @@
       },
       "entryTopHolderAddress": "8BB614jAWjKbuirbcktCLFGT7AsgHjNcvxeSANNtfg3x",
       "entryTopHolderPct": 11.643978016618727
+    },
+    {
+      "id": "BcAFoHRTkQcErCjf8T6E7tM9fLtczxwzj8SHLBMbVWWb-1784448285207",
+      "symbol": "Emma",
+      "tokenAddress": "BcAFoHRTkQcErCjf8T6E7tM9fLtczxwzj8SHLBMbVWWb",
+      "poolAddress": "EuZvcfjnaBr4c48gEH4kXLHi4hAwnCt7tXmbyHE1Af9T",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/EuZvcfjnaBr4c48gEH4kXLHi4hAwnCt7tXmbyHE1Af9T",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.2566597183900018,
+      "remainingSizeSol": 0.2566597183900018,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Live fresh-launch spike, buy-dominant flow, latest candle closing near high",
+        "validityWindowMinutes": 15
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0000614,
+        "marketCapUsd": 49098,
+        "liquidityUsd": 15789
+      },
+      "structuralInvalidation": {
+        "price": 0.000038,
+        "description": "Loss of breakout base means the pop failed"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.0001,
+          "note": "First target on continuation"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00015,
+          "note": "Only if buy flow and volume hold"
+        }
+      ],
+      "thesis": "Brand-new token spiking with exceptional buy dominance (245 buyers vs 26 sellers) and latest candle closing near high",
+      "confidence": "LOW",
+      "createdAt": 1784448285207,
+      "entryPrice": 0.000055589575702979645,
+      "entryMarketCapUsd": 55469.57978,
+      "openedAt": 1784448285209,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.000055589575702979645,
+      "lowWaterPriceUsd": 0.000055589575702979645,
+      "entryTxnsH1": {
+        "buys": 570,
+        "sells": 104
+      },
+      "entryTopHolderAddress": "FdH8Z1ijckV6Ujebj2g6ttyF3GKNJvJMbXZsjENQZ2Tr",
+      "entryTopHolderPct": 80.3291896878489
     }
   ],
   "tradeLog": [
@@ -785,6 +842,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.00% price impact",
       "timestamp": 1784444684057
+    },
+    {
+      "positionId": "BcAFoHRTkQcErCjf8T6E7tM9fLtczxwzj8SHLBMbVWWb-1784448285207",
+      "symbol": "Emma",
+      "action": "ENTRY",
+      "price": 0.000055589575702979645,
+      "sizeSol": 0.2566597183900018,
+      "pnlSol": 0,
+      "reason": "filled with 0.19% price impact",
+      "timestamp": 1784448287512
     }
   ]
 }
