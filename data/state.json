@@ -64,15 +64,6 @@
       "alertedAt": 1784385525897
     },
     {
-      "symbol": "Tilly",
-      "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
-      "poolAddress": "4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 476632.256,
-      "kind": "flash",
-      "alertedAt": 1784397837321
-    },
-    {
       "symbol": "DBULL",
       "tokenAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
       "poolAddress": "5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
@@ -98,6 +89,42 @@
       "marketCapUsdAtAlert": 56496.17546,
       "kind": "flash",
       "alertedAt": 1784412294295
+    },
+    {
+      "symbol": "CASHCOW",
+      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "poolAddress": "DCZLnE5pnSiLipEtgcLuLJZaHnRxjiqygkb4JBYTDiPq",
+      "verdict": "WATCH",
+      "marketCapUsdAtAlert": 366983.5709530253,
+      "kind": "deep",
+      "alertedAt": 1784419587883
+    },
+    {
+      "symbol": "Tilly",
+      "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
+      "poolAddress": "4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 419059.5262010795,
+      "kind": "deep",
+      "alertedAt": 1784419587883
+    },
+    {
+      "symbol": "DBULL",
+      "tokenAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
+      "poolAddress": "5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 79478.20229787489,
+      "kind": "deep",
+      "alertedAt": 1784419587883
+    },
+    {
+      "symbol": "Mouse",
+      "tokenAddress": "3wwU3njdLCT3ebRUrTFeHwKG6zamiiCKwmpShSK2pump",
+      "poolAddress": "4mt1PvMBZENLbKQ4onj7SyoXmmbiN2sp2Vqtd8TdZecL",
+      "verdict": "AVOID",
+      "marketCapUsdAtAlert": 254690.2096492931,
+      "kind": "deep",
+      "alertedAt": 1784419587883
     }
   ],
   "lastTelegramUpdateId": 710125054
