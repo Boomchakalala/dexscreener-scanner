@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.8821712681933467,
+  "balanceSol": 2.0690328440156027,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -572,9 +572,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/EuZvcfjnaBr4c48gEH4kXLHi4hAwnCt7tXmbyHE1Af9T",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.2566597183900018,
-      "remainingSizeSol": 0.2566597183900018,
+      "remainingSizeSol": 0.15399583103400105,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -587,8 +587,8 @@
         "liquidityUsd": 15789
       },
       "structuralInvalidation": {
-        "price": 0.000038,
-        "description": "Loss of breakout base means the pop failed"
+        "price": 0.000055589575702979645,
+        "description": "moved to breakeven after a strong TP1 arrival"
       },
       "targets": [
         {
@@ -608,11 +608,11 @@
       "entryPrice": 0.000055589575702979645,
       "entryMarketCapUsd": 55469.57978,
       "openedAt": 1784448285209,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784451077521,
+      "tp1Classification": "STRONG",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.00008799087624314193,
+      "realizedPnlSol": 0.08419768846625512,
+      "highWaterPriceUsd": 0.00010329028013322572,
       "lowWaterPriceUsd": 0.000041503794422718966,
       "entryTxnsH1": {
         "buys": 570,
@@ -852,6 +852,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.19% price impact",
       "timestamp": 1784448287512
+    },
+    {
+      "positionId": "BcAFoHRTkQcErCjf8T6E7tM9fLtczxwzj8SHLBMbVWWb-1784448285207",
+      "symbol": "Emma",
+      "action": "TP1_PARTIAL",
+      "price": 0.00010118022980299905,
+      "sizeSol": 0.10266388735600072,
+      "pnlSol": 0.08419768846625512,
+      "reason": "TP1 arrival classified STRONG, sold 40%",
+      "timestamp": 1784451077521
     }
   ]
 }
