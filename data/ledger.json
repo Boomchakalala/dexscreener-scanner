@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.612097356209669,
+  "balanceSol": 2.298645673464509,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -392,6 +392,63 @@
       "closedAt": null,
       "realizedPnlSol": 0,
       "triggerHits": 0
+    },
+    {
+      "id": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump-1784430287272",
+      "symbol": "Tilly",
+      "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
+      "poolAddress": "4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.3134516827451603,
+      "remainingSizeSol": 0.3134516827451603,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Live volume-backed recovery leg approaching prior swing high",
+        "validityWindowMinutes": 30
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.0004557,
+        "marketCapUsd": 426923,
+        "liquidityUsd": 58173
+      },
+      "structuralInvalidation": {
+        "price": 0.00038,
+        "description": "Losing recovery base signals failed bounce with sell-dominant flow retaking control"
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00049,
+          "note": "Prior swing high resistance"
+        },
+        {
+          "label": "TP2",
+          "price": 0.00056,
+          "note": "Only if it breaks the high with continued volume"
+        }
+      ],
+      "thesis": "Fresh +48% recovery leg over 45min with expanding volume and higher highs on the latest candle",
+      "confidence": "LOW",
+      "createdAt": 1784430287272,
+      "entryPrice": 0.0004530351008591632,
+      "entryMarketCapUsd": 460543.292,
+      "openedAt": 1784430287273,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.0004530351008591632,
+      "lowWaterPriceUsd": 0.0004530351008591632,
+      "entryTxnsH1": {
+        "buys": 542,
+        "sells": 612
+      },
+      "entryTopHolderAddress": "DJb9YC2E34QX3zbukbFGmo59AgcVYTQ9UVYHS2LHMSZJ",
+      "entryTopHolderPct": 6.5412773182505175
     }
   ],
   "tradeLog": [
@@ -544,6 +601,16 @@
       "pnlSol": -0.3551921702284487,
       "reason": "structural invalidation hit: Loss of breakout base = failed launch pop",
       "timestamp": 1784412374377
+    },
+    {
+      "positionId": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump-1784430287272",
+      "symbol": "Tilly",
+      "action": "ENTRY",
+      "price": 0.0004530351008591632,
+      "sizeSol": 0.3134516827451603,
+      "pnlSol": 0,
+      "reason": "filled with 1.03% price impact",
+      "timestamp": 1784430289492
     }
   ]
 }
