@@ -116,6 +116,15 @@
       "marketCapUsdAtAlert": 426922.6986,
       "kind": "flash",
       "alertedAt": 1784430286997
+    },
+    {
+      "symbol": "BISCOTTI",
+      "tokenAddress": "6weTzoLKhoYGChmkhotrJhNKwZdB8TWBG7XG3qmGpump",
+      "poolAddress": "8fuAW2fH3PsPPv6uvAjrm9mNoGpfMcezfAVWVyrxf8fF",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 418411.5262,
+      "kind": "flash",
+      "alertedAt": 1784433875631
     }
   ],
   "lastTelegramUpdateId": 710125054
