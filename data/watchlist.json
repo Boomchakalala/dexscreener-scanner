@@ -1,3 +1,19 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "symbol": "CASHCOW",
+      "tokenAddress": "D6ytjMdBBPoV8nsRHJhvrkpwF7sgVBYd7PufkRHNpump",
+      "poolAddress": "DCZLnE5pnSiLipEtgcLuLJZaHnRxjiqygkb4JBYTDiPq",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/DCZLnE5pnSiLipEtgcLuLJZaHnRxjiqygkb4JBYTDiPq",
+      "condition": {
+        "mcMin": 420000,
+        "mcMax": null,
+        "requireRisingVolume": true,
+        "description": "Reclaim above ~$420K MC on volume expansion with a higher low holding"
+      },
+      "addedAt": 1784419587884,
+      "expiresAt": 1784505987884
+    }
+  ]
 }
