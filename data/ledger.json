@@ -1,5 +1,5 @@
 {
-  "balanceSol": 2.4234688468337477,
+  "balanceSol": 1.9234688468337477,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -623,6 +623,63 @@
       "entryTopHolderPct": 80.3291896878489,
       "distributionWarned": true,
       "dormantHits": 0
+    },
+    {
+      "id": "2cAtqsRafKS7baN3mvJARhyZiMRdW4fZYNUUWUrCpump-1784459075432",
+      "symbol": "Agamemnon",
+      "tokenAddress": "2cAtqsRafKS7baN3mvJARhyZiMRdW4fZYNUUWUrCpump",
+      "poolAddress": "636bkx7Ugs6Vdb9FhAJdwFdi4afupHDarrTW2nTVuEag",
+      "chainId": "solana",
+      "dexUrl": "https://dexscreener.com/solana/636bkx7Ugs6Vdb9FhAJdwFdi4afupHDarrTW2nTVuEag",
+      "tier": "FLASH",
+      "status": "OPEN",
+      "sizeSol": 0.5,
+      "remainingSizeSol": 0.5,
+      "entryCondition": {
+        "type": "IMMEDIATE",
+        "triggerPrice": null,
+        "description": "Live breakout to new highs with expanding volume and buy-dominant flow; enter now, keep size modest given extreme extension.",
+        "validityWindowMinutes": 25
+      },
+      "entrySnapshot": {
+        "priceUsd": 0.00066381,
+        "marketCapUsd": 600520,
+        "liquidityUsd": 62332
+      },
+      "structuralInvalidation": {
+        "price": 0.0005,
+        "description": "Loss of the breakout shelf means the new leg has failed and the move is rolling over."
+      },
+      "targets": [
+        {
+          "label": "TP1",
+          "price": 0.00072,
+          "note": "Recent high / first resistance."
+        },
+        {
+          "label": "TP2",
+          "price": 0.0009,
+          "note": "Only if volume keeps expanding on new highs."
+        }
+      ],
+      "thesis": "Fresh breakout to new highs after a reset, h1 +124% with dominant buy flow and expanding volume, still live.",
+      "confidence": "MEDIUM",
+      "createdAt": 1784459075432,
+      "entryPrice": 0.0006238313305994487,
+      "entryMarketCapUsd": 620083.913964723,
+      "openedAt": 1784459075433,
+      "tp1TakenAt": null,
+      "tp1Classification": null,
+      "closedAt": null,
+      "realizedPnlSol": 0,
+      "highWaterPriceUsd": 0.0006238313305994487,
+      "lowWaterPriceUsd": 0.0006238313305994487,
+      "entryTxnsH1": {
+        "buys": 2992,
+        "sells": 2599
+      },
+      "entryTopHolderAddress": "9G1NnqmSUbec9o9WpNoCM9PN6ehCM176HTWvjqVf5y6r",
+      "entryTopHolderPct": 5.064806552323179
     }
   ],
   "tradeLog": [
@@ -875,6 +932,16 @@
       "pnlSol": -0.1455639971818548,
       "reason": "structural invalidation hit: Loss of the pullback low breaks the reclaim structure",
       "timestamp": 1784453775089
+    },
+    {
+      "positionId": "2cAtqsRafKS7baN3mvJARhyZiMRdW4fZYNUUWUrCpump-1784459075432",
+      "symbol": "Agamemnon",
+      "action": "ENTRY",
+      "price": 0.0006238313305994487,
+      "sizeSol": 0.5,
+      "pnlSol": 0,
+      "reason": "filled with 0.58% price impact",
+      "timestamp": 1784459077714
     }
   ]
 }
