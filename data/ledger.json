@@ -1,5 +1,5 @@
 {
-  "balanceSol": 1.9234688468337477,
+  "balanceSol": 2.280401781486787,
   "positions": [
     {
       "id": "CZdLsd63z5YdvK2DebtApnrY9sT7J49v5zQuuKTMJ8q3-1784387020266",
@@ -632,9 +632,9 @@
       "chainId": "solana",
       "dexUrl": "https://dexscreener.com/solana/636bkx7Ugs6Vdb9FhAJdwFdi4afupHDarrTW2nTVuEag",
       "tier": "FLASH",
-      "status": "OPEN",
+      "status": "TP1_TAKEN",
       "sizeSol": 0.5,
-      "remainingSizeSol": 0.5,
+      "remainingSizeSol": 0.19,
       "entryCondition": {
         "type": "IMMEDIATE",
         "triggerPrice": null,
@@ -647,8 +647,8 @@
         "liquidityUsd": 62332
       },
       "structuralInvalidation": {
-        "price": 0.0005,
-        "description": "Loss of the breakout shelf means the new leg has failed and the move is rolling over."
+        "price": 0.0006238313305994487,
+        "description": "moved to breakeven after TP1 (normal arrival)"
       },
       "targets": [
         {
@@ -668,11 +668,11 @@
       "entryPrice": 0.0006238313305994487,
       "entryMarketCapUsd": 620083.913964723,
       "openedAt": 1784459075433,
-      "tp1TakenAt": null,
-      "tp1Classification": null,
+      "tp1TakenAt": 1784460678351,
+      "tp1Classification": "NORMAL",
       "closedAt": null,
-      "realizedPnlSol": 0,
-      "highWaterPriceUsd": 0.0006706640105848325,
+      "realizedPnlSol": 0.046932934653039604,
+      "highWaterPriceUsd": 0.0007247931224436268,
       "lowWaterPriceUsd": 0.0005810665962951037,
       "entryTxnsH1": {
         "buys": 2992,
@@ -942,6 +942,16 @@
       "pnlSol": 0,
       "reason": "filled with 0.58% price impact",
       "timestamp": 1784459077714
+    },
+    {
+      "positionId": "2cAtqsRafKS7baN3mvJARhyZiMRdW4fZYNUUWUrCpump-1784459075432",
+      "symbol": "Agamemnon",
+      "action": "TP1_PARTIAL",
+      "price": 0.0007182772501915217,
+      "sizeSol": 0.31,
+      "pnlSol": 0.046932934653039604,
+      "reason": "TP1 arrival classified NORMAL, sold 62%",
+      "timestamp": 1784460678351
     }
   ]
 }
