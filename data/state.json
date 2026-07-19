@@ -64,24 +64,6 @@
       "alertedAt": 1784385525897
     },
     {
-      "symbol": "DBULL",
-      "tokenAddress": "DiaXHsNJwvGXEjx1HN7phGL7YfHPtBuvzHoCk28Apump",
-      "poolAddress": "5WiFKQWqhHzrTsSvGcQfnxQpCrDw4fT7gcmdYGKHwQjW",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 118344.4983,
-      "kind": "flash",
-      "alertedAt": 1784401428297
-    },
-    {
-      "symbol": "Nenem",
-      "tokenAddress": "BCDgN5Jgnkbjs8oRHivko5dcf18sPsSmPVKAsDnMpump",
-      "poolAddress": "EAeurSge8RTdfAq6yZFoocCRVwv8uFaWbzis5PM7a9vq",
-      "verdict": "FLASH ALERT",
-      "marketCapUsdAtAlert": 75366.80696,
-      "kind": "flash",
-      "alertedAt": 1784405030391
-    },
-    {
       "symbol": "parcel",
       "tokenAddress": "NvFqYKxDLMrXZ5UyK6Zs39AwsvjBvbUXZ3FmT2P8VC7",
       "poolAddress": "8foUqXeQFWWS9wgYGww2iXHdv3oLDQhmSzVywDwUFz6w",
@@ -125,6 +107,15 @@
       "marketCapUsdAtAlert": 254690.2096492931,
       "kind": "deep",
       "alertedAt": 1784419587883
+    },
+    {
+      "symbol": "Tilly",
+      "tokenAddress": "6Z6qeAuA45G8RrxG7hjZVdPHn1rNHtedJy9WAXg9pump",
+      "poolAddress": "4mdJwjXaVHQ2CkBQ5JEzCowbLvwcGx3UFTjp4Ts8rnmw",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 426922.6986,
+      "kind": "flash",
+      "alertedAt": 1784430286997
     }
   ],
   "lastTelegramUpdateId": 710125054
