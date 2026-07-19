@@ -125,6 +125,15 @@
       "marketCapUsdAtAlert": 600520.235965836,
       "kind": "flash",
       "alertedAt": 1784459074925
+    },
+    {
+      "symbol": "CXMT",
+      "tokenAddress": "HaFwupSf5TYe7wdpiNvSEFDsxSKc6pkGkcGHtHL8cUUe",
+      "poolAddress": "CAycxv1n2MQqcmgubGJoS5qDsbFgRpGcZR1DVvHYec8f",
+      "verdict": "FLASH ALERT",
+      "marketCapUsdAtAlert": 82057.80824,
+      "kind": "flash",
+      "alertedAt": 1784462663631
     }
   ],
   "lastTelegramUpdateId": 710125054
